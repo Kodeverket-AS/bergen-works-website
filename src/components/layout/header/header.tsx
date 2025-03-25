@@ -1,9 +1,14 @@
-import { NavBar } from "@/components/layout/navigation/navbar";
+import { NavBarDesktop } from "@/components/layout/navigation/desktop/navbar";
+import { NavBarMobile } from "../navigation/mobile/navbar";
 
 export function Header() {
   return (
-    <header>
-      <NavBar />
+    <header className="flex justify-between">
+      <span>
+        logo.svg
+      </span>
+      <NavBarDesktop />
+      <NavBarMobile />
     </header>
   );
 }

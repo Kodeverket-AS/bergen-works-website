@@ -1,6 +1,6 @@
-export function NavBar() {
+export function NavBarDesktop() {
   return (
-    <nav>
+    <nav className="hidden sm:flex">
       <span>hjem</span>
       <span>fasiliteter</span>
     </nav>
