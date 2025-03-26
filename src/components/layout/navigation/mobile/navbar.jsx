@@ -9,7 +9,7 @@ export default function NavBar() {
   };
 
   return (
-    <nav className="pr-12 top-0 md: px-12 sticky z-30  lg:flex justtify-between lg:justify-between 3xl:px-80 mb-8 ">
+    <nav className=" pr-5 pl-5 top-0 sticky z-30 lg:flex justtify-between lg:justify-between 3xl:px-80 mb-8 ">
       <div className="flex justify-between items-center">
         <img
           src="/BW_Logo.png"
