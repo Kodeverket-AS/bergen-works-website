@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,49 +32,19 @@ export default function NavBar() {
         } flex-col items-end space-y-4 pb-5 lg:flex lg:flex-row lg:gap-8  lg:space-y-0 lg:text-xl lg:items-end`}
       >
         <li>
-          <a
-            href="Fasiliteter"
-            className=" hover:underline lg:text-lg"
-            onClick={handleLinkClick}
-          >
-            Fasiliteter
-          </a>
+          <Link href="/fasiliteter" className=" hover:underline lg:text-lg" onClick={handleLinkClick}>Fasiliteter</Link>
         </li>
         <li>
-          <a
-            href="Medlemskap"
-            className=" hover:underline lg:text-lg"
-            onClick={handleLinkClick}
-          >
-            Medlemskap
-          </a>
+          <Link href="/medlemskap" className=" hover:underline lg:text-lg" onClick={handleLinkClick}>Medlemskap</Link>
         </li>
         <li>
-          <a
-            href="Inkubator"
-            className=" hover:underline md:text-lg"
-            onClick={handleLinkClick}
-          >
-            Inkubator
-          </a>
+          <Link href="/inkubator" className=" hover:underline md:text-lg" onClick={handleLinkClick}>Inkubator</Link>
         </li>
         <li>
-          <a
-            href="Om oss"
-            className=" hover:underline md:text-lg"
-            onClick={handleLinkClick}
-          >
-            Om oss
-          </a>
+          <Link href="Om oss" className=" hover:underline md:text-lg" onClick={handleLinkClick}>Om oss</Link>
         </li>
         <li>
-          <a
-            href="Artikler"
-            className=" hover:underline md:text-lg"
-            onClick={handleLinkClick}
-          >
-            Artikler
-          </a>
+          <Link href="Artikler" className=" hover:underline md:text-lg" onClick={handleLinkClick}>Artikler</Link>
         </li>
       </ul>
     </nav>
