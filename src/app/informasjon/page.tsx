@@ -51,7 +51,7 @@ export default function Information() {
           </div>
         </div>
         <div className=" flex justify-evenly items-end p-[2em] w-[342] h-[122] rounded-2xl bg-moss-600 text-[var(--text-light)] ">
-          <Image src="/infoIcon1.png" alt="icon" width={58} height={58} />
+          <Image src="/infoIcon2.png" alt="icon" width={58} height={58} />
           <div className=" px-[1.5em] flex flex-col justify-end tracking-wide ">
             <h1 className="text-2xl text-light font-bold leading-10">
               Åpen plass
@@ -77,7 +77,7 @@ export default function Information() {
           </div>
         </div>
         <div className=" flex justify-evenly items-end p-[2em] w-[342] h-[122] rounded-2xl bg-moss-200 text-[var(--text-dark)] ">
-          <Image src="/infoIcon1.png" alt="icon" width={58} height={58} />
+          <Image src="/infoIcon3.png" alt="icon" width={58} height={58} />
           <div className=" px-[1.5em] flex flex-col justify-end tracking-wide ">
             <h1 className="text-2xl text-light font-bold leading-10">
               Inkubasjon
