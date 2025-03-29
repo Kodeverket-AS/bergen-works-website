@@ -10,20 +10,20 @@ export default function Information() {
             alt="Picture of logo and people in meetingroom"
             width={294}
             height={303}
-            className="mt-[1.5em] md:mt-[1em] lg:mt-0 lg:p-[0.5em] object-cover rounded-2xl md:h-[383px] md:w-[400]"
+            className="mt-[1.5em] md:mt-[1em] lg:mt-0 lg:p-[0.5em] object-contain rounded-2xl md:h-[383px] md:w-[400]"
             priority
           />
         </div>
         <div className="text-[var(--text-light)] w-[294px] h-full md:w-[400] rounded-2xl md:p-[1em] lg:w-[870] lg:h-[411] lg:bg-[#1D1D1D]">
-          <div className="xl:w-[753] xl:h-[45px] lg:ml-6">
+          <div className="lg:w-[700] xl:w-[753] xl:h-[45px] lg:px-16">
             <h1 className="font-bold text-[40px] md:text-[40px] md:-mt-10 lg:my-2 ">
               Co-work
             </h1>
-            <p className="text-base text-start ">
+            <p className="text-start">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis,
               fuga! Dolorem, veritatis praesentium?
             </p>
-            <p className="hidden lg:block lg:w-[753]">
+            <p className="hidden lg:block lg:w-[600] ">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
               fuga quos culpa assumenda ab iste, atque facere aut fugit rerum
               repudiandae eius praesentium alias ratione consequatur optio sit
@@ -34,7 +34,7 @@ export default function Information() {
               veritatis deserunt est ex, eos architecto unde? Obcaecati iste
               deserunt molestiae delectus ullam nemo.
             </p>
-            <div className="w-full md:flex md:justify-center lg:justify-start md:mt-[1em] lg:mt-10">
+            <div className="w-full md:flex md:justify-center lg:justify-start md:mt-[1em] lg:mt-5">
               <button className="text-base md:text-md mt-[2em] md:mt-[0.5em] w-[294px] h-[51px] lg:w-[148px] rounded-sm py-4 px-8 bg-white text-[var(--text-dark)] font-semibold  md:hover:bg-accept-600 md:hover:text-[var(--text-light)] transition-colors duration-300 cursor-pointer">
                 Ta kontakt
               </button>
