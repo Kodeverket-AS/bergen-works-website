@@ -19,7 +19,7 @@ export default function NavBar() {
         />
 
         <button
-          className="lg:hidden  text-4xl"
+          className="lg:hidden  text-3xl"
           onClick={() => setIsOpen(!isOpen)}
         >
           ☰
