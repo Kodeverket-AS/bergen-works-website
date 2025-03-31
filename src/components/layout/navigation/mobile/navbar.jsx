@@ -10,7 +10,7 @@ export default function NavBar() {
   };
 
   return (
-    <nav className=" m-10 shadow-2xl rounded-3xl w-3/4  pr-5 pl-5 top-0 sticky z-30 lg:flex justtify-between lg:justify-between xl:flex 2xl:w-2/4 3xl:px-80 mb-8  ">
+    <nav className="m-10 shadow-2xl pr-5 pl-5 top-0 sticky z-30 lg:flex justtify-between lg:justify-between md:w-2/3 3xl:px-80 mb-8 ">
       <div className="flex justify-between items-center">
         <img
           src="/BW_Logo.png"
@@ -19,7 +19,7 @@ export default function NavBar() {
         />
 
         <button
-          className="lg:hidden  text-4xl"
+          className="lg:hidden  text-3xl"
           onClick={() => setIsOpen(!isOpen)}
         >
           ☰
