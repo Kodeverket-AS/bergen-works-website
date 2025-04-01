@@ -5,9 +5,10 @@ const Fasiliteter = () => {
   return (
       <div className='flex flex-col m-3 p-10 gap-3 lg:flex-row bg-white text-black'> 
         <div className='p-5 shadow-2xl'>
-          <h1 className='text-4xl'>Fasiliteter</h1>
-          <p className='text-2xl'>Vi bryr oss om din bekvemmelighet og ditt humør</p>
-          <p className='text-xl'>Det beste for kundene</p>
+          <h1 className='text-4xl '>Fasiliteter</h1>
+          <p className='text-2xl mt-3'>Vi bryr oss om din bekvemmelighet og ditt humør</p>
+          <p className='text-xl mt-8'>Det beste for kundene</p>
+          
         </div>
 
         <div className='flex flex-col flex-wrap justify-center place-content-center md:flex-row gap-5 bg-white text-black '>
