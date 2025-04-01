@@ -22,8 +22,7 @@ const Eget_Kontor = () => {
                 <h1>Fast plass</h1>
                 <p>3990,-/mnd (eks.MVA)</p>
                 <p>Dette inkluderer følgende: Fast plass i åpent kontorlandskap, nytraktet kaffe, tilgang til møterom, rask wifi, rengjøring, strøm, telefonbåser samt invitasjon til alle arrangementer i Bergen.Works regi.</p>
-            </div>
-            
+            </div>            
         </div>
 
         <div className='flex flex-col w-full md:flex-row gap-5 mb-5'>
