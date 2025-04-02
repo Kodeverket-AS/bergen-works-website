@@ -17,8 +17,13 @@ permissions:
   contents: read
   id-token: write
 
+# Only allow one current runner
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+# Build job
 jobs:
-  # Build job
   build:
     runs-on: ubuntu-latest
     steps:
