@@ -3,5 +3,5 @@ type ExampleButton = {
 };
 
 export function ExampleButton({ label }: ExampleButton) {
-  return <button>{label}</button>;
+  return <button>{label}</button>; 
 }
