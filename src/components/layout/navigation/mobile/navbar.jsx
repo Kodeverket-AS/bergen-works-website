@@ -10,16 +10,18 @@ export default function NavBar() {
   };
 
   return (
-    <nav className=" pr-5 pl-5 top-0 sticky z-30 lg:flex justtify-between lg:justify-between 3xl:px-80 mb-8 ">
+    <nav className="m-10 shadow-xl pr-5 pl-5 top-0 sticky z-30 lg:flex justtify-between lg:justify-between md:w-2/3 3xl:px-80 mb-8 ">
       <div className="flex justify-between items-center">
+      <Link href="/" scroll={true}>
         <img
-          src="/BW_Logo.png"
-          alt="BergenWorks logo"
-          className="rounded-2xl h-17 w-37 "
+        src="/BW_Logo.png"
+        alt="BergenWorks logo"
+        className="rounded-2xl h-17 w-37 "
         />
+      </Link>
 
         <button
-          className="lg:hidden  text-4xl"
+          className="lg:hidden  text-3xl"
           onClick={() => setIsOpen(!isOpen)}
         >
           ☰
