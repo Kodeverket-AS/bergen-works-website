@@ -1,12 +1,13 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { Card, CardContent, CardMedia, Grid, Typography, Button } from '@mui/material';
+import { Card, CardContent, CardMedia, Typography, Button } from '@mui/material';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const ArticleCard = ({ article, index }) => (
   <Card sx={{ width: '100%' }} key={index}>
     {/* Inner wrapper to control margin */}
-    <div style={{margin: '20px' }}>
+    <div style={{ margin: '20px' }}>
       {/* Image with rounded corners */}
       <CardMedia
         component="img"
@@ -16,25 +17,54 @@ const ArticleCard = ({ article, index }) => (
         sx={{ objectFit: 'cover', marginBottom: '20px', borderRadius: '10px' }} // Added borderRadius for rounded corners
       />
       {/* Title */}
-      <Typography variant="h6" component="div" sx={{ marginBottom: '10px' }}>
+      <Typography variant="h6" component="div" sx={{ marginBottom: '10px', fontWeight: 'bold' }}>
         {article.title}
       </Typography>
       {/* Date */}
       <Typography variant="body2" color="text.secondary" sx={{ marginBottom: '10px' }}>
         {article.date}
       </Typography>
-      {/* Description */}
-      <Typography variant="body2" color="text.primary" paragraph sx={{ marginBottom: '10px' }}>
-        {article.description}
-      </Typography>
-      {/* Link */}
-      <Button size="small" href={article.link}>
-        Read More
-      </Button>
+      {/* Description and arrow icon in the same line */}
+      <div style={{ display: 'flex', gap: '20px'}}>
+        <div className="paragraph">
+        <Typography
+          variant="body2"
+          color="text.primary"
+          sx={{
+            flex: 1,
+            marginBottom: '10px',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            display: '-webkit-box',
+            WebkitLineClamp: 3,
+            WebkitBoxOrient: 'vertical',
+          }}
+        >
+          {article.description}
+        </Typography>
+        </div>
+        
+        <div className="link" style={{ marginTop: 'auto', display: 'flex', justifyContent: 'flex-end' }}>
+
+        <ArrowForwardIcon
+          sx={{
+            cursor: 'pointer',
+            color: 'gray',
+            transition: 'color 0.3s',
+            '&:hover': { color: 'black' }, // Hover effect
+            marginLeft: 'auto', // Ensures the arrow is at the right end of the container
+            fontSize: '36px', // Make it a bit larger
+            transform: 'rotate(45deg)', // Rotate the arrow by 45 degrees
+          }}
+          onClick={() => window.location.href = article.link}
+        />
+
+        </div>
+     
+      </div>
     </div>
   </Card>
 );
-
 
 const ArticleCarousel = () => {
   const articles = [
@@ -77,9 +107,9 @@ const ArticleCarousel = () => {
 
   return (
     <div className="w-full p-0 m-0 lg:flex-row bg-white text-black">
-      <h1 className="text-4xl">Artikler</h1>
+      <h1 className="text-4xl text-center mb-8">Artikler</h1> {/* Centered header */}
       {/* Articles Grid Section */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 shadow-2xl p-3 rounded-2xl w-full max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-7xl mx-auto">
         {articles.map((article, index) => (
           <ArticleCard article={article} index={index} key={index} />
         ))}
