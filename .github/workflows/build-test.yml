@@ -7,6 +7,7 @@ on:
 
   # Event also triggers on creating, re-opening and commiting to pull requests
   pull_request:
+    branches: ["development"]
     types: [opened, reopened, synchronize]
 
 # Allows the runner to read the content of the repo
