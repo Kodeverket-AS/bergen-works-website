@@ -1,19 +1,22 @@
 import React from 'react'
-import kontakt_form from './kontakt_form'
 
 const Kom_i_gang = () => {
   return (
     <div>
-        <div className='flex flex-col'>
-            <div><h1>Kom i ang</h1></div>
-            <div><p>Er du interessert i å bli en del av felleskapet eller har du noen spørsmål? Fyll ut kontakskjemaet og så kontakter vi deg fortløpende.</p></div>
-            <div>
-                <div></div>
-                <div></div>
+        <div className='flex flex-col mt-5 gap-5 md:flex-row'>
+            <div className='flex flex-col gap-3'>
+                <div className='gap-3'>
+                    <h1 className='text-4xl'>Kom i ang</h1>
+                    <p className='text-2xl'>Er du interessert i å bli en del av felleskapet eller har du noen spørsmål? Fyll ut kontakskjemaet og så kontakter vi deg fortløpende.</p>
+                </div>
+                <div>
+                    <h1>Kontakt form</h1>
+                </div>
+                
             </div>
-        </div>
-        <div>
-            <img src="Møte-rom.png" alt="" />
+            <div>
+                <img className='' src="Møte-rom.png" alt="" />
+            </div>
         </div>
     </div>
   )
