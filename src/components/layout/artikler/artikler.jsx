@@ -1,6 +1,33 @@
-"use client"; 
+"use client";
 
 import { useState, useEffect } from 'react';
+import { Card, CardContent, CardMedia, Grid, Typography, Button } from '@mui/material';
+
+const ArticleCard = ({ article, index }) => (
+  <Card sx={{width: '100%' }} key={index}>
+    <CardMedia
+      component="img"
+      height="140"
+      image={article.image}
+      alt={`Article image ${index + 1}`}
+      sx={{ objectFit: 'cover' }} // Ensure proper image fit
+    />
+    <CardContent>
+      <Typography variant="h6" component="div">
+        {article.title}
+      </Typography>
+      <Typography variant="body2" color="text.secondary">
+        {article.date}
+      </Typography>
+      <Typography variant="body2" color="text.primary" paragraph>
+        {article.description}
+      </Typography>
+      <Button size="small" href={article.link}>
+        Read More
+      </Button>
+    </CardContent>
+  </Card>
+);
 
 const ArticleCarousel = () => {
   const articles = [
@@ -41,86 +68,13 @@ const ArticleCarousel = () => {
     },
   ];
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const updateCarousel = () => {
-    const offset = -(currentIndex * (100 / 3)); // Move by 1/3 for each click
-    return offset;
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % articles.length);
-  };
-
-  const handlePrev = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + articles.length) % articles.length);
-  };
-
-  useEffect(() => {
-    // Ensure to update on index change.
-    updateCarousel();
-  }, [currentIndex]);
-
   return (
-    <div className="flex flex-col gap-3 p-10 m-3 lg:flex-row bg-white text-black">
-      {/* Control Panel Section */}
-      <div className="shadow-2xl rounded-2xl p-3">
-        <h1 className="text-4xl">Articles</h1>
-        <p className="text-2xl">Our latest news and articles</p>
-
-        {/* Control Buttons inside Control Panel */}
-        <div className="button-container flex justify-between mt-4">
-          <button
-            id="prevButton"
-            className="carousel-button p-2 bg-blue-500 text-white rounded hover:bg-blue-400"
-            aria-label="Previous article"
-            onClick={handlePrev}
-          >
-            ←
-          </button>
-          <button
-            id="nextButton"
-            className="carousel-button p-2 bg-blue-500 text-white rounded hover:bg-blue-400"
-            aria-label="Next article"
-            onClick={handleNext}
-          >
-            →
-          </button>
-        </div>
-      </div>
-
-      {/* Carousel Section */}
-      <div className="flex flex-1 items-center">
-        <div className="carousel-container relative overflow-hidden w-full">
-          {/* Carousel Wrapper */}
-          <div
-            id="carousel"
-            className="carousel-wrapper flex space-x-4 transition-transform duration-300 ease-in-out"
-            style={{ transform: `translateX(${updateCarousel()}%)` }}
-          >
-            {/* Dynamically generate carousel items */}
-            {articles.map((article, index) => (
-              <div
-                key={index}
-                className={`carousel-item p-6 bg-white rounded-xl shadow-lg flex-shrink-0 w-[calc(33.3333%-1rem)] ${
-                  index === currentIndex ? 'border-3 border-blue-500 shadow-lg' : ''
-                }`}
-              >
-                <img
-                  src={article.image}
-                  alt={`Article image ${index + 1}`}
-                  className="w-full h-56 object-cover rounded-xl mb-4"
-                />
-                <h2 className="text-2xl font-semibold text-gray-800 mb-2">{article.title}</h2>
-                <p className="text-sm text-gray-500 mb-4">{article.date}</p>
-                <p className="text-gray-700">{article.description}</p>
-                <a href={article.link} className="text-blue-600 mt-4 inline-block hover:underline">
-                  Read More
-                </a>
-              </div>
-            ))}
-          </div>
-        </div>
+    <div className="w-full p-0 m-0 lg:flex-row bg-white text-black">
+      {/* Articles Grid Section */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 shadow-2xl p-3 rounded-2xl w-full max-w-7xl mx-auto">
+        {articles.map((article, index) => (
+          <ArticleCard article={article} index={index} key={index} />
+        ))}
       </div>
     </div>
   );
