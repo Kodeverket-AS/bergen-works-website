@@ -3,7 +3,7 @@ import React from 'react'
 const Eget_Kontor = () => {
   return (
     <div>
-        <div className='flex flex-col w-full md:flex-row gap-5 mb-5'>
+        <div className='flex flex-col-reverse w-full md:flex-row gap-5 mb-5'>
             <div className='bg-white text-black p-5 border-2 border-black rounded-3xl shadow-2xl md:w-3/5 '>
                 <h1>Eget kontor</h1>
                 <p>Ta kontakt for pris</p>
@@ -25,7 +25,7 @@ const Eget_Kontor = () => {
             </div>            
         </div>
 
-        <div className='flex flex-col w-full md:flex-row gap-5 mb-5'>
+        <div className='flex flex-col-reverse w-full md:flex-row gap-5 mb-5'>
             <div className='bg-white text-black p-5 border-2 border-black rounded-3xl shadow-2xl md:w-3/5 '>
                 <h1>Åpen plass</h1>
                 <p>3200,-/MND (EKS.MVA)</p>
