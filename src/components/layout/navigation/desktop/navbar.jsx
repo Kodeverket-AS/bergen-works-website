@@ -1,6 +1,6 @@
 export function NavBarDesktop() {
   return (
-<nav className="pr-12 top-0 md: px-12 sticky z-30  lg:flex justtify-between lg:justify-between 3xl:px-80 mb-8 ">
+    <nav className="pr-12 top-0 md: px-12 sticky z-30  lg:flex justtify-between lg:justify-between 3xl:px-80 mb-8 ">
       <div className="flex justify-between items-center">
         <img
           src="/BW_Logo.png"
@@ -59,7 +59,7 @@ export function NavBarDesktop() {
         </li>
         <li>
           <a
-            href="Artikler"
+            href="/articles"
             className=" hover:underline md:text-lg"
             onClick={handleLinkClick}
           >
