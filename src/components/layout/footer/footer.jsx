@@ -14,7 +14,7 @@ function Footer() {
                 <div className='flex felx-row p-10 gap-4 lg:p-5 lg:gap-7 lg:justify-center'>
                     <img src="/FB_icon.png" alt=" small icon" />
                     <img src="/IG_icon.png" alt=" small icon" />
-                    <img src="/IN_icon.png" alt=" small icon" />
+                    <img src="/IN_icon.png" alt=" small icon " />
                 </div>
             </div>
         </div>
