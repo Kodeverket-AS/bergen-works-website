@@ -16,7 +16,13 @@ const SanityProvider = ({ children }) => {
           *[_type == "article"]{ 
             _id, 
             title, 
-            articleBody, 
+           articleBody[]{
+      ...,
+      _type == "image" => {
+        asset -> { url },
+        alt
+      }
+    },
             background { asset -> { url } }, 
             releaseDate, 
             author, 

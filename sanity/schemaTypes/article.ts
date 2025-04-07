@@ -20,6 +20,10 @@ export default {
         {
           type: "block",
         },
+        {
+          type: "image",
+        },
+        
       ],
       validation: (Rule: Rule) =>
         Rule.required().error("Article body is required"),

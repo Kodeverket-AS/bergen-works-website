@@ -12,16 +12,28 @@ export default function ArticlesPage() {
       <h1>Våre artikler</h1>
       <div className="articles">
         {articles.map((article) => {
-        
+     
           const articleText = article.articleBody
-            .map((block) => block.children.map((child) => child.text).join(" "))
+            .map((block) => {
+              if (block._type === "block") {
+                return block.children.map((child) => child.text).join(" ");
+              } else if (block._type === "image") {
+                return `<img src="${block.asset.url}" alt="${block.alt || "Image"}" />`;
+              }
+              return "";
+            })
             .join(" ");
 
           return (
             <div key={article._id} className="article-card">
-              <img src={article.background?.asset?.url} alt={article.title} className="w-2/3" />
+              <img
+                src={article.background?.asset?.url}
+                alt={article.title}
+                className="w-100"
+              />
               <h2>{article.title}</h2>
 
+            
               <p>{articleText.substring(0, 100)}...</p>
               <Link href={`/articles/${article._id}`}>Les mer</Link>
             </div>
