@@ -38,13 +38,12 @@ const FasiliteterCard: React.FC<FasiliteterCardProps> = ({
 }) => {
   return (
     <div
-      className={`flex flex-col lg:flex-row  gap-6 items-start h-full  rounded-lg  mx-auto w-full ${
+      className={`flex flex-col lg:flex-row gap-6 mx-auto w-full ${
         reverse ? "lg:flex-row-reverse" : ""
       } 
-      items-center rounded-lg  
-       m-6 ${cardStyle}`}
+       my-6 ${cardStyle}`}
     >
-      <div className={` w-full ${imageContainerStyle} $`}>
+      <div className={` ${imageContainerStyle} $`}>
         <Image
           src={imageSrc}
           alt={alt}
@@ -59,11 +58,14 @@ const FasiliteterCard: React.FC<FasiliteterCardProps> = ({
         className={`w-full p-10 h-full shadow-card flex flex-col rounded-lg ${textContainerStyle}`}
       >
         <h2 className={`font-bold ${headerStyle}`}>{headerText}</h2>
-        <p className={`my-4 h-full   ${paragraphStyle}`}>{paragraphText}</p>
-        <div className="flex   lg:justify-start ">
+        <p className={`my-5 xl:text-lg tracking-wider ${paragraphStyle}`}>
+          {paragraphText}
+        </p>
+        <div className="flex lg:justify-start lg:items-end h-full ">
           <Link
             href={buttonLink}
-            className={`text-[var(--text-light)] mt-6  lg:my-1 w-full md:w-1/2  xl:w-1/2 px-4 py-4 rounded-md transition-all duration-300 text-center font-semibold bg-moss-600 hover:bg-accept-600 hover:text-[var(--text-dark)] ${buttonStyle}`}
+            className={`my-3 xl:text-lg w-full md:w-1/2  xl:w-1/2 px-4 py-4 rounded-md transition-all duration-300 text-center font-semibold focus-visible:outline-none
+             focus-visible:ring-4 focus-visible:ring-purple-500 focus-visible:ring-offset-0  ${buttonStyle}`}
           >
             {buttonText}
           </Link>
