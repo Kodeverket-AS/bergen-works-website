@@ -43,7 +43,7 @@ export default function NavBar() {
           <Link href="/inkubator" className=" hover:underline md:text-lg" onClick={handleLinkClick}>Inkubator</Link>
         </li>
         <li>
-          <Link href="Om oss" className=" hover:underline md:text-lg" onClick={handleLinkClick}>Om oss</Link>
+          <Link href="/omoss" className=" hover:underline md:text-lg" onClick={handleLinkClick}>Om oss</Link>
         </li>
         <li>
           <Link href="Artikler" className=" hover:underline md:text-lg" onClick={handleLinkClick}>Artikler</Link>
