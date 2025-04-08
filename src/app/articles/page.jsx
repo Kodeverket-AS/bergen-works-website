@@ -1,44 +1,181 @@
 "use client";
-import { useSanity } from "@/components/SanityContext";
+import{useSanity} from "@/components/SanityContext"
+import { useState } from "react";
+import {
+  Skeleton,
+  Card,
+  CardMedia,
+  Typography,
+  Pagination,
+} from "@mui/material";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { motion } from "framer-motion";
 import Link from "next/link";
 
-export default function ArticlesPage() {
-  const { articles, loading } = useSanity();
 
-  if (loading) return <p>Vennligst vent..</p>;
+const LoadingSkeleton = () => (
+  <div className="flex flex-col gap-8 w-full max-w-5xl mx-auto px-4">
+    {[...Array(3)].map((_, index) => (
+      <div key={index} className="flex flex-col md:flex-row gap-4">
+        <Skeleton variant="rectangular" width={240} height={180} />
+        <div className="flex-1 space-y-2">
+          <Skeleton variant="text" width="60%" height={30} />
+          <Skeleton variant="text" width="40%" />
+          <Skeleton variant="text" width="80%" />
+          <Skeleton variant="text" width="90%" />
+        </div>
+      </div>
+    ))}
+  </div>
+);
+
+
+const ArticleCard = ({ article, index }) => {
+  const articleText = article.articleBody
+    ?.map((block) => {
+      if (block._type === "block") {
+        return block.children.map((child) => child.text).join(" ");
+      } else if (block._type === "image") {
+        return `[img]`;
+      }
+      return "";
+    })
+    .join(" ");
 
   return (
-    <div>
-      <h1>Våre artikler</h1>
-      <div className="articles">
-        {articles.map((article) => {
-     
-          const articleText = article.articleBody
-            .map((block) => {
-              if (block._type === "block") {
-                return block.children.map((child) => child.text).join(" ");
-              } else if (block._type === "image") {
-                return `<img src="${block.asset.url}" alt="${block.alt || "Image"}" />`;
-              }
-              return "";
-            })
-            .join(" ");
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+    >
+      <Card
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", md: "row" },
+          p: 2,
+        }}
+      >
+        <CardMedia
+          component="img"
+          image={article.background?.asset?.url}
+          alt={article.title}
+          sx={{
+            width: { xs: "100%", md: "42%" },
+            height: { xs: 220,s: 300, md: 240 },
+            borderRadius: "10px",
+            objectFit: "cover",
+            marginBottom: { xs: 2, md: 0 },
+            marginRight: { md: 2 },
+          }}
+        />
 
-          return (
-            <div key={article._id} className="article-card">
-              <img
-                src={article.background?.asset?.url}
-                alt={article.title}
-                className="w-100"
-              />
-              <h2>{article.title}</h2>
-
-            
-              <p>{articleText.substring(0, 100)}...</p>
-              <Link href={`/articles/${article._id}`}>Les mer</Link>
+        <div className="flex flex-col justify-between flex-1">
+          <div>
+            <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+              {article.title}
+            </Typography>
+            <div className="flex j items-center space-x-4 mb-6 text-sm text-moss-200">
+              <Typography variant="body2" color="text.secondary">
+                {new Date(article.releaseDate || Date.now()).toLocaleDateString(
+                  "no-NO",
+                  {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  }
+                )}
+              </Typography>
+              <span className="font-semibold px-2">|</span>
+              <Typography variant="body2" color="text.secondary">
+                Autor: {article.author || ""}
+              </Typography>
             </div>
-          );
-        })}
+
+            <Typography
+              variant="body2"
+              color="text.primary"
+              sx={{
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                display: "-webkit-box",
+                WebkitLineClamp: 3,
+                WebkitBoxOrient: "vertical",
+              }}
+            >
+              {articleText?.substring(0, 250)}...
+            </Typography>
+          </div>
+          <div className="flex justify-end items-center mt-2">
+            <Typography
+              variant="body2"
+              color="primary"
+              sx={{
+                cursor: "pointer",
+                fontSize: "16px",
+
+                transition: "color 0.3s",
+                color: "gray",
+              }}
+            >
+              Les mer
+            </Typography>
+            <Link href={`/articles/${article._id}`} passHref>
+              <ArrowForwardIcon
+                sx={{
+                  cursor: "pointer",
+                  color: "gray",
+                  transition: "color 0.3s",
+                  "&:hover": { color: "black" },
+                  fontSize: "36px",
+                  transform: "rotate(45deg)",
+                }}
+              />
+            </Link>
+          </div>
+        </div>
+      </Card>
+    </motion.div>
+  );
+};
+
+
+export default function ArticleList() {
+  const { articles, loading } = useSanity();
+  const [currentPage, setCurrentPage] = useState(1);
+  const articlesPerPage = 6;
+
+  if (loading) return <LoadingSkeleton />;
+
+  const totalPages = Math.ceil(articles.length / articlesPerPage);
+  const currentArticles = articles
+    .sort(
+      (a, b) =>
+        new Date(b.publishedAt || b._createdAt) -
+        new Date(a.publishedAt || a._createdAt)
+    )
+    .slice((currentPage - 1) * articlesPerPage, currentPage * articlesPerPage);
+
+  const handlePageChange = (event, value) => {
+    setCurrentPage(value);
+  };
+
+  return (
+    <div className="w-full py-10 px-4 bg-white text-black">
+      <h1 className="text-4xl text-center mb-10 font-bold">
+        Artikler og Nyheter{" "}
+      </h1>
+      <div className="flex flex-col gap-8 w-full max-w-5xl mx-auto">
+        {currentArticles.map((article, index) => (
+          <ArticleCard key={article._id} article={article} index={index} />
+        ))}
+      </div>
+      <div className="flex justify-center mt-8">
+        <Pagination
+          count={totalPages}
+          page={currentPage}
+          onChange={handlePageChange}
+         
+        />
       </div>
     </div>
   );
