@@ -10,18 +10,18 @@ export default function NavBar() {
   };
 
   return (
-    <nav className="m-10 shadow-xl pr-5 pl-5 top-0 sticky z-30 lg:flex justtify-between lg:justify-between md:w-2/3 3xl:px-80 mb-8 ">
+    <nav className="w-full m-4 shadow-xl  lg:flex justtify-between lg:justify-between  mb-8 ">
       <div className="flex justify-between items-center">
       <Link href="/" scroll={true}>
         <img
         src="/BW_Logo.png"
         alt="BergenWorks logo"
-        className="rounded-2xl h-17 w-37 "
+        className="rounded-2xl m-4 w-1/2 "
         />
       </Link>
 
         <button
-          className="lg:hidden  text-3xl"
+          className="lg:hidden px-10 text-3xl"
           onClick={() => setIsOpen(!isOpen)}
         >
           ☰
@@ -31,7 +31,7 @@ export default function NavBar() {
       <ul
         className={`${
           isOpen ? "flex" : "hidden"
-        } flex-col items-end space-y-4 pb-5 lg:flex lg:flex-row lg:gap-8  lg:space-y-0 lg:text-xl lg:items-end`}
+        } flex-col items-end space-y-4 p-8 lg:flex lg:flex-row lg:gap-8  lg:space-y-0 lg:text-xl lg:items-end`}
       >
         <li>
           <Link href="/fasiliteter" className=" hover:underline lg:text-lg" onClick={handleLinkClick}>Fasiliteter</Link>
