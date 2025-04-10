@@ -138,21 +138,17 @@ const ArticleCard = ({ article, index }) => {
   );
 };
 
-
 export default function ArticleList() {
   const { articles, loading } = useSanity();
   const [currentPage, setCurrentPage] = useState(1);
-  const articlesPerPage = 6;
+  const articlesPerPage = 5;
 
   if (loading) return <LoadingSkeleton />;
 
   const totalPages = Math.ceil(articles.length / articlesPerPage);
+
   const currentArticles = articles
-    .sort(
-      (a, b) =>
-        new Date(b.publishedAt || b._createdAt) -
-        new Date(a.publishedAt || a._createdAt)
-    )
+    .sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate))
     .slice((currentPage - 1) * articlesPerPage, currentPage * articlesPerPage);
 
   const handlePageChange = (event, value) => {
@@ -162,19 +158,20 @@ export default function ArticleList() {
   return (
     <div className="w-full py-10 px-4 bg-white text-black">
       <h1 className="text-4xl text-center mb-10 font-bold">
-        Artikler og Nyheter{" "}
+        Artikler og Nyheter
       </h1>
+
       <div className="flex flex-col gap-8 w-full max-w-5xl mx-auto">
         {currentArticles.map((article, index) => (
           <ArticleCard key={article._id} article={article} index={index} />
         ))}
       </div>
+
       <div className="flex justify-center mt-8">
         <Pagination
           count={totalPages}
           page={currentPage}
           onChange={handlePageChange}
-         
         />
       </div>
     </div>
