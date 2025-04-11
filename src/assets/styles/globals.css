@@ -68,3 +68,14 @@ main {
   flex: 1;
   @apply container;
 }
+.MuiPaginationItem-root {
+  color: #283618;
+
+}
+
+.Mui-selected {
+  background-color: #283618;
+ 
+  color: #ffffff;
+
+}
