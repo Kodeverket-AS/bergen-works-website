@@ -35,7 +35,7 @@ const Fasiliteter = () => {
           <a href="">
             <img src="telephonRoon_icon.png" alt="" />
           </a>
-          <p className="text-center text-xl lg:text-2xl">TelephonRoom</p>
+          <p className="text-center text-xl lg:text-2xl">Phone Booth</p>
         </div>
         <div className="w-1/4 lg:w-1/5  flex flex-col justify-center  items-center  ">
           <a href="">

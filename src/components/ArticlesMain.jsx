@@ -1,121 +1,138 @@
-"use client";
+import { useSanity } from "./SanityContext";
+import { Card, CardMedia, Typography } from "@mui/material";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import Link from "next/link";
 
-import { useState, useEffect } from 'react';
-import { Card, CardContent, CardMedia, Typography, Button } from '@mui/material';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+const ArticlesMain = () => {
+  const { articles } = useSanity();
 
-const ArticleCard = ({ article, index }) => (
-  <Card sx={{ width: '100%' }} key={index}>
-    {/* Inner wrapper to control margin */}
-    <div style={{ margin: '20px' }}>
-      {/* Image with rounded corners */}
-      <CardMedia
-        component="img"
-        height="140"
-        image={article.image}
-        alt={`Article image ${index + 1}`}
-        sx={{ objectFit: 'cover', marginBottom: '20px', borderRadius: '10px' }} // Added borderRadius for rounded corners
-      />
-      {/* Title */}
-      <Typography variant="h6" component="div" sx={{ marginBottom: '10px', fontWeight: 'bold' }}>
-        {article.title}
-      </Typography>
-      {/* Date */}
-      <Typography variant="body2" color="text.secondary" sx={{ marginBottom: '10px' }}>
-        {article.date}
-      </Typography>
-      {/* Description and arrow icon in the same line */}
-      <div style={{ display: 'flex', gap: '20px'}}>
-        <div className="paragraph">
-        <Typography
-          variant="body2"
-          color="text.primary"
-          sx={{
-            flex: 1,
-            marginBottom: '10px',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            display: '-webkit-box',
-            WebkitLineClamp: 3,
-            WebkitBoxOrient: 'vertical',
-          }}
-        >
-          {article.description}
-        </Typography>
-        </div>
-        
-        <div className="link" style={{ marginTop: 'auto', display: 'flex', justifyContent: 'flex-end' }}>
-
-        <ArrowForwardIcon
-          sx={{
-            cursor: 'pointer',
-            color: 'gray',
-            transition: 'color 0.3s',
-            '&:hover': { color: 'black' }, // Hover effect
-            marginLeft: 'auto', // Ensures the arrow is at the right end of the container
-            fontSize: '36px', // Make it a bit larger
-            transform: 'rotate(45deg)', // Rotate the arrow by 45 degrees
-          }}
-          onClick={() => window.location.href = article.link}
-        />
-
-        </div>
-     
-      </div>
-    </div>
-  </Card>
-);
-
-const ArticleCarousel = () => {
-  const articles = [
-    {
-      title: 'Article Title 1',
-      date: 'March 31, 2025',
-      image: 'Inkubatoren-som-tar-deg-videre-300x169.png',
-      description: 'This is a short introduction to the first article. It briefly describes what the article is about and invites the reader to explore more.',
-      link: '#',
-    },
-    {
-      title: 'Article Title 2',
-      date: 'March 29, 2025',
-      image: 'Inkubatoren-som-tar-deg-videre-300x169.png',
-      description: 'This is a short introduction to the second article. It gives a preview of the content and highlights the main points.',
-      link: '#',
-    },
-    {
-      title: 'Article Title 3',
-      date: 'March 25, 2025',
-      image: 'Inkubatoren-som-tar-deg-videre-300x169.png',
-      description: 'This is a short introduction to the third article. It outlines the key takeaways and gives the reader an idea of what they’ll learn.',
-      link: '#',
-    },
-    {
-      title: 'Article Title 4',
-      date: 'March 24, 2025',
-      image: 'Inkubatoren-som-tar-deg-videre-300x169.png',
-      description: 'This is a short introduction to the fourth article. It provides insights on a new trend in technology.',
-      link: '#',
-    },
-    {
-      title: 'Article Title 5',
-      date: 'March 22, 2025',
-      image: 'Inkubatoren-som-tar-deg-videre-300x169.png',
-      description: 'This article discusses the importance of presentation skills in the modern workplace and provides some useful tips.',
-      link: '#',
-    },
-  ];
+  const last6Articles = articles.slice(0, 6);
 
   return (
-    <div className="w-full p-0 m-0 lg:flex-row bg-white text-black">
-      <h1 className="text-4xl text-center mb-8">Artikler</h1> {/* Centered header */}
-      {/* Articles Grid Section */}
+    <div className="w-9/10 md:w-full my-20 mx-auto ">
+      <h1 className="text-4xl text-center mb-8">Artikler og nyheter</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-7xl mx-auto">
-        {articles.map((article, index) => (
-          <ArticleCard article={article} index={index} key={index} />
+        {last6Articles.map((article, index) => (
+          <Card
+            sx={{
+              width: "100%",
+              display: "flex",
+              flexDirection: "column",
+              height: "100%",
+              position: "relative",
+              borderRadius: "15px",
+              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+              transition: "transform 0.3s ease, box-shadow 0.3s ease",
+              "&:hover": {
+                transform: "scale(1.05)",
+                boxShadow: "0 10px 20px rgba(0, 0, 0, 0.2)",
+              },
+            }}
+            key={article._id}
+          >
+            <CardMedia
+              component="img"
+              height="140"
+              image={article?.background?.asset?.url || ""}
+              alt={`Article image ${index + 1}`}
+              sx={{
+                objectFit: "cover",
+                marginBottom: "20px",
+                borderRadius: "10px",
+              }}
+            />
+
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                flex: 1,
+                margin: "20px",
+                paddingBottom: "40px",
+              }}
+            >
+              <div
+                style={{
+                  flex: 1,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "flex-end",
+                }}
+              >
+                <Typography
+                  variant="h6"
+                  component="div"
+                  sx={{
+                    marginBottom: "10px",
+                    fontWeight: "bold",
+                    color: "#333",
+                  }}
+                >
+                  {article.title}
+                </Typography>
+
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{
+                    marginBottom: "10px",
+                    color: "#666",
+                  }}
+                >
+                  {new Date(article.releaseDate).toLocaleDateString()}
+                </Typography>
+
+                <div className="paragraph">
+                  <Typography
+                    variant="body2"
+                    color="text.primary"
+                    sx={{
+                      flex: 1,
+                      marginBottom: "10px",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      display: "-webkit-box",
+                      WebkitLineClamp: 3,
+                      WebkitBoxOrient: "vertical",
+                      lineHeight: 1.6,
+                      color: "#444",
+                    }}
+                  >
+                    {article.articleBody?.[0]?.children?.[0]?.text || ""}
+                  </Typography>
+                </div>
+              </div>
+            </div>
+
+            <div
+              className="link"
+              style={{
+                position: "absolute",
+                bottom: "10px",
+                right: "20px",
+              }}
+            >
+              <Link href={`/articles/${article._id}`} passHref>
+                <ArrowForwardIcon
+                  sx={{
+                    cursor: "pointer",
+                    color: "gray",
+                    transition: "color 0.3s ease, transform 0.3s ease",
+                    "&:hover": {
+                      color: "black",
+                      transform: "rotate(45deg) scale(1.2)",
+                    },
+                    fontSize: "36px",
+                  }}
+                />
+              </Link>
+            </div>
+          </Card>
         ))}
       </div>
     </div>
   );
 };
 
-export default ArticleCarousel;
+export default ArticlesMain;

@@ -61,7 +61,7 @@ const ArticleCard = ({ article, index }) => {
           alt={article.title}
           sx={{
             width: { xs: "100%", md: "42%" },
-            height: { xs: 220,s: 300, md: 240 },
+            height: { xs: 220, s: 300, md: 240 },
             borderRadius: "10px",
             objectFit: "cover",
             marginBottom: { xs: 2, md: 0 },
@@ -124,10 +124,14 @@ const ArticleCard = ({ article, index }) => {
                 sx={{
                   cursor: "pointer",
                   color: "gray",
-                  transition: "color 0.3s",
-                  "&:hover": { color: "black" },
                   fontSize: "36px",
-                  transform: "rotate(45deg)",
+                  marginLeft:"3px",
+                  color: "gray",
+                  transition: "color 0.3s ease, transform 0.3s ease",
+                  "&:hover": {
+                    color: "black",
+                    transform: "rotate(45deg) scale(1.2)",
+                  },
                 }}
               />
             </Link>

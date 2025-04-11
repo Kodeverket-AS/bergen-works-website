@@ -31,7 +31,7 @@ export default function NavBar() {
       <ul
         className={`${
           isOpen ? "flex" : "hidden"
-        } flex-col items-end space-y-4 p-8 lg:flex lg:flex-row lg:gap-8  lg:space-y-0 lg:text-xl lg:items-end`}
+        } flex-col items-end space-y-4 p-8 lg:flex lg:flex-row lg:gap-8  lg:space-y-0 lg:text-xl lg:items-end `}
       >
         <li>
           <Link href="/fasiliteter" className=" hover:underline lg:text-lg" onClick={handleLinkClick}>Fasiliteter</Link>
