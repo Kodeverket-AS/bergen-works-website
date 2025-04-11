@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -43,6 +45,8 @@ src: url('WorkSans-VariableFont_wght.ttf') format('truetype');}
   /* Text colors*/
   --text-light: #fffafa;
   --text-dark: #1e1e1e;
+
+  --font-space-grotesk:"Space Grotesk",sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -67,4 +71,15 @@ body {
 main {
   flex: 1;
   @apply container;
+}
+.MuiPaginationItem-root {
+  color: #283618;
+
+}
+
+.Mui-selected {
+  background-color: #283618;
+ 
+  color: #ffffff;
+
 }

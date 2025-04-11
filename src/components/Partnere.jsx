@@ -18,12 +18,11 @@ const Partnere = () => {
           <h1 className="text-xl font-semibold md:text-2xl lg:text-4xl p-4">
             Våre Partnere
           </h1>
-          <p className="lg:text-2xl md:text-lg p-4">Vi bryr oss om partnerne våre</p>
+          <p className="lg:text-2xl md:text-lg p-4">
+            Sammen skaper vi innovative løsninger for fremtidens arbeidsplasser.
+          </p>
         </div>
       </div>
-
-
-
 
       <div className="flex flex-wrap justify-between shadow-xl rounded-xl p-4 lg:w-2/3">
         {partners.map((partner, index) => (
