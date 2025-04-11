@@ -38,7 +38,7 @@ const SanityProvider = ({ children }) => {
         const data = await client.fetch(query);
         setArticles(data);
       } catch (error) {
-        console.error("Błąd ładowania danych:", error);
+        console.error("Feil:", error);
       } finally {
         setLoading(false);
       }
