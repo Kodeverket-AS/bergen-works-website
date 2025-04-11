@@ -55,13 +55,13 @@ const FasiliteterCard: React.FC<FasiliteterCardProps> = ({
       </div>
 
       <div
-        className={`w-full p-10 h-full shadow-card flex flex-col rounded-lg ${textContainerStyle}`}
+        className={`w-full p-10 h-full shadow-card flex flex-col rounded-lg  ${textContainerStyle}`}
       >
         <h2 className={`font-bold ${headerStyle}`}>{headerText}</h2>
-        <p className={`my-5 xl:text-lg tracking-wider ${paragraphStyle}`}>
+        <p className={`my-5  tracking-wider ${paragraphStyle}`}>
           {paragraphText}
         </p>
-        <div className="flex lg:justify-start lg:items-end h-full ">
+        <div className="flex  lg:items-end  ">
           <Link
             href={buttonLink}
             className={`my-3 xl:text-lg w-full md:w-1/2  xl:w-1/2 px-4 py-4 rounded-md transition-all duration-300 text-center font-semibold focus-visible:outline-none

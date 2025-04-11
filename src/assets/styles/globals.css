@@ -45,6 +45,8 @@ src: url('WorkSans-VariableFont_wght.ttf') format('truetype');}
   /* Text colors*/
   --text-light: #fffafa;
   --text-dark: #1e1e1e;
+
+  --font-space-grotesk:"Space Grotesk",sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {

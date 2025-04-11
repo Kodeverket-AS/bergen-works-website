@@ -9,12 +9,13 @@ import ArticlesMain from "../components/ArticlesMain"
 export default function Home() {
 
   return (
-  <main>
-    <Hero />
-    <InformationSection />
-    <ArticlesMain/>
-    <Fasiliteter />
-    <Partnere />
-  </main>
+    <main>
+    
+      <Hero />
+      <InformationSection />
+      <ArticlesMain />
+      <Fasiliteter />
+      <Partnere />
+    </main>
   );
 }
