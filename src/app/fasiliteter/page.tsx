@@ -2,7 +2,7 @@ import FasiliteterCard from "@/components/ui/FasiliteterCard";
 
 export default function Facilities() {
   return (
-    <main className="px-6 my-10">
+    <main className="my-10">
       <div className="mb-10">
         <FasiliteterCard
           imageSrc="/BW_Bygning.png"
