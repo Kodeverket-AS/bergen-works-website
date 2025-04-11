@@ -21,19 +21,19 @@ export default function InformationSection() {
               Co-work
             </h1>
             <p className="text-sm md:text-base lg:hidden">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis,
-              fuga! Dolorem, veritatis praesentium?
+              Vi jobber med å utvikle et splitter nytt inkubasjonskonsept på
+              huset. Stay tuned!
             </p>
             <p className="hidden lg:block lg:w-[550] xl:w-[650] ">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
-              fuga quos culpa assumenda ab iste, atque facere aut fugit rerum
-              repudiandae eius praesentium alias ratione consequatur optio sit
-              placeat illum cum quo quidem corporis. Deserunt placeat vel
-              inventore laborum similique possimus repellat aperiam iste
-              molestias rem ipsam, voluptatibus nulla quasi animi illum
-              explicabo quae odio suscipit ipsa. Ipsam non tempore laudantium
-              veritatis deserunt est ex, eos architecto unde? Obcaecati iste
-              deserunt molestiae delectus ullam nemo.
+              Med en beliggenhet i vakre Skostredet har Bergen.Works drevet
+              coworking space siden 2017. Vi ble startet av gründere og for
+              gründere, og Bergen.Works skal være mer enn en kontorplass.
+              Bærebjelkene våre er sosial, kreativ og grønn innovasjon, og vi
+              vil bidra til å utvikle smarte hoder innen disse feltene. Derfor
+              ønsker vi å legge til rette for en arena for samarbeid og
+              inkludering der det enkelte medlem kan ta del i fellesskapet som
+              mentor, innovatør, arbeidssøkende eller vekstbedrift. Sammen
+              finner vi morgendagens løsninger på dagens problemstillinger.
             </p>
             <div className="w-full md:flex md:justify-center lg:justify-start mt-[1em] md:mt-[1.5em] lg:mt-[2em] xl:mt-[3em]">
               <button className="text-base md:text-md mt-[2em] md:mt-[0.5em]  w-[294px] h-[51px] lg:w-[148px] rounded-sm py-4 px-8 bg-white text-[var(--text-dark)] font-semibold  md:hover:bg-accept-600 md:hover:text-[var(--text-light)] transition-colors duration-300 cursor-pointer">
