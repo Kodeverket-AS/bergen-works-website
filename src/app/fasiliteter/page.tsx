@@ -1,8 +1,8 @@
-import FasiliteterCard from "@/components/ui/FasiliteterCard";
+import { FasiliteterCard } from "@/components/ui/FasiliteterCard";
 
 export default function Facilities() {
   return (
-    <main className="my-10">
+    <main className="px-3">
       <div className="mb-10">
         <FasiliteterCard
           imageSrc="/BW_Bygning.png"
@@ -13,13 +13,18 @@ export default function Facilities() {
           }
           buttonText={"Ta kontakt"}
           buttonLink={"/"}
-          reverse={false}
-          cardStyle={""}
-          imageContainerStyle={"lg:w-3/5  lg:h-[450]"}
+          cardStyle={"gap-3 md:gap-6"}
+          imageContainerStyle={
+            "w-full h-[400] md:w-1/2 lg:w-8/12 md:h-[450] rounded-xl"
+          }
           headerStyle={"text-3xl md:text-4xl xl:text-5xl  "}
-          textContainerStyle={"lg:w-2/5 xl:h-[450]"}
-          paragraphStyle={"lg:my-4"}
-          buttonStyle="bg-moss-600 hover:bg-accept-600 hover:text-[var(--text-dark)] text-[var(--text-light)] "
+          textContainerStyle={
+            "w-full h-full md:w-1/2   lg:w-1/2 md:h-[450] xl:w-[1/3]"
+          }
+          paragraphStyle={"lg:my-4 xl:text-lg"}
+          buttonStyle="bg-moss-600 hover:bg-accept-600 hover:text-[var(--text-dark)] text-[var(--text-light)] w-full md:w-1/2  "
+          largeScreenReverse={false}
+          smallScreenReverse={false}
         />
       </div>
 
@@ -33,15 +38,18 @@ export default function Facilities() {
           }
           buttonText={"Ta kontakt"}
           buttonLink={"/"}
-          reverse={true}
-          cardStyle={""}
-          imageContainerStyle={"lg:w-3/5 h-full xl:h-[400]"}
+          cardStyle={"gap-3 md:gap-6"}
+          imageContainerStyle={
+            "w-full h-[250] md:w-2/3 md:h-[450] py-10 rounded-x"
+          }
           headerStyle={"text-2xl md:text-3xl lg:text-4xl  "}
           textContainerStyle={
-            "bg-moss-600 text-[var(--text-light)] lg:w-2/5 xl:h-[400]"
+            "bg-moss-600 text-[var(--text-light)] w-full h-full md:w-1/2   lg:w-1/2 md:h-[450] xl:w-[1/3]"
           }
-          paragraphStyle={"lg:my-5 "}
-          buttonStyle="bg-[#fffafa] hover:bg-accept-600 hover:text-[var(--text-dark)] text-[var(--text-dark)] my-3"
+          paragraphStyle={"lg:my-5 xl:text-lg "}
+          buttonStyle="bg-[#fffafa] hover:bg-accept-600 hover:text-[var(--text-dark)] text-[var(--text-dark)] w-full md:w-1/2 "
+          largeScreenReverse={true}
+          smallScreenReverse={true}
         />
       </div>
       <div className="mb-10">
@@ -54,13 +62,18 @@ export default function Facilities() {
           }
           buttonText={"Ta kontakt"}
           buttonLink={""}
-          reverse={false}
-          cardStyle={""}
-          imageContainerStyle={"lg:w-3/5 h-full lg:h-[500] "}
+          cardStyle={"gap-3 md:gap-6"}
+          imageContainerStyle={
+            "w-full h-[400] md:w-2/3 md:h-[500] rounded-xl rounded-xl"
+          }
           headerStyle={"text-2xl md:text-3xl lg:text-4xl "}
-          textContainerStyle={"lg:w-2/5 lg:h-[500] "}
-          paragraphStyle={"xl:mr-10 lg:my-8"}
-          buttonStyle="bg-moss-600 hover:bg-accept-600 hover:text-[var(--text-dark)] text-[var(--text-light)] my-3  "
+          textContainerStyle={
+            "w-full h-full md:w-1/2   lg:w-1/2 md:h-[500] xl:w-[1/3] "
+          }
+          paragraphStyle={"lg:my-8 xl:mr-10 xl:text-lg"}
+          buttonStyle="bg-moss-600 hover:bg-accept-600 hover:text-[var(--text-dark)] text-[var(--text-light)] w-full md:w-1/2    "
+          largeScreenReverse={false}
+          smallScreenReverse={true}
         />
       </div>
     </main>
