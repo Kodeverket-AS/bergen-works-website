@@ -1,6 +1,6 @@
 "use client";
 
-import { useSanity } from "@/components/SanityContext";
+import { useSanity } from "@/context/SanityContext";
 import { useParams } from "next/navigation";
 import { PortableText } from "@portabletext/react";
 

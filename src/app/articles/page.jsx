@@ -1,5 +1,5 @@
 "use client";
-import{useSanity} from "@/components/SanityContext"
+import{useSanity} from "@/context/SanityContext"
 import { useState } from "react";
 import {
   Skeleton,

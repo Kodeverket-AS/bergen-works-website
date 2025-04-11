@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
-import { client } from "../../sanity/lib/client";
+import { client } from "../app/sanity/lib/client";
 
 const SanityContext = createContext();
 
