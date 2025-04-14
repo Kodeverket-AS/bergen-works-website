@@ -48,13 +48,13 @@ src: url('WorkSans-VariableFont_wght.ttf') format('truetype');}
 
   --font-space-grotesk:"Space Grotesk",sans-serif;
 }
-
+/* 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 body {
   display: flex;
@@ -74,12 +74,10 @@ main {
 }
 .MuiPaginationItem-root {
   color: #283618;
-
 }
 
 .Mui-selected {
   background-color: #283618;
- 
   color: #ffffff;
 
 }

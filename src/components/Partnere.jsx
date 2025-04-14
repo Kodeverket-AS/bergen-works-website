@@ -1,25 +1,18 @@
 import React from "react";
+import {partners} from "@/data/dataPartnere";
 
-const Partnere = () => {
-  const partners = [
-    { logo: "DnB_Logo.png", url: "https://www.dnb.no" },
-    { logo: "simonsen_Logo.png", url: "https://svw.no/" },
-    { logo: "Escalon_Logo.png", url: "https://escalon.services/" },
-    { logo: "pallas_Logo.png", url: "https://pallas.no/" },
-    { logo: "Syde_Logo.png", url: "https://syde.no/" },
-    { logo: "Innovation_Logo.png", url: "" },
-    { logo: "Kodeverket_Logo.png", url: "https://www.kodeverketbergen.no/" },
-  ];
-
+const Partnere=( )=>{
   return (
-    <div className="w-full flex flex-col lg:flex-row  gap-4 my-8">
+    <div className="w-full flex flex-col lg:flex-row  gap-4 my-8 ">
       <div className="flex shadow-xl w-full lg:w-1/3 rounded-xl ">
-        <div className="flex lg:mt-auto mb-12 pr-4 flex-col ">
-          <h1 className="text-xl font-semibold md:text-2xl lg:text-4xl p-4">
+        <div className="flex lg:mt-auto  pr-4 flex-col ">
+          <h1 className="text-xl font-semibold md:text-2xl lg:mb-20 lg:text-4xl p-4">
             Våre Partnere
           </h1>
-          <p className="lg:text-2xl md:text-lg p-4">
-            Sammen skaper vi innovative løsninger for fremtidens arbeidsplasser.
+          <p className="text-lg lg:text-xl lg:mb-4 2xl:text-2xl p-4">
+            Gjennom tett samarbeid med våre partnere utvikler vi løsninger som
+            fremmer fleksibilitet, kreativitet og trivsel på arbeidsplassen.
+            Sammen former vi fremtidens arbeidsliv.
           </p>
         </div>
       </div>
@@ -43,5 +36,4 @@ const Partnere = () => {
     </div>
   );
 };
-
 export default Partnere;

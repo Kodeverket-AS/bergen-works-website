@@ -70,7 +70,7 @@ const ArticlePage = () => {
         />
       )}
 
-      <h1 className="text-5xl font-extrabold text-center text-moss-200 mb-6 leading-tight">
+      <h1 className="text-5xl font-semibold text-center text-moss-200 mb-6 leading-tight">
         {article.title}
       </h1>
 
