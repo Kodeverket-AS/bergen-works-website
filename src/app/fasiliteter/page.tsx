@@ -2,7 +2,7 @@ import { FasiliteterCard } from "@/components/ui/FasiliteterCard";
 
 export default function Facilities() {
   return (
-    <main className="px-3">
+    <main className="">
       <div className="mb-10">
         <FasiliteterCard
           imageSrc="/BW_Bygning.png"
@@ -22,7 +22,7 @@ export default function Facilities() {
             "w-full h-full md:w-1/2   lg:w-1/2 md:h-[450] xl:w-[1/3]"
           }
           paragraphStyle={"lg:my-4 xl:text-lg"}
-          buttonStyle="bg-moss-600 hover:bg-accept-600 hover:text-[var(--text-dark)] text-[var(--text-light)] w-full md:w-1/2  "
+          buttonStyle="bg-moss-600 hover:bg-accept-600 hover:text-[var(--text-dark)] text-[var(--text-light)] w-full md:w-1/2 mt-6  "
           largeScreenReverse={false}
           smallScreenReverse={false}
         />
@@ -47,7 +47,7 @@ export default function Facilities() {
             "bg-moss-600 text-[var(--text-light)] w-full h-full md:w-1/2   lg:w-1/2 md:h-[450] xl:w-[1/3]"
           }
           paragraphStyle={"lg:my-5 xl:text-lg "}
-          buttonStyle="bg-[#fffafa] hover:bg-accept-600 hover:text-[var(--text-dark)] text-[var(--text-dark)] w-full md:w-1/2 "
+          buttonStyle="bg-[#fffafa] hover:bg-accept-600 hover:text-[var(--text-dark)] text-[var(--text-dark)] w-full md:w-1/2 mt-6"
           largeScreenReverse={true}
           smallScreenReverse={true}
         />
@@ -71,7 +71,7 @@ export default function Facilities() {
             "w-full h-full md:w-1/2   lg:w-1/2 md:h-[500] xl:w-[1/3] "
           }
           paragraphStyle={"lg:my-8 xl:mr-10 xl:text-lg"}
-          buttonStyle="bg-moss-600 hover:bg-accept-600 hover:text-[var(--text-dark)] text-[var(--text-light)] w-full md:w-1/2    "
+          buttonStyle="bg-moss-600 hover:bg-accept-600 hover:text-[var(--text-dark)] text-[var(--text-light)] w-full md:w-1/2 mt-6    "
           largeScreenReverse={false}
           smallScreenReverse={true}
         />
