@@ -4,15 +4,17 @@ import React from 'react';
 const Fasiliteter = () => {
   return (
     <div className="w-full flex flex-col lg:flex-row  gap-4 my-8">
-      <div className="flex shadow-xl w-full lg:w-1/3 rounded-xl ">
+      <div className="flex shadow-xl w-full  lg:w-1/3 rounded-xl ">
         <div className="flex lg:mt-auto  flex-col pl-4 pr-6">
-          <h1 className='text-xl font-semibold md:text-2xl lg:text-4xl p-4'>
-            Fasiliteter
+          <h1 className="text-xl font-semibold md:text-2xl lg:text-4xl p-4">
+            Fasilitetene
           </h1>
-          <p className="text-lg lg:text-3xl md:text-lg px-4 ">
-            Vi bryr oss om din bekvemmelighet og ditt humør
+          <p className="text-lg lg:text-2xl md:text-lg p-4 ">
+            Hos Bergen.Works finner du moderne og fleksible fasiliteter –
+            kontorer, møterom og sosiale soner – utformet for å inspirere til
+            samarbeid, konsentrasjon og kreativitet.
           </p>
-          <p className="lg:text-2xl md:text-lg p-4">Det beste for kundene</p>
+      
         </div>
       </div>
 
@@ -33,7 +35,7 @@ const Fasiliteter = () => {
           <a href="">
             <img src="telephonRoon_icon.png" alt="" />
           </a>
-          <p className="text-center text-xl lg:text-2xl">TelephonRoom</p>
+          <p className="text-center text-xl lg:text-2xl">Phone Booth</p>
         </div>
         <div className="w-1/4 lg:w-1/5  flex flex-col justify-center  items-center  ">
           <a href="">

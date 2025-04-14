@@ -39,7 +39,7 @@ export function FasiliteterCard({
       className={`flex flex-col md:flex-row w-full h-full ${cardStyle} ${
         smallScreenReverse ? "flex-col-reverse" : "flex-col "
       }
-          ${largeScreenReverse ? "md:flex-row-reverse" : "md:flex-row"} 
+          ${largeScreenReverse ? "md:flex-row-reverse" : "md:flex-row"}
         `}
     >
       <div className={`relative w-full ${imageContainerStyle}`}>

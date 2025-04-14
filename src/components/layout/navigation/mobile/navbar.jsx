@@ -31,7 +31,7 @@ export default function NavBar() {
       <ul
         className={`${
           isOpen ? "flex" : "hidden"
-        } flex-col items-end space-y-4 p-8 lg:flex lg:flex-row lg:gap-8  lg:space-y-0 lg:text-xl lg:items-end`}
+        } flex-col items-end space-y-4 p-8 lg:flex lg:flex-row lg:gap-8  lg:space-y-0 lg:text-xl lg:items-end `}
       >
         <li>
           <Link href="/fasiliteter" className=" hover:underline lg:text-lg" onClick={handleLinkClick}>Fasiliteter</Link>
@@ -46,7 +46,7 @@ export default function NavBar() {
           <Link href="/omoss" className=" hover:underline md:text-lg" onClick={handleLinkClick}>Om oss</Link>
         </li>
         <li>
-          <Link href="Artikler" className=" hover:underline md:text-lg" onClick={handleLinkClick}>Artikler</Link>
+          <Link href="/articles" className=" hover:underline md:text-lg" onClick={handleLinkClick}>Artikler</Link>
         </li>
       </ul>
     </nav>
