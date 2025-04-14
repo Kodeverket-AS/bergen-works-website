@@ -1,6 +1,6 @@
-import FasiliteterCard from "@/components/ui/FasiliteterCard";
+import { FasiliteterCard } from "@/components/ui/FasiliteterCard";
 
-const Hero = () => {
+export default function Hero() {
   return (
     <div className="mb-10 flex">
       <FasiliteterCard
@@ -20,6 +20,4 @@ const Hero = () => {
       />
     </div>
   );
-};
-
-export default Hero;
+}
