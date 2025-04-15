@@ -13,8 +13,8 @@ export default function Incubator() {
         }
         buttonText={""}
         buttonLink={""}
-        cardStyle={""}
-        imageContainerStyle={"lg:w-3/5  lg:h-[450]"}
+        cardStyle={"gap-3 md:gap-6"}
+        imageContainerStyle={"w-full h-[400] md:h-auto lg:w-3/5  lg:h-auto"}
         headerStyle={"text-white text-3xl md:text-4xl xl:text-5xl"}
         textContainerStyle={" text-white bg-black lg:w-2/5 xl:h-[450]"}
         paragraphStyle={"lg:my-4"}
@@ -31,13 +31,13 @@ export default function Incubator() {
         }
         buttonText={"Ta kontakt"}
         buttonLink={"/"}
-        cardStyle={""}
-        imageContainerStyle={"lg:w-1/2  lg:h-[450]"}
+        cardStyle={"mt-3 md:mt-6 gap-3 md:gap-6"}
+        imageContainerStyle={" w-full h-[400] md:h-auto lg:w-1/2  lg:h-auto"}
         headerStyle={" text-white text-3xl md:text-3xl xl:text-3xl"}
         textContainerStyle={"bg-moss-600 text-white lg:w-1/2 xl:h-[450]"}
         paragraphStyle={"lg:my-4"}
         buttonStyle="bg-white text-black hover:text-[var(--text-dark)] text-[var(--text-light)] "
-        smallScreenReverse={true}
+        smallScreenReverse={false}
         largeScreenReverse={true}
       />
     </main>
