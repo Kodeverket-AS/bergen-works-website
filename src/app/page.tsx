@@ -5,7 +5,7 @@ import Partnere from "../components/Partnere";
 import Fasiliteter from "../components/Fasiliteter";
 import InformationSection from "@/components/Informasjon";
 import ArticlesMain from "../components/ArticlesMain"
-
+import KontaktForm from "../components/KontaktForm"
 export default function Home() {
 
   return (
@@ -16,6 +16,9 @@ export default function Home() {
       <ArticlesMain />
       <Fasiliteter />
       <Partnere />
+      <KontaktForm />
+
+
     </main>
   );
 }

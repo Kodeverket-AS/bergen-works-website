@@ -49,7 +49,7 @@ const FasiliteterCard: React.FC<FasiliteterCardProps> = ({
           alt={alt}
           width={imageWidth}
           height={imageHeight}
-          className="w-full h-full object-cover rounded-lg"
+          className="w-full h-full object-cover lg: rounded-lg"
           priority
         />
       </div>

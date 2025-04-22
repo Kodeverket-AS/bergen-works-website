@@ -1,3 +1,5 @@
+
+"use client"
 import React, { useState } from "react";
 import { fasiliteterList } from '@/data/dataFasiliteter'; 
 
@@ -30,7 +32,7 @@ const Fasiliteter = () => {
         {fasiliteterList.map(({ id, icon, label, info }) => (
           <div
             key={id}
-            className="w-1/4 lg:w-1/5 flex flex-col items-center cursor-pointer"
+            className="w-1/4  lg:w-1/5 flex flex-col items-center cursor-pointer  hover:bg-moss-100"
             onClick={() => toggleInfo(id)}
           >
             <img

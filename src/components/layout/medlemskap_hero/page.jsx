@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 const Hero = () => {
   return (
     <div className=''>
@@ -17,6 +18,7 @@ const Hero = () => {
               </div>
           </div>
       </div>
+     
     </div>
   )
 }
