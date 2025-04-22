@@ -44,35 +44,61 @@ export default function InformationSection() {
           </div>
         </div>
       </div>
-      <div className="w-[342] mt-[1em] h-[398] md:w-[430px] md:h-[430] flex flex-col lg:flex-row lg:h-[194] lg:w-full  justify-around xl:justify-center gap-5 xl:gap-10 ">
+      <div className="w-[342] mt-[1em] h-[398] md:w-[430px] md:h-[430] flex flex-col lg:flex-row lg:h-[194] lg:w-full justify-around xl:justify-center gap-5 xl:gap-10 ">
         <div className="text-[var(--text-dark)] lg:w-1/3  ">
           <InfoCard
             bgColor="bg-moss-200"
             imageSrc="/infoIcon1.png"
-            alt="icon"
+            alt="Icon"
             title="Fast Plass"
-            description="xxxx,- / mnd"
+            description="3990,- / mnd"
             link="/"
+            modalImageSrc={"/infoIcon1.png"}
+            modalImageAlt={"Icon"}
+            modalHeader={"Fast Plass"}
+            modalParagraph1={"3990,-/ mnd (eks. MVA)"}
+            modalParagraph2={
+              "Dette inkluderer følgende: Fast plass i åpent kontorlandskap, nytraktet kaffe, tilgang til møterom, rask wifi, rengjøring, strøm, telefonbåser samt invitasjon til alle arrangementer i Bergen.Works regi."
+            }
+            modalLinkText={"Ta kontakt"}
+            modalLink={"/"}
           />
         </div>
         <div className="text-[var(--text-light)] lg:w-1/3">
           <InfoCard
             bgColor="bg-moss-600"
             imageSrc="/infoIcon2.png"
-            alt="icon"
+            alt="Icon"
             title="Åpen Plass"
-            description="xxxx,- / mnd"
+            description="3200,- / mnd"
             link="/"
+            modalImageSrc={"/infoIcon2.png"}
+            modalImageAlt={"Icon"}
+            modalHeader={"Åpen plass"}
+            modalParagraph1={"3200,-/ mnd (eks. MVA)"}
+            modalParagraph2={
+              "Dette inkluderer følgende: Tilgang til ledig plass i åpent kontorlandskap, nytraktet kaffe, tilgang til møterom, rask wifi, rengjøring, strøm, telefonbåser samt invitasjon til alle arrangementer i Bergen.Works regi."
+            }
+            modalLinkText={"Ta kontakt"}
+            modalLink={"/"}
           />
         </div>
         <div className="text-[var(--text-dark)] lg:w-1/3">
           <InfoCard
             bgColor="bg-moss-200"
             imageSrc="/infoIcon3.png"
-            alt="icon"
+            alt="Icon"
             title="Inkubasjon"
-            description="Lorem ips ipsum"
+            description="Gratis for deltakere"
             link="/"
+            modalImageSrc={"/infoIcon3.png"}
+            modalImageAlt={"Icon"}
+            modalHeader={"Inkubator på Bergen.Works"}
+            modalParagraph2={
+              "Har du en Gründer i magen? Bergen.Works utvikler et nytt inkubasjonskonsept for de som ønsker å realisere dine drømmer og idéer! Ta turen innom oss for en uformell prat og en kopp kaffe! Bergen.Works er startet av gründere, for gründere; hos oss finner du kompetanse innen ethvert felt! Kom for kontorplass, bli for miljøet."
+            }
+            modalLinkText={"Ta kontakt"}
+            modalLink={"/"}
           />
         </div>
       </div>
