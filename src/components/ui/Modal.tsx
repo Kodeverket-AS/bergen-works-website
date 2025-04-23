@@ -46,7 +46,7 @@ export function Modal({
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className={`bg-moss-200 rounded-lg shadow-2xl w-full max-w-5xl py-10 px-6  transform transition-all duration-300 ${
+        className={`bg-moss-200 rounded-lg shadow-2xl w-full max-w-5xl py-10 px-6  transform transition-all duration-500 ${
           show ? "scale-100 opacity-100" : "scale-50 opacity-0"
         } flex flex-col justify-center items-center md:flex-row`}
       >
@@ -59,7 +59,7 @@ export function Modal({
             draggable={false}
           />
         </div>
-        <div className="w-full md:w-1/2 text-[var(--text-dark)]  p-10 md:p-6 flex flex-col">
+        <div className="w-full md:w-1/2 text-[var(--text-dark)]  p-6 md:p-6 flex flex-col">
           <h2 className="text-2xl md:text-4xl font-bold mb-2">{modalHeader}</h2>
           <p className="mb-4 text-lg  md:text-xl">{modalParagraph1}</p>
           <p className="mb-4 md:text-lg">{modalParagraph2}</p>
