@@ -5,7 +5,7 @@ import React from 'react';
 export default function Incubator() {
   return <main>
     <FasiliteterCard
-              imageSrc="/BW_Bygning.png"
+              imageSrc="/bygg.png"
               alt={"Image of building"}
               headerText={"Om oss"}
               paragraphText={

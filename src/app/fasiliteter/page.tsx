@@ -5,7 +5,7 @@ export default function Facilities() {
     <main className="my-10">
       <div className="mb-10">
         <FasiliteterCard
-          imageSrc="/BW_Bygning.png"
+          imageSrc="/bygg.png"
           alt={"Image of building"}
           headerText={"Lorem Ipsum"}
           paragraphText={

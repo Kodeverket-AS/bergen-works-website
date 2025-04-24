@@ -1,25 +1,72 @@
-import React from 'react'
-import Image from 'next/image'
-
 const Medlemskap_iconer = () => {
+  const tiles = [
+    {
+      src: "wi-fi_logo.png",
+      text: "Wi-Fi",
+      bg: "bg-moss-200",
+      textColor: "text-black",
+    },
+    {
+      src: "./fasilitiesIcons/printer-icon-white.png",
+      text: "Printer",
+      bg: "bg-moss-600",
+      textColor: "text-white",
+    },
+    {
+      src: "telefon-rom_logo.png",
+      text: "Phone Booth",
+      bg: "bg-moss-200",
+      textColor: "text-black",
+    },
+    {
+      src: "./fasilitiesIcons/kaffe-tee-icon-white.png",
+      text: "Keffe/Te",
+      bg: "bg-moss-600",
+      textColor: "text-white",
+    },
+    {
+      src: "./fasilitiesIcons/moterom-icon-white.png",
+      text: "Møterom",
+      bg: "bg-moss-600",
+      textColor: "text-white",
+    },
+    {
+      src: "event_logo.png",
+      text: "Eventer/Kurs",
+      bg: "bg-moss-200",
+      textColor: "text-black",
+    },
+    {
+      src: "./fasilitiesIcons/kjokken-icon-white.png",
+      text: "Kjøkken",
+      bg: "bg-moss-600",
+      textColor: "text-white",
+    },
+    {
+      src: "nettverk_logo.png",
+      text: "Nettverk",
+      bg: "bg-moss-200",
+      textColor: "text-black",
+    },
+  ];
   return (
-    <section className='w-full overflow-x-auto'>
-      <div className='flex flex-wrap flex-col items-center justify-center bg-white gap-10 p-5'>
-        <div className='flex flex-row gap-15 overflow-x-auto'>
-          <div className='rounded-2xl bg-moss-200'><img className='min-h-70 min-w-70' src="wi-fi_logo.png" alt="" /><p className='text-black text-2xl text-center'>Wi-Fi</p></div>
-          <div className='rounded-2xl bg-moss-600'><img className='min-h-70 min-w-70' src="printer_logo.png" alt="" /><p className='text-black text-2xl text-center'>Printer</p></div>
-          <div className='rounded-2xl bg-moss-200'><img className='min-h-70 min-w-70' src="telefon-rom_logo.png" alt="" /><p className='text-black text-2xl text-center'>Telefon-rom</p></div>
-          <div className='rounded-2xl bg-moss-600'><img className='min-h-70 min-w-70' src="te_logo.png" alt="" /><p className='text-black text-2xl text-center'>Keffe/Te</p></div>
-        </div>
-        <div className='flex flex-row gap-15 overflow-x-auto'>
-          <div className='rounded-2xl bg-moss-600'><img className='min-h-70 min-w-70' src="moterom_logo.png" alt="" /><p className='text-black text-2xl text-center'>Møter-rom</p></div>
-          <div className='rounded-2xl bg-moss-200'><img className='min-h-70 min-w-70' src="event_logo.png" alt="" /><p className='text-black text-2xl text-center'>Event område</p></div>
-          <div className='rounded-2xl bg-moss-600'><img className='min-h-70 min-w-70' src="kjokken_logo.png" alt="" /><p className='text-black text-2xl text-center'>Kjøkken</p></div>
-          <div className='rounded-2xl bg-moss-200'><img className='min-h-70 min-w-70' src="nettverk_logo.png" alt="" /><p className='text-black text-2xl text-center'>Nettverk</p></div>
-        </div>
+    <section className="w-full px-4 py-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        {tiles.map((tile, index) => (
+          <div
+            key={index}
+            className={`flex flex-col items-center justify-center ${tile.bg} ${tile.textColor} rounded-2xl p-4 shadow-md transition-all`}
+          >
+            <img
+              className="h-20 w-20 object-contain"
+              src={tile.src}
+              alt={tile.text}
+            />
+            <p className="text-center text-lg md:text-xl mt-2">{tile.text}</p>
+          </div>
+        ))}
       </div>
     </section>
-  )
-}
-
-export default Medlemskap_iconer
+  );
+};
+export default Medlemskap_iconer;

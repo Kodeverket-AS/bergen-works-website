@@ -7,7 +7,7 @@ const Hero = () => {
       <div className='flex flex-col m-3 p-5 gap-3 w-full md:flex-row'>
 
          <div className='overflow-hidden h-60 md:h-80 lg:h-96 '>
-              <img className="rounded-3xl" src="/BW_bygning.png" alt="BergenWorks Lokaler" />
+              <img className="rounded-3xl" src="/bygg.png" alt="BergenWorks Lokaler" />
           </div>
 
           <div className='rounded-3xl p-5 bg-gray-950 text-white md:max-w-1/2'>

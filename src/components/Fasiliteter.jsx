@@ -1,10 +1,6 @@
-
-"use client"
+"use client";
 import React, { useState } from "react";
-import { fasiliteterList } from '@/data/dataFasiliteter'; 
-
-
-
+import { fasiliteterList } from "@/data/dataFasiliteter";
 
 const Fasiliteter = () => {
   const [activeInfo, setActiveInfo] = useState(null);
@@ -28,11 +24,12 @@ const Fasiliteter = () => {
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-5 justify-around shadow-xl rounded-xl p-12 lg:w-2/3">
+      <div className="flex flex-wrap gap-5 justify-around bg-white/30 backdrop-blur-md border border-white/20 shadow-xl rounded-2xl p-8 lg:w-2/3">
         {fasiliteterList.map(({ id, icon, label, info }) => (
           <div
             key={id}
-            className="w-1/4  lg:w-1/5 flex flex-col items-center cursor-pointer  hover:bg-moss-100"
+            className="w-1/4 lg:w-1/5 flex flex-col items-center cursor-pointer group relative transition-all duration-300 ease-in-out hover:shadow-lg hover:scale-105 hover:bg-white/20 hover:backdrop-blur-sm hover:ring-2 hover:ring-moss-500
+"
             onClick={() => toggleInfo(id)}
           >
             <img
@@ -40,12 +37,10 @@ const Fasiliteter = () => {
               alt={label}
               className="hover:scale-105 transition-transform duration-200"
             />
-            <p className="text-center lg:text-xl ">{label}</p>
-            {activeInfo === id && (
-              <div className="mt-2 text-sm text-center text-gray-600">
-                {info}
-              </div>
-            )}
+            <p className="text-center lg:text-xl">{label}</p>
+            <div className="mt-2 text-sm text-center text-gray-600 min-h-[40px] transition-all duration-300">
+              {activeInfo === id ? info : null}
+            </div>
           </div>
         ))}
       </div>
