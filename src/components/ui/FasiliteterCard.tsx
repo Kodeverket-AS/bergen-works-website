@@ -8,6 +8,7 @@ interface FasiliteterCardProps {
   paragraphText: string;
   buttonText: string;
   buttonLink: string;
+
   smallScreenReverse: boolean;
   largeScreenReverse: boolean;
   cardStyle: string;
@@ -25,6 +26,7 @@ export function FasiliteterCard({
   paragraphText,
   buttonText,
   buttonLink,
+
   smallScreenReverse = false,
   largeScreenReverse = false,
   cardStyle = "",
@@ -36,25 +38,17 @@ export function FasiliteterCard({
 }: FasiliteterCardProps) {
   return (
     <div
-      className={`flex flex-col md:flex-row w-full h-full ${cardStyle} ${
-        smallScreenReverse ? "flex-col-reverse" : "flex-col "
-      }
-          ${largeScreenReverse ? "md:flex-row-reverse" : "md:flex-row"}
-        `}
+      className={`flex w-full h-full gap-6 mb-10 ${cardStyle} 
+        ${smallScreenReverse ? "flex-col-reverse" : "flex-col"} 
+        ${largeScreenReverse ? "md:flex-row-reverse" : "md:flex-row"}`}
     >
       <div className={`relative w-full ${imageContainerStyle}`}>
         <Image
           src={imageSrc}
           alt={alt}
-
-          width={imageWidth}
-          height={imageHeight}
-          className="w-full h-full object-cover lg: rounded-lg"
-
           fill
-          className="object-cover w-full h-full select-none pointer-events-none rounded-2xl "
+          className="object-cover w-full h-full select-none pointer-events-none rounded-2xl"
           draggable={false}
-
         />
       </div>
 
@@ -62,12 +56,11 @@ export function FasiliteterCard({
         className={`w-full p-10 h-full shadow-card flex flex-col rounded-2xl ${textContainerStyle}`}
       >
         <h2 className={`font-bold ${headerStyle}`}>{headerText}</h2>
-        <p className={` ${paragraphStyle}`}>{paragraphText}</p>
-        <div className="flex lg:justify-start md:items-end h-full ">
+        <p className={`${paragraphStyle}`}>{paragraphText}</p>
+        <div className="flex lg:justify-start md:items-end h-full">
           <Link
             href={buttonLink}
-            className={`px-4 py-4 rounded-md transition-all duration-300 text-center font-semibold focus-visible:outline-none
-             focus-visible:ring-4 focus-visible:ring-purple-500 focus-visible:ring-offset-0  ${buttonStyle}`}
+            className={`px-4 py-4 rounded-md transition-all duration-300 text-center font-semibold focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-purple-500 focus-visible:ring-offset-0 ${buttonStyle}`}
           >
             {buttonText}
           </Link>
