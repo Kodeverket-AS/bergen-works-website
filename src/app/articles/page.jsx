@@ -106,26 +106,26 @@ const ArticleCard = ({ article, index }) => {
             </Typography>
           </div>
           <div className="flex justify-end items-center mt-2">
-            <Typography
-              variant="body2"
-              color="primary"
-              sx={{
-                cursor: "pointer",
-                fontSize: "16px",
-
-                transition: "color 0.3s",
-                color: "gray",
-              }}
-            >
-              Les mer
-            </Typography>
             <Link href={`/articles/${article._id}`} passHref>
+              <Typography
+                variant="body2"
+                color="primary"
+                sx={{
+                  cursor: "pointer",
+                  fontSize: "16px",
+
+                  transition: "color 0.3s",
+                  color: "gray",
+                }}
+              >
+                Les mer
+              </Typography>{" "}
               <ArrowForwardIcon
                 sx={{
                   cursor: "pointer",
                   color: "gray",
                   fontSize: "36px",
-                  marginLeft:"3px",
+                  marginLeft: "3px",
                   color: "gray",
                   transition: "color 0.3s ease, transform 0.3s ease",
                   "&:hover": {

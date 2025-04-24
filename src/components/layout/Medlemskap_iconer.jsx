@@ -1,96 +1,73 @@
-import React from "react";
 
 const Medlemskap_iconer = () => {
-    return (
-        <section className='w-full overflow-x-auto'>
-            <div className='flex flex-wrap flex-col items-center justify-center bg-white gap-10 p-5'>
-                <div className='flex flex-row gap-15 overflow-x-auto'>
-                    <div className='rounded-2xl bg-moss-200 p-4'>
-                        <img
-                            className='min-h-70 min-w-70 invert'
-                            src='wi-fi_logo.png'
-                            alt='Wi-Fi'
-                        />
-                        <p className='text-white text-2xl text-center mt-4'>
-                            Wi-Fi
-                        </p>
-                    </div>
-                    <div className='rounded-2xl bg-moss-600 p-4'>
-                        <img
-                            className='min-h-70 min-w-70 invert'
-                            src='printer_logo.png'
-                            alt='Printer'
-                        />
-                        <p className='text-white text-2xl text-center mt-4'>
-                            Printer
-                        </p>
-                    </div>
-                    <div className='rounded-2xl bg-moss-200 p-4'>
-                        <img
-                            className='min-h-70 min-w-70 invert'
-                            src='telefon-rom_logo.png'
-                            alt='Telefon-rom'
-                        />
-                        <p className='text-white text-2xl text-center mt-4'>
-                            Telefon-rom
-                        </p>
-                    </div>
-                    <div className='rounded-2xl bg-moss-600 p-4'>
-                        <img
-                            className='min-h-70 min-w-70 invert'
-                            src='te_logo.png'
-                            alt='Kaffe/Te'
-                        />
-                        <p className='text-white text-2xl text-center mt-4'>
-                            Kaffe/Te
-                        </p>
-                    </div>
-                </div>
-                <div className='flex flex-row gap-15 overflow-x-auto'>
-                    <div className='rounded-2xl bg-moss-600 p-4'>
-                        <img
-                            className='min-h-70 min-w-70 invert'
-                            src='moterom_logo.png'
-                            alt='Møterom'
-                        />
-                        <p className='text-white text-2xl text-center mt-4'>
-                            Møterom
-                        </p>
-                    </div>
-                    <div className='rounded-2xl bg-moss-200 p-4'>
-                        <img
-                            className='min-h-70 min-w-70 invert'
-                            src='event_logo.png'
-                            alt='Event område'
-                        />
-                        <p className='text-white text-2xl text-center mt-4'>
-                            Event område
-                        </p>
-                    </div>
-                    <div className='rounded-2xl bg-moss-600 p-4'>
-                        <img
-                            className='min-h-70 min-w-70 invert'
-                            src='kjokken_logo.png'
-                            alt='Kjøkken'
-                        />
-                        <p className='text-white text-2xl text-center mt-4'>
-                            Kjøkken
-                        </p>
-                    </div>
-                    <div className='rounded-2xl bg-moss-200 p-4'>
-                        <img
-                            className='min-h-70 min-w-70 invert'
-                            src='nettverk_logo.png'
-                            alt='Nettverk'
-                        />
-                        <p className='text-white text-2xl text-center mt-4'>
-                            Nettverk
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    );
+  const tiles = [
+    {
+      src: "wi-fi_logo.png",
+      text: "Wi-Fi",
+      bg: "bg-moss-200",
+      textColor: "text-black",
+    },
+    {
+      src: "./fasilitiesIcons/printer-icon-white.png",
+      text: "Printer",
+      bg: "bg-moss-600",
+      textColor: "text-white",
+    },
+    {
+      src: "telefon-rom_logo.png",
+      text: "Phone Booth",
+      bg: "bg-moss-200",
+      textColor: "text-black",
+    },
+    {
+      src: "./fasilitiesIcons/kaffe-tee-icon-white.png",
+      text: "Keffe/Te",
+      bg: "bg-moss-600",
+      textColor: "text-white",
+    },
+    {
+      src: "./fasilitiesIcons/moterom-icon-white.png",
+      text: "Møterom",
+      bg: "bg-moss-600",
+      textColor: "text-white",
+    },
+    {
+      src: "event_logo.png",
+      text: "Eventer/Kurs",
+      bg: "bg-moss-200",
+      textColor: "text-black",
+    },
+    {
+      src: "./fasilitiesIcons/kjokken-icon-white.png",
+      text: "Kjøkken",
+      bg: "bg-moss-600",
+      textColor: "text-white",
+    },
+    {
+      src: "nettverk_logo.png",
+      text: "Nettverk",
+      bg: "bg-moss-200",
+      textColor: "text-black",
+    },
+  ];
+  return (
+    <section className="w-full px-4 py-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        {tiles.map((tile, index) => (
+          <div
+            key={index}
+            className={`flex flex-col items-center justify-center ${tile.bg} ${tile.textColor} rounded-2xl p-4 shadow-md transition-all`}
+          >
+            <img
+              className="h-20 w-20 object-contain"
+              src={tile.src}
+              alt={tile.text}
+            />
+            <p className="text-center text-lg md:text-xl mt-2">{tile.text}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
 };
-
 export default Medlemskap_iconer;
