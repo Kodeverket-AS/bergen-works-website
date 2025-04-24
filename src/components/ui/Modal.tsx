@@ -42,15 +42,15 @@ export function Modal({
   return (
     <div
       onClick={onClose}
-      className="fixed inset-0 z-10 flex items-center justify-center md:flex-row bg-black/50 backdrop-blur-sm p-4 "
+      className="fixed inset-0 z-10 flex items-center justify-center bg-black/50 backdrop-blur-sm px-10 "
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className={`bg-moss-200 rounded-lg shadow-2xl w-full max-w-5xl py-10 px-6  transform transition-all duration-500 ${
-          show ? "scale-100 opacity-100" : "scale-50 opacity-0"
+        className={`bg-moss-200 rounded-lg shadow-xl w-full max-w-5xl py-4 md:py-10 lg:py-16 px-2  transform transition-all duration-500 ${
+          show ? "scale-100 opacity-100" : "scale-30 opacity-0"
         } flex flex-col justify-center items-center md:flex-row`}
       >
-        <div className="relative w-full h-80 md:w-1/2 md:h-[350px] ">
+        <div className="relative w-full h-80  md:w-1/2 ">
           <Image
             src={modalImageSrc}
             alt={modalImageAlt}
@@ -59,10 +59,12 @@ export function Modal({
             draggable={false}
           />
         </div>
-        <div className="w-full md:w-1/2 text-[var(--text-dark)]  p-6 md:p-6 flex flex-col">
-          <h2 className="text-2xl md:text-4xl font-bold mb-2">{modalHeader}</h2>
-          <p className="mb-4 text-lg  md:text-xl">{modalParagraph1}</p>
-          <p className="mb-4 md:text-lg">{modalParagraph2}</p>
+        <div className="w-full md:w-1/2 text-[var(--text-dark)] p-6 lg:p-0  lg:pr-16 flex flex-col">
+          <h2 className="text-3xl md:text-4xl font-bold mb-2">{modalHeader}</h2>
+          <p className="mb-4 text-lg  md:text-xl font-semibold">
+            {modalParagraph1}
+          </p>
+          <p className="mb-4 lg:text-lg">{modalParagraph2}</p>
           <div className="mt-4 ">
             <Link
               href={modalLink}
