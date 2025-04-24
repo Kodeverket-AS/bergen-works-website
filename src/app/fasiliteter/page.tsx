@@ -1,11 +1,12 @@
 import { FasiliteterCard } from "@/components/ui/FasiliteterCard";
 
 export default function Facilities() {
+
     return (
         <main className=''>
             <div className='mb-10'>
                 <FasiliteterCard
-                    imageSrc='/BW_Bygning.png'
+                    imageSrc='/bygg.png'
                     alt={"Image of building"}
                     headerText={"Alt du trenger – og litt til"}
                     paragraphText={
@@ -27,7 +28,6 @@ export default function Facilities() {
                     smallScreenReverse={false}
                 />
             </div>
-
             <div className='mb-10'>
                 <FasiliteterCard
                     imageSrc='/FasImg2.png'
