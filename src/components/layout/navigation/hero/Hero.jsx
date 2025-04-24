@@ -1,6 +1,6 @@
-import FasiliteterCard from "@/components/ui/FasiliteterCard";
+import { FasiliteterCard } from "@/components/ui/FasiliteterCard";
 
-const Hero = () => {
+export default function Hero() {
   return (
     <div className="mb-10 flex">
       <FasiliteterCard
@@ -11,10 +11,12 @@ const Hero = () => {
         buttonText={"Ta kontakt"}
         buttonLink={"/"}
         reverse={false}
+
         cardStyle={""}
         imageContainerStyle={
           " brightness-80 contrast-80 lg:w-3/5 lg:h-[450] h-104 object-contain"
         }
+
         headerStyle="text-4xl  xl:text-5xl font-space-grotesk"
         textContainerStyle="bg-black text-white lg:w-2/5 xl:h-[450] flex flex-col justify-end t p-4 h-full"
         paragraphStyle=" text-4xl lg:my-4 font-space-grotesk"
@@ -22,6 +24,4 @@ const Hero = () => {
       />
     </div>
   );
-};
-
-export default Hero;
+}

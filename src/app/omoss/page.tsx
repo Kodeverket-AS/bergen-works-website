@@ -1,8 +1,8 @@
-import FasiliteterCard from '@/components/ui/FasiliteterCard';
-import React from 'react';
-
+import { FasiliteterCard } from "@/components/ui/FasiliteterCard";
+import React from "react";
 
 export default function Incubator() {
+
   return <main>
     <FasiliteterCard
               imageSrc="/bygg.png"
@@ -39,4 +39,7 @@ export default function Incubator() {
               buttonStyle="bg-white text-black hover:text-[var(--text-dark)] text-[var(--text-light)] "
             />            
         </main>;
+
+  );
+
 }
