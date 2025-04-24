@@ -1,53 +1,83 @@
+"use client";
+
 import Image from "next/image";
 import React from "react";
-import Link from "next/link";
+import { useState } from "react";
+import { Modal } from "./Modal";
 
 interface InfoCardProps {
   imageSrc: string;
   title: string;
   description: string;
-  bgColor: string;
   alt: string;
-  link?: string;
+  link: string;
+  modalImageSrc?: string;
+  modalImageAlt?: string;
+  modalHeader?: string;
+  modalParagraph1?: string;
+  modalParagraph2?: string;
+  modalLinkText?: string;
+  modalLink?: string;
+  cardStyle: string;
+  imageStyle: string;
+  textContentStyle: string;
+  headerStyle: string;
+  paragraphStyle: string;
+  arrowStyle: string;
 }
 
 export function InfoCard({
   imageSrc,
   title,
   description,
-  bgColor,
-  link = "/",
+  modalImageSrc = "",
+  modalImageAlt = "",
+  modalHeader = "",
+  modalParagraph1 = "",
+  modalParagraph2 = "",
+  modalLinkText = "",
+  modalLink = "",
+  cardStyle,
+  imageStyle,
+  textContentStyle,
+  headerStyle,
+  paragraphStyle,
+  arrowStyle,
 }: InfoCardProps) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
-    <div
-      className={` ${bgColor} flex justify-center items-center w-full h-[140]  lg:h-[200]  rounded-2xl  transition-all duration-300 md:hover:scale-105`}
-      style={{
-        willChange: "transform",
-      }}
-    >
-      <div className="w-full flex justify-center items-center select-none ">
-        <div className="p-2">
-          <Image
-            src={imageSrc}
-            alt={title}
-            width={100}
-            height={100}
-            draggable={false}
-            className=" w-[80px] h-[80px] md:w-[90px] md:h-[90px] lg:w-[120px] lg:h-[120px] xl:w-[140px] xl:h-[140px]"
-          />
+    <>
+      <div
+        onClick={() => setIsModalOpen(true)}
+        onKeyDown={(e) => e.key === "Enter" && setIsModalOpen(true)}
+        role="button"
+        tabIndex={0}
+        className={`transition-transform duration-300 will-change-transform ${cardStyle} `}
+      >
+        <div className={`relative ${imageStyle}`}>
+          <Image src={imageSrc} alt={title} fill draggable={false} />
         </div>
-        <div className=" flex flex-col justify-center p-4 xl:px-8 ">
-          <h2 className="h-full text-2xl  font-bold  ">{title}</h2>
-          <p className="mt-2 text-sm sm:text-base">{description}</p>
+        <div className={`${textContentStyle}`}>
+          <h2 className={`${headerStyle}`}>{title}</h2>
+          <p className={`${paragraphStyle}`}>{description}</p>
           <div className="mt-2 lg:mt-6">
-            <Link href={link}>
-              <button className="text-sm lg:text-base rounded-lg py-1 px-4  bg-white text-[var(--text-dark)] font-semibold  md:hover:bg-accept-600 md:hover:text-[var(--text-light)] transition-colors duration-300 cursor-pointer">
-                Se mer
-              </button>
-            </Link>
+            <div className={`${arrowStyle}`}>
+              <span className=" text-4xl">→</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <Modal
+        open={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        modalImageSrc={modalImageSrc}
+        modalImageAlt={modalImageAlt}
+        modalHeader={modalHeader}
+        modalParagraph1={modalParagraph1}
+        modalParagraph2={modalParagraph2}
+        modalLinkText={modalLinkText}
+        modalLink={modalLink}
+      />
+    </>
   );
 }
