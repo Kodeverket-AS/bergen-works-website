@@ -28,7 +28,7 @@ export default function Incubator() {
         headerText="Bærebjelken for vår virksomhet er sosial innovasjon"
         paragraphText="Vi ønsker å bidra til å utvikle smarte hoder til kreativ tech industri. Vi tilrettelegger derfor en arena for samarbeid og inkludering, hvor det enkelte medlem kan ta del i fellesskapet som mentor, innovatør, arbeidssøkende eller vekstbedrift. Med lokalisering i hjertet av Bergen, og tett tilknytning mot kultur, mener vi at vårt miljø bidrar til innovativ vekst."
         buttonText="Ta kontakt"
-        buttonLink="/"
+        buttonLink="/#contact-form"
         smallScreenReverse={false}
         largeScreenReverse={true}
         cardStyle=""

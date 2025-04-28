@@ -52,7 +52,7 @@ const KontaktForm= () => {
     setError("");
   };
   return (
-    <div className="flex flex-col gap-3 p-10 m-3 lg:flex-row bg-white text-black">
+    <div id="contact-form" className="flex flex-col gap-3 p-10 m-3 lg:flex-row bg-white text-black">
       <div className="flex w-full max-w-7xl gap-x-6 flex-col lg:flex-row">
         
         <div className="flex-1 space-y-6">
