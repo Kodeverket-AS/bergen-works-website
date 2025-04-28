@@ -18,7 +18,7 @@ export default function Membership() {
                 </div>
                 <div className="bg-black text-white rounded-2xl lg:w-2/3 p-10">
                     <h1 className="text-4xl font-bold lg:mt-18">Inkubator</h1>
-                    <p className="mt-3 text-2xl">Har du en Gründer i magen? Bergen.Works utvikler et nytt inkubasjonskonsept for de som ønsker å realisere dine drømmer og idéer! Ta turen innom oss for en uformell prat og en kopp kaffe! Bergen.Works er startet av gründere, for gründere; hos oss finner du kompetanse innen ethvert felt! Kom for kontorplass, bli for miljøet.</p>                    
+                    <p className="mt-3 text-xl">Har du en Gründer i magen? Bergen.Works utvikler et nytt inkubasjonskonsept for de som ønsker å realisere dine drømmer og idéer! Ta turen innom oss for en uformell prat og en kopp kaffe! Bergen.Works er startet av gründere, for gründere; hos oss finner du kompetanse innen ethvert felt! Kom for kontorplass, bli for miljøet.</p>                    
                     <button className="bg-white text-black rounded-2xl p-5 mt-8 ml-3 text-2xl">Ta kontakt</button>
                 </div>                
             </section>
