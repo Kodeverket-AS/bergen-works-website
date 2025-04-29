@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { InfoCard } from "./ui/InfoCard";
+import { Button } from "./ui/buttons/Button";
 
 export default function InformationSection() {
   return (
@@ -37,9 +38,13 @@ export default function InformationSection() {
               finner vi morgendagens løsninger på dagens problemstillinger.
             </p>
             <div className="w-full md:flex md:justify-center lg:justify-start mt-[1em] md:mt-[1.5em] lg:mt-[1em] xl:mt-[3em]">
-              <button className="text-base md:text-md mt-[2em] md:mt-[0.5em]  w-[294px] h-[51px] lg:w-[148px] rounded-sm py-4 px-8 bg-white text-[var(--text-dark)] font-semibold  md:hover:bg-accept-600 md:hover:text-[var(--text-light)] transition-colors duration-300 cursor-pointer">
+              <Button
+                href="/#contact-form"
+                className="text-base md:text-md lg:text-lg mt-[2em] md:mt-[0.5em]  w-[294px] lg:w-[148px] rounded-sm "
+                variant={"secondary"}
+              >
                 Ta kontakt
-              </button>
+              </Button>
             </div>
           </div>
         </div>

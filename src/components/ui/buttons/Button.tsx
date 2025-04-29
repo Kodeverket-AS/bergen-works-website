@@ -5,7 +5,7 @@ type Variant = "primary" | "secondary";
 
 const variantStyles: Record<Variant, string> = {
   primary:
-    "bg-moss-600 text-[var(--text-light)] hover:bg-[#1C2B14] cursor-pointer",
+    "bg-moss-600 text-[var(--text-light)] font-semibold hover:bg-[#1C2B14] cursor-pointer",
   secondary:
     "bg-white text-[var(--text-dark)] font-semibold hover:bg-gray-300 cursor-pointer",
 };
@@ -27,7 +27,7 @@ export function Button({
   type = "button",
   onClick,
 }: ButtonProps) {
-  const base = "inline-block px-4 py-2 rounded transition duration-300";
+  const base = "inline-block px-4 py-3 text-center  transition duration-300";
   const styles = variantStyles[variant];
   const combined = `${base} ${styles} ${className}`;
 
