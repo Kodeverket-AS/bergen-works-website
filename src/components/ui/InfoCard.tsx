@@ -10,7 +10,7 @@ interface InfoCardProps {
   title: string;
   description: string;
   alt: string;
-  link: string;
+  link?: string;
   modalImageSrc?: string;
   modalImageAlt?: string;
   modalHeader?: string;
