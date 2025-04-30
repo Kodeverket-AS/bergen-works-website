@@ -1,20 +1,17 @@
-
+// app/layout.tsx
 import type { Metadata } from "next";
 import "@/assets/styles/globals.css";
 import { Header } from "@/components/layout/header/header";
 import Footer from "@/components/layout/footer/footer";
-import { SanityProvider } from "@/context/SanityContext"; 
-import "@fontsource/space-grotesk"; 
+import { SanityProvider } from "@/context/SanityContext";
+import "@fontsource/space-grotesk";
 import "@fontsource/space-grotesk/400.css";
-
-
-
-
+import { getArticles } from "./sanity/lib/getArticles"; 
 
 export const metadata: Metadata = {
   title: "Bergen Works",
   description:
-    "Med en beliggenhet i vakre Skostredet har Bergen.Works drevet coworking space siden 2017. Vi ble startet av gründere og for gründere, og Bergen.Works skal være mer enn en kontorplass. Bærebjelkene våre er sosial, kreativ og grønn innovasjon, og vi vil bidra til å utvikle smarte hoder innen disse feltene. Derfor ønsker vi å legge til rette for en arena for samarbeid og inkludering der det enkelte medlem kan ta del i fellesskapet som mentor, innovatør, arbeidssøkende eller vekstbedrift. Sammen finner vi morgendagens løsninger på dagens problemstillinger.",
+    "Coworking space i hjertet av Bergen.",
   keywords: [
     "Bergen.Works",
     "cowowrking Bergen",
@@ -41,7 +38,7 @@ export const metadata: Metadata = {
     "tverrfaglig samarbeid",
     "bedriftsnettsted",
   ],
- robots: {
+  robots: {
     index: true,
     follow: true,
     nocache: false,
@@ -49,16 +46,15 @@ export const metadata: Metadata = {
       index: true,
       follow: true,
       noimageindex: false,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
-
   openGraph: {
     title: "Bergen.Works | Innovation in the heart of the city",
     description:
-      "Her har vi drevet med coworking siden 2017. Våre medlemmer er stort sett opptatte av kreativ innovasjon, og ikke minst det å finne morgendagens løsninger på dagens problemer.",
+      "Her har vi drevet med coworking siden 2017. Våre medlemmer er stort sett opptatte av kreativ innovasjon...",
     url: "https://bergen.works/",
     siteName: "Bergen.Works",
     images: [
@@ -73,22 +69,17 @@ export const metadata: Metadata = {
   },
 };
 
-
-
-
-
-
-
-
-export default function RootLayout({
+export default async function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
+  const articles = await getArticles(); 
+
   return (
     <html lang="en">
       <body>
-        <SanityProvider>
+        <SanityProvider articles={articles}>
           <Header />
           {children}
           <Footer />
