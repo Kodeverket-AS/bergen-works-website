@@ -57,7 +57,6 @@ export default function InformationSection() {
             alt="Icon"
             title="Fast Plass"
             description="3990,- / mnd"
-            link="/"
             imageStyle={
               "w-[80px] h-[80px] md:w-[90px] md:h-[90px] lg:w-[120px] lg:h-[120px] xl:w-[140px] xl:h-[140px]"
             }
@@ -75,7 +74,7 @@ export default function InformationSection() {
               "Dette inkluderer følgende: Fast plass i åpent kontorlandskap, nytraktet kaffe, tilgang til møterom, rask wifi, rengjøring, strøm, telefonbåser samt invitasjon til alle arrangementer i Bergen.Works regi."
             }
             modalLinkText={"Ta kontakt"}
-            modalLink={"/"}
+            modalLink={"/#contact-form"}
           />
         </div>
         <div className="text-[var(--text-light)] lg:w-1/3">
@@ -85,7 +84,6 @@ export default function InformationSection() {
             alt="Icon"
             title="Åpen Plass"
             description="3200,- / mnd"
-            link="/"
             imageStyle={
               "w-[80px] h-[80px] md:w-[90px] md:h-[90px] lg:w-[120px] lg:h-[120px] xl:w-[140px] xl:h-[140px]"
             }
@@ -103,7 +101,7 @@ export default function InformationSection() {
               "Dette inkluderer følgende: Tilgang til ledig plass i åpent kontorlandskap, nytraktet kaffe, tilgang til møterom, rask wifi, rengjøring, strøm, telefonbåser samt invitasjon til alle arrangementer i Bergen.Works regi."
             }
             modalLinkText={"Ta kontakt"}
-            modalLink={"/"}
+            modalLink={"/#contact-form"}
           />
         </div>
         <div className="text-[var(--text-dark)] lg:w-1/3">
@@ -113,7 +111,6 @@ export default function InformationSection() {
             alt="Icon"
             title="Inkubasjon"
             description="Gratis for deltakere"
-            link="/"
             imageStyle={
               "w-[80px] h-[80px] md:w-[90px] md:h-[90px] lg:w-[120px] lg:h-[120px] xl:w-[140px] xl:h-[140px]"
             }
@@ -130,7 +127,7 @@ export default function InformationSection() {
               "Har du en Gründer i magen? Bergen.Works utvikler et nytt inkubasjonskonsept for de som ønsker å realisere dine drømmer og idéer! Ta turen innom oss for en uformell prat og en kopp kaffe! Bergen.Works er startet av gründere, for gründere; hos oss finner du kompetanse innen ethvert felt! Kom for kontorplass, bli for miljøet."
             }
             modalLinkText={"Ta kontakt"}
-            modalLink={"/"}
+            modalLink={"/#contact-form"}
           />
         </div>
       </div>
