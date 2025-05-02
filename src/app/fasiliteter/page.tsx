@@ -15,7 +15,7 @@ export default function Facilities() {
           buttonLink={"/#contact-form"}
           cardStyle={"gap-3 md:gap-6"}
           imageContainerStyle={"w-full h-[400] md:w-1/2 lg:w-8/12 md:h-auto"}
-          headerStyle={"text-4xl md:text-5xl xl:text-6xl  "}
+          headerStyle={"text-4xl md:text-5xl"}
           textContainerStyle={
             "w-full h-full md:w-1/2   lg:w-1/2 md:h-auto xl:w-[1/3]"
           }
