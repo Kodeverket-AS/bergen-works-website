@@ -40,7 +40,7 @@ export default function InformationSection() {
             <div className="w-full md:flex md:justify-center lg:justify-start mt-[1em] md:mt-[1.5em] lg:mt-[1em] xl:mt-[3em]">
               <Button
                 href="/#contact-form"
-                className="text-base md:text-md lg:text-lg mt-[2em] md:mt-[0.5em]  w-[294px] lg:w-[148px] rounded-sm "
+                className="text-base lg:text-lg mt-[2em] md:mt-[0.5em] lg:mt-[2em]  w-[294px] lg:w-[148px] rounded-sm "
                 variant={"secondary"}
               >
                 Ta kontakt
