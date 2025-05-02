@@ -14,15 +14,13 @@ export default function Facilities() {
           buttonText={"Ta kontakt"}
           buttonLink={"/#contact-form"}
           cardStyle={"gap-3 md:gap-6"}
-          imageContainerStyle={
-            "w-full h-[400] md:w-1/2 lg:w-8/12 md:h-[450] md:rounded-xl"
-          }
+          imageContainerStyle={"w-full h-[400] md:w-1/2 lg:w-8/12 md:h-auto"}
           headerStyle={"text-4xl md:text-5xl xl:text-6xl  "}
           textContainerStyle={
-            "w-full h-full md:w-1/2   lg:w-1/2 md:h-[450] xl:w-[1/3]"
+            "w-full h-full md:w-1/2   lg:w-1/2 md:h-auto xl:w-[1/3]"
           }
           paragraphStyle={"lg:my-4 lg:text-lg xl:text-xl pt-4 "}
-          buttonStyle="bg-moss-600 text-[var(--text-light)] hover:bg-[#1C2B14] w-full md:w-1/2 xl:w-1/3 mt-6 lg:text-lg  "
+          buttonStyle="bg-moss-600 text-[var(--text-light)] hover:bg-[#1C2B14] w-full md:w-1/2 xl:w-1/3 mt-6 lg:text-lg"
           largeScreenReverse={false}
           smallScreenReverse={false}
         />
@@ -38,12 +36,12 @@ export default function Facilities() {
           buttonText={"Ta kontakt"}
           buttonLink={"/#contact-form"}
           cardStyle={"gap-3 md:gap-6"}
-          imageContainerStyle={"w-full h-[250] md:w-2/3 md:h-[450] py-10"}
-          headerStyle={"text-3xl md:text-4xl lg:text-5xl  "}
+          imageContainerStyle={"w-full h-[250] md:w-2/3 md:h-auto"}
+          headerStyle={"text-3xl md:text-4xl lg:text-5xl"}
           textContainerStyle={
-            "bg-moss-600 text-[var(--text-light)] w-full h-full md:w-1/2   lg:w-1/2 md:h-[450] xl:w-[1/3]"
+            "bg-moss-600 text-[var(--text-light)] w-full h-full md:w-1/2 lg:w-1/2 md:h-auto xl:w-[1/3]"
           }
-          paragraphStyle={"lg:my-5 lg:text-lg xl:text-xl pt-4  "}
+          paragraphStyle={"lg:my-5 lg:text-lg xl:text-xl pt-4"}
           buttonStyle="bg-white text-[var(--text-dark)] hover:bg-gray-300 w-full md:w-1/2 xl:w-1/3 mt-6 lg:text-lg"
           largeScreenReverse={true}
           smallScreenReverse={true}
@@ -60,12 +58,10 @@ export default function Facilities() {
           buttonText={"Ta kontakt"}
           buttonLink={"/#contact-form"}
           cardStyle={"gap-3 md:gap-6"}
-          imageContainerStyle={
-            "w-full h-[400] md:w-2/3 md:h-[500] rounded-xl rounded-xl"
-          }
+          imageContainerStyle={"w-full h-[400] md:w-2/3 md:h-auto"}
           headerStyle={"text-2xl md:text-3xl lg:text-4xl "}
           textContainerStyle={
-            "w-full h-full md:w-1/2   lg:w-1/2 md:h-[500] xl:w-[1/3] "
+            "w-full h-full md:w-1/2 lg:w-1/2 md:h-auto xl:w-[1/3]"
           }
           paragraphStyle={"lg:my-8 xl:mr-10 lg:text-lg xl:text-xl pt-4 lg:pt-0"}
           buttonStyle="bg-moss-600 text-[var(--text-light)] hover:bg-[#1C2B14] w-full md:w-1/2 xl:w-1/3  mt-6 lg:mt-0 lg:text-lg"

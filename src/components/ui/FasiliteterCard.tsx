@@ -55,7 +55,7 @@ export function FasiliteterCard({
       <div
         className={`w-full p-10 h-full shadow-card flex flex-col rounded-2xl ${textContainerStyle}`}
       >
-        <h2 className={`font-bold ${headerStyle}`}>{headerText}</h2>
+        <h2 className={`font-semibold ${headerStyle}`}>{headerText}</h2>
         <p className={`${paragraphStyle}`}>{paragraphText}</p>
         <div className="flex lg:justify-start md:items-end h-full">
           <Link
