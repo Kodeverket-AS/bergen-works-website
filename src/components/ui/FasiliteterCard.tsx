@@ -38,7 +38,7 @@ export function FasiliteterCard({
 }: FasiliteterCardProps) {
   return (
     <div
-      className={`flex w-full h-full gap-6 mb-10 ${cardStyle} 
+      className={`flex w-full h-full px-10 md:px-0  gap-6 mb-10 ${cardStyle} 
         ${smallScreenReverse ? "flex-col-reverse" : "flex-col"} 
         ${largeScreenReverse ? "md:flex-row-reverse" : "md:flex-row"}`}
     >
@@ -55,12 +55,12 @@ export function FasiliteterCard({
       <div
         className={`w-full p-10 h-full shadow-card flex flex-col rounded-2xl ${textContainerStyle}`}
       >
-        <h2 className={`font-bold ${headerStyle}`}>{headerText}</h2>
+        <h2 className={`font-semibold ${headerStyle}`}>{headerText}</h2>
         <p className={`${paragraphStyle}`}>{paragraphText}</p>
         <div className="flex lg:justify-start md:items-end h-full">
           <Link
             href={buttonLink}
-            className={`px-4 py-4 rounded-md transition-all duration-300 text-center font-semibold focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-purple-500 focus-visible:ring-offset-0 ${buttonStyle}`}
+            className={`px-8 py-4 rounded-md transition-all duration-300 text-center font-semibold focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-purple-500 focus-visible:ring-offset-0 ${buttonStyle}`}
           >
             {buttonText}
           </Link>

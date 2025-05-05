@@ -1,51 +1,10 @@
 "use client";
-
-import { createContext, useContext, useEffect, useState } from "react";
-import { client } from "../app/sanity/lib/client";
+import { createContext, useContext, useState } from "react";
 
 const SanityContext = createContext();
 
-const SanityProvider = ({ children }) => {
-  const [loading, setLoading] = useState(true);
-  const [articles, setArticles] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const query = `
-          *[_type == "article"]{ 
-            _id, 
-            title, 
-           articleBody[]{
-      ...,
-      _type == "image" => {
-        asset -> { url },
-        alt
-      }
-    },
-            background { asset -> { url } }, 
-            releaseDate, 
-            author, 
-            category, 
-            tags, 
-            images[]{
-      asset -> { url },
-      alt
-    }
-          }
-        `;
-
-        const data = await client.fetch(query);
-        setArticles(data);
-      } catch (error) {
-        console.error("Feil:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
+export const SanityProvider = ({ children, articles }) => {
+  const [loading] = useState(false);
 
   return (
     <SanityContext.Provider value={{ articles, loading }}>
@@ -54,6 +13,4 @@ const SanityProvider = ({ children }) => {
   );
 };
 
-const useSanity = () => useContext(SanityContext);
-
-export { SanityProvider, useSanity };
+export const useSanity = () => useContext(SanityContext);

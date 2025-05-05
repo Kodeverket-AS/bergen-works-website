@@ -5,7 +5,7 @@ export default function Hero() {
     <div className="mb-10 flex">
       <FasiliteterCard
         imageSrc="/bygg.png"
-        alt={"Image of building"}
+        alt={"Image of  main building"}
         headerText={"Bergen.Works"}
         paragraphText={"Innovation in the heart of the city"}
         buttonText={"Ta kontakt"}

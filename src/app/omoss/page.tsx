@@ -15,7 +15,7 @@ export default function Incubator() {
         smallScreenReverse={false}
         largeScreenReverse={false}
         cardStyle=""
-        imageContainerStyle="lg:w-3/5 lg:h-[450px] h-104 "
+        imageContainerStyle=" brightness-80 contrast-80 lg:w-3/5 lg:h-[450px] h-104 "
         textContainerStyle="text-white bg-black lg:w-2/5 xl:h-[450px]"
         headerStyle="text-white text-3xl md:text-4xl xl:text-5xl"
         paragraphStyle="lg:my-4"
@@ -32,7 +32,7 @@ export default function Incubator() {
         smallScreenReverse={false}
         largeScreenReverse={true}
         cardStyle=""
-        imageContainerStyle="lg:w-1/2 lg:h-[450px] h-104"
+        imageContainerStyle=" lg:w-1/2 lg:h-[450px] h-104"
         textContainerStyle="bg-moss-600 text-white lg:w-1/2 xl:h-[450px]"
         headerStyle="text-white text-3xl md:text-3xl xl:text-3xl"
         paragraphStyle="lg:my-4"
