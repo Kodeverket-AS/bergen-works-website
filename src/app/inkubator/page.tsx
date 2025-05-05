@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import KontaktForm from "@/components/KontaktForm";
+import { Button } from "@/components/ui/buttons/Button";
 
 export default function Membership() {
     return (
@@ -19,7 +20,10 @@ export default function Membership() {
                 <div className="bg-black text-white rounded-2xl lg:w-2/3 p-10">
                     <h1 className="text-4xl font-bold lg:mt-18">Inkubator</h1>
                     <p className="mt-3 text-xl">Har du en Gründer i magen? Bergen.Works utvikler et nytt inkubasjonskonsept for de som ønsker å realisere dine drømmer og idéer! Ta turen innom oss for en uformell prat og en kopp kaffe! Bergen.Works er startet av gründere, for gründere; hos oss finner du kompetanse innen ethvert felt! Kom for kontorplass, bli for miljøet.</p>                    
-                    <button className="bg-white text-black rounded-2xl p-5 mt-8 ml-3 text-2xl">Ta kontakt</button>
+                    <Button 
+                    className="mt-5 rounded-md" 
+                    variant="secondary"
+                    href="/#contact-form">Ta kontakt</Button>
                 </div>                
             </section>
            
