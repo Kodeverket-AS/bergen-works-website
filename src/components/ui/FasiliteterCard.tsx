@@ -60,7 +60,7 @@ export function FasiliteterCard({
         <div className="flex lg:justify-start md:items-end h-full">
           <Link
             href={buttonLink}
-            className={`px-8 py-4 rounded-md transition-all duration-300 text-center font-semibold focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-purple-500 focus-visible:ring-offset-0 ${buttonStyle}`}
+            className={`px-4 py-4 rounded-md transition-all duration-300 text-center font-semibold focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-purple-500 focus-visible:ring-offset-0 ${buttonStyle}`}
           >
             {buttonText}
           </Link>
