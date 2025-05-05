@@ -33,7 +33,7 @@ export function Button({
 
   if (href) {
     return (
-      <Link href={href} className={combined} role="button" tabIndex={0}>
+      <Link href={href} className={combined} tabIndex={0}>
         {children}
       </Link>
     );
