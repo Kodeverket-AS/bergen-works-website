@@ -23,7 +23,7 @@ export default function Incubator() {
           headerStyle={"text-2xl md:text-2xl xl:text-3xl  "}
           textContainerStyle={"bg-black text-white lg:w-2/5 xl:h-auto"}
           paragraphStyle={"lg:my-4"}
-          buttonStyle="mt-8 bg-white text-[var(--text-dark)] hover:bg-gray-300 w-full md:w-3/5 xl:w-4/10 mt-6 lg:text-lg"
+          buttonStyle="mt-8 bg-white text-[var(--text-dark)] hover:bg-gray-300 w-full md:w-auto mt-6 lg:text-lg"
         />
       </div>
       <Eget_Kontor />

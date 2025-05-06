@@ -9,18 +9,14 @@ export default function Hero() {
         headerText={"Bergen.Works"}
         paragraphText={"Innovation in the heart of the city"}
         buttonText={"Ta kontakt"}
-        buttonLink={"/"}
+        buttonLink={"/#contact-form"}
         reverse={false}
-
         cardStyle={""}
-        imageContainerStyle={
-          " brightness-80 contrast-80 lg:w-3/5 lg:h-[450] h-104 object-contain"
-        }
-
-        headerStyle="text-4xl  xl:text-5xl font-space-grotesk"
-        textContainerStyle="bg-black text-white lg:w-2/5 xl:h-[450] flex flex-col justify-end t p-4 h-full"
-        paragraphStyle=" text-4xl lg:my-4 font-space-grotesk"
-        buttonStyle="bg-white text-black hover:bg-accept-600 hover:text-[var(--text-dark)] text-[var(--text-light)]"
+        imageContainerStyle={"w-full h-[400] lg:w-3/5"}
+        headerStyle="text-5xl xl:text-6xl font-space-grotesk"
+        textContainerStyle="justify-between bg-black text-white h-auto lg:w-2/5 xl:w-[1/3]"
+        paragraphStyle="py-2 text-4xl md:text-5xl lg:my-4 "
+        buttonStyle=" bg-white text-[var(--text-dark)] hover:bg-gray-300 w-full md:w-auto mt-6 lg:text-lg"
       />
     </div>
   );
