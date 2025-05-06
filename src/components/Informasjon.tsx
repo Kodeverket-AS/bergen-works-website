@@ -19,7 +19,7 @@ export default function InformationSection() {
         </div>
         <div className="text-[var(--text-light)] w-[294px] h-full md:w-[400] rounded-2xl md:p-[1em] lg:w-10/12 xl:w-8/12 lg:h-[411] xl:h-[450] lg:bg-[#1D1D1D]">
           <div className=" xl:h-[45px] lg:px-10">
-            <h1 className="font-bold text-[40px] xl:text-[50px] md:-mt-10 lg:my-2 ">
+            <h1 className="font-bold text-[40px] xl:text-[50px] md:-mt-10 lg:my-2">
               Co-work
             </h1>
             <p className="text-sm md:text-base lg:hidden">

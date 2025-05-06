@@ -20,7 +20,7 @@ export default function Facilities() {
             "w-full h-full md:w-1/2   lg:w-1/2 md:h-auto xl:w-[1/3]"
           }
           paragraphStyle={"lg:my-4 lg:text-lg xl:text-xl pt-4 "}
-          buttonStyle="bg-moss-600 text-[var(--text-light)] hover:bg-[#1C2B14] w-full md:w-[50%] lg:w-[40%] xl:w-[30%] mt-6 lg:text-lg"
+          buttonStyle="bg-moss-600 text-[var(--text-light)] hover:bg-[#1C2B14] w-full md:w-auto mt-6 lg:text-lg"
           largeScreenReverse={false}
           smallScreenReverse={false}
         />
@@ -42,7 +42,7 @@ export default function Facilities() {
             "bg-moss-600 text-[var(--text-light)] w-full h-full md:w-1/2 lg:w-1/2 md:h-auto xl:w-[1/3]"
           }
           paragraphStyle={"lg:my-5 lg:text-lg xl:text-xl pt-4"}
-          buttonStyle="bg-white text-[var(--text-dark)] hover:bg-gray-300 w-full md:w-[50%] lg:w-[40%] xl:w-[30%] mt-6 lg:text-lg"
+          buttonStyle="bg-white text-[var(--text-dark)] hover:bg-gray-300 w-full md:w-auto mt-6 lg:text-lg"
           largeScreenReverse={true}
           smallScreenReverse={true}
         />
@@ -64,7 +64,7 @@ export default function Facilities() {
             "w-full h-full md:w-1/2 lg:w-1/2 md:h-auto xl:w-[1/3]"
           }
           paragraphStyle={"lg:my-8 xl:mr-10 lg:text-lg xl:text-xl pt-4 lg:pt-0"}
-          buttonStyle="bg-moss-600 text-[var(--text-light)] hover:bg-[#1C2B14] w-full md:w-[50%] lg:w-[40%] xl:w-[30%] mt-6 lg:mt-0 lg:text-lg"
+          buttonStyle="bg-moss-600 text-[var(--text-light)] hover:bg-[#1C2B14] w-full md:w-auto mt-6 lg:mt-0 lg:text-lg"
           largeScreenReverse={false}
           smallScreenReverse={true}
         />
