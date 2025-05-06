@@ -2,6 +2,7 @@ import { type SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { type QueryParams } from "sanity";
 import { sanityBuilder, sanityClient } from "./client";
 import { SanityDocument } from "next-sanity";
+import { Article } from "@/types/sanity/sanity.types";
 
 /**
  * Helper function for generating valid image urls that we can use with next image
@@ -47,7 +48,7 @@ export async function sanityFetch<const QueryString extends string>({
 export async function getArticles() {
   try {
     const QUERY = `*[_type == "article"]`;
-    const result: SanityDocument[] = await sanityFetch({
+    const result: Article[] = await sanityFetch({
       query: QUERY,
       tags: ["article"],
     });
@@ -61,7 +62,7 @@ export async function getArticles() {
 export async function getArticle(slug: string) {
   try {
     if (typeof slug !== "string") return null;
-    const result: SanityDocument = await sanityFetch({
+    const result: Article = await sanityFetch({
       query: `*[_type == "article" && slug.current == "${slug}"][0]`,
       tags: ["all", "articles"],
     });
