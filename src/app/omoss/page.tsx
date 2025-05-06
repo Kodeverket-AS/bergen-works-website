@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/buttons/Button";
 
 export default function Incubator() {
   return (
-    <main className="px-4 lg:px-20">
+    <main className="">
       <FasiliteterCard
         imageSrc="/bygg.png"
         alt="Image of building"
@@ -13,10 +13,11 @@ export default function Incubator() {
         smallScreenReverse={false}
         largeScreenReverse={false}
         cardStyle=""
-        imageContainerStyle=" md:w-4/5 lg:w-3/5 md:h-auto h-96 "
-        textContainerStyle="text-white bg-black md:w-full lg:w-2/5 lg:h-auto "
-        headerStyle="text-white text-3xl md:text-5xl lg:text-6xl "
+        imageContainerStyle="md:w-4/5 lg:w-3/5 md:h-auto h-96"
+        textContainerStyle="text-white bg-black md:w-full lg:w-2/5 lg:h-auto"
+        headerStyle="text-white text-3xl md:text-5xl lg:text-6xl"
         paragraphStyle="pt-4 lg:py-6"
+        imageStyle={""}
       />
 
       <FasiliteterCard
@@ -27,15 +28,15 @@ export default function Incubator() {
         smallScreenReverse={false}
         largeScreenReverse={true}
         cardStyle=""
-        imageContainerStyle=" lg:w-1/2 lg:h-[450px] h-104"
-        textContainerStyle="bg-moss-600 text-white lg:w-1/2 xl:h-[450px]"
-        headerStyle="text-white text-3xl md:text-3xl xl:text-3xl"
-        paragraphStyle="lg:my-4"
+        imageContainerStyle="md:w-1/2 lg:w-3/6 md:h-auto h-96"
+        textContainerStyle="bg-moss-600 text-white md:w-1/2 lg:w-3/5 lg:h-auto"
+        headerStyle="text-white text-3xl md:text-3xl lg:text-5xl xl:text-6xl py-6"
+        paragraphStyle="md:text-lg lg:text-lg"
         button={
           <Button
             href="/#contact-form"
             variant={"secondary"}
-            className={"rounded-md  w-full md:w-auto mt-6 lg:text-lg"}
+            className={"rounded-md w-full md:w-auto mt-8 lg:text-lg"}
           >
             Ta kontakt
           </Button>

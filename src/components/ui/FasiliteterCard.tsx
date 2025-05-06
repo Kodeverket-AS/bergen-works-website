@@ -9,6 +9,7 @@ interface FasiliteterCardProps {
   largeScreenReverse: boolean;
   cardStyle: string;
   imageContainerStyle: string;
+  imageStyle?: string;
   textContainerStyle: string;
   headerStyle: string;
   paragraphStyle: string;
@@ -25,6 +26,7 @@ export function FasiliteterCard({
   largeScreenReverse = false,
   cardStyle = "",
   imageContainerStyle = "",
+  imageStyle = "",
   textContainerStyle = "",
   headerStyle = "",
   paragraphStyle = "",
@@ -40,7 +42,7 @@ export function FasiliteterCard({
           src={imageSrc}
           alt={alt}
           fill
-          className="object-cover select-none pointer-events-none rounded-2xl"
+          className={`object-cover select-none pointer-events-none rounded-2xl ${imageStyle}`}
           draggable={false}
         />
       </div>
@@ -50,9 +52,7 @@ export function FasiliteterCard({
       >
         <h2 className={`font-semibold ${headerStyle}`}>{headerText}</h2>
         <p className={`${paragraphStyle}`}>{paragraphText}</p>
-        <div className="">
-          {button && <div className="w-full">{button}</div>}
-        </div>
+        {<div className="">{button}</div>}
       </div>
     </div>
   );
