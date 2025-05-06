@@ -1,13 +1,10 @@
 import Image from "next/image";
-import Link from "next/link";
 
 interface FasiliteterCardProps {
   imageSrc: string;
   alt: string;
   headerText: string;
   paragraphText: string;
-  buttonText: string;
-  buttonLink: string;
   smallScreenReverse: boolean;
   largeScreenReverse: boolean;
   cardStyle: string;
@@ -15,7 +12,7 @@ interface FasiliteterCardProps {
   textContainerStyle: string;
   headerStyle: string;
   paragraphStyle: string;
-  buttonStyle: string;
+  button?: React.ReactNode;
 }
 
 export function FasiliteterCard({
@@ -23,9 +20,7 @@ export function FasiliteterCard({
   alt = "",
   headerText,
   paragraphText,
-  buttonText,
-  buttonLink,
-
+  button,
   smallScreenReverse = false,
   largeScreenReverse = false,
   cardStyle = "",
@@ -33,7 +28,6 @@ export function FasiliteterCard({
   textContainerStyle = "",
   headerStyle = "",
   paragraphStyle = "",
-  buttonStyle = "",
 }: FasiliteterCardProps) {
   return (
     <div
@@ -57,12 +51,7 @@ export function FasiliteterCard({
         <h2 className={`font-semibold ${headerStyle}`}>{headerText}</h2>
         <p className={`${paragraphStyle}`}>{paragraphText}</p>
         <div className="">
-          <Link
-            href={buttonLink}
-            className={`px-8 py-4 inline-block rounded-md transition-all duration-300 text-center font-semibold focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-purple-500 focus-visible:ring-offset-0 ${buttonStyle}`}
-          >
-            {buttonText}
-          </Link>
+          {button && <div className="w-full">{button}</div>}
         </div>
       </div>
     </div>
