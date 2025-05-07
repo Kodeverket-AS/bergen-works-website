@@ -18,9 +18,9 @@ export default function Incubator() {
           smallScreenReverse={false}
           largeScreenReverse={false}
           cardStyle={"gap-3 mg:gap-6"}
-          imageContainerStyle={"w-full h-[400] md:h-auto lg:w-3/5 lg:h-auto"}
+          imageContainerStyle={"w-full h-[400] md:h-auto md:w-3/5 lg:w-3/5 lg:h-auto objert-center object-cover"}
           headerStyle={"text-2xl md:text-2xl xl:text-3xl  "}
-          textContainerStyle={"bg-black text-white lg:w-2/5 xl:h-auto"}
+          textContainerStyle={"bg-black text-white md:w-2/5 lg:w-2/5 xl:h-auto"}
           paragraphStyle={"lg:my-4"}
           button={
             <Button
