@@ -1,4 +1,4 @@
-export const revalidate = 60*10; // Regenerate the page at most once every 10 minutes
+export const revalidate = 600; // Regenerate the page at most once every 10 minutes
 
 import React from "react";
 import Hero from "../components/layout/navigation/hero/Hero";
