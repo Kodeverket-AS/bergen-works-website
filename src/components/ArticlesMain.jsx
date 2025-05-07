@@ -18,10 +18,12 @@ const LoadingSkeleton = () => (
   </div>
 );
 
-const ArticlesMain = ({articles}) => {
-  if (!articles || articles.length === 0) return <LoadingSkeleton />;
-  const last6Articles = articles.slice(0, 6);
+const ArticlesMain = () => {
+  const { articles, loading } = useSanity();
 
+  if (loading) return <LoadingSkeleton />;
+
+  const last6Articles = articles.slice(0, 6);
   return (
     <div className="w-9/10 md:w-full my-20 mx-auto ">
       <h1 className="text-4xl text-center mb-8">Artikler og nyheter</h1>
