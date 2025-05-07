@@ -1,11 +1,19 @@
 import { client } from "@/app/sanity/lib/client";
 
-export const getArticles = async () => {
+/**
+ * Fetches articles from Sanity CMS.
+ * If a limit is passed, it returns only the latest `limit` articles.
+ * If no limit is passed, it returns all articles.
+ */
+export const getArticles = async (limit) => {
+  const baseQuery = `*[_type == "article"] | order(releaseDate desc)`;
+  const range = typeof limit === "number" ? `[0...${limit}]` : "";
+
   const query = `
-    *[_type == "article"]{ 
+    ${baseQuery}${range} {
       _id, 
       title, 
-      articleBody[]{
+      articleBody[] {
         ..., 
         _type == "image" => {
           asset -> { url },
@@ -17,13 +25,13 @@ export const getArticles = async () => {
       author, 
       category, 
       tags, 
-      images[]{
+      images[] {
         asset -> { url },
         alt
-      } 
+      }
     }
   `;
-
+  
   const data = await client.fetch(query);
   return data || [];
 };

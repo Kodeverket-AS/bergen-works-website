@@ -1,5 +1,4 @@
-"use client"
-import { useSanity } from "../context/SanityContext";
+"use client";
 import { Card, CardMedia, Typography } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Link from "next/link";
@@ -20,13 +19,12 @@ const LoadingSkeleton = () => (
 
 const ArticlesMain = ({articles}) => {
   if (!articles || articles.length === 0) return <LoadingSkeleton />;
-  const last6Articles = articles.slice(0, 6);
 
   return (
     <div className="w-9/10 md:w-full my-20 mx-auto ">
       <h1 className="text-4xl text-center mb-8">Artikler og nyheter</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 2xl:gap-20 w-full max-w-7xl mx-auto">
-        {last6Articles.map((article, index) => (
+        {articles.map((article, index) => (
           <Card
             sx={{
               width: "100%",
