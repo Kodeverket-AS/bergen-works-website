@@ -18,8 +18,6 @@ export default function Incubator() {
         headerStyle="text-white text-3xl md:text-5xl lg:text-6xl"
         paragraphStyle="pt-4 lg:py-6"
         imageStyle={""}
-
-      
       />
 
       <FasiliteterCard
@@ -30,10 +28,11 @@ export default function Incubator() {
         smallScreenReverse={false}
         largeScreenReverse={true}
         cardStyle=""
-        imageContainerStyle="md:w-1/2 lg:w-3/6 md:h-auto h-96"
-        textContainerStyle="bg-moss-600 text-white md:w-1/2 lg:w-3/5 lg:h-auto"
-        headerStyle="text-white text-3xl md:text-3xl lg:text-5xl xl:text-6xl py-6"
-        paragraphStyle="md:text-lg lg:text-lg"
+        imageContainerStyle="bg-black md:w-1/2 md:flex md:items-center md:justify-center rounded-2xl lg:w-3/6 md:h-auto h-[450]"
+        imageInnerDivStyle="relative w-full h-full md:h-4/6 lg:h-full"
+        textContainerStyle="bg-moss-600 text-white md:w-1/2 lg:w-3/5 "
+        headerStyle="text-white text-3xl md:text-3xl lg:text-5xl xl:text-6xl py-3"
+        paragraphStyle="lg:text-lg py-2 lg:py-4"
         button={
           <Button
             href="/#contact-form"
@@ -43,7 +42,6 @@ export default function Incubator() {
             Ta kontakt
           </Button>
         }
-
       />
     </main>
   );
