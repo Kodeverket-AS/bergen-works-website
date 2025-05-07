@@ -18,6 +18,8 @@ export default function Incubator() {
         headerStyle="text-white text-3xl md:text-5xl lg:text-6xl"
         paragraphStyle="pt-4 lg:py-6"
         imageStyle={""}
+
+      
       />
 
       <FasiliteterCard
@@ -41,6 +43,7 @@ export default function Incubator() {
             Ta kontakt
           </Button>
         }
+
       />
     </main>
   );

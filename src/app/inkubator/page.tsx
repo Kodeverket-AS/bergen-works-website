@@ -14,14 +14,14 @@ export default function Membership() {
                     width={450}
                     height={450}
                     draggable={false}
-                    className="mb-10 lg:mb-0"                                                       
+                    className="justify-center mb-10 lg:mb-0"                                                       
                     />
                 </div>
-                <div className="bg-black text-white rounded-2xl lg:w-2/3 p-10">
-                    <h1 className="text-4xl font-bold lg:mt-18">Inkubator</h1>
+                <div className="bg-black text-white rounded-2xl lg:w-2/3 p-18">
+                    <h1 className="text-5xl font-bold lg:mt-15 mb-8">Inkubator</h1>
                     <p className="mt-3 text-xl">Har du en Gründer i magen? Bergen.Works utvikler et nytt inkubasjonskonsept for de som ønsker å realisere dine drømmer og idéer! Ta turen innom oss for en uformell prat og en kopp kaffe! Bergen.Works er startet av gründere, for gründere; hos oss finner du kompetanse innen ethvert felt! Kom for kontorplass, bli for miljøet.</p>                    
                     <Button 
-                    className="mt-5 rounded-md" 
+                    className="w-full md:w-[200px] md:h-[50] mt-15 rounded-md" 
                     variant="secondary"
                     href="/#contact-form">Ta kontakt</Button>
                 </div>                
