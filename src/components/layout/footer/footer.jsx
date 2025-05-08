@@ -100,7 +100,7 @@ function Footer() {
                               
             </div>
       <p className="flex justify-center">Utviklet i regnet av Kodeverket Bergen © 2025</p>
-      <a href="/presonvern">
+      <a href=" /personvern ">
       <p className="flex justify-center">Personvernerklæring</p>
       </a>
       </section>
