@@ -10,6 +10,7 @@ interface FasiliteterCardProps {
   cardStyle: string;
   imageContainerStyle: string;
   imageStyle?: string;
+  imageInnerDivStyle?: string;
   textContainerStyle: string;
   headerStyle: string;
   paragraphStyle: string;
@@ -27,6 +28,7 @@ export function FasiliteterCard({
   cardStyle = "",
   imageContainerStyle = "",
   imageStyle = "",
+  imageInnerDivStyle = "",
   textContainerStyle = "",
   headerStyle = "",
   paragraphStyle = "",
@@ -38,13 +40,15 @@ export function FasiliteterCard({
         ${largeScreenReverse ? "md:flex-row-reverse" : "md:flex-row"}`}
     >
       <div className={`relative w-full ${imageContainerStyle}`}>
-        <Image
-          src={imageSrc}
-          alt={alt}
-          fill
-          className={`object-cover select-none pointer-events-none rounded-2xl ${imageStyle}`}
-          draggable={false}
-        />
+        <div className={` ${imageInnerDivStyle}`}>
+          <Image
+            src={imageSrc}
+            alt={alt}
+            fill
+            className={`object-cover select-none pointer-events-none rounded-2xl ${imageStyle}`}
+            draggable={false}
+          />
+        </div>
       </div>
 
       <div
