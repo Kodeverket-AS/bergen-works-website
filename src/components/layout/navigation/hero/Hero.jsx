@@ -1,26 +1,29 @@
 import { FasiliteterCard } from "@/components/ui/FasiliteterCard";
+import { Button } from "@/components/ui/buttons/Button";
 
 export default function Hero() {
   return (
     <div className="mb-10 flex">
       <FasiliteterCard
         imageSrc="/bygg.png"
-        alt={"Image of building"}
+        alt={"Image of main building"}
         headerText={"Bergen.Works"}
         paragraphText={"Innovation in the heart of the city"}
-        buttonText={"Ta kontakt"}
-        buttonLink={"/"}
         reverse={false}
-
         cardStyle={""}
-        imageContainerStyle={
-          " brightness-80 contrast-80 lg:w-3/5 lg:h-[450] h-104 object-contain"
+        imageContainerStyle={"w-full h-[400] lg:w-3/5"}
+        headerStyle="text-5xl xl:text-6xl font-space-grotesk"
+        textContainerStyle="justify-between bg-black text-white h-auto lg:w-2/5 xl:w-[1/3]"
+        paragraphStyle="py-2 text-4xl md:text-5xl lg:my-4 "
+        button={
+          <Button
+            href="/#contact-form"
+            variant={"secondary"}
+            className={"rounded-md w-full md:w-auto mt-8 lg:text-lg"}
+          >
+            Ta kontakt
+          </Button>
         }
-
-        headerStyle="text-4xl  xl:text-5xl font-space-grotesk"
-        textContainerStyle="bg-black text-white lg:w-2/5 xl:h-[450] flex flex-col justify-end t p-4 h-full"
-        paragraphStyle=" text-4xl lg:my-4 font-space-grotesk"
-        buttonStyle="bg-white text-black hover:bg-accept-600 hover:text-[var(--text-dark)] text-[var(--text-light)]"
       />
     </div>
   );
