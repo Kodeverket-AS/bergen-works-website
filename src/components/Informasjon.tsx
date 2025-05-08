@@ -4,9 +4,9 @@ import { Button } from "./ui/buttons/Button";
 
 export default function InformationSection() {
   return (
-    <main className="my-10 flex flex-col items-center justify-center ">
-      <div className="  bg-[#1D1D1D] lg:bg-transparent rounded-2xl flex flex-col items-center lg:flex-row justify-between h-[567px] w-[342px] md:h-[650px] md:w-[430px] lg:w-full lg:h-[411] xl:h-[450] gap-4 md:gap-5 xl:gap-9  lg:mb-[2em]">
-        <div className="select-none md:bg-[#1D1D1D] lg:flex lg:items-center lg:justify-center md:p-[1em] md:w-[400] rounded-2xl lg:w-[400] lg:h-full xl:w-[500] xl:h-[450]">
+    <main className="px-10 md:px-0 flex flex-col items-center justify-center">
+      <div className="bg-[#1D1D1D] lg:bg-transparent rounded-2xl flex flex-col items-center lg:flex-row justify-between h-[570px] w-full md:h-[650px] md:w-[550px] lg:w-full lg:h-[400] xl:h-[450] gap-4 md:gap-5 xl:gap-9  lg:mb-[2em]">
+        <div className="select-none md:bg-[#1D1D1D] lg:flex lg:items-center lg:justify-center md:p-[1em] w-auto md:w-[400] rounded-2xl lg:w-[400] lg:h-full xl:w-[500] xl:h-[450]">
           <Image
             src="/infoImage.png"
             alt="Picture of logo and people in meetingroom"
@@ -17,8 +17,8 @@ export default function InformationSection() {
             priority
           />
         </div>
-        <div className="text-[var(--text-light)] w-[294px] h-full md:w-[400] rounded-2xl md:p-[1em] lg:w-10/12 xl:w-8/12 lg:h-[411] xl:h-[450] lg:bg-[#1D1D1D]">
-          <div className=" xl:h-[45px] lg:px-10">
+        <div className="text-[var(--text-light)] w-[300px] h-full md:w-[400] rounded-2xl md:p-[1em] lg:w-10/12 xl:w-8/12 lg:h-[400] xl:h-[450] lg:bg-[#1D1D1D]">
+          <div className="lg:px-10">
             <h1 className="font-bold text-[40px] xl:text-[50px] md:-mt-10 lg:my-2">
               Co-work
             </h1>
@@ -26,7 +26,7 @@ export default function InformationSection() {
               Vi jobber med å utvikle et splitter nytt inkubasjonskonsept på
               huset. Stay tuned!
             </p>
-            <p className="hidden lg:block lg:w-[550] xl:w-[650] ">
+            <p className="hidden lg:block lg:mt-2">
               Med en beliggenhet i vakre Skostredet har Bergen.Works drevet
               coworking space siden 2017. Vi ble startet av gründere og for
               gründere, og Bergen.Works skal være mer enn en kontorplass.
@@ -37,10 +37,10 @@ export default function InformationSection() {
               mentor, innovatør, arbeidssøkende eller vekstbedrift. Sammen
               finner vi morgendagens løsninger på dagens problemstillinger.
             </p>
-            <div className="w-full md:flex md:justify-center lg:justify-start mt-[1em] md:mt-[1.5em] lg:mt-[1em] xl:mt-[3em]">
+            <div className="w-full  mt-[1em] md:mt-[1.5em] lg:mt-[1em] xl:mt-[3em]">
               <Button
                 href="/#contact-form"
-                className="text-base md:text-md lg:text-lg mt-[3.5em]  md:mt-[2em] lg:mt-4 xl:mt-10  w-[294px] lg:w-[148px] rounded-sm "
+                className="text-base md:text-md lg:text-lg mt-[3.5em]  md:mt-[2em] lg:mt-4 xl:mt-10  w-full lg:w-auto rounded-sm "
                 variant={"secondary"}
               >
                 Ta kontakt
@@ -49,7 +49,7 @@ export default function InformationSection() {
           </div>
         </div>
       </div>
-      <div className="w-[342] mt-[1em] h-[398] md:w-[430px] md:h-[430] flex flex-col lg:flex-row lg:h-[194] lg:w-full justify-around xl:justify-center gap-5 xl:gap-10 ">
+      <div className="w-full mt-[1em]  md:w-[550px]  flex flex-col lg:flex-row  lg:w-full justify-around xl:justify-center gap-5 xl:gap-10 ">
         <div className="text-[var(--text-dark)] lg:w-1/3  ">
           <InfoCard
             cardStyle="bg-moss-200 flex justify-center items-center w-full h-[140] group cursor-pointer lg:h-[200]  rounded-2xl  md:hover:scale-105"
