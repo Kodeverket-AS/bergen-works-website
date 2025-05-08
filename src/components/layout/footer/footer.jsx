@@ -8,28 +8,42 @@ function Footer() {
         <div className="">
           <div className="flex flex-col md:flex-row md:gap-5">            
               <div className='flex flex-col items-center justify-center'>
-                <img
+                <a href='/'>
+                <img 
                 className="w-full h-2/3 rounded-2xl md:h-full"
                 src="/Footer_Logo.png"
                 alt="Bergen Works Logo"
               />
+              </a>
 
               <div className="flex felx-row gap-4 mt-4 mb-4 items-center justify-center h-1/3 md:hidden">
-                <img
+                <a href=''>
+                  <img
                   className=" w-14 h-14 "
                   src="facebook.png"
                   alt=" small icon"
                 />
-                <img
+                </a>
+                
+                                
+                <a href=''>
+                  <img
                   className=" w-14 h-14 "
                   src="instagram.png"
                   alt=" small icon"
                 />
-                <img
+                </a>
+                
+                
+                <a href=''>
+                  <img
                   className=" w-14 h-14 "
                   src="linkedin.png"
                   alt=" small icon "
-                />              
+                />
+                </a>
+                
+                              
             </div>
               </div>
               
@@ -56,21 +70,33 @@ function Footer() {
       </section>
       <section className='hidden md:block'>
       <div className="flex felx-row gap-4 mt-4 mb-4 items-center justify-center h-1/3">
-                <img
+                <a href=''>
+                  <img
                   className=" w-7 h-7 "
                   src="facebook.png"
                   alt=" small icon"
                 />
-                <img
+                </a>
+                
+                
+                <a href=''>
+                  <img
                   className=" w-7 h-7 "
                   src="instagram.png"
                   alt=" small icon"
                 />
-                <img
+                </a>
+                
+                
+                <a href=''>
+                  <img
                   className=" w-7 h-7 "
                   src="linkedin.png"
                   alt=" small icon "
-                />              
+                />
+                </a>
+                
+                              
             </div>
       <p className="flex justify-center">Utviklet i regnet av Kodeverket Bergen © 2025</p>
       </section>
