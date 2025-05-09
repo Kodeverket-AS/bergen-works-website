@@ -1,60 +1,137 @@
-import React from 'react'
-
+import React from "react";
+import Personvernerklæring from "../../../app/personvern/page";
 
 function Footer() {
-  return (
-    <footer className=" w-full">
-      <div className=" m-4 shadow-xl b-2 b-green-950 flex flex-col p-4 lg:flex lg:justify-center lg:items-center lg:flex-row lg:gap-5">
-        <div className="flex flex-col">
-          <div className="flex flex-col lg:gap-12 lg:flex-row">
-            <div className="flex gap-4 lg:gap-8 lg:flex-col">
-              <img
-                className="w-1/2 max-w-54 lg:w-5/6 lg:mx-w-96 rounded-2xl"
-                src="/Footer_Logo.png"
-                alt="Bergen Works Logo"
-              />
+    return (
+        <footer>
+            <section className=''>
+                <div className=''>
+                    <div className='flex flex-col md:flex-row md:gap-5'>
+                        <div className='flex flex-col items-center justify-center'>
+                            <a href='/'>
+                                <img
+                                    className='w-full h-2/3 rounded-2xl md:h-full'
+                                    src='/Footer_Logo.png'
+                                    alt='Bergen Works Logo'
+                                />
+                            </a>
 
-              <div className="flex mt-auto w-1/2 gap-4  lg:gap-7 ">
-                <img
-                  className=" w-14 h-14 "
-                  src="facebook.png"
-                  alt=" small icon"
-                />
-                <img
-                  className=" w-14 h-14 "
-                  src="instagram.png"
-                  alt=" small icon"
-                />
-                <img
-                  className=" w-14 h-14 "
-                  src="linkedin.png"
-                  alt=" small icon "
-                />
-              </div>
-            </div>
+                            <div className='flex felx-row gap-4 mt-4 mb-4 items-center justify-center h-1/3 md:hidden'>
+                                <a
+                                    href='https://www.facebook.com/bergenworks'
+                                    target='_blank'
+                                >
+                                    <img
+                                        className='w-8 h-8 sm:w-10 sm:h-10 md:w-14 md:h-14'
+                                        src='facebook.png'
+                                        alt=' small icon'
+                                    />
+                                </a>
 
-            <div className="flex  leading-9 flex-col tracking-wide mt-5 ml-3 lg:gap-4 lg:mt-0">
-              <p className="">Vestre Skostredet 2, 5017 Bergen</p>
+                                <a
+                                    href='https://www.instagram.com/bergen_works/'
+                                    target='_blank'
+                                >
+                                    <img
+                                        className='w-8 h-8 sm:w-10 sm:h-10 md:w-14 md:h-14'
+                                        src='instagram.png'
+                                        alt=' small icon'
+                                    />
+                                </a>
 
-              <div className="flex  ">
-                <img className="w-8 h-8 " src="/email.png" alt="" />
+                                <a
+                                    href='https://www.linkedin.com/company/bergen-works/posts/?feedView=all'
+                                    target='_blank'
+                                >
+                                    <img
+                                        className='w-8 h-8 sm:w-10 sm:h-10 md:w-14 md:h-14'
+                                        src='linkedin.png'
+                                        alt=' small icon '
+                                    />
+                                </a>
+                            </div>
+                        </div>
 
-                <p className="pl-2">hello@bergen.works</p>
-              </div>
-              <div className="flex ">
-                <img className="w-8 h-8 " src="telephone.png" alt="" />
+                        <div className='flex flex-col items-center justify-center mt-4 mb-4 md:items-baseline md:justify-start'>
+                            <p className=''>Vestre Skostredet 2, 5017 Bergen</p>
 
-                <p className=" pl-2">485 02 813</p>
-              </div>
-            </div>
-          </div>
-          <p className=" text-sm py-6 text-center lg:mt-8">
-            Utviklet i regnet av Kodeverket Bergen © 2025
-          </p>
-        </div>
-      </div>
-    </footer>
-  );
+                            <div className='flex items-center'>
+                                <img
+                                    className='w-8 h-8'
+                                    src='/email.png'
+                                    alt='Email icon'
+                                />
+                                <a
+                                    href='mailto:hello@bergen.works'
+                                    className='pl-2 text-black hover:underline'
+                                >
+                                    hello@bergen.works
+                                </a>
+                            </div>
+                            <div className='flex items-center'>
+                                <img
+                                    className='w-8 h-8'
+                                    src='telephone.png'
+                                    alt='Phone icon'
+                                />
+                                <a
+                                    href='tel:+4748502813'
+                                    className='pl-2 text-black hover:underline'
+                                >
+                                    485 02 813
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <p className='md:hidden'>
+                        Utviklet i regnet av Kodeverket Bergen © 2025
+                    </p>
+                </div>
+            </section>
+            <section className='hidden md:block'>
+                <div className='flex felx-row gap-4 mt-4 mb-4 items-center justify-center h-1/3'>
+                    <a
+                        href='https://www.facebook.com/bergenworks'
+                        target='_blank'
+                    >
+                        <img
+                            className=' w-7 h-7 '
+                            src='facebook.png'
+                            alt=' small icon'
+                        />
+                    </a>
+
+                    <a
+                        href='https://www.instagram.com/bergen_works/'
+                        target='_blank'
+                    >
+                        <img
+                            className=' w-7 h-7 '
+                            src='instagram.png'
+                            alt=' small icon'
+                        />
+                    </a>
+
+                    <a
+                        href='https://www.linkedin.com/company/bergen-works/posts/?feedView=all'
+                        target='_blank'
+                    >
+                        <img
+                            className=' w-7 h-7 '
+                            src='linkedin.png'
+                            alt=' small icon '
+                        />
+                    </a>
+                </div>
+                <p className='flex justify-center'>
+                    Utviklet i regnet av Kodeverket Bergen © 2025
+                </p>
+                <a href='/personvern'>
+                    <p className='flex justify-center'>Personvernerklæring</p>
+                </a>
+            </section>
+        </footer>
+    );
 }
 
-export default Footer
+export default Footer;

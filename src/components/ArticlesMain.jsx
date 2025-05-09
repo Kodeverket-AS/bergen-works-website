@@ -1,13 +1,29 @@
+"use client"
 import { useSanity } from "../context/SanityContext";
 import { Card, CardMedia, Typography } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Link from "next/link";
+import { Skeleton } from "@mui/material";
+
+const LoadingSkeleton = () => (
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 2xl:gap-20 w-full max-w-7xl mx-auto">
+    {[...Array(6)].map((_, index) => (
+      <div key={index} className="flex flex-col">
+        <Skeleton variant="rectangular" height={140} />
+        <Skeleton variant="text" width="80%" height={20} />
+        <Skeleton variant="text" width="60%" height={20} />
+        <Skeleton variant="text" width="90%" height={20} />
+      </div>
+    ))}
+  </div>
+);
 
 const ArticlesMain = () => {
-  const { articles } = useSanity();
+  const { articles, loading } = useSanity();
+
+  if (loading) return <LoadingSkeleton />;
 
   const last6Articles = articles.slice(0, 6);
-
   return (
     <div className="w-9/10 md:w-full my-20 mx-auto ">
       <h1 className="text-4xl text-center mb-8">Artikler og nyheter</h1>
@@ -80,7 +96,7 @@ const ArticlesMain = () => {
                     color: "#666",
                   }}
                 >
-                  {new Date(article.releaseDate).toLocaleDateString()}
+                  {new Date(article.releaseDate).toLocaleDateString("en-GB")}
                 </Typography>
 
                 <div className="paragraph">
