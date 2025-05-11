@@ -16,17 +16,17 @@ function Footer() {
 
               <div className="flex mt-auto w-1/2 gap-4  lg:gap-7 ">
                 <img
-                  className=" w-14 h-14 "
+                  className=" w-8 h-8 "
                   src="facebook.png"
                   alt=" small icon"
                 />
                 <img
-                  className=" w-14 h-14 "
+                  className=" w-8 h-8 "
                   src="instagram.png"
                   alt=" small icon"
                 />
                 <img
-                  className=" w-14 h-14 "
+                  className=" w-8 h-8 "
                   src="linkedin.png"
                   alt=" small icon "
                 />

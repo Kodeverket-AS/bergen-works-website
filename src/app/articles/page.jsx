@@ -126,7 +126,6 @@ const ArticleCard = ({ article, index }) => {
                   color: "gray",
                   fontSize: "36px",
                   marginLeft: "3px",
-                  color: "gray",
                   transition: "color 0.3s ease, transform 0.3s ease",
                   "&:hover": {
                     color: "black",
@@ -143,11 +142,38 @@ const ArticleCard = ({ article, index }) => {
 };
 
 export default function ArticleList() {
-  const { articles, loading } = useSanity();
+  const { articles, loading, events } = useSanity();
   const [currentPage, setCurrentPage] = useState(1);
   const articlesPerPage = 5;
 
+  console.log("[ArticleList Page] Articles from context:", articles);
+  console.log("[ArticleList Page] Loading state:", loading);
+
   if (loading) return <LoadingSkeleton />;
+
+  if (!Array.isArray(articles)) {
+    console.error("[ArticleList Page] Articles data is not an array:", articles);
+    return (
+      <div className="w-full py-10 px-4 bg-white text-black text-center">
+        <h1 className="text-4xl text-center mb-10 font-bold">
+          Artikler og Nyheter
+        </h1>
+        <p>Error: Kunne ikke laste artikler. Data er ikke i forventet format.</p>
+        <p>Sjekk konsollen for mer detaljer.</p>
+      </div>
+    );
+  }
+  
+  if (articles.length === 0) {
+    return (
+      <div className="w-full py-10 px-4 bg-white text-black text-center">
+        <h1 className="text-4xl text-center mb-10 font-bold">
+          Artikler og Nyheter
+        </h1>
+        <p>Ingen artikler funnet.</p>
+      </div>
+    );
+  }
 
   const totalPages = Math.ceil(articles.length / articlesPerPage);
 

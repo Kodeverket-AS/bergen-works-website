@@ -1,4 +1,3 @@
-// app/layout.tsx
 import type { Metadata } from "next";
 import "@/assets/styles/globals.css";
 import { Header } from "@/components/layout/header/header";
@@ -7,6 +6,10 @@ import { SanityProvider } from "@/context/SanityContext";
 import "@fontsource/space-grotesk";
 import "@fontsource/space-grotesk/400.css";
 import { getArticles } from "./sanity/lib/getArticles"; 
+import { getEvents } from "./sanity/lib/getEvents";
+
+
+import MuiClientThemeProvider from '@/components/layout/MuiClientThemeProvider'; 
 
 export const metadata: Metadata = {
   title: "Bergen Works",
@@ -75,15 +78,19 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const articles = await getArticles(); 
+  const events = await getEvents();
 
   return (
     <html lang="en">
       <body>
-        <SanityProvider articles={articles}>
-          <Header />
-          {children}
-          <Footer />
-        </SanityProvider>
+    
+        <MuiClientThemeProvider>
+          <SanityProvider articles={articles } events={events}>
+            <Header />
+            {children}
+            <Footer />
+          </SanityProvider>
+        </MuiClientThemeProvider>
       </body>
     </html>
   );
