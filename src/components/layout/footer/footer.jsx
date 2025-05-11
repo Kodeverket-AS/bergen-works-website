@@ -2,6 +2,7 @@ import React from "react";
 import Personvernerklæring from "../../../app/personvern/page";
 
 function Footer() {
+
     return (
         <footer>
             <section className=''>
@@ -132,6 +133,7 @@ function Footer() {
             </section>
         </footer>
     );
+
 }
 
 export default Footer;

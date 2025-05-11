@@ -6,19 +6,19 @@ import Fasiliteter from "../components/Fasiliteter";
 import InformationSection from "@/components/Informasjon";
 import ArticlesMain from "../components/ArticlesMain"
 import KontaktForm from "../components/KontaktForm"
+import Events from "../components/Events"
 export default function Home() {
 
   return (
     <main>
-    
       <Hero />
       <InformationSection />
-      <ArticlesMain />
+
       <Fasiliteter />
       <Partnere />
+      <ArticlesMain />
+      <Events />
       <KontaktForm />
-
-
     </main>
   );
 }

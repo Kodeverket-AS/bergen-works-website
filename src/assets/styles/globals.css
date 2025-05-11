@@ -44,7 +44,12 @@
   --text-light: #fffafa;
   --text-dark: #1e1e1e;
 
-  --font-space-grotesk: "Space Grotesk", sans-serif;
+
+  --font-space-grotesk:"Space Grotesk",sans-serif;
+
+  --breakpoint-3xl: 120rem;
+  --breakpoint-middle: 42.5rem; 
+
 }
 /* 
 @media (prefers-color-scheme: dark) {
@@ -78,13 +83,4 @@ main,
 Header {
   flex: 1;
   @apply container;
-}
-
-.MuiPaginationItem-root {
-  color: #283618;
-}
-
-.Mui-selected {
-  background-color: #283618;
-  color: #ffffff;
 }
