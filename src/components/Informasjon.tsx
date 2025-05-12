@@ -64,7 +64,7 @@ export default function InformationSection() {
             headerStyle={"h-full text-2xl  font-bold"}
             paragraphStyle={"mt-2 text-sm sm:text-base"}
             arrowStyle={
-              "absolute bottom-4 right-4 duration-300 md:group-hover:-translate-x-1 md:group-hover:translate-y-1 md:group-hover:rotate-45"
+              "absolute bottom-4 right-4 duration-300 md:group-hover:scale-[1.2]  md:group-hover:-translate-x-1 md:group-hover:translate-y-1 md:group-hover:rotate-45"
             }
             modalImageSrc={"/infoIcon1.png"}
             modalImageAlt={"Icon"}
@@ -91,7 +91,7 @@ export default function InformationSection() {
             headerStyle={"h-full text-2xl  font-bold"}
             paragraphStyle={"mt-2 text-sm sm:text-base"}
             arrowStyle={
-              "absolute bottom-4 right-4 duration-300  md:group-hover:-translate-x-1 md:group-hover:translate-y-1 md:group-hover:rotate-45"
+              "absolute bottom-4 right-4 duration-300 md:group-hover:scale-[1.2]  md:group-hover:-translate-x-1 md:group-hover:translate-y-1 md:group-hover:rotate-45"
             }
             modalImageSrc={"/infoIcon2.png"}
             modalImageAlt={"Icon"}
@@ -118,7 +118,7 @@ export default function InformationSection() {
             headerStyle={"h-full text-2xl  font-bold "}
             paragraphStyle={"mt-2 text-sm sm:text-base"}
             arrowStyle={
-              "absolute bottom-4 right-4  duration-300 md:group-hover:-translate-x-1 md:group-hover:translate-y-1 md:group-hover:rotate-45"
+              "absolute bottom-4 right-4  duration-300  md:group-hover:scale-[1.2]  md:group-hover:-translate-x-1 md:group-hover:translate-y-1 md:group-hover:rotate-45"
             }
             modalImageSrc={"/infoIcon3.png"}
             modalImageAlt={"Icon"}

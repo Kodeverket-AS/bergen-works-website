@@ -63,7 +63,16 @@ export function InfoCard({
           <p className={`${paragraphStyle}`}>{description}</p>
           <div className="mt-2 lg:mt-6">
             <div className={`${arrowStyle}`}>
-              <ArrowForwardIcon fontSize="large" />
+              <ArrowForwardIcon
+               
+                sx={{
+                  cursor: "pointer",
+                  color: "black",
+                  transition: "color 0.3s ease, transform 0.3s ease",
+                  
+                  fontSize: "36px",
+                }}
+              />
             </div>
           </div>
         </div>
