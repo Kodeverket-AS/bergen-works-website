@@ -2,17 +2,15 @@
 import { useSanity } from "@/context/SanityContext";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useMotionValue, animate } from "framer-motion";
-import { formatGoogleDate } from "@/utils/dateUtils";
+import Link from "next/link";
+import { generateGoogleCalendarLink, formatNorwegianDate } from "@/utils/dateUtils";
 
 import LaunchRoundedIcon from "@mui/icons-material/LaunchRounded";
-import Link from "next/link";
-
 
 const PHONE_BREAKPOINT = 768;
 const TABLET_BREAKPOINT = 1024;
 
-
-const EventCardDisplay = ({ event, googleLink }) => {
+const EventCardDisplay = ({ event, googleLink}) => {
   return (
     <>
       {event.image?.asset?.url && (
@@ -25,13 +23,7 @@ const EventCardDisplay = ({ event, googleLink }) => {
       <div className="p-4 flex flex-col flex-grow gap-2">
         <h3 className="text-xl font-semibold">{event.title}</h3>
         <p className="text-sm text-gray-600">
-          {new Date(event.date).toLocaleDateString("no-NO", {
-            year: "numeric",
-            month: "short",
-            day: "numeric",
-            hour: "2-digit",
-            minute: "2-digit",
-          })}
+          {formatNorwegianDate(event.date)}
         </p>
         <p className="text-gray-700">{event.location}</p>
         <p className="text-gray-800">{event.description}</p>
@@ -61,9 +53,6 @@ const EventCardDisplay = ({ event, googleLink }) => {
   );
 };
 
-
-
-
 export default function Events() {
   const { events, loading } = useSanity();
   const [current, setCurrent] = useState(0);
@@ -86,13 +75,9 @@ export default function Events() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-
-
   if (loading) return <p className="text-center p-4">Laster inn...</p>;
   if (!events || events.length === 0)
     return <p className="text-center p-4">Ingen events funnet.</p>;
-
-
 
   const today = new Date();
   today.setHours(0, 0, 0, 0); 
@@ -126,12 +111,10 @@ export default function Events() {
     );
   };
 
-
-
-
+  const formatGoogleDate = (date) =>
+    new Date(date).toISOString().replace(/-|:|\.\d\d\d/g, "");
 
   let cardsToRender = [];
-
   if (isPhoneScreen) {
     if (sortedEvents.length > 0) {
         cardsToRender = [sortedEvents[current]];
@@ -144,9 +127,6 @@ export default function Events() {
       );
     }
   }
-
-
-
 
   const handleDragEnd = (event, info) => {
     const swipeThreshold = 50;
@@ -175,7 +155,6 @@ export default function Events() {
     });
   };
 
-  
   return (
     <section className="p-4 ">
       <h2 className="text-4xl text-center mb-8 flex items-center justify-center gap-2">
@@ -216,7 +195,7 @@ export default function Events() {
             {isPhoneScreen ? (
               <AnimatePresence initial={false} custom={current} mode="popLayout">
                 {cardsToRender.map((event, index) => {
-                  const googleLink = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.title)}&dates=${formatGoogleDate(event.date)}/${formatGoogleDate(new Date(new Date(event.date).getTime() + 2 * 60 * 60 * 1000))}&details=${encodeURIComponent(event.description || "")}&location=${encodeURIComponent(event.location || "")}`;
+                  const googleLink = generateGoogleCalendarLink(event);
                   return (
                     <motion.div
                       key={event._id || index}
@@ -226,14 +205,14 @@ export default function Events() {
                       transition={{ duration: 0 }}
                       className={`rounded-xl shadow-md w-full flex-shrink-0 ${isPhoneScreen ? "min-w-full" : ""} flex flex-col`}
                     >
-                      <EventCardDisplay event={event} googleLink={googleLink} />
+                      <EventCardDisplay event={event} googleLink={googleLink} isPhoneScreen={isPhoneScreen} />
                     </motion.div>
                   );
                 })}
               </AnimatePresence>
             ) : (
               cardsToRender.map((event, index) => {
-                const googleLink = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.title)}&dates=${formatGoogleDate(event.date)}/${formatGoogleDate(new Date(new Date(event.date).getTime() + 2 * 60 * 60 * 1000))}&details=${encodeURIComponent(event.description || "")}&location=${encodeURIComponent(event.location || "")}`;
+                const googleLink = generateGoogleCalendarLink(event);
                 return (
                   <motion.div
                     key={event._id || index}
@@ -242,7 +221,7 @@ export default function Events() {
                     transition={{ duration: 1.2, ease: "easeInOut" }}
                     className={`rounded-xl shadow-md w-full flex-shrink-0 hover:scale-105 hover:shadow-xl transition-all duration-300 flex flex-col`}
                   >
-                    <EventCardDisplay event={event} googleLink={googleLink} />
+                    <EventCardDisplay event={event} googleLink={googleLink} isPhoneScreen={isPhoneScreen} />
                   </motion.div>
                 );
               })

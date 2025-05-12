@@ -11,10 +11,10 @@ import {
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { formatGoogleDate, formatDisplayDate } from "@/utils/dateUtils";
+import { generateGoogleCalendarLink, formatNorwegianDate } from "@/utils/dateUtils";
 
-
-
+const formatGoogleDate = (date) =>
+  new Date(date).toISOString().replace(/-|:|\.\d\d\d/g, "");
 
 const LoadingSkeleton = () => (
   <div className=" font-[Work-Sans] flex flex-col gap-8 w-full max-w-5xl mx-auto px-4">
@@ -32,20 +32,8 @@ const LoadingSkeleton = () => (
   </div>
 );
 
-
-
-
-
 const EventCard = ({ event, index }) => {
-  const startDate = formatGoogleDate(event.date);
-  const endDate = formatGoogleDate(
-    new Date(new Date(event.date).getTime() + 2 * 60 * 60 * 1000)
-  );
-  const googleLink = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
-    event.title
-  )}&dates=${startDate}/${endDate}&details=${encodeURIComponent(
-    event.description || ""
-  )}&location=${encodeURIComponent(event.location || "")}`;
+  const googleLink = generateGoogleCalendarLink(event);
 
   return (
     <motion.div
@@ -83,7 +71,7 @@ const EventCard = ({ event, index }) => {
             </Typography>
             <div className="flex items-center flex-wrap space-x-4 mb-6 text-sm text-moss-200">
               <Typography variant="body2" color="text.secondary">
-                {formatDisplayDate(event.date)}
+                {formatNorwegianDate(event.date)}
               </Typography>
               {event.location && (
                 <>
@@ -171,22 +159,21 @@ const PastEventCard = ({ event, index }) => {
           backgroundColor: "#f9f9f9",
         }}
       >
-    {event.image?.asset?.url && (
- <div className="relative flex-shrink-0 w-full middle:w-[42%] h-[220px] middle:h-[240px] mb-2 middle:mb-0 middle:mr-2">
-  <CardMedia
-    component="img"
-    image={event.image.asset.url}
-    alt={event.title}
-    className="w-full h-full rounded-lg object-cover filter grayscale"
-  />
-  <div className="absolute inset-0 flex items-center justify-center pointer-events-none rounded-lg">
-    <span className="text-white text-opacity-40 text-2xl middle:text-3xl font-bold uppercase tracking-widest">
-      TIDLIGERE
-    </span>
-  </div>
-</div>
-
-)}
+        {event.image?.asset?.url && (
+          <div className="relative flex-shrink-0 w-full middle:w-[42%] h-[220px] middle:h-[240px] mb-2 middle:mb-0 middle:mr-2">
+            <CardMedia
+              component="img"
+              image={event.image.asset.url}
+              alt={event.title}
+              className="w-full h-full rounded-lg object-cover filter grayscale"
+            />
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none rounded-lg">
+              <span className="text-white text-opacity-40 text-2xl middle:text-3xl font-bold uppercase tracking-widest">
+                TIDLIGERE
+              </span>
+            </div>
+          </div>
+        )}
         <div className="flex flex-col flex-1 p-2" sx={{ pl: { middle: 2 } }}>
           <div>
             <Typography variant="h6" sx={{ fontWeight: "bold" }}>
@@ -194,7 +181,7 @@ const PastEventCard = ({ event, index }) => {
             </Typography>
             <div className="flex items-center flex-wrap space-x-4 mb-6 text-sm text-gray-500">
               <Typography variant="body2" color="text.secondary">
-                {formatDisplayDate(event.date)}
+                {formatNorwegianDate(event.date)}
               </Typography>
               {event.location && (
                 <>
@@ -236,9 +223,13 @@ const PastEventCard = ({ event, index }) => {
                     <ArrowForwardIcon
                       sx={{
                         cursor: "pointer",
+                        color: "gray",
                         fontSize: "20px",
                         marginLeft: "3px",
-                        transition: "color 0.3s ease",
+                        transition: "color 0.3s ease, transform 0.3s ease",
+                        "&:hover": {
+                          color: "black",
+                        },
                       }}
                     />
                   </a>
@@ -252,11 +243,7 @@ const PastEventCard = ({ event, index }) => {
   );
 };
 
-
-
 export default function EventList() {
-
-
   const { events, loading } = useSanity();
   const [currentPage, setCurrentPage] = useState(1);
   const eventsPerPage = 5;
@@ -275,20 +262,17 @@ export default function EventList() {
     };
   });
 
-  
   const sortedCombinedEvents = allMarkedEvents.sort((a, b) => {
     if (a.isUpcoming && !b.isUpcoming) return -1;
     if (!a.isUpcoming && b.isUpcoming) return 1;
     if (a.isUpcoming && b.isUpcoming) {
-      return a.eventDateObj - b.eventDateObj; 
+      return a.eventDateObj - b.eventDateObj;
     }
     if (!a.isUpcoming && !b.isUpcoming) {
       return b.eventDateObj - a.eventDateObj; 
     }
     return 0;
   });
-
-
 
   if (sortedCombinedEvents.length === 0) {
     return (
@@ -299,16 +283,13 @@ export default function EventList() {
     );
   }
 
-
-
-
   const totalPages = Math.ceil(sortedCombinedEvents.length / eventsPerPage);
   const paginatedEvents = sortedCombinedEvents.slice(
     (currentPage - 1) * eventsPerPage,
     currentPage * eventsPerPage
   );
 
-  const handlePageChange = (value) => {
+  const handlePageChange = (event, value) => {
     setCurrentPage(value);
   };
 
@@ -334,7 +315,6 @@ export default function EventList() {
             count={totalPages}
             page={currentPage}
             onChange={handlePageChange}
-            
           />
         </div>
       )}
