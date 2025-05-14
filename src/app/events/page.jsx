@@ -13,8 +13,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { generateGoogleCalendarLink, formatNorwegianDate } from "@/utils/dateUtils";
 
-const formatGoogleDate = (date) =>
-  new Date(date).toISOString().replace(/-|:|\.\d\d\d/g, "");
+
 
 const LoadingSkeleton = () => (
   <div className=" font-[Work-Sans] flex flex-col gap-8 w-full max-w-5xl mx-auto px-4">
