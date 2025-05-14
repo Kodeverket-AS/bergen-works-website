@@ -50,7 +50,7 @@ export default function Page() {
             <div className="flex flex-col md:w-1/4">
                 <Image
                     src="/KoV-krit.png"
-                    alt="Camera landing page img"
+                    alt="Camera landing page img "
                     width={450}
                     height={450}
                     draggable={false}
