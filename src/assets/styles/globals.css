@@ -75,10 +75,29 @@ body {
     transition:
         background-color 0.3s ease,
         color 0.3s ease;
+
+    padding-left: 1rem; /* 16px */
+    padding-right: 1rem;
+
+    /* Evt mer luft på større skjermer */
 }
 
 main,
 Header {
     flex: 1;
     /* @apply container; */
+}
+
+@media (min-width: 768px) {
+    body {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}
+
+@media (min-width: 1280px) {
+    body {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
 }
