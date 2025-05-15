@@ -6,19 +6,21 @@ export default function InformationSection() {
     return (
         <main className='container mx-auto px-4 flex flex-col items-center justify-center'>
             <div className='bg-[#1D1D1D] lg:bg-transparent rounded-2xl flex flex-col lg:flex-row items-stretch justify-between w-full gap-4 md:gap-5 xl:gap-9 lg:mb-8'>
-                <div className='select-none md:bg-[#1D1D1D] lg:flex lg:items-center lg:justify-center p-4 rounded-2xl w-full lg:w-[400px] xl:w-[500px] h-full'>
+                {/* VENSTRE BOKS – BILDE */}
+                <div className='select-none md:bg-[#1D1D1D] lg:flex lg:items-center lg:justify-center p-4 rounded-2xl w-full lg:flex-[5]'>
                     <Image
                         src='/infoImage.png'
                         alt='Picture of logo and people in meetingroom'
                         width={400}
                         height={400}
                         draggable={false}
-                        className='object-cover rounded-2xl w-full h-full'
+                        className='object-cover w-full h-full rounded-2xl'
                         priority
                     />
                 </div>
 
-                <div className='text-[var(--text-light)] w-full lg:w-7/12 xl:w-8/12 h-full flex flex-col justify-between rounded-2xl p-4 lg:bg-[#1D1D1D]'>
+                {/* HØYRE BOKS – TEKST */}
+                <div className='text-[var(--text-light)] w-full lg:flex-[7] flex flex-col justify-between rounded-2xl p-4 lg:bg-[#1D1D1D]'>
                     <div className='lg:px-10'>
                         <h1 className='font-bold text-[40px] xl:text-[50px] mt-0 lg:my-2'>
                             Co-work
