@@ -15,19 +15,22 @@ export default function Membership() {
                     draggable={false}
                     className="h-full w-full md:w-1/2 lg:w-1/3 object-cover object-center"                                                       
                     />                
-                <div className="bg-black text-white pt-10 lg:pt-20 px-15 rounded-2xl shadow-lg w-full h-auto">
-                    <h1 className="text-4xl mb-8 md:text-5xl">Inkubator</h1>
-                    <p className="lg:text-2xl">Har du en Gründer i magen? Bergen.Works utvikler et nytt inkubasjonskonsept for de som ønsker å realisere dine drømmer og idéer! Ta turen innom oss for en uformell prat og en kopp kaffe! Bergen.Works er startet av gründere, for gründere; hos oss finner du kompetanse innen ethvert felt! Kom for kontorplass, bli for miljøet.</p>                    
-                    <Button 
-                    className="mt-12 mb-10 lg:mt-20 w-full md:w-1/2 lg:w-1/3 rounded-2xl text-lg" 
-                    variant="secondary"
-                    href="/#contact-form">Ta kontakt</Button>
+                <div className="bg-black text-white pt-10 pb-10 lg:pt-20 px-10 lg:px-15 rounded-2xl shadow-lg w-full h-auto">
+                    <h1 className="text-4xl mb-8 md:mb-4 md:text-3xl xl:mb-8 xl:text-5xl">Inkubator</h1>
+                    <p className="xl:text-2xl">Har du en Gründer i magen? Bergen.Works utvikler et nytt inkubasjonskonsept for de som ønsker å realisere dine drømmer og idéer! Ta turen innom oss for en uformell prat og en kopp kaffe! Bergen.Works er startet av gründere, for gründere; hos oss finner du kompetanse innen ethvert felt! Kom for kontorplass, bli for miljøet.</p>                    
+                    <Button
+                    href="/#contact-form"
+                    variant={"secondary"}
+                    className={" rounded-md w-full md:w-auto mt-8 md:mt-4 lg:mt-10 lg:text-lg"}
+                    >Ta kontakt
+                    </Button>
+                    
                 </div>                
             </section>
            
             <section className="w-full h-full flex flex-col md:flex-row mt-10 mb-10 ">                
                     <Image
-                    className="w-full m-[12px] md:w-1/2 md:object-cover md:object-center rounded-2xl"
+                    className="w-full m-[12px] md:w-1/2 md:object-cover md:object-center rounded-2xl md:pt-15 pb-5"
                     src="/FasImg2.png"
                     alt="Incubator landing page img"
                     width={1300}
