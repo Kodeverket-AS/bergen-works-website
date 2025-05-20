@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/buttons/Button";
 export default function Membership() {
     return (
         <main>
-            <section className="flex flex-col w-full h-full items-stretch items-center md:flex-row gap-5">                
+            <section className="flex flex-col w-full h-full items-stretch md:flex-row gap-5">                
                 <Image
                     src="/Incubator.png"
                     alt="Incubator landing page img"
@@ -30,9 +30,9 @@ export default function Membership() {
            
             <section className="w-full h-full flex flex-col md:flex-row mt-10 mb-10 ">                
                     <Image
-                    className="w-full m-[12px] md:w-1/2 md:object-cover md:object-center rounded-2xl md:pt-15 pb-5"
+                    className="w-full md:w-1/2 md:object-cover md:object-center md:mt-10 md:mb-10 md:mr-5  rounded-2xl"
                     src="/FasImg2.png"
-                    alt="Incubator landing page img"
+                    alt="Incubator landing page img "
                     width={1300}
                     height={450}
                     draggable={false}
@@ -40,6 +40,7 @@ export default function Membership() {
                 <div>
                     <KontaktForm/>
                 </div>
+            
                 </section>
         </main>
     );
