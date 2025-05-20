@@ -49,7 +49,7 @@ function Footer() {
                                 >
                                     <img
                                         className='w-8 h-8 sm:w-10 sm:h-10 md:w-14 md:h-14'
-                                        src='facebook.png'
+                                        src='/facebook.png'
                                         alt=' small icon'
                                     />
                                 </a>
@@ -60,7 +60,7 @@ function Footer() {
                                 >
                                     <img
                                         className='w-8 h-8 sm:w-10 sm:h-10 md:w-14 md:h-14'
-                                        src='instagram.png'
+                                        src='/instagram.png'
                                         alt=' small icon'
                                     />
                                 </a>
@@ -71,7 +71,7 @@ function Footer() {
                                 >
                                     <img
                                         className='w-8 h-8 sm:w-10 sm:h-10 md:w-14 md:h-14'
-                                        src='linkedin.png'
+                                        src='/linkedin.png'
                                         alt=' small icon '
                                     />
                                 </a>
@@ -97,7 +97,7 @@ function Footer() {
                             <div className='flex items-center'>
                                 <img
                                     className='w-8 h-8'
-                                    src='telephone.png'
+                                    src='/telephone.png'
                                     alt='Phone icon'
                                 />
                                 <a
@@ -122,7 +122,7 @@ function Footer() {
                     >
                         <img
                             className=' w-7 h-7 '
-                            src='facebook.png'
+                            src='/facebook.png'
                             alt=' small icon'
                         />
                     </a>
@@ -133,7 +133,7 @@ function Footer() {
                     >
                         <img
                             className=' w-7 h-7 '
-                            src='instagram.png'
+                            src='/instagram.png'
                             alt=' small icon'
                         />
                     </a>
@@ -144,7 +144,7 @@ function Footer() {
                     >
                         <img
                             className=' w-7 h-7 '
-                            src='linkedin.png'
+                            src='/linkedin.png'
                             alt=' small icon '
                         />
                     </a>

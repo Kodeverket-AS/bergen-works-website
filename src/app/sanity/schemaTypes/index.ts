@@ -1,4 +1,4 @@
-import article from "./article";
-import event from "./event"
-
-export const schemaTypes = [article ,event];
+import article from './article'
+import event from './event'
+import imageTextBlocks from './blocks/imageTextBlocks'
+export const schemaTypes = [article,event,...imageTextBlocks,]

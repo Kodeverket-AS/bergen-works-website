@@ -6,6 +6,18 @@ import Link from "next/link";
 import ShareButtons from './ShareButtons'; 
 import { notFound } from 'next/navigation';
 
+
+import FullImageWithTextOverlay from "@/components/blocks/FullImageWithTextOverlay";
+import FourImageGrid from "@/components/blocks/FourImageGrid";
+import ImageCollage from "@/components/blocks/ImageCollage";
+import ImagesSidesTextCenter from "@/components/blocks/ImagesSidesTextCenter";
+import ThreeImagesInline from "@/components/blocks/ThreeImagesInline";
+import TwoImagesTextBottom from "@/components/blocks/TwoImagesTextBottom";
+import ImageRightTextLeft from "@/components/blocks/ImageRightTextLeft";
+import ImageLeftTextRight from "@/components/blocks/ImageLeftTextRight";
+import ImageTopTextBottom from "@/components/blocks/ImageTopTextBottom";
+import ImageAndTextVertically from "@/components/blocks/ImageAndTextVertically";
+
 export const revalidate = 60;
 
 const articleQuery = `*[_type == "article" && slug.current == $slug][0]{
@@ -16,6 +28,105 @@ const articleQuery = `*[_type == "article" && slug.current == $slug][0]{
     ..., 
     _type == "image" => {
       asset -> { url },
+      alt
+    },
+    _type == "imageTopTextBottom" => {
+      "image": {
+        "asset": {
+          "url": image.asset->url
+        }
+      },
+      text,
+      alt
+    },
+    _type == "imageLeftTextRight" => {
+      "image": {
+        "asset": {
+          "url": image.asset->url
+        }
+      },
+      text,
+      alt
+    },
+    _type == "imageRightTextLeft" => {
+      "image": {
+        "asset": {
+          "url": image.asset->url
+        }
+      },
+      text,
+      alt
+    },
+    _type == "fullImageWithTextOverlay" => {
+      "image": {
+        "asset": {
+          "url": image.asset->url
+        }
+      },
+      overlayText,
+      alt
+    },
+    _type == "twoImagesTextBottom" => {
+      "images": images[]{
+        "asset": {
+          "url": asset->url
+        }
+      },
+      text,
+      altTexts
+    },
+    _type == "threeImagesInline" => {
+      "images": images[]{
+        "asset": {
+          "url": asset->url
+        }
+      },
+      altTexts
+    },
+    _type == "imagesSidesTextCenter" => {
+      "leftImage": {
+        "asset": {
+          "url": leftImage.asset->url
+        }
+      },
+      "rightImage": {
+        "asset": {
+          "url": rightImage.asset->url
+        }
+      },
+      text,
+      leftAlt,
+      rightAlt
+    },
+    _type == "imageCollage" => {
+      "mainImage": {
+        "asset": {
+          "url": mainImage.asset->url
+        }
+      },
+      "bottomImages": bottomImages[]{
+        "asset": {
+          "url": asset->url
+        }
+      },
+      alt,
+      bottomAlts
+    },
+    _type == "fourImageGrid" => {
+      "images": images[]{
+        "asset": {
+          "url": asset->url
+        }
+      },
+      altTexts
+    },
+    _type == "imageAndTextVertically" => {
+      "image": {
+        "asset": {
+          "url": image.asset->url
+        }
+      },
+      text,
       alt
     }
   }, 
@@ -63,6 +174,16 @@ const customSerializers = {
         )}
       </div>
     ),
+    imageTopTextBottom: ({ value }) => <ImageTopTextBottom value={value} />,
+    imageLeftTextRight: ({ value }) => <ImageLeftTextRight value={value} />,
+    imageRightTextLeft: ({ value }) => <ImageRightTextLeft value={value} />,
+    fullImageWithTextOverlay: ({ value }) => <FullImageWithTextOverlay value={value} />,
+    twoImagesTextBottom: ({ value }) => <TwoImagesTextBottom value={value} />,
+    threeImagesInline: ({ value }) => <ThreeImagesInline value={value} />,
+    imagesSidesTextCenter: ({ value }) => <ImagesSidesTextCenter value={value} />,
+    imageCollage: ({ value }) => <ImageCollage value={value} />,
+    fourImageGrid: ({ value }) => <FourImageGrid value={value} />,
+    imageAndTextVertically: ({ value }) => <ImageAndTextVertically value={value} />
   },
   block: {
     h1: ({ children }) => (

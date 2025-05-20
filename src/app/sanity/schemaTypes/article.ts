@@ -39,12 +39,27 @@ export default {
         {
           type: "image",
         },
-        
       ],
       validation: (Rule: Rule) =>
         Rule.required().error("Article body is required"),
     },
-
+    {
+      name: "blocks",
+      title: "Content Blocks",
+      type: "array",
+      of: [
+        { type: "imageTopTextBottom" },
+        { type: "imageLeftTextRight" },
+        { type: "imageRightTextLeft" },
+        { type: "twoImagesTextBottom" },
+        { type: "fullImageWithTextOverlay" },
+        { type: "threeImagesInline" },
+        { type: "imagesSidesTextCenter" },
+        { type: "imageCollage" },
+        { type: "fourImageGrid" },
+        { type: "imageAndTextVertically" },
+      ],
+    },
     {
       name: "background",
       title: "Background",
