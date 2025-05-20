@@ -1,9 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Modal } from "./Modal";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+
 
 interface InfoCardProps {
   imageSrc: string;
@@ -52,7 +53,7 @@ export function InfoCard({
         onKeyDown={(e) => e.key === "Enter" && setIsModalOpen(true)}
         role="button"
         tabIndex={0}
-        className={`transition-transform duration-300 will-change-transform ${cardStyle} `}
+        className={`transition-transform duration-300 will-change-transform ${cardStyle}`}
       >
         <div className={`relative ${imageStyle}`}>
           <Image src={imageSrc} alt={title} fill draggable={false} />
@@ -62,7 +63,16 @@ export function InfoCard({
           <p className={`${paragraphStyle}`}>{description}</p>
           <div className="mt-2 lg:mt-6">
             <div className={`${arrowStyle}`}>
-              <span className=" text-4xl">→</span>
+              <ArrowForwardIcon
+               
+                sx={{
+                  cursor: "pointer",
+                  color: "black",
+                  transition: "color 0.3s ease, transform 0.3s ease",
+                  
+                  fontSize: "36px",
+                }}
+              />
             </div>
           </div>
         </div>

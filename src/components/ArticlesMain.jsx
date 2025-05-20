@@ -129,7 +129,7 @@ const ArticlesMain = () => {
                 right: "20px",
               }}
             >
-              <Link href={`/articles/${article._id}`} passHref>
+              <Link href={`/articles/${article.slug?.current}`} passHref>
                 <ArrowForwardIcon
                   sx={{
                     cursor: "pointer",
