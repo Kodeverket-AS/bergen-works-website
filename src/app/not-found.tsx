@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/buttons/Button";
+import BackButton from "@/components/ui/buttons/backButton";
 
 export default function NotFound() {
   return (
@@ -18,8 +19,11 @@ export default function NotFound() {
         <h2 className="font-space-grotesk text-lg lg:text-2xl">
           Beklager. Siden du ser etter eksisterer ikke.
         </h2>
-        <div>
-          <Button className="rounded-lg mt-6 px-6" href="/" variant={"primary"}>
+        <div className="inline-flex gap-10 mt-6">
+          <BackButton variant={"primary"} className={"rounded-lg"}>
+            Tilbake
+          </BackButton>
+          <Button className="rounded-lg px-8" href="/" variant={"primary"}>
             Hjem
           </Button>
         </div>
