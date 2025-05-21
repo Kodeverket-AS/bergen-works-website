@@ -5,74 +5,86 @@ export default function Page() {
     return (
     <main>
         <section className="flex flex-col md:flex-row lg:flex-row w-full h-full ">
-            <div className="md:w-1/3 lg:w-1/3">
+            <div className="md:w-full lg:w-1/3">
                 <Image
                     src="/KoV-ov.png"
                     alt="Camera landing page img"
                     width={450}
                     height={450}
                     draggable={false}
-                    className="h-auto w-full object-cover object-center "                                                       
+                    className="h-auto w-full md:align"                                                       
                 />              
             </div>
-            <div className="flex flex-col bg-black text-white rounded-2xl p-10 md:w-2/3 lg:w-2/3">
-                <h1 className="text-5xl mb-8 font-bold">Videoovervåking</h1>
-                <p className="text-4xl mb-5">Sikkerhet på eiendommen // Security on Property</p>
-                <p className="text-lg">Informasjon om Videoovervåking// Information regarding video surveillance.</p>
+            <div className="flex flex-col bg-black text-white rounded-2xl p-10 w-full lg:w-2/3">
+                <h1 className="text-3xl mb-8 md:text-3xl md:mb-3 lg:text-5xl font-bold">Videoovervåking</h1>
+                <p className="text-2xl md:text-lg lg:text-4xl mb-5">Sikkerhet på eiendommen // Security on Property</p>
+                <p className="text-lg md:text-md">Informasjon om Videoovervåking// Information regarding video surveillance.</p>
                 <p className="text-lg font-bold">Bergen Works AS praktiserer videoovervåking på utvalgte eiendommer. Formålet er å øke sikkerheten for våre leietakere, forebygge hærverk på eiendommene og forebygge uønsket atferd.</p>
             </div>
         </section>
-        <section className="flex flex-col md:flex-row lg:flex-row w-full h-full my-5">
-            <div className="flex flex-col md:w-1/4">
+
+        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-15 mb-15">
+            <div className="flex flex-col shadow-2xl rounded-2xl md:min-h-[500px]">
                 <Image
-                    src="/KoV-inf.png"
-                    alt="Camera landing page img"
-                    width={450}
-                    height={450}
-                    draggable={false}
-                    className="h-full w-full object-cover object-center"                                                       
-                />  
-                <h1>Informasjon om behandlingen:</h1>
-                <p>Opptakene spares i syv dager. Deretter slettes de automatisk. Det er mulighet for live overvåking. Lagring av opptak skjer lokalt og/eller innenfor EU i skylagring.</p>
+                src="/KoV-inf.png"
+                alt="Camera landing page img"
+                width={450}
+                height={450}
+                draggable={false}
+                className="w-full md:h-1/2 object-contain px-12 pt-12"
+                />
+                <div className="flex flex-col p-5 h-1/2">
+                    <h1 className="font-bold lg:text-2xl mb-3">Informasjon om behandlingen:</h1>
+                    <p>Opptakene spares i syv dager...</p>
+                </div>
             </div>
-            <div className="flex flex-col md:w-1/4">
+
+            <div className="flex flex-col shadow-2xl rounded-2xl md:min-h-[500px]">
                 <Image
-                    src="/KoV-ret.png"
-                    alt="Camera landing page img"
-                    width={450}
-                    height={450}
-                    draggable={false}
-                    className="h-full w-full object-cover object-center"                                                       
-                />  
-                <h1>Dine rettigheter:</h1>
-                <p>Du kan be om innsyn i opptakene, samt be om sletting av personopplysninger.</p>
+                src="/KoV-ret.png"
+                alt="Camera landing page img"
+                width={450}
+                height={450}
+                draggable={false}
+                className="w-full md:h-1/2 object-contain  px-12 pt-12"
+                />
+                <div className="flex flex-col p-5 h-1/2">
+                    <h1 className="font-bold lg:text-2xl mb-3">Dine rettigheter:</h1>
+                    <p>Du kan be om innsyn...</p>
+                </div>
             </div>
-            <div className="flex flex-col md:w-1/4">
+
+            <div className="flex flex-col shadow-2xl rounded-2xl md:min-h-[500px]">
                 <Image
-                    src="/KoV-krit.png"
-                    alt="Camera landing page img "
-                    width={450}
-                    height={450}
-                    draggable={false}
-                    className="h-full w-full object-cover object-center"                                                       
-                />  
-                <h1>Kriterier for uttak av video:</h1>
-                <p>Krever anmodning fra politiet.</p>
+                src="/KoV-krit.png"
+                alt="Camera landing page img"
+                width={450}
+                height={450}
+                draggable={false}
+                className=" w-full md:h-1/2 object-contain px-12 pt-12"
+                />
+                <div className="flex flex-col p-5 h-1/2">
+                    <h1 className="font-bold lg:text-2xl mb-3">Kriterier for uttak av video:</h1>
+                    <p>Krever anmodning fra politiet.</p>
+                </div>
             </div>
-            <div className="flex flex-col md:w-1/4">
+
+            <div className="flex flex-col shadow-2xl rounded-2xl md:min-h-[500px]">
                 <Image
-                    src="/KoV-mail.png"
-                    alt="Camera landing page img"
-                    width={450}
-                    height={450}
-                    draggable={false}
-                    className="h-full w-full object-cover object-center"                                                       
-                />  
-                <h1>Behandlingsansvarlig er Bergen Works AS.</h1>
-                <p>Telefonnummer: 485 02 813</p>
-                <p>E-post: hello@bergen.works</p>
+                src="/KoV-mail.png"
+                alt="Camera landing page img"
+                width={450}
+                height={450}
+                draggable={false}
+                className=" w-full md:h-1/2 object-contain px-12 pt-12"
+                />
+                <div className="flex flex-col p-5 h-1/2">
+                    <h1 className="font-bold lg:text-2xl  mb-3">Behandlingsansvarlig er Bergen Works AS.</h1>
+                    <p>Telefonnummer: 48502813</p>
+                    <p>E-post: hello@bergen.works</p>
+                </div>
             </div>
-        </section>
+</section>
     </main>
     );
 } 

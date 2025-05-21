@@ -1,6 +1,6 @@
+"use client";
+import { useRouter } from "next/navigation";
 import React from "react";
-import Link from "next/link";
-
 type Variant = "primary" | "secondary";
 
 const variantStyles: Record<Variant, string> = {
@@ -10,37 +10,24 @@ const variantStyles: Record<Variant, string> = {
     "bg-white text-[var(--text-dark)] font-semibold hover:bg-gray-300 cursor-pointer",
 };
 
-type ButtonProps = {
+type BackButtonProps = {
   children: React.ReactNode;
   variant: Variant;
-  href?: string;
   className: string;
-  type?: "button" | "submit" | "reset";
-  onClick?: () => void;
 };
 
-export function Button({
+export default function BackButton({
   children,
   variant = "primary",
-  href,
   className,
-  type = "button",
-  onClick,
-}: ButtonProps) {
-  const base = "inline-block px-6 py-3 text-center transition duration-300";
+}: BackButtonProps) {
+  const base = "inline-block px-6 py-3  text-center  transition duration-300";
   const styles = variantStyles[variant];
   const combined = `${base} ${styles} ${className}`;
-
-  if (href) {
-    return (
-      <Link href={href} className={combined} tabIndex={0}>
-        {children}
-      </Link>
-    );
-  }
+  const router = useRouter();
 
   return (
-    <button type={type} onClick={onClick} className={combined}>
+    <button type="button" onClick={router.back} className={combined}>
       {children}
     </button>
   );
