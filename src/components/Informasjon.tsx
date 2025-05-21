@@ -5,7 +5,7 @@ import { Button } from "./ui/buttons/Button";
 export default function InformationSection() {
   return (
     <div className="flex flex-col items-center justify-center">
-      <div className="bg-[#1D1D1D] lg:bg-transparent rounded-2xl flex flex-col items-center lg:flex-row  h-[500px] w-full md:w-[550px] lg:w-full lg:h-[400px] xl:h-[450px] lg:gap-7 xl:gap-8 lg:mb-[2em]">
+      <div className="bg-[#1D1D1D] lg:bg-transparent rounded-2xl flex flex-col items-center lg:flex-row  h-[500px] w-full md:w-[550px] lg:w-full lg:h-[400px] xl:h-[450px] lg:gap-5 xl:gap-10 lg:mb-[2em]">
         <div className="select-none relative md:bg-[#1D1D1D] w-full h-full lg:w-1/3 rounded-2xl  ">
           <Image
             src="/officeCircle.png"
