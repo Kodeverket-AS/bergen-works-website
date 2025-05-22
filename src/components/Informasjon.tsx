@@ -53,7 +53,7 @@ export default function InformationSection() {
       <div className="w-full mt-[1em]  md:w-[550px]  flex flex-col lg:flex-row  lg:w-full justify-around xl:justify-center gap-5 xl:gap-10 ">
         <div className="text-[var(--text-dark)] lg:w-1/3  ">
           <InfoCard
-            cardStyle="bg-moss-200 flex justify-center items-center w-full h-[140] group cursor-pointer lg:h-[200]  rounded-2xl  md:hover:scale-105"
+            cardStyle="bg-moss-200 flex justify-center items-center w-full h-[140px] group cursor-pointer lg:h-[200px] rounded-2xl  md:hover:scale-105"
             imageSrc="/infoIcon1.png"
             alt="Icon"
             title="Fast Plass"
@@ -80,7 +80,7 @@ export default function InformationSection() {
         </div>
         <div className="text-[var(--text-light)] lg:w-1/3">
           <InfoCard
-            cardStyle="bg-moss-600 flex justify-center items-center w-full h-[140] group cursor-pointer lg:h-[200]  rounded-2xl  duration-300 md:hover:scale-105"
+            cardStyle="bg-moss-600 flex justify-center items-center w-full h-[140px] group cursor-pointer lg:h-[200px]  rounded-2xl  duration-300 md:hover:scale-105"
             imageSrc="/infoIcon2.png"
             alt="Icon"
             title="Åpen Plass"
@@ -107,7 +107,7 @@ export default function InformationSection() {
         </div>
         <div className="text-[var(--text-dark)] lg:w-1/3">
           <InfoCard
-            cardStyle="bg-moss-200 flex justify-center items-center w-full h-[140] group cursor-pointer lg:h-[200]  rounded-2xl duration-300 md:hover:scale-105"
+            cardStyle="bg-moss-200 flex justify-center items-center w-full h-[140px] group cursor-pointer lg:h-[200px] rounded-2xl duration-300 md:hover:scale-105"
             imageSrc="/infoIcon3.png"
             alt="Icon"
             title="Inkubasjon"
