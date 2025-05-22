@@ -4,28 +4,30 @@ import { Button } from "./ui/buttons/Button";
 
 export default function InformationSection() {
   return (
-    <div className="flex flex-col items-center justify-center">
-      <div className="bg-[#1D1D1D] lg:bg-transparent rounded-2xl flex flex-col items-center lg:flex-row  h-[500px] w-full md:w-[550px] lg:w-full lg:h-[400px] xl:h-[450px] lg:gap-5 xl:gap-10 lg:mb-[2em]">
-        <div className="select-none relative md:bg-[#1D1D1D] w-full h-full lg:w-1/3 rounded-2xl  ">
-          <Image
-            src="/officeCircle.png"
-            alt="Picture of logo and people in meetingroom"
-            fill
-            draggable={false}
-            className="object-contain rounded-2xl p-4 "
-            priority
-          />
+    <div className=" flex flex-col items-center justify-center">
+      <div className="bg-[#1D1D1D] lg:bg-transparent rounded-2xl flex flex-col items-center lg:flex-row  h-[700px] w-full md:w-[550px] lg:w-full lg:h-[450px] xl:h-[500px] lg:gap-5 xl:gap-10 lg:mb-[2em]">
+        <div className="p-10 select-none  md:bg-[#1D1D1D]  w-full h-full lg:w-1/3 rounded-2xl">
+          <div className="bg-black relative rounded-lg w-full h-96 lg:h-full ">
+            <Image
+              src="/officeCircle.png"
+              alt="Picture of logo and people in meetingroom"
+              fill
+              draggable={false}
+              className="object-contain rounded-2xl p-4  "
+              priority
+            />
+          </div>
         </div>
-        <div className="text-[var(--text-light)] w-[70%] rounded-2xl lg:w-2/3 h-full lg:bg-[#1D1D1D]">
-          <div className="lg:px-10 3xl:px-20 ">
-            <h1 className="font-bold text-[40px] xl:text-[50px] mt-2 md:mt-6 lg:my-4 xl:mt-8 3xl:mt-10">
+        <div className="text-[var(--text-light)] w-full px-10 rounded-2xl lg:w-2/3 h-full lg:bg-[#1D1D1D]">
+          <div className="lg:px-2 3xl:px-10 ">
+            <h1 className="font-bold text-[40px] xl:text-[50px] md:mt-1 lg:my-8 xl:mt-10 3xl:mt-12">
               Co-work
             </h1>
-            <p className="lg:hidden my-2">
+            <p className="lg:hidden my-1">
               Vi jobber med å utvikle et splitter nytt inkubasjonskonsept på
               huset. Stay tuned!
             </p>
-            <p className="hidden lg:block xl:text-lg 3xl:text-xl">
+            <p className="hidden lg:block xl:text-lg ">
               Med en beliggenhet i vakre Skostredet har Bergen.Works drevet
               coworking space siden 2017. Vi ble startet av gründere og for
               gründere, og Bergen.Works skal være mer enn en kontorplass.
@@ -36,7 +38,7 @@ export default function InformationSection() {
               mentor, innovatør, arbeidssøkende eller vekstbedrift. Sammen
               finner vi morgendagens løsninger på dagens problemstillinger.
             </p>
-            <div className="w-full mt-8 mb-2 sm:mt-10 xl:mt-12 3xl:mt-14">
+            <div className="w-full my-8 xl:my-14 3xl:mt-24">
               <Button
                 href="/#contact-form"
                 className=" lg:text-lg font-bold w-full lg:w-auto rounded-sm"
