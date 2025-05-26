@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { InfoCard } from "./ui/InfoCard";
-import { Button } from "./ui/buttons/Button";
+// import { Button } from "./ui/buttons/Button";
 
 export default function InformationSection() {
     return (
@@ -24,8 +24,9 @@ export default function InformationSection() {
                             Co-work
                         </h1>
                         <p className='lg:hidden my-1'>
-                            Vi jobber med å utvikle et splitter nytt
-                            inkubasjonskonsept på huset. Stay tuned!
+                            Med en beliggenhet i vakre Skostredet har
+                            Bergen.Works drevet coworking space siden 2017. Vi
+                            ble startet av gründere og for gründere.
                         </p>
                         <p className='hidden lg:block xl:text-lg '>
                             Med en beliggenhet i vakre Skostredet har
@@ -40,7 +41,7 @@ export default function InformationSection() {
                             enten du er gründer, investor, freelancer eller en
                             del av en bedrift.
                         </p>
-                        <div className='w-full my-8 xl:my-14 3xl:mt-24'>
+                        {/* <div className='w-full my-8 xl:my-14 3xl:mt-24'>
                             <Button
                                 href='/#contact-form'
                                 className=' lg:text-lg font-bold w-full lg:w-auto rounded-sm'
@@ -48,7 +49,7 @@ export default function InformationSection() {
                             >
                                 Ta kontakt
                             </Button>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

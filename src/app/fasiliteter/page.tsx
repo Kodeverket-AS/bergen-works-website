@@ -23,17 +23,17 @@ export default function Facilities() {
                     paragraphStyle={"lg:my-4 lg:text-lg xl:text-xl pt-4"}
                     largeScreenReverse={false}
                     smallScreenReverse={false}
-                    button={
-                        <Button
-                            href='/#contact-form'
-                            variant={"primary"}
-                            className={
-                                "rounded-md w-full md:w-auto mt-8 lg:text-lg"
-                            }
-                        >
-                            Ta kontakt
-                        </Button>
-                    }
+                    // button={
+                    //     <Button
+                    //         href='/#contact-form'
+                    //         variant={"primary"}
+                    //         className={
+                    //             "rounded-md w-full md:w-auto mt-8 lg:text-lg"
+                    //         }
+                    //     >
+                    //         Ta kontakt
+                    //     </Button>
+                    // }
                 />
             </div>
             <div className='mb-10'>
