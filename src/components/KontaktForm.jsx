@@ -13,13 +13,22 @@ import {
     Tooltip,
     Snackbar,
 } from "@mui/material";
-import InfoIcon from '@mui/icons-material/Info';
-import { useForm } from 'react-hook-form';
+import InfoIcon from "@mui/icons-material/Info";
+import { useForm } from "react-hook-form";
 
 const KontaktForm = () => {
-    const { register, handleSubmit, formState: { errors }, reset } = useForm();
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+        reset,
+    } = useForm();
     const [loading, setLoading] = useState(false);
-    const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
+    const [snackbar, setSnackbar] = useState({
+        open: false,
+        message: "",
+        severity: "success",
+    });
     const [checked, setChecked] = useState({
         "Åpen plass": false,
         "Fast plass": false,
@@ -36,10 +45,10 @@ const KontaktForm = () => {
     const onSubmit = async (data) => {
         setLoading(true);
         try {
-            const response = await fetch('/api/send-email', {
-                method: 'POST',
+            const response = await fetch("/api/send-email", {
+                method: "POST",
                 headers: {
-                    'Content-Type': 'application/json',
+                    "Content-Type": "application/json",
                 },
                 body: JSON.stringify({ ...data, checked }),
             });
@@ -47,13 +56,13 @@ const KontaktForm = () => {
             const result = await response.json();
 
             if (!response.ok) {
-                throw new Error(result.error || 'Noe gikk galt');
+                throw new Error(result.error || "Noe gikk galt");
             }
 
             setSnackbar({
                 open: true,
-                message: 'Takk for din henvendelse! Vi vil kontakte deg snart.',
-                severity: 'success'
+                message: "Takk for din henvendelse! Vi vil kontakte deg snart.",
+                severity: "success",
             });
             reset();
             setChecked({
@@ -64,8 +73,10 @@ const KontaktForm = () => {
         } catch (err) {
             setSnackbar({
                 open: true,
-                message: err.message || 'Kunne ikke sende meldingen. Vennligst prøv igjen senere.',
-                severity: 'error'
+                message:
+                    err.message ||
+                    "Kunne ikke sende meldingen. Vennligst prøv igjen senere.",
+                severity: "error",
             });
         } finally {
             setLoading(false);
@@ -105,18 +116,19 @@ const KontaktForm = () => {
                                     required
                                     margin='normal'
                                     disabled={loading}
-                                    placeholder="Skriv inn ditt navn"
+                                    placeholder='Skriv inn ditt navn'
                                     sx={{
-                                        '& .MuiOutlinedInput-root': {
-                                            borderRadius: 2
-                                        }
+                                        "& .MuiOutlinedInput-root": {
+                                            borderRadius: 2,
+                                        },
                                     }}
-                                    {...register('name', { 
-                                        required: 'Navn er påkrevd',
+                                    {...register("name", {
+                                        required: "Navn er påkrevd",
                                         minLength: {
                                             value: 2,
-                                            message: 'Navn må være minst 2 tegn'
-                                        }
+                                            message:
+                                                "Navn må være minst 2 tegn",
+                                        },
                                     })}
                                     error={!!errors.name}
                                     helperText={errors.name?.message}
@@ -128,21 +140,44 @@ const KontaktForm = () => {
                                     required
                                     margin='normal'
                                     disabled={loading}
-                                    placeholder="din.epost@eksempel.no"
+                                    placeholder='din.epost@eksempel.no'
                                     sx={{
-                                        '& .MuiOutlinedInput-root': {
-                                            borderRadius: 2
-                                        }
+                                        "& .MuiOutlinedInput-root": {
+                                            borderRadius: 2,
+                                        },
                                     }}
-                                    {...register('email', {
-                                        required: 'E-post er påkrevd',
+                                    {...register("email", {
+                                        required: "E-post er påkrevd",
                                         pattern: {
                                             value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                                            message: 'Ugyldig e-postadresse'
-                                        }
+                                            message: "Ugyldig e-postadresse",
+                                        },
                                     })}
                                     error={!!errors.email}
                                     helperText={errors.email?.message}
+                                />
+                                <TextField
+                                    label='Telefonnummer'
+                                    type='tel'
+                                    fullWidth
+                                    required
+                                    margin='normal'
+                                    disabled={loading}
+                                    placeholder='Skriv inn ditt telefonnummer'
+                                    sx={{
+                                        "& .MuiOutlinedInput-root": {
+                                            borderRadius: 2,
+                                        },
+                                    }}
+                                    {...register("phone", {
+                                        required: "Telefonnummer er påkrevd",
+                                        pattern: {
+                                            value: /^[0-9+\s()-]{8,15}$/,
+                                            message: "Ugyldig telefonnummer",
+                                        },
+                                    })}
+                                    error={!!errors.phone}
+                                    helperText={errors.phone?.message}
                                 />
                                 <TextField
                                     label='Melding'
@@ -152,31 +187,44 @@ const KontaktForm = () => {
                                     required
                                     margin='normal'
                                     disabled={loading}
-                                    placeholder="Skriv din melding her..."
+                                    placeholder='Skriv din melding her...'
                                     sx={{
-                                        '& .MuiOutlinedInput-root': {
-                                            borderRadius: 2
-                                        }
+                                        "& .MuiOutlinedInput-root": {
+                                            borderRadius: 2,
+                                        },
                                     }}
-                                    {...register('message', {
-                                        required: 'Melding er påkrevd',
+                                    {...register("message", {
+                                        required: "Melding er påkrevd",
                                         minLength: {
                                             value: 10,
-                                            message: 'Meldingen må være minst 10 tegn'
-                                        }
+                                            message:
+                                                "Meldingen må være minst 10 tegn",
+                                        },
                                     })}
                                     error={!!errors.message}
                                     helperText={errors.message?.message}
                                 />
-                                <div className="mt-4 mb-2">
-                                    <Typography variant="subtitle1" className="flex items-center gap-2">
+                                <div className='mt-4 mb-2'>
+                                    <Typography
+                                        variant='subtitle1'
+                                        className='flex items-center gap-2'
+                                    >
                                         Kategori
-                                        <Tooltip title="Velg alle alternativer som passer for deg">
-                                            <InfoIcon fontSize="small" color="action" />
+                                        <Tooltip title='Velg alle alternativer som passer for deg'>
+                                            <InfoIcon
+                                                fontSize='small'
+                                                color='action'
+                                            />
                                         </Tooltip>
                                     </Typography>
                                 </div>
-                                <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
+                                <div
+                                    style={{
+                                        display: "flex",
+                                        gap: "20px",
+                                        flexWrap: "wrap",
+                                    }}
+                                >
                                     <FormControlLabel
                                         control={
                                             <Checkbox
@@ -229,7 +277,10 @@ const KontaktForm = () => {
                                     }}
                                 >
                                     {loading ? (
-                                        <CircularProgress size={24} color="inherit" />
+                                        <CircularProgress
+                                            size={24}
+                                            color='inherit'
+                                        />
                                     ) : (
                                         "Send Melding"
                                     )}
@@ -243,12 +294,12 @@ const KontaktForm = () => {
                 open={snackbar.open}
                 autoHideDuration={6000}
                 onClose={handleCloseSnackbar}
-                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+                anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
             >
-                <Alert 
-                    onClose={handleCloseSnackbar} 
+                <Alert
+                    onClose={handleCloseSnackbar}
                     severity={snackbar.severity}
-                    sx={{ width: '100%' }}
+                    sx={{ width: "100%" }}
                 >
                     {snackbar.message}
                 </Alert>
