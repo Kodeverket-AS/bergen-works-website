@@ -4,7 +4,8 @@ export const getArticles = async () => {
   const query = `
     *[_type == "article"]{ 
       _id, 
-      title, 
+      title,
+      slug,
       articleBody[]{
         ..., 
         _type == "image" => {

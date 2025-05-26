@@ -4,29 +4,30 @@ import { Button } from "./ui/buttons/Button";
 
 export default function InformationSection() {
   return (
-    <main className="px-10 md:px-0 flex flex-col items-center justify-center">
-      <div className="bg-[#1D1D1D] lg:bg-transparent rounded-2xl flex flex-col items-center lg:flex-row justify-between h-[570px] w-full md:h-[650px] md:w-[550px] lg:w-full lg:h-[400] xl:h-[450] gap-4 md:gap-5 xl:gap-9  lg:mb-[2em]">
-        <div className="select-none md:bg-[#1D1D1D] lg:flex lg:items-center lg:justify-center md:p-[1em] w-auto md:w-[400] rounded-2xl lg:w-[400] lg:h-full xl:w-[500] xl:h-[450]">
-          <Image
-            src="/infoImage.png"
-            alt="Picture of logo and people in meetingroom"
-            width={300}
-            height={300}
-            draggable={false}
-            className=" mt-[1.5em] md:mt-[1em] lg:mt-0 lg:p-[0.5em] object-cover rounded-2xl md:h-[360px] md:w-[450] xl:h-[400]"
-            priority
-          />
+    <div className=" flex flex-col items-center justify-center">
+      <div className="bg-[#1D1D1D] lg:bg-transparent rounded-2xl flex flex-col items-center lg:flex-row  h-[700px] w-full md:w-[550px] lg:w-full lg:h-[450px] xl:h-[500px] lg:gap-5 xl:gap-10 lg:mb-[2em]">
+        <div className="p-10 select-none  md:bg-[#1D1D1D]  w-full h-full lg:w-1/3 rounded-2xl">
+          <div className="bg-black relative rounded-lg w-full h-96 lg:h-full ">
+            <Image
+              src="/officeCircle.png"
+              alt="Picture of logo and people in meetingroom"
+              fill
+              draggable={false}
+              className="object-contain rounded-2xl p-4  "
+              priority
+            />
+          </div>
         </div>
-        <div className="text-[var(--text-light)] w-[300px] h-full md:w-[400] rounded-2xl md:p-[1em] lg:w-10/12 xl:w-8/12 lg:h-[400] xl:h-[450] lg:bg-[#1D1D1D]">
-          <div className="lg:px-10">
-            <h1 className="font-bold text-[40px] xl:text-[50px] md:-mt-10 lg:my-2">
+        <div className="text-[var(--text-light)] w-full px-10 rounded-2xl lg:w-2/3 h-full lg:bg-[#1D1D1D]">
+          <div className="lg:px-2 3xl:px-10 ">
+            <h1 className="font-bold text-[40px] xl:text-[50px] md:mt-1 lg:my-8 xl:mt-10 3xl:mt-12">
               Co-work
             </h1>
-            <p className="text-sm md:text-base lg:hidden">
+            <p className="lg:hidden my-1">
               Vi jobber med å utvikle et splitter nytt inkubasjonskonsept på
               huset. Stay tuned!
             </p>
-            <p className="hidden lg:block lg:mt-2">
+            <p className="hidden lg:block xl:text-lg ">
               Med en beliggenhet i vakre Skostredet har Bergen.Works drevet
               coworking space siden 2017. Vi ble startet av gründere og for
               gründere, og Bergen.Works skal være mer enn en kontorplass.
@@ -37,10 +38,10 @@ export default function InformationSection() {
               mentor, innovatør, arbeidssøkende eller vekstbedrift. Sammen
               finner vi morgendagens løsninger på dagens problemstillinger.
             </p>
-            <div className="w-full  mt-[1em] md:mt-[1.5em] lg:mt-[1em] xl:mt-[3em]">
+            <div className="w-full my-8 xl:my-14 3xl:mt-24">
               <Button
                 href="/#contact-form"
-                className="text-base md:text-md lg:text-lg mt-[3.5em]  md:mt-[2em] lg:mt-4 xl:mt-10  w-full lg:w-auto rounded-sm "
+                className=" lg:text-lg font-bold w-full lg:w-auto rounded-sm"
                 variant={"secondary"}
               >
                 Ta kontakt
@@ -52,7 +53,7 @@ export default function InformationSection() {
       <div className="w-full mt-[1em]  md:w-[550px]  flex flex-col lg:flex-row  lg:w-full justify-around xl:justify-center gap-5 xl:gap-10 ">
         <div className="text-[var(--text-dark)] lg:w-1/3  ">
           <InfoCard
-            cardStyle="bg-moss-200 flex justify-center items-center w-full h-[140] group cursor-pointer lg:h-[200]  rounded-2xl  md:hover:scale-105"
+            cardStyle="bg-moss-200 flex justify-center items-center w-full h-[140px] group cursor-pointer lg:h-[200px] rounded-2xl  md:hover:scale-105"
             imageSrc="/infoIcon1.png"
             alt="Icon"
             title="Fast Plass"
@@ -64,7 +65,7 @@ export default function InformationSection() {
             headerStyle={"h-full text-2xl  font-bold"}
             paragraphStyle={"mt-2 text-sm sm:text-base"}
             arrowStyle={
-              "absolute bottom-4 right-4 duration-300 md:group-hover:-translate-x-1 md:group-hover:translate-y-1 md:group-hover:rotate-45"
+              "absolute bottom-4 right-4 duration-300 md:group-hover:scale-[1.2]  md:group-hover:-translate-x-1 md:group-hover:translate-y-1 md:group-hover:rotate-45"
             }
             modalImageSrc={"/infoIcon1.png"}
             modalImageAlt={"Icon"}
@@ -79,7 +80,7 @@ export default function InformationSection() {
         </div>
         <div className="text-[var(--text-light)] lg:w-1/3">
           <InfoCard
-            cardStyle="bg-moss-600 flex justify-center items-center w-full h-[140] group cursor-pointer lg:h-[200]  rounded-2xl  duration-300 md:hover:scale-105"
+            cardStyle="bg-moss-600 flex justify-center items-center w-full h-[140px] group cursor-pointer lg:h-[200px]  rounded-2xl  duration-300 md:hover:scale-105"
             imageSrc="/infoIcon2.png"
             alt="Icon"
             title="Åpen Plass"
@@ -91,7 +92,7 @@ export default function InformationSection() {
             headerStyle={"h-full text-2xl  font-bold"}
             paragraphStyle={"mt-2 text-sm sm:text-base"}
             arrowStyle={
-              "absolute bottom-4 right-4 duration-300  md:group-hover:-translate-x-1 md:group-hover:translate-y-1 md:group-hover:rotate-45"
+              "absolute bottom-4 right-4 duration-300 md:group-hover:scale-[1.2]  md:group-hover:-translate-x-1 md:group-hover:translate-y-1 md:group-hover:rotate-45"
             }
             modalImageSrc={"/infoIcon2.png"}
             modalImageAlt={"Icon"}
@@ -106,7 +107,7 @@ export default function InformationSection() {
         </div>
         <div className="text-[var(--text-dark)] lg:w-1/3">
           <InfoCard
-            cardStyle="bg-moss-200 flex justify-center items-center w-full h-[140] group cursor-pointer lg:h-[200]  rounded-2xl duration-300 md:hover:scale-105"
+            cardStyle="bg-moss-200 flex justify-center items-center w-full h-[140px] group cursor-pointer lg:h-[200px] rounded-2xl duration-300 md:hover:scale-105"
             imageSrc="/infoIcon3.png"
             alt="Icon"
             title="Inkubasjon"
@@ -118,7 +119,7 @@ export default function InformationSection() {
             headerStyle={"h-full text-2xl  font-bold "}
             paragraphStyle={"mt-2 text-sm sm:text-base"}
             arrowStyle={
-              "absolute bottom-4 right-4  duration-300 md:group-hover:-translate-x-1 md:group-hover:translate-y-1 md:group-hover:rotate-45"
+              "absolute bottom-4 right-4  duration-300  md:group-hover:scale-[1.2]  md:group-hover:-translate-x-1 md:group-hover:translate-y-1 md:group-hover:rotate-45"
             }
             modalImageSrc={"/infoIcon3.png"}
             modalImageAlt={"Icon"}
@@ -131,6 +132,6 @@ export default function InformationSection() {
           />
         </div>
       </div>
-    </main>
+    </div>
   );
 }

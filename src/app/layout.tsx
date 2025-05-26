@@ -1,20 +1,30 @@
-// app/layout.tsx
 import type { Metadata } from "next";
+import { Space_Grotesk } from 'next/font/google';
 import "@/assets/styles/globals.css";
 import { Header } from "@/components/layout/header/header";
 import Footer from "@/components/layout/footer/footer";
 import { SanityProvider } from "@/context/SanityContext";
-import "@fontsource/space-grotesk";
-import "@fontsource/space-grotesk/400.css";
 import { getArticles } from "./sanity/lib/getArticles"; 
+import { getEvents } from "./sanity/lib/getEvents";
+import MuiClientThemeProvider from '@/components/layout/MuiClientThemeProvider'; 
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['400', '500', '600', '700'],
+});
+
+const baseUrl = process.env.NODE_ENV === 'development' 
+  ? 'http://localhost:3000'
+  : 'https://www.bergen.works';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(baseUrl),
   title: "Bergen Works",
-  description:
-    "Coworking space i hjertet av Bergen.",
+  description: "Coworking space i hjertet av Bergen.",
   keywords: [
     "Bergen.Works",
-    "cowowrking Bergen",
+    "coworking Bergen",
     "open office",
     "åpent kontorlandskap",
     "moderne arbeidsplass",
@@ -41,15 +51,6 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
-    nocache: false,
-    googleBot: {
-      index: true,
-      follow: true,
-      noimageindex: false,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
   openGraph: {
     title: "Bergen.Works | Innovation in the heart of the city",
@@ -75,15 +76,18 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const articles = await getArticles(); 
+  const events = await getEvents();
 
   return (
-    <html lang="en">
+    <html lang="en" className={spaceGrotesk.className}>
       <body>
-        <SanityProvider articles={articles}>
-          <Header />
-          {children}
-          <Footer />
-        </SanityProvider>
+        <MuiClientThemeProvider>
+          <SanityProvider articles={articles} events={events}>
+            <Header />
+            {children}
+            <Footer />
+          </SanityProvider>
+        </MuiClientThemeProvider>
       </body>
     </html>
   );
