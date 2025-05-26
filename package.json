@@ -11,7 +11,7 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
-    "@mui/icons-material": "^7.0.1",
+    "@mui/icons-material": "^7.1.0",
     "@mui/material": "^7.0.1",
     "@portabletext/react": "^3.2.1",
     "@sanity/client": "^6.28.3",
@@ -24,10 +24,12 @@
     "postcss": "^8.5.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-hook-form": "^7.56.4",
     "react-medium-image-zoom": "^5.2.14",
     "react-modal": "^3.16.3",
     "react-slick": "^0.30.3",
     "sanity": "^3.81.0",
+    "sib-api-v3-sdk": "^8.4.0",
     "slick-carousel": "^1.8.1",
     "styled-components": "^6.1.16"
   },

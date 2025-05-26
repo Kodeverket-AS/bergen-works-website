@@ -156,7 +156,7 @@ export default function Events() {
   };
 
   return (
-    <section className="p-4 ">
+    <section className="py-4 ">
       <h2 className="text-4xl text-center mb-8 flex items-center justify-center gap-2">
         Arrangementer
         <Link href="/events/" target="_blank" rel="noopener noreferrer">
