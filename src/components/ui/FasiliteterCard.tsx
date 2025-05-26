@@ -35,7 +35,7 @@ export function FasiliteterCard({
 }: FasiliteterCardProps) {
   return (
     <div
-      className={`flex w-full h-full px-10 md:px-0 gap-6 mb-10 ${cardStyle} 
+      className={`flex w-full h-full  md:px-0 gap-6 mb-10 ${cardStyle} 
         ${smallScreenReverse ? "flex-col-reverse" : "flex-col"} 
         ${largeScreenReverse ? "md:flex-row-reverse" : "md:flex-row"}`}
     >

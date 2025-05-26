@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/buttons/Button";
 
 export default function Incubator() {
   return (
-    <main className="">
+    <main className="px-2">
       <FasiliteterCard
         imageSrc="/bygg.png"
         alt="Image of building"
