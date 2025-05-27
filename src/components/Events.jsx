@@ -156,7 +156,7 @@ export default function Events() {
   };
 
   return (
-    <section className="p-4 ">
+    <section className="  ">
       <h2 className="text-4xl text-center mb-8 flex items-center justify-center gap-2">
         Arrangementer
         <Link href="/events/" target="_blank" rel="noopener noreferrer">
@@ -184,7 +184,7 @@ export default function Events() {
           </>
         )}
 
-        <div className={`overflow-hidden rounded-xl mx-auto p-3 min-h-[380px] ${isPhoneScreen ? "w-[95vw]" : "w-full max-w-6xl"}`}>
+        <div className={` overflow-hidden rounded-xl mx-auto p-8 min-h-[420px] ${isPhoneScreen ? "w-[95vw]" : "w-full max-w-6xl"}`}>
           <motion.div 
             className={`${isPhoneScreen ? "flex" : "grid grid-cols-1 lg:grid-cols-2 gap-8 2xl:gap-12"}`} 
             style={isPhoneScreen ? { x } : {}}
