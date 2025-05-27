@@ -17,13 +17,13 @@ export default function Incubator() {
           }
           smallScreenReverse={false}
           largeScreenReverse={false}
-          cardStyle={"gap-3 mg:gap-6"}
+          cardStyle={"gap-3 md:gap-6"}
           imageContainerStyle={
-            "w-full h-[400px] md:h-auto md:w-1/2 lg:w-3/5 lg:h-auto objert-center object-cover"
+            "w-full h-[400px] md:h-auto md:w-1/2 lg:w-3/5 lg:h-auto"
           }
-          headerStyle={"text-2xl md:text-2xl xl:text-3xl  "}
+          headerStyle={"text-2xl md:text-2xl xl:text-3xl"}
           textContainerStyle={"bg-black text-white md:w-1/2 lg:w-2/5 xl:h-auto"}
-          paragraphStyle={"lg:my-4"}
+          paragraphStyle={"my-4"}
           button={
             <Button
               href="/#contact-form"
