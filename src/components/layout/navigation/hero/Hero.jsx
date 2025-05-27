@@ -11,10 +11,12 @@ export default function Hero() {
         paragraphText={"Innovation in the heart of the city"}
         reverse={false}
         cardStyle={""}
-        imageContainerStyle={"w-full h-[400] lg:w-3/5"}
-        headerStyle="text-5xl xl:text-6xl font-space-grotesk"
+        imageContainerStyle={
+          "w-full h-[400px] md:h-[350px] xl:h-[400px] lg:w-3/5"
+        }
+        headerStyle="hidden md:block text-4xl md:text-5xl xl:text-6xl font-space-grotesk"
         textContainerStyle="justify-between bg-black text-white h-auto lg:w-2/5 xl:w-[1/3]"
-        paragraphStyle="py-2 text-4xl md:text-5xl lg:my-4 "
+        paragraphStyle="py-2 text-5xl md:text-4xl xl:text-5xl lg:my-4 "
         button={
           <Button
             href="/#contact-form"

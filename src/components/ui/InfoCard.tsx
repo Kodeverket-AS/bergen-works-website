@@ -5,7 +5,6 @@ import React, { useState } from "react";
 import { Modal } from "./Modal";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
-
 interface InfoCardProps {
   imageSrc: string;
   title: string;
@@ -61,15 +60,14 @@ export function InfoCard({
         <div className={`${textContentStyle}`}>
           <h2 className={`${headerStyle}`}>{title}</h2>
           <p className={`${paragraphStyle}`}>{description}</p>
-          <div className="mt-2 lg:mt-6">
+          <div className="mt-2 lg:mt-10">
             <div className={`${arrowStyle}`}>
               <ArrowForwardIcon
-               
                 sx={{
                   cursor: "pointer",
-                  color: "black",
+                  color: "inherit",
                   transition: "color 0.3s ease, transform 0.3s ease",
-                  
+
                   fontSize: "36px",
                 }}
               />
