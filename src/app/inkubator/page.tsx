@@ -17,7 +17,7 @@ export default function Membership() {
           />
         </div>
         <div className="bg-black text-light-text pt-6 pb-10 lg:pt-8 px-10  rounded-2xl w-full h-auto md:w-1/2 lg:w-2/3 ">
-          <h1 className="text-3xl mb-8 md:mb-4 lg:text-4xl xl:mb-8 xl:text-5xl">
+          <h1 className="text-3xl font-bold mb-8 md:mb-4 lg:text-4xl xl:mb-8 xl:text-5xl font-space-grotesk">
             Vi gir startups en stor fordel når det gjelder kapital innhenting
           </h1>
           <p className="xl:text-lg">
