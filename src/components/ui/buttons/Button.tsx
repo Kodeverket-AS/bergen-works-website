@@ -27,7 +27,8 @@ export function Button({
   type = "button",
   onClick,
 }: ButtonProps) {
-  const base = "inline-block px-6 py-3 text-center transition duration-300";
+  const base = `
+        h-[44px] max-w-[208px] flex items-center justify-center overflow-hidden mt-4  md:mb-0 text-center transition duration-300` 
   const styles = variantStyles[variant];
   const combined = `${base} ${styles} ${className}`;
 
