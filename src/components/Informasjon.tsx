@@ -62,7 +62,7 @@ export default function InformationSection() {
               title="Fast Plass"
               description="3990,- / mnd"
               imageStyle={
-                "w-[100px] h-[100px] md:w-[80px] md:h-[80px]  2xl:w-[140px] 2xl:h-[140px] "
+                "w-[120px] h-[120px] mr-6 lg:mr-0 md:w-[80px] md:h-[80px]  2xl:w-[140px] 2xl:h-[140px] "
               }
               textContentStyle={"p-4 xl:px-8"}
               headerStyle={"h-full text-2xl  font-bold"}
@@ -90,7 +90,7 @@ export default function InformationSection() {
               title="Åpen Plass"
               description="3200,- / mnd"
               imageStyle={
-                "w-[100px] h-[100px]  md:w-[80px] md:h-[80px]  2xl:w-[140px] 2xl:h-[140px]"
+                "w-[120px] h-[120px] mr-6 lg:mr-0  md:w-[80px] md:h-[80px]  2xl:w-[140px] 2xl:h-[140px]"
               }
               textContentStyle={"p-4 xl:px-8"}
               headerStyle={"h-full text-2xl  font-bold"}
@@ -118,7 +118,7 @@ export default function InformationSection() {
               title="Inkubasjon"
               description="Gratis for deltakere"
               imageStyle={
-                "w-[100px] h-[100px]   md:w-[80px] md:h-[80px]  2xl:w-[140px] 2xl:h-[140px]"
+                "w-[120px] h-[120px] mr-6 lg:mr-0   md:w-[80px] md:h-[80px]  2xl:w-[140px] 2xl:h-[140px]"
               }
               textContentStyle={"flex flex-col justify-center p-4 xl:px-8"}
               headerStyle={"h-full text-2xl  font-bold "}
