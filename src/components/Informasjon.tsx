@@ -52,7 +52,7 @@ export default function InformationSection() {
           </div>
         </div>
       </div>
-      <div className="w-full mt-[1em] px-4 md:w-[550px]  flex flex-col lg:flex-row  lg:w-full justify-around xl:justify-center gap-5 xl:gap-10 ">
+      <div className="w-full mt-[1em] xl:px-4 md:w-[550px]  flex flex-col lg:flex-row  lg:w-full justify-around xl:justify-center gap-5 xl:gap-10 ">
         <div className="text-dark-text lg:w-1/3">
           <InfoCard
             cardStyle="bg-moss-200 flex justify-center items-center w-full h-[140px] group cursor-pointer lg:h-[200px] rounded-2xl  md:hover:scale-105"
