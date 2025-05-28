@@ -6,7 +6,7 @@ export default function InformationSection() {
 
     return (
       <div className=" flex flex-col items-center justify-center">
-        <div className="bg-[#1D1D1D] lg:bg-transparent rounded-2xl flex flex-col items-center lg:flex-row  h-[700px] w-full md:w-[550px] lg:w-full lg:h-[450px] xl:h-[500px] lg:gap-5 xl:gap-10 lg:mb-[2em]">
+        <div className="bg-[#1D1D1D]  text-light-text lg:bg-transparent rounded-2xl flex flex-col items-center lg:flex-row  h-[700px] w-full md:w-[550px] lg:w-full lg:h-[350px] xl:h-[400px] lg:gap-5 xl:gap-10 lg:mb-[2em]">
           <div className="p-10 select-none  md:bg-[#1D1D1D]  w-full h-full lg:w-3/10 rounded-2xl">
             <div className="bg-black relative rounded-lg w-full h-96 lg:h-full ">
               <Image
@@ -51,7 +51,6 @@ export default function InformationSection() {
                                 Ta kontakt
                             </Button>
                         </div> */}
-
             </div>
           </div>
         </div>
@@ -84,7 +83,7 @@ export default function InformationSection() {
               modalLink={"/#contact-form"}
             />
           </div>
-          <div className="text-[var(--text-light)] md:w-full lg:max-w-[324px]  xl:max-w-full xl:w-1/3 ">
+          <div className="text-light-text  md:w-full lg:max-w-[324px]  xl:max-w-full xl:w-1/3 ">
             <InfoCard
               showVipps={true}
               cardStyle="bg-moss-600 flex justify-center items-center w-full  group cursor-pointer md:pl-2  lg:h-[200px]  rounded-2xl  duration-300 md:hover:scale-105"
