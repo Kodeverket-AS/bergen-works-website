@@ -3,20 +3,32 @@ import React, { useState } from "react";
 import {
     TextField,
     Button,
-    Box,
     Typography,
     Card,
     CardContent,
-    CardMedia,
     Checkbox,
     FormControlLabel,
+    CircularProgress,
+    Alert,
+    Tooltip,
+    Snackbar,
 } from "@mui/material";
+import InfoIcon from "@mui/icons-material/Info";
+import { useForm } from "react-hook-form";
 
 const KontaktForm = () => {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [message, setMessage] = useState("");
-    const [error, setError] = useState("");
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+        reset,
+    } = useForm();
+    const [loading, setLoading] = useState(false);
+    const [snackbar, setSnackbar] = useState({
+        open: false,
+        message: "",
+        severity: "success",
+    });
     const [checked, setChecked] = useState({
         "Åpen plass": false,
         "Fast plass": false,
@@ -30,26 +42,51 @@ const KontaktForm = () => {
         });
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
+    const onSubmit = async (data) => {
+        setLoading(true);
+        try {
+            const response = await fetch("/api/send-email", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ ...data, checked }),
+            });
 
-        if (!name || !email || !message) {
-            setError("Please fill in all fields");
-            return;
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(result.error || "Noe gikk galt");
+            }
+
+            setSnackbar({
+                open: true,
+                message: "Takk for din henvendelse! Vi vil kontakte deg snart.",
+                severity: "success",
+            });
+            reset();
+            setChecked({
+                "Åpen plass": false,
+                "Fast plass": false,
+                Annet: false,
+            });
+        } catch (err) {
+            setSnackbar({
+                open: true,
+                message:
+                    err.message ||
+                    "Kunne ikke sende meldingen. Vennligst prøv igjen senere.",
+                severity: "error",
+            });
+        } finally {
+            setLoading(false);
         }
-
-        console.log("Form Submitted:", { name, email, message, checked });
-
-        setName("");
-        setEmail("");
-        setMessage("");
-        setChecked({
-            "Åpen plass": false,
-            "Fast plass": false,
-            Annet: false,
-        });
-        setError("");
     };
+
+    const handleCloseSnackbar = () => {
+        setSnackbar({ ...snackbar, open: false });
+    };
+
     return (
         <div
             id='contact-form'
@@ -57,7 +94,7 @@ const KontaktForm = () => {
         >
             <div className='flex flex-col lg:flex-row w-full max-w-4xl gap-x-6'>
                 <div className='flex-1 space-y-6'>
-                    <Card className='p-6 bg-white rounded-3xl shadow-lg'>
+                    <Card className='py-6 bg-white rounded-3xl shadow-lg'>
                         <CardContent>
                             <Typography variant='h5' gutterBottom>
                                 Kom i gang
@@ -69,60 +106,132 @@ const KontaktForm = () => {
                             </Typography>
                         </CardContent>
                     </Card>
-                    {/* Card for Form */}
-                    <Card className='p-6 bg-white rounded-3xl shadow-lg'>
+                    <Card className='py-6 bg-white rounded-3xl shadow-lg'>
                         <CardContent>
-                            {/* Error message */}
-                            {error && (
-                                <Typography
-                                    variant='body2'
-                                    color='error'
-                                    align='center'
-                                    sx={{ marginBottom: "16px" }}
-                                >
-                                    {error}
-                                </Typography>
-                            )}
-                            <form onSubmit={handleSubmit}>
-                                {/* Navn Field */}
+                            <form onSubmit={handleSubmit(onSubmit)}>
                                 <TextField
-                                    label='Navn' // Changed label to Navn
+                                    label='Navn'
                                     type='text'
-                                    value={name} // Renamed from email to name
-                                    onChange={(e) => setName(e.target.value)} // Set name
                                     fullWidth
                                     required
                                     margin='normal'
+                                    disabled={loading}
+                                    placeholder='Skriv inn ditt navn'
+                                    sx={{
+                                        "& .MuiOutlinedInput-root": {
+                                            borderRadius: 2,
+                                        },
+                                    }}
+                                    {...register("name", {
+                                        required: "Navn er påkrevd",
+                                        minLength: {
+                                            value: 2,
+                                            message:
+                                                "Navn må være minst 2 tegn",
+                                        },
+                                    })}
+                                    error={!!errors.name}
+                                    helperText={errors.name?.message}
                                 />
-                                {/* E-post Field */}
                                 <TextField
-                                    label='E-post' // Changed label to E-post
+                                    label='E-post'
                                     type='email'
-                                    value={email} // Renamed from phone to email
-                                    onChange={(e) => setEmail(e.target.value)} // Set email
                                     fullWidth
                                     required
                                     margin='normal'
+                                    disabled={loading}
+                                    placeholder='din.epost@eksempel.no'
+                                    sx={{
+                                        "& .MuiOutlinedInput-root": {
+                                            borderRadius: 2,
+                                        },
+                                    }}
+                                    {...register("email", {
+                                        required: "E-post er påkrevd",
+                                        pattern: {
+                                            value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                                            message: "Ugyldig e-postadresse",
+                                        },
+                                    })}
+                                    error={!!errors.email}
+                                    helperText={errors.email?.message}
                                 />
-                                {/* Melding Field */}
                                 <TextField
-                                    label='Melding' // Changed label to Melding
+                                    label='Telefonnummer'
+                                    type='tel'
+                                    fullWidth
+                                    required
+                                    margin='normal'
+                                    disabled={loading}
+                                    placeholder='Skriv inn ditt telefonnummer'
+                                    sx={{
+                                        "& .MuiOutlinedInput-root": {
+                                            borderRadius: 2,
+                                        },
+                                    }}
+                                    {...register("phone", {
+                                        required: "Telefonnummer er påkrevd",
+                                        pattern: {
+                                            value: /^[0-9+\s()-]{8,15}$/,
+                                            message: "Ugyldig telefonnummer",
+                                        },
+                                    })}
+                                    error={!!errors.phone}
+                                    helperText={errors.phone?.message}
+                                />
+                                <TextField
+                                    label='Melding'
                                     multiline
                                     rows={4}
-                                    value={message}
-                                    onChange={(e) => setMessage(e.target.value)}
                                     fullWidth
                                     required
                                     margin='normal'
+                                    disabled={loading}
+                                    placeholder='Skriv din melding her...'
+                                    sx={{
+                                        "& .MuiOutlinedInput-root": {
+                                            borderRadius: 2,
+                                        },
+                                    }}
+                                    {...register("message", {
+                                        required: "Melding er påkrevd",
+                                        minLength: {
+                                            value: 10,
+                                            message:
+                                                "Meldingen må være minst 10 tegn",
+                                        },
+                                    })}
+                                    error={!!errors.message}
+                                    helperText={errors.message?.message}
                                 />
-                                {/* Checkboxes in Columns */}
-                                <div style={{ display: "flex", gap: "20px" }}>
+                                <div className='mt-4 mb-2'>
+                                    <Typography
+                                        variant='subtitle1'
+                                        className='flex items-center gap-2'
+                                    >
+                                        Kategori
+                                        <Tooltip title='Velg alle alternativer som passer for deg'>
+                                            <InfoIcon
+                                                fontSize='small'
+                                                color='action'
+                                            />
+                                        </Tooltip>
+                                    </Typography>
+                                </div>
+                                <div
+                                    style={{
+                                        display: "flex",
+                                        gap: "20px",
+                                        flexWrap: "wrap",
+                                    }}
+                                >
                                     <FormControlLabel
                                         control={
                                             <Checkbox
                                                 checked={checked["Åpen plass"]}
                                                 onChange={handleCheckboxChange}
                                                 name='Åpen plass'
+                                                disabled={loading}
                                             />
                                         }
                                         label='Åpen plass'
@@ -133,6 +242,7 @@ const KontaktForm = () => {
                                                 checked={checked["Fast plass"]}
                                                 onChange={handleCheckboxChange}
                                                 name='Fast plass'
+                                                disabled={loading}
                                             />
                                         }
                                         label='Fast plass'
@@ -143,16 +253,17 @@ const KontaktForm = () => {
                                                 checked={checked["Annet"]}
                                                 onChange={handleCheckboxChange}
                                                 name='Annet'
+                                                disabled={loading}
                                             />
                                         }
                                         label='Annet'
                                     />
                                 </div>
-                                {/* Submit Button */}
                                 <Button
                                     type='submit'
                                     variant='contained'
                                     color='primary'
+                                    disabled={loading}
                                     sx={{
                                         marginTop: "16px",
                                         width: "auto",
@@ -162,16 +273,39 @@ const KontaktForm = () => {
                                         "&:hover": {
                                             backgroundColor: "rgb(28, 43, 20)",
                                         },
+                                        borderRadius: 2,
                                     }}
                                 >
-                                    Send Melding
+                                    {loading ? (
+                                        <CircularProgress
+                                            size={24}
+                                            color='inherit'
+                                        />
+                                    ) : (
+                                        "Send Melding"
+                                    )}
                                 </Button>
                             </form>
                         </CardContent>
                     </Card>
                 </div>
             </div>
+            <Snackbar
+                open={snackbar.open}
+                autoHideDuration={6000}
+                onClose={handleCloseSnackbar}
+                anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+            >
+                <Alert
+                    onClose={handleCloseSnackbar}
+                    severity={snackbar.severity}
+                    sx={{ width: "100%" }}
+                >
+                    {snackbar.message}
+                </Alert>
+            </Snackbar>
         </div>
     );
 };
+
 export default KontaktForm;

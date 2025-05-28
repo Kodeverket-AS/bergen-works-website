@@ -10,10 +10,9 @@ import Events from "../components/Events"
 export default function Home() {
 
   return (
-    <main>
+    <main className="px-2">
       <Hero />
       <InformationSection />
-
       <Fasiliteter />
       <Partnere />
       <ArticlesMain />
