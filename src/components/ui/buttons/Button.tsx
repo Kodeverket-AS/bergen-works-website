@@ -5,9 +5,9 @@ type Variant = "primary" | "secondary";
 
 const variantStyles: Record<Variant, string> = {
   primary:
-    "bg-moss-600 text-[var(--text-light)] font-semibold hover:bg-[#1C2B14] cursor-pointer",
+    "bg-moss-600 text-[var(--color-light-text)] font-semibold hover:bg-[#1C2B14] cursor-pointer",
   secondary:
-    "bg-white text-[var(--text-dark)] font-semibold hover:bg-gray-300 cursor-pointer",
+    "bg-white text-[var(--color-dark-text)] font-semibold hover:bg-gray-300 cursor-pointer",
 };
 
 type ButtonProps = {

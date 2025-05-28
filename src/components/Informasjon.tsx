@@ -3,6 +3,7 @@ import { InfoCard } from "./ui/InfoCard";
 // import { Button } from "./ui/buttons/Button";
 
 export default function InformationSection() {
+
     return (
       <div className=" flex flex-col items-center justify-center">
         <div className="bg-[#1D1D1D] lg:bg-transparent rounded-2xl flex flex-col items-center lg:flex-row  h-[700px] w-full md:w-[550px] lg:w-full lg:h-[450px] xl:h-[500px] lg:gap-5 xl:gap-10 lg:mb-[2em]">
@@ -41,6 +42,7 @@ export default function InformationSection() {
                 del av en bedrift.
               </p>
               {/* <div className='w-full my-8 xl:my-14 3xl:mt-24'>
+
                             <Button
                                 href='/#contact-form'
                                 className=' lg:text-lg font-bold w-full lg:w-auto rounded-sm'
@@ -49,6 +51,7 @@ export default function InformationSection() {
                                 Ta kontakt
                             </Button>
                         </div> */}
+
             </div>
           </div>
         </div>
@@ -139,4 +142,5 @@ export default function InformationSection() {
         </div>
       </div>
     );
+
 }
