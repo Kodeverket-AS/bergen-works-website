@@ -71,7 +71,7 @@ export function Modal({
             <Link
               onClick={onClose}
               href={modalLink}
-              className="inline-block w-full md:w-auto px-4 py-2 text-center md:text-lg rounded-md font-semibold bg-white hover:bg-gray-200  transition-colors duration-300 "
+              className="inline-block w-full md:w-auto px-8 py-4  text-center md:text-lg rounded-md font-semibold bg-white hover:bg-gray-200  transition-colors duration-300 "
             >
               {modalLinkText}
             </Link>
