@@ -5,8 +5,8 @@ import { InfoCard } from "./ui/InfoCard";
 export default function InformationSection() {
   return (
     <div className=" flex flex-col items-center justify-center">
-      <div className="bg-[#1D1D1D]  text-light-text lg:bg-transparent rounded-2xl flex flex-col items-center lg:flex-row  h-[700px] w-full md:w-[550px] lg:w-full lg:h-[350px] xl:h-[450px] gap-3 md:gap-6 lg:mb-[2em]">
-        <div className="p-10 select-none  md:bg-[#1D1D1D]  w-full h-full lg:w-1/3 rounded-2xl">
+      <div className="bg-[#1D1D1D]  text-light-text lg:bg-transparent rounded-2xl flex flex-col items-center lg:flex-row  h-[700px] w-full md:w-[550px] lg:w-full lg:h-[350px] xl:h-[400px] lg:gap-5 xl:gap-10 lg:mb-[2em]">
+        <div className="p-10 select-none  md:bg-[#1D1D1D]  w-full h-full lg:w-3/10 rounded-2xl">
           <div className="bg-black relative rounded-lg w-full h-96 lg:h-full ">
             <Image
               src="/officeCircle.png"
