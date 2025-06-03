@@ -1,12 +1,11 @@
 import Image from "next/image";
 import { InfoCard } from "./ui/InfoCard";
-// import { Button } from "./ui/buttons/Button";
-
+// import { Button } from "./ui/buttons/Button";export default function InformationSection() {
 export default function InformationSection() {
   return (
     <div className=" flex flex-col items-center justify-center">
-      <div className="bg-[#1D1D1D]  text-light-text lg:bg-transparent rounded-2xl flex flex-col items-center lg:flex-row  h-[700px] w-full md:w-[550px] lg:w-full lg:h-[350px] xl:h-[400px] lg:gap-5 xl:gap-10 lg:mb-[2em]">
-        <div className="p-10 select-none  md:bg-[#1D1D1D]  w-full h-full lg:w-3/10 rounded-2xl">
+      <div className="bg-[#1D1D1D] text-light-text lg:bg-transparent rounded-2xl flex flex-col items-center lg:flex-row  h-[700px] w-full md:w-[550px] lg:w-full lg:h-[450px] xl:h-[500px] lg:gap-5 xl:gap-10 lg:mb-[2em]">
+        <div className="p-10 select-none  md:bg-[#1D1D1D]  w-full h-full lg:w-1/3 rounded-2xl">
           <div className="bg-black relative rounded-lg w-full h-96 lg:h-full ">
             <Image
               src="/officeCircle.png"
@@ -19,7 +18,7 @@ export default function InformationSection() {
           </div>
         </div>
         <div className="text-[var(--text-light)] w-full px-10 rounded-2xl lg:w-2/3 h-full lg:bg-[#1D1D1D]">
-          <div className="lg:px-2 xl:px-10 ">
+          <div className="lg:px-2 3xl:px-10 ">
             <h1 className="font-bold text-[40px] xl:text-[50px] md:mt-1 lg:my-8 xl:mt-10 3xl:mt-12">
               Co-work
             </h1>
@@ -41,7 +40,6 @@ export default function InformationSection() {
               del av en bedrift.
             </p>
             {/* <div className='w-full my-8 xl:my-14 3xl:mt-24'>
-
                             <Button
                                 href='/#contact-form'
                                 className=' lg:text-lg font-bold w-full lg:w-auto rounded-sm'
@@ -53,17 +51,16 @@ export default function InformationSection() {
           </div>
         </div>
       </div>
-      <div className="w-full  mt-[1em]  md:w-[550px]  flex flex-col lg:flex-row  lg:w-full justify-around xl:justify-center gap-5 lg:gap-3 xl:gap-10 ">
-        <div className="text-dark-text lg:max-w-[323px]   xl:max-w-full xl:w-1/3  ">
+      <div className="w-full mt-[1em]  md:w-[550px]  flex flex-col lg:flex-row  lg:w-full justify-around xl:justify-center gap-5 xl:gap-10 ">
+        <div className="text-dark-text lg:w-1/3  ">
           <InfoCard
-            showVipps={true}
-            cardStyle="bg-moss-200 flex justify-center items-center w-full md:h-[160px] group cursor-pointer md:pl-2 lg:h-[200px] rounded-2xl  md:hover:scale-105"
+            cardStyle="bg-moss-200 flex justify-center items-center w-full h-[140px] group cursor-pointer lg:h-[200px] rounded-2xl  md:hover:scale-105"
             imageSrc="/infoIcon1.png"
             alt="Icon"
             title="Fast Plass"
             description="3990,- / mnd"
             imageStyle={
-              "w-[120px] h-[120px] mr-6 lg:mr-0 md:w-[80px] md:h-[80px]  2xl:w-[140px] 2xl:h-[140px] "
+              "w-[80px] h-[80px] md:w-[90px] md:h-[90px] lg:w-[120px] lg:h-[120px] xl:w-[140px] xl:h-[140px]"
             }
             textContentStyle={"p-4 xl:px-8"}
             headerStyle={"h-full text-2xl  font-bold"}
@@ -82,16 +79,15 @@ export default function InformationSection() {
             modalLink={"/#contact-form"}
           />
         </div>
-        <div className="text-light-text  md:w-full lg:max-w-[324px]  xl:max-w-full xl:w-1/3 ">
+        <div className="text-light-text lg:w-1/3">
           <InfoCard
-            showVipps={true}
-            cardStyle="bg-moss-600 flex justify-center items-center w-full  group cursor-pointer md:pl-2  lg:h-[200px]  rounded-2xl  duration-300 md:hover:scale-105"
+            cardStyle="bg-moss-600 flex justify-center items-center w-full h-[140px] group cursor-pointer lg:h-[200px]  rounded-2xl  duration-300 md:hover:scale-105"
             imageSrc="/infoIcon2.png"
             alt="Icon"
             title="Åpen Plass"
             description="3200,- / mnd"
             imageStyle={
-              "w-[120px] h-[120px] mr-6 lg:mr-0  md:w-[80px] md:h-[80px]  2xl:w-[140px] 2xl:h-[140px]"
+              "w-[80px] h-[80px] md:w-[90px] md:h-[90px] lg:w-[120px] lg:h-[120px] xl:w-[140px] xl:h-[140px]"
             }
             textContentStyle={"p-4 xl:px-8"}
             headerStyle={"h-full text-2xl  font-bold"}
@@ -110,16 +106,15 @@ export default function InformationSection() {
             modalLink={"/#contact-form"}
           />
         </div>
-        <div className="text-dark-text  md:w-full lg:max-w-[324px]  xl:max-w-full xl:w-1/3  ">
+        <div className="text-[var(--text-dark)] lg:w-1/3">
           <InfoCard
-            showVipps={false}
-            cardStyle="bg-moss-200 flex justify-center items-center w-full md:h-[160px] group cursor-pointer md:pl-2  lg:h-[200px] rounded-2xl duration-300 md:hover:scale-105"
+            cardStyle="bg-moss-200 flex justify-center items-center w-full h-[140px] group cursor-pointer lg:h-[200px] rounded-2xl duration-300 md:hover:scale-105"
             imageSrc="/infoIcon3.png"
             alt="Icon"
             title="Inkubasjon"
             description="Gratis for deltakere"
             imageStyle={
-              "w-[120px] h-[120px] mr-6 lg:mr-0   md:w-[80px] md:h-[80px]  2xl:w-[140px] 2xl:h-[140px]"
+              "w-[80px] h-[80px] md:w-[90px] md:h-[90px] lg:w-[120px] lg:h-[120px] xl:w-[140px] xl:h-[140px]"
             }
             textContentStyle={"flex flex-col justify-center p-4 xl:px-8"}
             headerStyle={"h-full text-2xl  font-bold "}

@@ -4,8 +4,6 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { Modal } from "./Modal";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import VippsButton from "./buttons/VippsButton"
-import { Button } from "./buttons/Button";
 
 interface InfoCardProps {
   imageSrc: string;
@@ -26,7 +24,6 @@ interface InfoCardProps {
   headerStyle: string;
   paragraphStyle: string;
   arrowStyle: string;
-  showVipps?: boolean;
 }
 
 export function InfoCard({
@@ -46,15 +43,8 @@ export function InfoCard({
   headerStyle,
   paragraphStyle,
   arrowStyle,
-  showVipps = false,
 }: InfoCardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleVippsClick = (e: React.MouseEvent) => {
-    e.stopPropagation(); 
-    console.log("VippsButton clicked");
-  };
-
   return (
     <>
       <div
@@ -62,7 +52,7 @@ export function InfoCard({
         onKeyDown={(e) => e.key === "Enter" && setIsModalOpen(true)}
         role="button"
         tabIndex={0}
-        className={`transition-transform duration-300 will-change-transform  ${cardStyle}`}
+        className={`transition-transform duration-300 will-change-transform ${cardStyle}`}
       >
         <div className={`relative ${imageStyle}`}>
           <Image src={imageSrc} alt={title} fill draggable={false} />
@@ -70,21 +60,6 @@ export function InfoCard({
         <div className={`${textContentStyle}`}>
           <h2 className={`${headerStyle}`}>{title}</h2>
           <p className={`${paragraphStyle}`}>{description}</p>
-          {showVipps ? (
-            <VippsButton 
-              onVippsCheckoutInitiate={handleVippsClick}
-            />
-          ) : (
-            <div className="w-[208px] h-[44px] mb-10 md:mb-2">
-              <Button
-                href="/#contact-form"
-                variant={"secondary"}
-                className={"w-full h-full flex items-center justify-center text-lg rounded "}
-              >
-                Ta kontakt
-              </Button>
-            </div>
-          )}
           <div className="mt-2 lg:mt-10">
             <div className={`${arrowStyle}`}>
               <ArrowForwardIcon
@@ -92,6 +67,7 @@ export function InfoCard({
                   cursor: "pointer",
                   color: "inherit",
                   transition: "color 0.3s ease, transform 0.3s ease",
+
                   fontSize: "36px",
                 }}
               />
