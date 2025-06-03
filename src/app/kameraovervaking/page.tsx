@@ -35,7 +35,7 @@ export default function Page() {
                 />
                 <div className="flex flex-col p-5 h-1/2">
                     <h1 className="font-bold sm:text-2xl lg:text-lg xl:text-2xl mb-3">Informasjon om behandlingen:</h1>
-                    <p>Opptakene spares i syv dager...</p>
+                    <p>Opptakene spares i  syv dager...</p>
                 </div>
             </div>
 
