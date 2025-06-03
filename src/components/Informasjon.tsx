@@ -54,7 +54,7 @@ export default function InformationSection() {
         </div>
       </div>
       <div className="w-full  mt-[1em]  md:w-[550px]  flex flex-col lg:flex-row  lg:w-full justify-around xl:justify-center gap-5 lg:gap-3 xl:gap-10 ">
-        <div className="text-[var(--text-dark)] lg:max-w-[323px]   xl:max-w-full xl:w-1/3  ">
+        <div className="text-dark-text lg:max-w-[323px]   xl:max-w-full xl:w-1/3  ">
           <InfoCard
             showVipps={true}
             cardStyle="bg-moss-200 flex justify-center items-center w-full md:h-[160px] group cursor-pointer md:pl-2 lg:h-[200px] rounded-2xl  md:hover:scale-105"
@@ -110,7 +110,7 @@ export default function InformationSection() {
             modalLink={"/#contact-form"}
           />
         </div>
-        <div className="text-[var(--text-dark)]  md:w-full lg:max-w-[324px]  xl:max-w-full xl:w-1/3  ">
+        <div className="text-dark-text  md:w-full lg:max-w-[324px]  xl:max-w-full xl:w-1/3  ">
           <InfoCard
             showVipps={false}
             cardStyle="bg-moss-200 flex justify-center items-center w-full md:h-[160px] group cursor-pointer md:pl-2  lg:h-[200px] rounded-2xl duration-300 md:hover:scale-105"
