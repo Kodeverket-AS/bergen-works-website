@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function Incubator() {
   return (
-    <main className="px-2">
+    <main className="">
       <FasiliteterCard
         imageSrc="/bygg.png"
         alt="Image of building"

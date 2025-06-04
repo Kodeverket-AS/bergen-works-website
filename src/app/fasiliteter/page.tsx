@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/buttons/Button";
 
 export default function Facilities() {
   return (
-    <main className="px-2">
+    <main className="">
       <div className=" mb-10">
         <FasiliteterCard
           imageSrc="/bygg.png"
