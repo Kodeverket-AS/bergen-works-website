@@ -5,7 +5,7 @@ export function Personvernerklæring() {
     <main className="flex flex-col items-center">
     <section className="w-full py-24">
         <div className="container mx-auto flex flex-col gap-12 px-4 lg:px-8">
-            <h1 className="text-center font-bold text-2xl">Personvernerklæring</h1>
+            <h1 className="text-center font-bold text-2xl">Personvernerklæring.</h1>
             <p className="text-pretty">Bergen.Works er behandlingsansvarlig for behandlingen av personopplysninger som beskrevet i denne personvernerklæringen. I denne personvernerklæringen forklarer vi hva slags personopplysninger vi lagrer og hvordan vi behandler dem. Denne personvernerklæringen gjelder for:</p>
 
             <div className="flex flex-col gap-4">
