@@ -29,9 +29,9 @@
     "react-modal": "^3.16.3",
     "react-slick": "^0.30.3",
     "sanity": "^3.81.0",
-    "sib-api-v3-sdk": "^8.4.0",
     "slick-carousel": "^1.8.1",
-    "styled-components": "^6.1.16"
+    "styled-components": "^6.1.16",
+    "zod": "^3.25.51"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
