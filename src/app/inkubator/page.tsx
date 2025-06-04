@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/buttons/Button";
 
 export default function Membership() {
   return (
-    <main className="px-2">
+    <main className="">
       <section className="flex flex-col w-full h-full md:flex-row gap-5">
         <div className="relative flex-1 aspect-square">
           <Image
