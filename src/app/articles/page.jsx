@@ -168,7 +168,10 @@ export default function ArticleList() {
         <Pagination
           count={Math.ceil(articlesWithSlugs.length / articlesPerPage)}
           page={currentPage}
-          onChange={(_, value) => setCurrentPage(value)}
+          onChange={(_, value) => {
+            setCurrentPage(value);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
         />
       </div>
     </div>
