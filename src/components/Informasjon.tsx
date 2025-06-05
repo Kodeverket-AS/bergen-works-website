@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { InfoCard } from "./ui/InfoCard";
-// import { Button } from "./ui/buttons/Button";export default function InformationSection() {
+// import { Button } from "./ui/buttons/Button";
+
 export default function InformationSection() {
   return (
     <div className=" flex flex-col items-center justify-center">
