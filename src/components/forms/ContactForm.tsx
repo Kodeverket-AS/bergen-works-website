@@ -1,0 +1,273 @@
+// Global
+import { useFormStatus } from "react-dom";
+import { ChangeEvent, FormEvent, useState } from "react";
+
+// Email validation and handler
+import { handleContactFormSignup } from "@/lib/brevo/contact/handler";
+import {
+  type ContactFormKeys,
+  type ContactFormSchema,
+  contactFormSchema,
+  contactFormSchemaInitial,
+  contactFormValidateField,
+} from "@/schema/brevo";
+
+// User interface
+import {
+  TextField,
+  Button,
+  Typography,
+  Card,
+  CardContent,
+  Checkbox,
+  FormControlLabel,
+  CircularProgress,
+  Alert,
+  Tooltip,
+  Snackbar,
+  SnackbarContentProps,
+  AlertProps,
+} from "@mui/material";
+import InfoIcon from "@mui/icons-material/Info";
+
+export function ContactForm() {
+  // Form states
+  const [formData, setFormData] = useState<Required<ContactFormSchema>>(contactFormSchemaInitial);
+  const [errors, setErrors] = useState<Partial<Record<ContactFormKeys, string | undefined>>>({});
+  const [success, setSuccess] = useState(false);
+
+  // MUI toast notification
+  const [snackbar, setSnackbar] = useState<{ open: boolean; message: string; severity: "success" | "error" }>({
+    open: false,
+    message: "",
+    severity: "success",
+  });
+
+  // Helper function for checking progress status
+  const { pending } = useFormStatus();
+
+  // Helper function for quickly validating formData, returns true or false
+  const isFormValid = () => contactFormSchema.safeParse(formData).success;
+
+  // Helper function for validating formData when user is typing
+  function handleValidate(field: ContactFormKeys, value: string | boolean) {
+    const validate = contactFormValidateField(field, value);
+    if (validate) setErrors((prev) => ({ ...prev, [validate.field]: validate.error ? validate.error : undefined }));
+  }
+
+  // Helper function for handling input element changes
+  function handleChange(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    const { name, type } = e.target;
+    const value = type === "checkbox" ? (e.target as HTMLInputElement).checked : e.target.value;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    handleValidate(name as ContactFormKeys, value);
+  }
+
+  // Extends handleChange by also running validation when input field looses focus
+  function handleBlur(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    const { name } = e.target;
+    handleValidate(name as ContactFormKeys, formData[name as ContactFormKeys]);
+  }
+
+  // Handles form submission by running validation, on success will call email handler.
+  async function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+
+    // Start final validation
+    const validation = contactFormSchema.safeParse(formData);
+    if (!validation.success) {
+      // Schema validation during form submit handling failed
+      setErrors({ message: "Sjekk at alle felt er fylt ut riktig" });
+      return;
+    }
+
+    if (validation.success) {
+      try {
+        const res = await handleContactFormSignup(validation.data);
+        if (res?.code === 200) {
+          setFormData(contactFormSchemaInitial);
+          setSuccess(true);
+        }
+        setErrors({ message: res?.message as string });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+  return (
+    <div id="contact-form" className="flex justify-center items-center px-4 py-10 bg-white text-black">
+      <div className="flex flex-col lg:flex-row w-full max-w-4xl gap-x-6">
+        <div className="flex-1 space-y-6">
+          <Card className="py-6 bg-white rounded-3xl shadow-lg">
+            <CardContent>
+              <Typography variant="h5" gutterBottom>
+                Kom i gang
+              </Typography>
+              <Typography variant="body1" className="text-lg">
+                Er du interessert i å bli en del av fellesskapet eller har du noen spørsmål? Fyll ut kontaktskjemaet, så
+                kontakter vi deg forløpende.
+              </Typography>
+            </CardContent>
+          </Card>
+          <Card className="py-6 bg-white rounded-3xl shadow-lg">
+            <CardContent>
+              <form onSubmit={handleSubmit}>
+                <TextField
+                  label="Navn"
+                  type="text"
+                  fullWidth
+                  required
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  margin="normal"
+                  placeholder="Skriv inn ditt navn"
+                  sx={{
+                    "& .MuiOutlinedInput-root": {
+                      borderRadius: 2,
+                    },
+                  }}
+                  error={!!errors.name}
+                />
+                <TextField
+                  label="E-post"
+                  type="email"
+                  fullWidth
+                  required
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  margin="normal"
+                  placeholder="din.epost@eksempel.no"
+                  sx={{
+                    "& .MuiOutlinedInput-root": {
+                      borderRadius: 2,
+                    },
+                  }}
+                  error={!!errors.email}
+                />
+                <TextField
+                  label="Telefonnummer"
+                  type="tel"
+                  fullWidth
+                  required
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  margin="normal"
+                  placeholder="Skriv inn ditt telefonnummer"
+                  sx={{
+                    "& .MuiOutlinedInput-root": {
+                      borderRadius: 2,
+                    },
+                  }}
+                  error={!!errors.phone}
+                />
+                <TextField
+                  label="Melding"
+                  multiline
+                  rows={4}
+                  fullWidth
+                  required
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  margin="normal"
+                  placeholder="Skriv din melding her..."
+                  sx={{
+                    "& .MuiOutlinedInput-root": {
+                      borderRadius: 2,
+                    },
+                  }}
+                  error={!!errors.message}
+                />
+                <div className="mt-4 mb-2">
+                  <Typography variant="subtitle1" className="flex items-center gap-2">
+                    Kategori
+                    <Tooltip title="Velg alle alternativer som passer for deg">
+                      <InfoIcon fontSize="small" color="action" />
+                    </Tooltip>
+                  </Typography>
+                </div>
+                {/* <div
+                  style={{
+                    display: "flex",
+                    gap: "20px",
+                    flexWrap: "wrap",
+                  }}
+                >
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={checked["Åpen plass"]}
+                        onChange={handleCheckboxChange}
+                        name="Åpen plass"
+                        disabled={loading}
+                      />
+                    }
+                    label="Åpen plass"
+                  />
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={checked["Fast plass"]}
+                        onChange={handleCheckboxChange}
+                        name="Fast plass"
+                        disabled={loading}
+                      />
+                    }
+                    label="Fast plass"
+                  />
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={checked["Annet"]}
+                        onChange={handleCheckboxChange}
+                        name="Annet"
+                        disabled={loading}
+                      />
+                    }
+                    label="Annet"
+                  />
+                </div> */}
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  disabled={false}
+                  sx={{
+                    marginTop: "16px",
+                    width: "auto",
+                    padding: "10px 20px",
+                    textAlign: "center",
+                    backgroundColor: "rgb(37, 58, 26)",
+                    "&:hover": {
+                      backgroundColor: "rgb(28, 43, 20)",
+                    },
+                    borderRadius: 2,
+                  }}
+                >
+                  {pending ? <CircularProgress size={24} color="inherit" /> : "Send Melding"}
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={6000}
+        onClose={() => {
+          setSnackbar({ ...snackbar, open: false });
+        }}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      >
+        <Alert
+          onClose={() => {
+            setSnackbar({ ...snackbar, open: false });
+          }}
+          severity={snackbar.severity}
+          sx={{ width: "100%" }}
+        >
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
+    </div>
+  );
+}
