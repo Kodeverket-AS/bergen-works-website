@@ -5,8 +5,9 @@ import Partnere from "../components/Partnere";
 import Fasiliteter from "../components/Fasiliteter";
 import InformationSection from "@/components/Informasjon";
 import ArticlesMain from "../components/ArticlesMain";
-import KontaktForm from "../components/KontaktForm";
+/* import KontaktForm from "../components/KontaktForm"; */
 import Events from "../components/Events";
+import { ContactForm } from "@/components/forms/ContactForm";
 export default function Home() {
   return (
     <main className="">
@@ -16,7 +17,8 @@ export default function Home() {
       <Partnere />
       <ArticlesMain />
       <Events />
-      <KontaktForm />
+      {/* <KontaktForm /> */}
+      <ContactForm />
     </main>
   );
 }
