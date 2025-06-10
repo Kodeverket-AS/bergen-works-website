@@ -1,6 +1,6 @@
 "server-only";
 
-import { BrevoSchema } from "@/types/brevo.types";
+import { ContactFormSchema } from "@/schema/brevo";
 
 export class BrevoClient {
   private config;
@@ -22,7 +22,7 @@ export class BrevoClient {
    * @param templateID id of the template this email should use. Check for {@link https://app.brevo.com/templates/listing|available} templates
    * @returns
    */
-  async sendEmail(contact: BrevoSchema, templateID: number) {
+  async sendEmail(contact: ContactFormSchema, templateID: number) {
     const request = {
       method: "POST",
       headers: {
@@ -32,9 +32,7 @@ export class BrevoClient {
         "X-Sib-Sandbox": "drop",
       },
       body: JSON.stringify({
-        sender: { email: "kunkristoffer@gmail.com", name: "kun kristoffer" },
-        to: [{ email: "post@teamwork.no", name: "postmaster teamwork" }],
-        subject: `${contact.fullName} ønsker mer informasjon om: ${contact.subject}`,
+        subject: `${contact.name} ønsker mer informasjon om: ${contact.category}`,
         templateID,
         params: { ...contact },
       }),
