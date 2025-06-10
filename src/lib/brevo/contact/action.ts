@@ -1,9 +1,9 @@
 "use server";
 
 import { brevo } from "@/lib/brevo/app";
-import { BrevoSchema } from "@/types/brevo.types";
+import { ContactFormSchema } from "@/schema/brevo";
 
-export async function contactFormSignup(formData: BrevoSchema) {
+export async function contactFormSignup(formData: ContactFormSchema) {
   // Validate form bindings and values
   /* const validate = contactFormSchema.safeParse(content);
   if (!validate.success) {
