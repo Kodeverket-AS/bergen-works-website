@@ -36,7 +36,7 @@ export function ContactForm() {
   // Form states
   const [formData, setFormData] = useState<Required<ContactFormSchema>>(contactFormSchemaInitial);
   const [errors, setErrors] = useState<Partial<Record<ContactFormKeys, string | undefined>>>({});
-  const [success, setSuccess] = useState<boolean>(false);
+  const [success, setSuccess] = useState<{ status: boolean; message: string }>({ status: false, message: "" });
 
   // MUI toast notification
   const [snackbar, setSnackbar] = useState<{ open: boolean; message: string; severity: "success" | "error" }>({
@@ -83,18 +83,18 @@ export function ContactForm() {
     const validation = contactFormSchema.safeParse(formData);
     if (!validation.success) {
       // Schema validation during form submit handling failed
-      setErrors({ message: "Sjekk at alle felt er fylt ut riktig" });
+      setSuccess({ status: false, message: "Sjekk at alle felt er fylt ut riktig" });
       return;
     }
 
     if (validation.success) {
       try {
         const res = await handleContactFormSignup(validation.data);
-        if (res?.code === 200) {
-          setFormData(contactFormSchemaInitial);
-          setSuccess(true);
-        }
+        setSuccess({ status: res.code === 200 ? true : false, message: res.message });
       } catch (error) {
+        if (typeof error === "string") {
+          setSuccess({ status: false, message: error });
+        }
         console.log(error);
       }
     }
@@ -132,6 +132,7 @@ export function ContactForm() {
                       borderRadius: 2,
                     },
                   }}
+                  disabled={success.status}
                   error={!!errors.name}
                   helperText={errors.name}
                 />
@@ -150,6 +151,7 @@ export function ContactForm() {
                       borderRadius: 2,
                     },
                   }}
+                  disabled={success.status}
                   error={!!errors.email}
                   helperText={errors.email}
                 />
@@ -168,6 +170,7 @@ export function ContactForm() {
                       borderRadius: 2,
                     },
                   }}
+                  disabled={success.status}
                   error={!!errors.phone}
                   helperText={errors.phone}
                 />
@@ -187,6 +190,7 @@ export function ContactForm() {
                       borderRadius: 2,
                     },
                   }}
+                  disabled={success.status}
                   error={!!errors.message}
                   helperText={errors.message}
                 />
@@ -203,6 +207,7 @@ export function ContactForm() {
                         <Checkbox
                           checked={formData.category === "åpen plass"}
                           onChange={handleChange}
+                          disabled={success.status}
                           name="category"
                           slotProps={{
                             input: {
@@ -218,6 +223,7 @@ export function ContactForm() {
                         <Checkbox
                           checked={formData.category === "fast plass"}
                           onChange={handleChange}
+                          disabled={success.status}
                           name="category"
                           slotProps={{
                             input: {
@@ -233,6 +239,7 @@ export function ContactForm() {
                         <Checkbox
                           checked={formData.category === "annet"}
                           onChange={handleChange}
+                          disabled={success.status}
                           name="category"
                           slotProps={{
                             input: {
@@ -251,7 +258,13 @@ export function ContactForm() {
                   <h3>Samtykke til lagring av data</h3>
                   <FormControlLabel
                     control={
-                      <Checkbox id="consent" name="consent" checked={formData.consent} onChange={handleChange} />
+                      <Checkbox
+                        id="consent"
+                        name="consent"
+                        checked={formData.consent}
+                        onChange={handleChange}
+                        disabled={success.status}
+                      />
                     }
                     label="Jeg gir samtykke til min kontakt informasjon blir lagret for å kunne kontakte meg. Du kan trekke dette samtykket tilbake når som helst."
                   />
@@ -264,14 +277,17 @@ export function ContactForm() {
                     Du må godta vår personvernærklaring for lagring av e-post før du bruker kontakt oss skjema
                   </p>
                 )}
-                {success ? (
-                  <p className="text-center py-4">Takk for din hendvendelse, vi tar kontakt så fort som mulig!</p>
-                ) : (
+                {success.message !== "" && (
+                  <p className={`text-center py-4 ${success.status ? "text-black" : "text-red-600"}`}>
+                    {success.message}
+                  </p>
+                )}
+                {!success.status && (
                   <Button
                     type="submit"
                     variant="contained"
                     color="primary"
-                    disabled={!isFormValid() || success}
+                    disabled={!isFormValid()}
                     sx={{
                       marginTop: "16px",
                       width: "auto",
