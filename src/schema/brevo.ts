@@ -6,13 +6,12 @@ export const contactFormSchemaInitial: ContactFormSchema = {
   email: "",
   phone: "",
   message: "",
-  category: "Annet",
+  category: "annet",
   consent: false,
 };
 
 // Initial values for form subject, used in component
-// !important Remember to update validation rules in contactFormSchema.subject below when doing changes in this array
-export const contactFormSchemaSubjects = ["medarbeiderskap", "ledMed", "ekspertbistand", "annet"];
+export const contactFormSchemaSubjects = ["åpen plass", "fast plass", "annet"] as const;
 
 // Validation rules
 export const contactFormSchema = z.object({
@@ -31,7 +30,7 @@ export const contactFormSchema = z.object({
     .max(1000, { message: "Du trenger ikke å skrive en så lang novelle!" }),
   category: z.preprocess(
     (val) => (typeof val === "string" && val.trim() === "" ? undefined : val),
-    z.enum(["Åpen plass", "Fast plass", "Annet"]).refine((val) => !!val, { message: "Du må velge et alternativ" })
+    z.enum(contactFormSchemaSubjects).refine((val) => !!val, { message: "Du må velge et alternativ" })
   ),
   consent: z
     .boolean()
@@ -44,6 +43,7 @@ export type ContactFormSchema = z.infer<typeof contactFormSchema>;
 // Create read-only array of form keys and types
 export const contactFormKeys = z.enum(contactFormSchema.keyof().options);
 export type ContactFormKeys = z.infer<typeof contactFormKeys>;
+export type ContactFormSchemaSubjects = typeof contactFormSchemaSubjects[number]
 
 // Validdation helper function
 export function contactFormValidateField(field: ContactFormKeys, value: string | boolean) {
