@@ -5,5 +5,5 @@ import { contactFormSignup } from "./action";
 
 export async function handleContactFormSignup(formData: ContactFormSchema) {
   const res = await contactFormSignup(formData);
-  return JSON.parse(JSON.stringify(res));
+  return JSON.parse(JSON.stringify(res)) as { code: number; message: string };
 }
