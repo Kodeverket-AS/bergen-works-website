@@ -11,6 +11,6 @@ export async function contactFormSignup(formData: ContactFormSchema) {
   } */
 
   // Notify staff on new response trough e-mail
-  const response = await brevo.sendEmail(formData, 1);
+  const response = await brevo.sendEmail(formData, 2);
   return response;
 }
