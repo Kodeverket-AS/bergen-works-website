@@ -92,7 +92,6 @@ export function ContactForm() {
           setFormData(contactFormSchemaInitial);
           setSuccess(true);
         }
-        setErrors({ message: res?.message as string });
       } catch (error) {
         console.log(error);
       }
@@ -265,25 +264,29 @@ export function ContactForm() {
                     Du må godta vår personvernærklaring for lagring av e-post før du bruker kontakt oss skjema
                   </p>
                 )}
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  disabled={!isFormValid() || success}
-                  sx={{
-                    marginTop: "16px",
-                    width: "auto",
-                    padding: "10px 20px",
-                    textAlign: "center",
-                    backgroundColor: "rgb(37, 58, 26)",
-                    "&:hover": {
-                      backgroundColor: "rgb(28, 43, 20)",
-                    },
-                    borderRadius: 2,
-                  }}
-                >
-                  {pending ? <CircularProgress size={24} color="inherit" /> : "Send Melding"}
-                </Button>
+                {success ? (
+                  <p className="text-center py-4">Takk for din hendvendelse, vi tar kontakt så fort som mulig!</p>
+                ) : (
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    disabled={!isFormValid() || success}
+                    sx={{
+                      marginTop: "16px",
+                      width: "auto",
+                      padding: "10px 20px",
+                      textAlign: "center",
+                      backgroundColor: "rgb(37, 58, 26)",
+                      "&:hover": {
+                        backgroundColor: "rgb(28, 43, 20)",
+                      },
+                      borderRadius: 2,
+                    }}
+                  >
+                    {pending ? <CircularProgress size={24} color="inherit" /> : "Send Melding"}
+                  </Button>
+                )}
               </form>
             </CardContent>
           </Card>
