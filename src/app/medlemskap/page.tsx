@@ -1,8 +1,8 @@
 import { FasiliteterCard } from "../../components/ui/FasiliteterCard";
+import { Button } from "@/components/ui/buttons/Button";
+import { GetStarted } from "@/components/layout/GetStarted";
 import Eget_Kontor from "../../components/layout/eget_komtor/page";
 import Medlemskap_iconer from "../../components/layout/Medlemskap_iconer";
-import Kom_i_gang from "../../components/layout/kom_i_gang";
-import { Button } from "@/components/ui/buttons/Button";
 
 export default function Incubator() {
   return (
@@ -18,9 +18,7 @@ export default function Incubator() {
           smallScreenReverse={false}
           largeScreenReverse={false}
           cardStyle={"gap-3 md:gap-6"}
-          imageContainerStyle={
-            "w-full h-[400px] md:h-auto md:w-1/2 lg:w-3/5 lg:h-auto"
-          }
+          imageContainerStyle={"w-full h-[400px] md:h-auto md:w-1/2 lg:w-3/5 lg:h-auto"}
           headerStyle={"text-2xl md:text-2xl xl:text-3xl"}
           textContainerStyle={"bg-black text-white md:w-1/2 lg:w-2/5 xl:h-auto"}
           paragraphStyle={"my-4"}
@@ -37,7 +35,7 @@ export default function Incubator() {
       </div>
       <Eget_Kontor />
       <Medlemskap_iconer />
-      <Kom_i_gang />
+      <GetStarted />
     </main>
   );
 }
