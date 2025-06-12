@@ -9,6 +9,7 @@ import {
   type ContactFormSchema,
   contactFormSchema,
   contactFormSchemaInitial,
+  ContactFormSchemaSubjects,
   contactFormValidateField,
 } from "@/schema/brevo";
 
@@ -52,15 +53,22 @@ export function ContactForm() {
   // Helper function for validating formData when user is typing
   function handleValidate(field: ContactFormKeys, value: string | boolean) {
     const validate = contactFormValidateField(field, value);
+
+    console.log(field, value, validate);
     if (validate) setErrors((prev) => ({ ...prev, [validate.field]: validate.error ? validate.error : undefined }));
   }
 
-  // Helper function for handling input element changes
   function handleChange(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     const { name, type } = e.target;
     const value = type === "checkbox" ? (e.target as HTMLInputElement).checked : e.target.value;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    handleValidate(name as ContactFormKeys, value);
+
+    if (type === "checkbox") {
+      setFormData((prev) => ({ ...prev, category: name as ContactFormSchemaSubjects }));
+      handleValidate("category", name);
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+      handleValidate(name as ContactFormKeys, value);
+    }
   }
 
   // Extends handleChange by also running validation when input field looses focus
@@ -81,7 +89,7 @@ export function ContactForm() {
       return;
     }
 
-    if (validation.success) {
+    /* if (validation.success) {
       try {
         const res = await handleContactFormSignup(validation.data);
         if (res?.code === 200) {
@@ -92,7 +100,7 @@ export function ContactForm() {
       } catch (error) {
         console.log(error);
       }
-    }
+    } */
   }
   return (
     <div id="contact-form" className="flex justify-center items-center px-4 py-10 bg-white text-black">
@@ -114,6 +122,7 @@ export function ContactForm() {
               <form onSubmit={handleSubmit}>
                 <TextField
                   label="Navn"
+                  name="name"
                   type="text"
                   fullWidth
                   required
@@ -130,6 +139,7 @@ export function ContactForm() {
                 />
                 <TextField
                   label="E-post"
+                  name="email"
                   type="email"
                   fullWidth
                   required
@@ -146,6 +156,7 @@ export function ContactForm() {
                 />
                 <TextField
                   label="Telefonnummer"
+                  name="phone"
                   type="tel"
                   fullWidth
                   required
@@ -162,6 +173,7 @@ export function ContactForm() {
                 />
                 <TextField
                   label="Melding"
+                  name="message"
                   multiline
                   rows={4}
                   fullWidth
@@ -185,7 +197,7 @@ export function ContactForm() {
                     </Tooltip>
                   </Typography>
                 </div>
-                {/* <div
+                <div
                   style={{
                     display: "flex",
                     gap: "20px",
@@ -195,10 +207,9 @@ export function ContactForm() {
                   <FormControlLabel
                     control={
                       <Checkbox
-                        checked={checked["Åpen plass"]}
-                        onChange={handleCheckboxChange}
-                        name="Åpen plass"
-                        disabled={loading}
+                        checked={formData.category === "åpen plass"}
+                        onChange={handleChange}
+                        name="åpen plass"
                       />
                     }
                     label="Åpen plass"
@@ -206,26 +217,18 @@ export function ContactForm() {
                   <FormControlLabel
                     control={
                       <Checkbox
-                        checked={checked["Fast plass"]}
-                        onChange={handleCheckboxChange}
-                        name="Fast plass"
-                        disabled={loading}
+                        checked={formData.category === "fast plass"}
+                        onChange={handleChange}
+                        name="fast plass"
                       />
                     }
                     label="Fast plass"
                   />
                   <FormControlLabel
-                    control={
-                      <Checkbox
-                        checked={checked["Annet"]}
-                        onChange={handleCheckboxChange}
-                        name="Annet"
-                        disabled={loading}
-                      />
-                    }
+                    control={<Checkbox checked={formData.category === "annet"} onChange={handleChange} name="annet" />}
                     label="Annet"
                   />
-                </div> */}
+                </div>
                 <Button
                   type="submit"
                   variant="contained"
