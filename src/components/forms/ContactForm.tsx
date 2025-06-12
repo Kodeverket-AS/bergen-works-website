@@ -251,9 +251,7 @@ export function ContactForm() {
                     control={
                       <Checkbox id="consent" name="consent" checked={formData.consent} onChange={handleChange} />
                     }
-                    label="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga sunt deleniti nulla totam sit,
-                        necessitatibus ipsam autem tempore non vel, laboriosam laborum odit alias numquam cum error,
-                        voluptatibus quibusdam consequatur modi."
+                    label="Jeg gir samtykke til min kontakt informasjon blir lagret for å kunne kontakte meg. Du kan trekke dette samtykket tilbake når som helst."
                   />
                   <Link href={"/personvern"} className="text-sm text-blue-700">
                     Les vår personvernerklæring
