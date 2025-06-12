@@ -52,8 +52,6 @@ export function ContactForm() {
   // Helper function for validating formData when user is typing
   function handleValidate(field: ContactFormKeys, value: string | boolean) {
     const validate = contactFormValidateField(field, value);
-
-    console.log(field, value, validate);
     if (validate) setErrors((prev) => ({ ...prev, [validate.field]: validate.error ? validate.error : undefined }));
   }
 
@@ -64,6 +62,7 @@ export function ContactForm() {
     // Special rule for handling subject checkboxes with data attributes
     const category = e.target.dataset.category as ContactFormSchemaSubjects;
 
+    // Update formdata and handle early validation for input feedback
     setFormData((prev) => ({ ...prev, [name]: name === "category" ? category : value }));
     handleValidate(name as ContactFormKeys, name === "category" ? category : value);
   }
@@ -80,7 +79,6 @@ export function ContactForm() {
 
     // Start final validation
     const validation = contactFormSchema.safeParse(formData);
-    console.log(formData, validation);
     if (!validation.success) {
       // Schema validation during form submit handling failed
       setErrors({ message: "Sjekk at alle felt er fylt ut riktig" });
