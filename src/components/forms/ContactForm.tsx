@@ -1,3 +1,5 @@
+"use client";
+
 // Global
 import { useFormStatus } from "react-dom";
 import { ChangeEvent, FormEvent, useState } from "react";
