@@ -26,16 +26,15 @@ import {
   Alert,
   Tooltip,
   Snackbar,
-  SnackbarContentProps,
-  AlertProps,
 } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
+import Link from "next/link";
 
 export function ContactForm() {
   // Form states
   const [formData, setFormData] = useState<Required<ContactFormSchema>>(contactFormSchemaInitial);
   const [errors, setErrors] = useState<Partial<Record<ContactFormKeys, string | undefined>>>({});
-  const [success, setSuccess] = useState(false);
+  const [success, setSuccess] = useState<boolean>(false);
 
   // MUI toast notification
   const [snackbar, setSnackbar] = useState<{ open: boolean; message: string; severity: "success" | "error" }>({
@@ -62,13 +61,11 @@ export function ContactForm() {
     const { name, type } = e.target;
     const value = type === "checkbox" ? (e.target as HTMLInputElement).checked : e.target.value;
 
-    if (type === "checkbox") {
-      setFormData((prev) => ({ ...prev, category: name as ContactFormSchemaSubjects }));
-      handleValidate("category", name);
-    } else {
-      setFormData((prev) => ({ ...prev, [name]: value }));
-      handleValidate(name as ContactFormKeys, value);
-    }
+    // Special rule for handling subject checkboxes with data attributes
+    const category = e.target.dataset.category as ContactFormSchemaSubjects;
+
+    setFormData((prev) => ({ ...prev, [name]: name === "category" ? category : value }));
+    handleValidate(name as ContactFormKeys, name === "category" ? category : value);
   }
 
   // Extends handleChange by also running validation when input field looses focus
@@ -83,13 +80,14 @@ export function ContactForm() {
 
     // Start final validation
     const validation = contactFormSchema.safeParse(formData);
+    console.log(formData, validation);
     if (!validation.success) {
       // Schema validation during form submit handling failed
       setErrors({ message: "Sjekk at alle felt er fylt ut riktig" });
       return;
     }
 
-    /* if (validation.success) {
+    if (validation.success) {
       try {
         const res = await handleContactFormSignup(validation.data);
         if (res?.code === 200) {
@@ -100,7 +98,7 @@ export function ContactForm() {
       } catch (error) {
         console.log(error);
       }
-    } */
+    }
   }
   return (
     <div id="contact-form" className="flex justify-center items-center px-4 py-10 bg-white text-black">
@@ -136,6 +134,7 @@ export function ContactForm() {
                     },
                   }}
                   error={!!errors.name}
+                  helperText={errors.name}
                 />
                 <TextField
                   label="E-post"
@@ -153,6 +152,7 @@ export function ContactForm() {
                     },
                   }}
                   error={!!errors.email}
+                  helperText={errors.email}
                 />
                 <TextField
                   label="Telefonnummer"
@@ -170,6 +170,7 @@ export function ContactForm() {
                     },
                   }}
                   error={!!errors.phone}
+                  helperText={errors.phone}
                 />
                 <TextField
                   label="Melding"
@@ -188,52 +189,89 @@ export function ContactForm() {
                     },
                   }}
                   error={!!errors.message}
+                  helperText={errors.message}
                 />
-                <div className="mt-4 mb-2">
+                <div className="flex flex-col gap-4 my-4 p-4 border rounded-lg border-gray-300">
                   <Typography variant="subtitle1" className="flex items-center gap-2">
                     Kategori
                     <Tooltip title="Velg alle alternativer som passer for deg">
                       <InfoIcon fontSize="small" color="action" />
                     </Tooltip>
                   </Typography>
+                  <span className="flex flex-wrap gap-5">
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          checked={formData.category === "åpen plass"}
+                          onChange={handleChange}
+                          name="category"
+                          slotProps={{
+                            input: {
+                              "data-category": "åpen plass",
+                            } as React.InputHTMLAttributes<HTMLInputElement>,
+                          }}
+                        />
+                      }
+                      label="Åpen plass"
+                    />
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          checked={formData.category === "fast plass"}
+                          onChange={handleChange}
+                          name="category"
+                          slotProps={{
+                            input: {
+                              "data-category": "fast plass",
+                            } as React.InputHTMLAttributes<HTMLInputElement>,
+                          }}
+                        />
+                      }
+                      label="Fast plass"
+                    />
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          checked={formData.category === "annet"}
+                          onChange={handleChange}
+                          name="category"
+                          slotProps={{
+                            input: {
+                              "data-category": "annet",
+                            } as React.InputHTMLAttributes<HTMLInputElement>,
+                          }}
+                        />
+                      }
+                      label="Annet"
+                    />
+                  </span>
                 </div>
                 <div
-                  style={{
-                    display: "flex",
-                    gap: "20px",
-                    flexWrap: "wrap",
-                  }}
+                  className={`flex flex-col gap-4 my-4 p-4 border rounded-lg border-gray-300 ${errors.consent ? "border-red-500" : ""}`}
                 >
+                  <h3>Samtykke til lagring av data</h3>
                   <FormControlLabel
                     control={
-                      <Checkbox
-                        checked={formData.category === "åpen plass"}
-                        onChange={handleChange}
-                        name="åpen plass"
-                      />
+                      <Checkbox id="consent" name="consent" checked={formData.consent} onChange={handleChange} />
                     }
-                    label="Åpen plass"
+                    label="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga sunt deleniti nulla totam sit,
+                        necessitatibus ipsam autem tempore non vel, laboriosam laborum odit alias numquam cum error,
+                        voluptatibus quibusdam consequatur modi."
                   />
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        checked={formData.category === "fast plass"}
-                        onChange={handleChange}
-                        name="fast plass"
-                      />
-                    }
-                    label="Fast plass"
-                  />
-                  <FormControlLabel
-                    control={<Checkbox checked={formData.category === "annet"} onChange={handleChange} name="annet" />}
-                    label="Annet"
-                  />
+                  <Link href={"/personvern"} className="text-sm text-blue-700">
+                    Les vår personvernerklæring
+                  </Link>
                 </div>
+                {errors.consent && (
+                  <p className="pl-2 text-sm text-red-400">
+                    Du må godta vår personvernærklaring for lagring av e-post før du bruker kontakt oss skjema
+                  </p>
+                )}
                 <Button
                   type="submit"
                   variant="contained"
                   color="primary"
-                  disabled={false}
+                  disabled={!isFormValid() || success}
                   sx={{
                     marginTop: "16px",
                     width: "auto",
