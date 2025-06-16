@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import { FasiliteterCard } from "@/components/ui/FasiliteterCard";
 
 export default function Page() { 
     return (
