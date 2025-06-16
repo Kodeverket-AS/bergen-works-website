@@ -10,7 +10,7 @@ export default function Hero() {
         headerText={"Bergen.Works"}
         paragraphText={"Innovation in the heart of the city"}
         reverse={false}
-        cardStyle={""}
+        cardStyle={"gap-3 md:gap-6"}
         imageContainerStyle={
           "w-full h-[400px] md:h-[350px] xl:h-[400px] lg:w-3/5"
         }

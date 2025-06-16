@@ -1,25 +1,25 @@
 import React from "react";
 import KontaktForm from "../KontaktForm";
+import Image from "next/image";
 
 const Kom_i_gang = () => {
-    return (
-        <section className='flex w-full h-auto '>
-            <div className='container mx-auto px-4'>
-                <div className='flex flex-col md:flex-row gap-6 md:gap-10 my-10 md:my-15'>
-                    <div className='w-full md:w-1/2'>
-                        <KontaktForm />
-                    </div>
-                    <div className='w-full md:w-1/2 pb-12'>
-                        <img
-                            className='w-full mt-12 object-cover h-full rounded-lg'
-                            src='Møte-rom.png'
-                            alt='Møterom i Bergen.Works'
-                        />
-                    </div>
-                </div>
-            </div>
-        </section>
-    );
+  return (
+    <section className="flex w-full h-auto ">
+      <div className="w-full h-full  flex flex-col md:flex-row justify-center my-10  md:gap-3 lg:gap-10">
+        <div className="w-full md:w-1/2">
+          <KontaktForm />
+        </div>
+        <div className="relative my-10 h-[350px]  md:h-auto md:w-1/2">
+          <Image
+            className="object-cover rounded-2xl"
+            src="/Møte-rom.png"
+            alt="Møterom i Bergen.Works"
+            fill
+          />
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default Kom_i_gang;
