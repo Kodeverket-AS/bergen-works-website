@@ -152,9 +152,13 @@ function Footer() {
                 <p className='flex justify-center'>
                     Utviklet i regnet av Kodeverket Bergen © 2025
                 </p>
-                <a href='/personvern'>
+                    <a href='/kameraovervaking'>
+                    <p className='flex justify-center '>Kameraovervaking</p>
+                    </a>
+
+                    <a href='/personvern'>
                     <p className='flex justify-center mb-8'>Personvernerklæring</p>
-                </a>
+                    </a>      
             </section>
 
          
