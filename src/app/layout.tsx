@@ -7,6 +7,7 @@ import { SanityProvider } from "@/context/SanityContext";
 import { getArticles } from "./sanity/lib/getArticles"; 
 import { getEvents } from "./sanity/lib/getEvents";
 import MuiClientThemeProvider from '@/components/layout/MuiClientThemeProvider'; 
+import SommerKampanje from '../components/SommerKampanje'
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -85,6 +86,7 @@ export default async function RootLayout({
           <SanityProvider articles={articles} events={events}>
             <Header />
             {children}
+              <SommerKampanje />
             <Footer />
           </SanityProvider>
         </MuiClientThemeProvider>
