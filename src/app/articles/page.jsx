@@ -1,7 +1,7 @@
 "use client";
 import { useSanity } from "@/context/SanityContext";
-import { useState } from "react";
-import { Skeleton, Card, CardMedia, Typography, Pagination } from "@mui/material";
+import { useState, useEffect, useRef } from "react";
+import { Skeleton, Card, CardMedia, Typography } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -123,10 +123,54 @@ const ArticleCard = ({ article, index }) => {
   );
 };
 
+function Pagination({ page, pageCount, onChange }) {
+  if (pageCount <= 1) return null;
+  return (
+    <div className="flex gap-2 justify-center">
+      <button
+        onClick={() => {
+          if (page > 1) onChange(page - 1);
+        }}
+        disabled={page === 1}
+        aria-label="forrige"
+        className="px-3 py-1 rounded-full disabled:opacity-50"
+      >
+        &lt;
+      </button>
+      {Array.from({ length: pageCount }, (_, idx) => (
+        <button
+          key={idx}
+          onClick={() => onChange(idx + 1)}
+          className={`px-3 py-1 rounded-full ${page === idx + 1 ? 'bg-moss-400 text-white font-semibold hover:bg-gray-400' : 'bg-white text-black'}`}
+        >
+          {idx + 1}
+        </button>
+      ))}
+      <button
+        onClick={() => {
+          if (page < pageCount) onChange(page + 1);
+        }}
+        disabled={page === pageCount}
+        aria-label="neste"
+        className="px-3 py-1 rounded-full disabled:opacity-50"
+      >
+        &gt;
+      </button>
+    </div>
+  );
+}
+
 export default function ArticleList() {
   const { articles, loading } = useSanity();
   const [currentPage, setCurrentPage] = useState(1);
   const articlesPerPage = 5;
+  const headerRef = useRef(null);
+
+  useEffect(() => {
+    if (headerRef.current) {
+      headerRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [currentPage]);
 
   if (loading) return <LoadingSkeleton />;
 
@@ -156,7 +200,7 @@ export default function ArticleList() {
 
   return (
     <div className="w-full py-10 px-4 bg-white text-black ">
-      <h1 className="text-4xl text-center mb-10 font-bold">Artikler og Nyheter</h1>
+      <h1 ref={headerRef} className="text-4xl text-center mb-10 font-bold">Artikler og Nyheter</h1>
 
       <div className="flex flex-col gap-8 w-full max-w-5xl mx-auto ">
         {currentArticles.map((article, index) => (
@@ -166,12 +210,9 @@ export default function ArticleList() {
 
       <div className="flex justify-center mt-8">
         <Pagination
-          count={Math.ceil(articlesWithSlugs.length / articlesPerPage)}
           page={currentPage}
-          onChange={(_, value) => {
-            setCurrentPage(value);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
+          pageCount={Math.ceil(articlesWithSlugs.length / articlesPerPage)}
+          onChange={setCurrentPage}
         />
       </div>
     </div>
