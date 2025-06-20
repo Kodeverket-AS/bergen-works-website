@@ -93,7 +93,7 @@ const SommerKampanje = () => {
 
           <a
             href="/#contact-form"
-            className="w-full sm:inline-block sm:w-auto bg-moss-500 text-white font-bold py-3 px-6 sm:py-4 sm:px-8 rounded-full text-base sm:text-lg uppercase tracking-wide hover:bg-moss-600 transition duration-300 ease-in-out transform hover:scale-105"
+            className="w-full sm:inline-block sm:w-auto bg-moss-500 text-white font-bold py-2 px-4 sm:py-4 sm:px-8 rounded-full text-sm sm:text-lg uppercase tracking-wide hover:bg-moss-600 transition duration-300 ease-in-out transform hover:scale-105"
             onClick={handleClose}
           >
             Sikre deg din kontorplass i dag!
