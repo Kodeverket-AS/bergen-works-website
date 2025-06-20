@@ -8,16 +8,11 @@ const SommerKampanje = () => {
   const [isMounted, setIsMounted] = useState(false); 
 
   useEffect(() => {
-
     setIsMounted(true);
-
-    const hasSeenSummerPromo = sessionStorage.getItem('hasSeenSummerPromo');
-    if (!hasSeenSummerPromo) {
-      const timer = setTimeout(() => {
-        setIsOpen(true);
-      }, 2000); 
-      return () => clearTimeout(timer);
-    }
+    const timer = setTimeout(() => {
+      setIsOpen(true);
+    }, 3000);
+    return () => clearTimeout(timer);
   }, []); 
 
 
@@ -37,7 +32,6 @@ const SommerKampanje = () => {
 
   const handleClose = () => {
     setIsOpen(false);
-    sessionStorage.setItem('hasSeenSummerPromo', 'true'); 
   };
 
   if (!isOpen || !isMounted) return null;
@@ -45,7 +39,7 @@ const SommerKampanje = () => {
   return (
     <div className="fixed inset-0 bg-black/85 flex items-center justify-center z-50 p-4">
       <div
-        className="relative text-moss-600 font-work-sans rounded-xl shadow-2xl p-3 sm:p-4 md:p-8 lg:p-10 w-full max-w-[95vw] sm:max-w-sm md:max-w-lg mx-auto transform transition-all duration-300 ease-out scale-100 opacity-100 bg-white/90"
+        className="relative text-moss-600 font-work-sans rounded-xl shadow-2xl p-2 sm:p-4 md:p-8 lg:p-10 w-full max-w-[99vw] sm:max-w-xl md:max-w-3xl mx-auto transform transition-all duration-300 ease-out scale-100 opacity-100 bg-white/90 max-h-[85vh] md:max-h-[96vh] overflow-y-auto"
         style={{
           backgroundImage: 'url(/beach.jpg)',
           backgroundSize: 'cover',
@@ -99,7 +93,7 @@ const SommerKampanje = () => {
 
           <a
             href="/#contact-form"
-            className="inline-block bg-moss-500 text-white font-bold py-4 px-8 rounded-full text-lg uppercase tracking-wide hover:bg-moss-600 transition duration-300 ease-in-out transform hover:scale-105"
+            className="w-full sm:inline-block sm:w-auto bg-moss-500 text-white font-bold py-3 px-6 sm:py-4 sm:px-8 rounded-full text-base sm:text-lg uppercase tracking-wide hover:bg-moss-600 transition duration-300 ease-in-out transform hover:scale-105"
             onClick={handleClose}
           >
             Sikre deg din kontorplass i dag!
