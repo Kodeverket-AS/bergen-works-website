@@ -102,7 +102,7 @@ const SommerKampanje = () => {
           <p className="text-sm mt-4 text-gray-600 italic">Begrenset antall plasser.</p>
 
           <div className="mt-8 pt-4 border-t border-gray-300 flex justify-center ">
-            <Image src="/BW_logo.png" alt="Logo Bergen Work" width={120} height={60} />
+            <Image src="/BW_logo.png" alt="Logo Bergen Work" width={120} height={60} className="hidden sm:block" />
           </div>
         </div>
       </div>
