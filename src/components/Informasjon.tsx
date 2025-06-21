@@ -5,7 +5,7 @@ import { InfoCard } from "./ui/InfoCard";
 export default function InformationSection() {
   return (
     <div className="  flex flex-col items-center justify-center">
-      <div className="co-work  lg:max-h-[360px] xl:max-h-[400px] bg-[#1D1D1D] text-light-text lg:bg-transparent rounded-2xl flex flex-col items-center lg:flex-row  h-[720px] w-full lg:h-[450px] xl:h-[500px] gap-3 md:gap-6 lg:mb-[2em] items-stretch">
+      <div className="co-work  lg:max-h-[360px] xl:max-h-[400px] bg-[#1D1D1D] text-light-text lg:bg-transparent rounded-2xl flex flex-col items-center lg:flex-row  h-[750px] w-full lg:h-[450px] xl:h-[500px] gap-3 md:gap-6 lg:mb-[2em] items-stretch">
         <div className="p-10 select-none  md:bg-[#1D1D1D]  w-full h-full lg:w-1/3 rounded-2xl">
           <div className="bg-black relative rounded-lg w-full h-70  xl:h-full ">
             <Image
