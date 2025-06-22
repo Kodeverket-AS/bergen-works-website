@@ -32,6 +32,7 @@ export class BrevoClient {
         "X-Sib-Sandbox": "drop",
       },
       body: JSON.stringify({
+        to: [{ email: 'hello@bergen.works', name: 'Bergen Works' }],
         subject: `${contact.name} ønsker mer informasjon om: ${contact.category}`,
         templateID,
         params: { ...contact },
