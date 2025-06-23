@@ -13,6 +13,14 @@ const nextConfig: NextConfig = {
 
     async redirects() {
         return [
+            // 🔁 Ny redirect for /2025/05/30/artikkel-slug
+            {
+                source: "/:year(\\d{4})/:month(\\d{2})/:day(\\d{2})/:slug*",
+                destination:
+                    "https://admin.bergen.works/:year/:month/:day/:slug*",
+                permanent: false,
+            },
+            // Tidligere redirect-regler
             {
                 source: "/nyheter/:slug*",
                 destination: "https://admin.bergen.works/nyheter/:slug*",
