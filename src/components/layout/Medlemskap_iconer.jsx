@@ -21,7 +21,7 @@ const Medlemskap_iconer = () => {
     },
     {
       src: "./fasilitiesIcons/kaffe-tee-icon-white.png",
-      text: "Keffe/Te",
+      text: "Kaffe/Te",
       bg: "bg-moss-600",
       textColor: "text-white",
     },
