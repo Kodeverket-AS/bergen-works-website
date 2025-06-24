@@ -16,7 +16,7 @@ export default function Incubator() {
         cardStyle="gap-3 md:gap-6"
         imageContainerStyle="md:w-4/5 lg:w-3/5 md:h-auto h-96"
         textContainerStyle="text-white bg-black md:w-full lg:w-2/5 lg:h-auto"
-        headerStyle="text-white text-3xl md:text-5xl lg:text-6xl"
+        headerStyle="text-white text-3xl md:text-5xl xl:text-6xl"
         paragraphStyle="pt-4 lg:py-6"
         imageStyle={""}
       />
