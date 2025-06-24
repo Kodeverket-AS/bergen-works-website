@@ -39,12 +39,7 @@ const SommerKampanje = () => {
   return (
     <div className="fixed inset-0 bg-black/85 flex items-center justify-center z-50 p-4">
       <div
-        className="relative text-moss-600 font-work-sans rounded-xl shadow-2xl p-2 sm:p-4 md:p-8 lg:p-10 w-full max-w-[99vw] sm:max-w-xl md:max-w-3xl mx-auto transform transition-all duration-300 ease-out scale-100 opacity-100 bg-white/90 max-h-[85vh] md:max-h-[96vh] overflow-y-auto"
-        style={{
-          backgroundImage: 'url(/beach.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
+        className="relative text-moss-600 font-work-sans rounded-xl shadow-2xl p-2 sm:p-3 md:p-6 lg:p-7 w-full max-w-[85vw] sm:max-w-sm md:max-w-xl mx-auto transform transition-all duration-300 ease-out scale-100 opacity-100 bg-white/90 max-h-[85vh] md:max-h-[96vh] overflow-y-auto"
       >
         <button
           onClick={handleClose}
@@ -56,53 +51,44 @@ const SommerKampanje = () => {
 
         <div className="text-center ">
           <div className="mb-4 flex justify-center">
-            <Image
-              src="/sun.png"
-              alt="Sun icon"
-              width={60}
-              height={60}
-              className="animate-spin-slow sm:w-[80px] sm:h-[80px] md:w-[100px] md:h-[100px]"
-            />
           </div>
 
           <h2
-            className="text-4xl md:text-5xl font-extrabold mb-4 font-space-grotesk"
-          
+            className="text-3xl md:text-4xl font-extrabold mb-3 font-space-grotesk"
           >
             Sommerkampanje:
             <br/> <span className="text-moss-500">Få én måned gratis!</span>
           </h2>
 
-          <div className="mb-6 flex justify-center">
-            <Image src="/FastPlass_logo.png" alt="office" width={60} height={60} className="opacity-90 sm:w-[80px] sm:h-[80px]" />
+          <div className="mb-4 flex justify-center">
+            <Image src="/FastPlass_logo.png" alt="office" width={42} height={42} className="opacity-90 sm:w-[56px] sm:h-[56px]" />
           </div>
 
-          <div className="mb-6 sm:mb-8">
-            <h1 className='text-lg sm:text-2xl leading-relaxed'> <strong> Registrer deg for fast kontorplass før 30. juli  </strong> , og få én måned gratis leie! </h1> 
-            <span className="font-semibold text-xs sm:text-base text-moss-500 ">
+          <div className="mb-4 sm:mb-6">
+            <h1 className='text-base sm:text-xl leading-relaxed'> <strong> Registrer deg for fast kontorplass før 30. juli  </strong> , og få én måned gratis leie! </h1> 
+            <span className="font-semibold text-xs sm:text-sm text-moss-500 ">
               Gjelder kun nye medlemmer som inngår avtale i juni.
             </span >
               <br/>
                 <br />
-               <div className='rounded-xl font-semibold text-base sm:text-2xl leading-7 sm:leading-9 text-glow'>
-  Perfekt for deg som trenger et inspirerende sted å jobbe gjennom sommeren – supert
-              nettverk inkludert.
- 
+               <div className='rounded-xl font-semibold text-sm sm:text-lg leading-6 sm:leading-7 text-glow'>
+                Perfekt for deg som trenger et inspirerende sted å jobbe gjennom sommeren – supert
+                nettverk inkludert.
                </div>
            </div>
 
           <a
             href="/#contact-form"
-            className="w-full sm:inline-block sm:w-auto bg-moss-500 text-white font-bold py-2 px-4 sm:py-4 sm:px-8 rounded-full text-sm sm:text-lg uppercase tracking-wide hover:bg-moss-600 transition duration-300 ease-in-out transform hover:scale-105"
+            className="w-full sm:inline-block sm:w-auto bg-moss-500 text-white font-bold py-1.5 px-3 sm:py-3 sm:px-6 rounded-full text-xs sm:text-base uppercase tracking-wide hover:bg-moss-600 transition duration-300 ease-in-out transform hover:scale-105"
             onClick={handleClose}
           >
             Sikre deg din kontorplass i dag!
           </a>
 
-          <p className="text-sm mt-4 text-gray-600 italic">Begrenset antall plasser.</p>
+          <p className="text-xs mt-3 text-gray-600 italic">Begrenset antall plasser.</p>
 
-          <div className="mt-8 pt-4 border-t border-gray-300 flex justify-center ">
-            <Image src="/BW_Logo.png" alt="Logo Bergen Work" width={120} height={60} className="hidden sm:block" />
+          <div className="mt-6 pt-3 border-t border-gray-300 flex justify-center ">
+            <Image src="/BW_Logo.png" alt="Logo Bergen Work" width={84} height={42} className="hidden sm:block" />
           </div>
         </div>
       </div>
