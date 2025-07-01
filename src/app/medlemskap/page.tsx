@@ -1,8 +1,8 @@
 import { FasiliteterCard } from "../../components/ui/FasiliteterCard";
 import { Button } from "@/components/ui/buttons/Button";
 import { GetStarted } from "@/components/layout/GetStarted";
-import Eget_Kontor from "../../components/layout/eget_komtor/page";
-import Medlemskap_iconer from "../../components/layout/Medlemskap_iconer";
+import MedlemskapServices from "./MedlemskapServices";
+import Medlemskap_iconer from "./MedlemskapIconer";
 
 export default function Incubator() {
   return (
@@ -33,7 +33,7 @@ export default function Incubator() {
           }
         />
       </div>
-      <Eget_Kontor />
+      <MedlemskapServices />
       <Medlemskap_iconer />
       <GetStarted />
     </main>
