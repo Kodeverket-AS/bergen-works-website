@@ -100,10 +100,10 @@ export function ContactForm() {
     }
   }
   return (
-    <div id="contact-form" className="flex justify-center items-center px-4 py-10 bg-white text-black">
+    <div id="contact-form" className="flex justify-center items-center  bg-white text-black">
       <div className="flex flex-col lg:flex-row w-full max-w-4xl gap-x-6">
         <div className="flex-1 space-y-6">
-          <Card className="py-6 bg-white rounded-3xl shadow-lg">
+          <Card className="py-6 bg-white shadow-lg" sx={{ borderRadius: '1rem' }}>
             <CardContent>
               <Typography variant="h5" gutterBottom>
                 Kom i gang
@@ -114,7 +114,7 @@ export function ContactForm() {
               </Typography>
             </CardContent>
           </Card>
-          <Card className="py-6 bg-white rounded-3xl shadow-lg">
+          <Card className="py-6 bg-white shadow-lg" sx={{ borderRadius: '1rem' }}>
             <CardContent>
               <form onSubmit={handleSubmit}>
                 <TextField
