@@ -1,6 +1,6 @@
 
-const Medlemskap_iconer = () => {
-  const tiles = [
+
+ export  const tiles = [
     {
       src: "wi-fi_logo.png",
       text: "Wi-Fi",
@@ -50,24 +50,3 @@ const Medlemskap_iconer = () => {
       textColor: "text-black",
     },
   ];
-  return (
-    <section className="w-full px-4 py-6">
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-        {tiles.map((tile, index) => (
-          <div
-            key={index}
-            className={`flex flex-col items-center justify-center ${tile.bg} ${tile.textColor} rounded-2xl p-4 shadow-md transition-all`}
-          >
-            <img
-              className="h-20 w-20 object-contain"
-              src={tile.src}
-              alt={tile.text}
-            />
-            <p className="text-center text-lg md:text-xl mt-2">{tile.text}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-};
-export default Medlemskap_iconer;

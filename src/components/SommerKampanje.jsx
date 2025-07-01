@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 
 const SommerKampanje = () => {
+
     const [isOpen, setIsOpen] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
 
@@ -32,6 +33,7 @@ const SommerKampanje = () => {
     const handleClose = () => {
         setIsOpen(false);
     };
+
 
     if (!isOpen || !isMounted) return null;
 
