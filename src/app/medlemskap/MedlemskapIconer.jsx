@@ -15,9 +15,9 @@ const Medlemskap_iconer = () => {
 
   useEffect(() => {
     const updateColumns = () => {
-      if (window.innerWidth < 640) setColumns(2); // xs
-      else if (window.innerWidth < 1024) setColumns(3); // sm/md
-      else setColumns(4); // lg+
+      if (window.innerWidth < 640) setColumns(2); 
+      else if (window.innerWidth < 1024) setColumns(3); 
+      else setColumns(4); 
     };
     updateColumns();
     window.addEventListener('resize', updateColumns);
