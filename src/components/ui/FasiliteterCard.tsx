@@ -54,7 +54,7 @@ export function FasiliteterCard({
       <div
         className={`p-10 shadow-card flex flex-col rounded-2xl ${textContainerStyle}`}
       >
-        <h2 className={`font-semibold ${headerStyle}`}>{headerText}</h2>
+        <h3 className={`font-semibold ${headerStyle}`}>{headerText}</h3>
         <p className={`${paragraphStyle}`}>{paragraphText}</p>
         {<div className="">{button}</div>}
       </div>
