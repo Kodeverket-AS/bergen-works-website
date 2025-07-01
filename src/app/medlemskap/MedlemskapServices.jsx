@@ -21,7 +21,7 @@ const MedlemskapServices = () => {
                 cardStyle="mb-5 gap-5  rounded-2xl"
                 imageContainerStyle="flex justify-center items-center md:w-2/5 h-60 md:h-auto"
                 imageStyle="w-60 md:w-70 h-60 md:h-70 xl:w-80 xl:h-80 m-auto"
-                textContainerStyle="bg-white text-black md:w-3/5"
+                textContainerStyle="bg-moss-100/80 text-black md:w-3/5"
                 headerStyle="text-3xl font-bold"
                 paragraphStyle=""
             />
@@ -41,7 +41,7 @@ const MedlemskapServices = () => {
                 cardStyle="mb-5 gap-5 "
                 imageContainerStyle="md:w-2/5 h-60 md:h-auto"
                 imageStyle="w-60 md:w-70 h-60 md:h-70  xl:w-80 xl:h-80 m-auto"
-                textContainerStyle="bg-white text-black md:w-3/5"
+                textContainerStyle="bg-moss-200/80 text-black md:w-3/5"
                 headerStyle="text-3xl font-bold"
                 paragraphStyle=""
             />
@@ -61,7 +61,7 @@ const MedlemskapServices = () => {
                 cardStyle="mb-5 gap-5  rounded-2xl"
                 imageContainerStyle="md:w-2/5 h-60 md:h-auto"
                 imageStyle="w-60 md:w-70 h-60 md:h-70 flex  xl:w-80 xl:h-80 m-auto"
-                textContainerStyle="bg-white text-black md:w-3/5"
+                textContainerStyle="bg-moss-400/30 text-black md:w-3/5"
                 headerStyle="text-3xl font-bold"
                 paragraphStyle=""
             />
