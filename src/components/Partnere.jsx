@@ -6,9 +6,9 @@ const Partnere = () => {
         <div className='w-full flex flex-col lg:flex-row  gap-4 my-8 '>
             <div className='flex shadow-xl w-full lg:w-1/3 rounded-xl '>
                 <div className='flex pr-4 flex-col justify-center'>
-                    <h1 className='text-xl font-semibold md:text-2xl lg:mb-20 lg:text-4xl p-4'>
+                    <h3 className='text-xl font-semibold md:text-2xl lg:mb-20 lg:text-4xl p-4'>
                         Våre partnere
-                    </h1>
+                    </h3>
                 </div>
             </div>
 
