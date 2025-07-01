@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/buttons/Button";
-import { ContactForm } from "@/components/forms/ContactForm";
+import { GetStarted } from "@/components/layout/GetStarted";
 
 export default function Membership() {
   return (
@@ -73,19 +73,7 @@ export default function Membership() {
           </ul>
         </div>
       </section>
-      <section className="w-full h-full flex flex-col md:flex-row mt-10 mb-10 ">
-        <Image
-          className="w-full md:w-1/2 md:object-cover md:object-center md:mt-10 md:mb-10 md:mr-5 rounded-2xl"
-          src="/FasImg2.png"
-          alt="Incubator landing page img "
-          width={1300}
-          height={450}
-          draggable={false}
-        />
-        <div>
-          <ContactForm />
-        </div>
-      </section>
+    <GetStarted/>
     </main>
   );
 }
