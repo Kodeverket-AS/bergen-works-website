@@ -31,7 +31,7 @@ export default function Membership() {
       </section>
 
       <section className="w-full mt-10">
-        <div className="bg-moss-600 text-light-text p-10 rounded-2xl shadow-lg space-y-6">
+        <div className="bg-moss-500 text-light-text p-10 rounded-2xl shadow-lg space-y-6">
           <h2 className="text-3xl xl:text-4xl font-semibold">Hva kan du forvente som medlem?</h2>
           <p className="text-lg xl:text-xl">
             Som medlem av Bergen.Works får du tilgang til en rekke tjenester og fordeler som hjelper deg å realisere
