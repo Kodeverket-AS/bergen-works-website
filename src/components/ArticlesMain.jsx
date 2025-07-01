@@ -26,7 +26,7 @@ const ArticlesMain = () => {
   const last6Articles = articles.slice(0, 6);
   return (
     <div className="w-full my-20 mx-auto ">
-      <h1 className="text-4xl text-center mb-8">Artikler og nyheter</h1>
+      <h2 className="text-4xl text-center mb-8">Artikler og nyheter</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 2xl:gap-20 w-full max-w-7xl mx-auto">
         {last6Articles.map((article, index) => (
           <Card

@@ -58,7 +58,7 @@ export function InfoCard({
           <Image src={imageSrc} alt={title} fill draggable={false} />
         </div>
         <div className={`${textContentStyle}`}>
-          <h2 className={`${headerStyle}`}>{title}</h2>
+          <h4 className={`${headerStyle}`}>{title}</h4>
           <p className={`${paragraphStyle}`}>{description}</p>
           <div className="mt-2 lg:mt-10">
             <div className={`${arrowStyle}`}>

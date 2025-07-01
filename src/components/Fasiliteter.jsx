@@ -13,9 +13,9 @@ const Fasiliteter = () => {
     <div className="w-full flex flex-col lg:flex-row gap-4 my-8">
       <div className="flex shadow-xl w-full lg:w-1/3 rounded-xl">
         <div className="flex lg:mt-auto flex-col pl-4 pr-6">
-          <h1 className="text-xl font-semibold md:text-2xl lg:mb-20 lg:text-4xl p-4">
+          <h3 className="text-xl font-semibold md:text-2xl lg:mb-20 lg:text-4xl p-4">
             Fasilitetene
-          </h1>
+          </h3>
           <p className="text-lg lg:text-xl lg:mb-4 2xl:text-2xl p-4">
             Hos Bergen.Works finner du moderne og fleksible fasiliteter –
             kontorer, møterom og sosiale soner – utformet for å inspirere til
