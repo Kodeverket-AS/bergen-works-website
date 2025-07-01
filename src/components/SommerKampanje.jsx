@@ -9,10 +9,10 @@ const SommerKampanje = () => {
 
   useEffect(() => {
     setIsMounted(true);
-    const timer = setTimeout(() => {
-      setIsOpen(true);
+      const timer = setTimeout(() => {
+        setIsOpen(true);
     }, 3000);
-    return () => clearTimeout(timer);
+      return () => clearTimeout(timer);
   }, []); 
 
 
@@ -70,10 +70,10 @@ const SommerKampanje = () => {
               Gjelder kun nye medlemmer som inngår avtale i juni.
             </span >
               <br/>
-                <br />
+            <br />
                <div className='rounded-xl font-semibold text-sm sm:text-lg leading-6 sm:leading-7 text-glow'>
-                Perfekt for deg som trenger et inspirerende sted å jobbe gjennom sommeren – supert
-                nettverk inkludert.
+            Perfekt for deg som trenger et inspirerende sted å jobbe gjennom sommeren – supert
+            nettverk inkludert.
                </div>
            </div>
 

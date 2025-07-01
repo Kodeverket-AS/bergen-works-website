@@ -41,13 +41,22 @@ export function FasiliteterCard({
     >
       <div className={`relative w-full ${imageContainerStyle}`}>
         <div className={` ${imageInnerDivStyle}`}>
-          <Image
-            src={imageSrc}
-            alt={alt}
-            fill
-            className={`object-cover select-none pointer-events-none rounded-2xl ${imageStyle}`}
-            draggable={false}
-          />
+          {imageStyle ? (
+            <img
+              src={imageSrc}
+              alt={alt}
+              className={`object-contain select-none pointer-events-none rounded-2xl ${imageStyle}`}
+              draggable={false}
+            />
+          ) : (
+            <Image
+              src={imageSrc}
+              alt={alt}
+              fill
+              className={`object-cover select-none pointer-events-none rounded-2xl`}
+              draggable={false}
+            />
+          )}
         </div>
       </div>
 
