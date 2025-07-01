@@ -3,7 +3,7 @@ import { FasiliteterCard } from "@/components/ui/FasiliteterCard";
 
 const MedlemskapServices = () => {
     return (
-        <div>
+        <div className="w-full">
             <FasiliteterCard
                 imageSrc="/Eget_kontor_logo.png"
                 alt="Eget kontor logo"
@@ -18,9 +18,9 @@ const MedlemskapServices = () => {
                 }
                 smallScreenReverse={false}
                 largeScreenReverse={false}
-                cardStyle="mb-5 gap-5"
-                imageContainerStyle="md:w-2/5 h-60 md:h-auto"
-                imageStyle="w-70 h-70 m-auto"
+                cardStyle="mb-5 gap-5  rounded-2xl"
+                imageContainerStyle="flex justify-center items-center md:w-2/5 h-60 md:h-auto"
+                imageStyle="w-60 md:w-70 h-60 md:h-70 xl:w-80 xl:h-80 m-auto"
                 textContainerStyle="bg-white text-black md:w-3/5"
                 headerStyle="text-3xl font-bold"
                 paragraphStyle=""
@@ -38,10 +38,10 @@ const MedlemskapServices = () => {
                 }
                 smallScreenReverse={false}
                 largeScreenReverse={true}
-                cardStyle="mb-5 gap-5"
+                cardStyle="mb-5 gap-5 "
                 imageContainerStyle="md:w-2/5 h-60 md:h-auto"
-                imageStyle="w-70 h-70  m-auto"
-   textContainerStyle="bg-white text-black md:w-3/5"
+                imageStyle="w-60 md:w-70 h-60 md:h-70  xl:w-80 xl:h-80 m-auto"
+                textContainerStyle="bg-white text-black md:w-3/5"
                 headerStyle="text-3xl font-bold"
                 paragraphStyle=""
             />
@@ -58,9 +58,9 @@ const MedlemskapServices = () => {
                 }
                 smallScreenReverse={false}
                 largeScreenReverse={false}
-                cardStyle="mb-5 gap-5"
+                cardStyle="mb-5 gap-5  rounded-2xl"
                 imageContainerStyle="md:w-2/5 h-60 md:h-auto"
-                imageStyle="w-70 h-70 flex  m-auto"
+                imageStyle="w-60 md:w-70 h-60 md:h-70 flex  xl:w-80 xl:h-80 m-auto"
                 textContainerStyle="bg-white text-black md:w-3/5"
                 headerStyle="text-3xl font-bold"
                 paragraphStyle=""
