@@ -12,14 +12,14 @@ const theme = createTheme({
     },
   },
   
- // palette: {
- //   primary: {
- //     main: '#606c38',--color-moss-500
- //   },
- //   secondary: {
- //     main: '#dda15e',--color-chocolate-500
- //   },
- // },
+  palette: {
+    primary: {
+      main: '#606c38', 
+    },
+    secondary: {
+      main: '#283618', 
+    },
+  },
 });
 
 export default theme;
