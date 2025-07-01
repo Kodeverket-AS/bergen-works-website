@@ -35,7 +35,7 @@ export default function Facilities() {
           imageContainerStyle={"w-full h-[250px] md:w-2/3 md:h-auto"}
           headerStyle={"text-3xl md:text-4xl lg:text-5xl"}
           textContainerStyle={
-            "bg-moss-600 text-light-text w-full h-full md:w-1/2 lg:w-1/2 md:h-auto xl:w-[1/3]"
+            "bg-moss-500 text-light-text w-full h-full md:w-1/2 lg:w-1/2 md:h-auto xl:w-[1/3]"
           }
           paragraphStyle={"lg:my-5 lg:text-lg xl:text-xl pt-4"}
           largeScreenReverse={true}

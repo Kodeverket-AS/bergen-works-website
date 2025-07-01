@@ -100,10 +100,10 @@ export function ContactForm() {
     }
   }
   return (
-    <div id="contact-form" className="flex justify-center items-center px-4 py-10 bg-white text-black">
+    <div id="contact-form" className="flex justify-center items-center  bg-white text-black">
       <div className="flex flex-col lg:flex-row w-full max-w-4xl gap-x-6">
         <div className="flex-1 space-y-6">
-          <Card className="py-6 bg-white rounded-3xl shadow-lg">
+          <Card className="py-6 bg-white shadow-lg" sx={{ borderRadius: '1rem' }}>
             <CardContent>
               <Typography variant="h5" gutterBottom>
                 Kom i gang
@@ -114,7 +114,7 @@ export function ContactForm() {
               </Typography>
             </CardContent>
           </Card>
-          <Card className="py-6 bg-white rounded-3xl shadow-lg">
+          <Card className="py-6 bg-white shadow-lg" sx={{ borderRadius: '1rem' }}>
             <CardContent>
               <form onSubmit={handleSubmit}>
                 <TextField
@@ -198,7 +198,7 @@ export function ContactForm() {
                   <Typography variant="subtitle1" className="flex items-center gap-2">
                     Kategori
                     <Tooltip title="Velg alle alternativer som passer for deg">
-                      <InfoIcon fontSize="small" color="action" />
+                      <InfoIcon fontSize="medium" color="primary" />
                     </Tooltip>
                   </Typography>
                   <span className="flex flex-wrap gap-5">
@@ -268,7 +268,7 @@ export function ContactForm() {
                     }
                     label="Jeg gir samtykke til min kontakt informasjon blir lagret for å kunne kontakte meg. Du kan trekke dette samtykket tilbake når som helst."
                   />
-                  <Link href={"/personvern"} className="text-sm text-blue-700">
+                  <Link href={"/personvern"} className="text-sm text-moss-500">
                     Les vår personvernerklæring
                   </Link>
                 </div>
@@ -293,9 +293,9 @@ export function ContactForm() {
                       width: "auto",
                       padding: "10px 20px",
                       textAlign: "center",
-                      backgroundColor: "rgb(37, 58, 26)",
-                      "&:hover": {
-                        backgroundColor: "rgb(28, 43, 20)",
+                      backgroundColor: "#606c38",
+                      '&:hover': {
+                        backgroundColor: "#283618",
                       },
                       borderRadius: 2,
                     }}
