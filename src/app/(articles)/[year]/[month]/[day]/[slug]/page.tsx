@@ -1,4 +1,8 @@
-import { getWordpressArticle, getWordpressArticleSlugs } from "@/lib/apollo/fetch";
+import {
+  getAllWordpressPostDetails,
+  getWordpressArticle,
+  getWordpressArticleSlugs,
+} from "@/lib/apollo/fetch";
 import Link from "next/link";
 
 interface Slugs {
@@ -10,10 +14,10 @@ interface Slugs {
 
 export default async function Page({ params }: { params: Promise<Slugs> }) {
   const { year, month, day, slug } = await params;
-  // Add zod validation of dates
+  // Add zod validation of dates, if typeof dates !== number throw normal 404.
 
   // tmp fetch all available posts for generating links
-  const available = await getWordpressArticleSlugs();
+  const available = await getAllWordpressPostDetails();
 
   // tmp null check on slug
   if (!slug || slug.length === 0) {
@@ -26,16 +30,20 @@ export default async function Page({ params }: { params: Promise<Slugs> }) {
   // Create fallback if !content
 
   return (
-    <main className="">
-      Path: {year}/{month}/{day}/{slug}
-      <hr />
+    <main className="flex flex-col gap-4 pb-8">
       <div className="flex flex-col">
         {available?.map((item, index) => (
-          <Link key={index} href={`/1/1/1/${item.slug}`} className="hover:text-blue-500">
+          <Link
+            key={index}
+            href={`${item.uri}`}
+            className="hover:text-blue-500"
+          >
             {item.title}
           </Link>
         ))}
       </div>
+      <hr />
+      <h1>{}</h1>
       <hr />
       {content && <div dangerouslySetInnerHTML={{ __html: content }} />}
     </main>
