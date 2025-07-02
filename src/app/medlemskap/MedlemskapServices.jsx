@@ -11,9 +11,9 @@ const MedlemskapServices = () => {
                 paragraphText={
                     <>
                         <span className="text-2xl pt-3 block">Gratis for deltakere</span>
-                        <p className="mt-1">Har du en gründer i magen? Bergen.Works utvikler et helt nytt inkubasjonsprogram for deg som vil gjøre idé til virkelighet.</p>
-                        <p className="mt-1">Stikk innom for en uformell prat og en kopp kaffe – vi elsker å høre om nye idéer! Bergen.Works er startet av gründere, for gründere – her finner du både kontorplass og et sterkt fagmiljø med kompetanse innen alle felt.</p>
-                        <p className="mt-1 font-bold">Kom for kontorplassen, bli for fellesskapet.</p>
+                        <span className="mt-1">Har du en gründer i magen? Bergen.Works utvikler et helt nytt inkubasjonsprogram for deg som vil gjøre idé til virkelighet.</span>
+                        <span className="mt-1">Stikk innom for en uformell prat og en kopp kaffe – vi elsker å høre om nye idéer! Bergen.Works er startet av gründere, for gründere – her finner du både kontorplass og et sterkt fagmiljø med kompetanse innen alle felt.</span>
+                        <span className="mt-1 font-bold">Kom for kontorplassen, bli for fellesskapet.</span>
                     </>
                 }
                 smallScreenReverse={false}
@@ -33,7 +33,7 @@ const MedlemskapServices = () => {
                 paragraphText={
                     <>
                         <span className="text-2xl pt-3 block">3990,-/mnd (eks.MVA)</span>
-                        <p className="mt-1">Dette inkluderer følgende: Fast plass i åpent kontorlandskap, nytraktet kaffe, tilgang til møterom, rask wifi, rengjøring, strøm, telefonbåser samt invitasjon til alle arrangementer i Bergen.Works regi.</p>
+                        <span className="mt-1">Dette inkluderer følgende: Fast plass i åpent kontorlandskap, nytraktet kaffe, tilgang til møterom, rask wifi, rengjøring, strøm, telefonbåser samt invitasjon til alle arrangementer i Bergen.Works regi.</span>
                     </>
                 }
                 smallScreenReverse={false}
@@ -53,7 +53,7 @@ const MedlemskapServices = () => {
                 paragraphText={
                     <>
                         <span className="text-2xl pt-3 block">3299,-/mnd (eks.MVA)</span>
-                        <p className="mt-1">Dette inkluderer følgende: Tilgang til ledig plass i åpent kontorlandskap, nytraktet kaffe, tilgang til møterom, rask wifi, rengjøring, strøm, telefonbåser samt invitasjon til alle arrangementer i Bergen.Works regi.</p>
+                        <span className="mt-1">Dette inkluderer følgende: Tilgang til ledig plass i åpent kontorlandskap, nytraktet kaffe, tilgang til møterom, rask wifi, rengjøring, strøm, telefonbåser samt invitasjon til alle arrangementer i Bergen.Works regi.</span>
                     </>
                 }
                 smallScreenReverse={false}
