@@ -102,7 +102,7 @@ export function ContactForm() {
   return (
     <div
       id="contact-form"
-      className="flex justify-center items-center  bg-white text-black"
+      className="flex justify-center items-center w-full bg-white text-black"
     >
       <div className="flex flex-col lg:flex-row w-full max-w-4xl gap-x-6">
         <div className="flex-1 space-y-6">
