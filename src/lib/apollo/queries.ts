@@ -1,5 +1,32 @@
 import { gql } from "@apollo/client";
 
+// todo: pagination
+export const GET_ALL_WORDPRESS_POST_DETAILS = gql`
+    query PostDetails {
+      posts(where: { status: PUBLISH }) {
+        nodes {
+          slug
+          status
+          title
+          uri
+          modified
+          categories {
+            nodes {
+              name
+            }
+          }
+          tags {
+            nodes {
+              name
+            }
+          }
+          isSticky
+          date
+        }
+      }
+    }
+  `;
+
 export const GET_ALL_WORDPRESS_POSTS = gql`
   query {
     posts {
