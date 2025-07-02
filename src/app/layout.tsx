@@ -86,7 +86,7 @@ export default async function RootLayout({
           <SanityProvider articles={articles} events={events}>
             <Header />
             {children}
-              <SommerKampanje />
+              {/* <SommerKampanje /> */}
             <Footer />
           </SanityProvider>
         </MuiClientThemeProvider>
