@@ -3,6 +3,7 @@ import Image from "next/image";
 interface FasiliteterCardProps {
   imageSrc: string;
   alt: string;
+  headingTag?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   headerText: string;
   paragraphText: string;
   smallScreenReverse: boolean;
@@ -20,6 +21,7 @@ interface FasiliteterCardProps {
 export function FasiliteterCard({
   imageSrc,
   alt = "",
+  headingTag = "h2",
   headerText,
   paragraphText,
   button,
@@ -33,6 +35,8 @@ export function FasiliteterCard({
   headerStyle = "",
   paragraphStyle = "",
 }: FasiliteterCardProps) {
+  const Heading = headingTag;
+
   return (
     <div
       className={`flex w-full h-full mb-10 ${cardStyle} 
@@ -63,7 +67,9 @@ export function FasiliteterCard({
       <div
         className={`p-10 shadow-card flex flex-col rounded-2xl ${textContainerStyle}`}
       >
-        <h3 className={`font-semibold ${headerStyle}`}>{headerText}</h3>
+        <Heading className={`font-semibold ${headerStyle}`}>
+          {headerText}
+        </Heading>
         <p className={`${paragraphStyle}`}>{paragraphText}</p>
         {<div className="">{button}</div>}
       </div>
