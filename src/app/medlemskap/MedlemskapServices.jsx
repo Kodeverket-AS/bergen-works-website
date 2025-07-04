@@ -2,6 +2,7 @@ import React from "react";
 import { ImageTextCard } from "@/components/ui/ImageTextCard";
 
 const MedlemskapServices = () => {
+
   return (
     <div className="w-full">
       <ImageTextCard
