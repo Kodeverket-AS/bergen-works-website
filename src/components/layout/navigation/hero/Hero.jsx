@@ -1,10 +1,10 @@
-import { FasiliteterCard } from "@/components/ui/FasiliteterCard";
+import { ImageTextCard } from "@/components/ui/ImageTextCard";
 import { Button } from "@/components/ui/buttons/Button";
 
 export default function Hero() {
   return (
     <div className="mb-10 flex">
-      <FasiliteterCard
+      <ImageTextCard
         imageSrc="/bygg.png"
         alt={"Image of main building"}
         headerText={"Bergen.Works"}
