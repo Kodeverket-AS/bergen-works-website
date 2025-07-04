@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-interface FasiliteterCardProps {
+interface ImageTextCardProps {
   imageSrc: string;
   alt: string;
   headingTag?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
@@ -18,8 +18,8 @@ interface FasiliteterCardProps {
   button?: React.ReactNode;
 }
 
-export function FasiliteterCard({
-  imageSrc,
+export function ImageTextCard({
+  imageSrc = "",
   alt = "",
   headingTag = "h2",
   headerText,
@@ -34,7 +34,7 @@ export function FasiliteterCard({
   textContainerStyle = "",
   headerStyle = "",
   paragraphStyle = "",
-}: FasiliteterCardProps) {
+}: ImageTextCardProps) {
   const Heading = headingTag;
 
   return (

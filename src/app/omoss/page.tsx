@@ -1,4 +1,4 @@
-import { FasiliteterCard } from "@/components/ui/FasiliteterCard";
+import { ImageTextCard } from "@/components/ui/ImageTextCard";
 import React from "react";
 import { Button } from "@/components/ui/buttons/Button";
 import Image from "next/image";
@@ -6,7 +6,7 @@ import Image from "next/image";
 export default function Incubator() {
   return (
     <main className="">
-      <FasiliteterCard
+      <ImageTextCard
         imageSrc="/bygg.png"
         alt="Image of building"
         headerText="Din arbeidsplass i fokus"
@@ -21,7 +21,7 @@ export default function Incubator() {
         imageStyle={""}
       />
 
-      <FasiliteterCard
+      <ImageTextCard
         imageSrc="/infoImage.png"
         alt="Picture of logo and people in meetingroom"
         headerText="Bærebjelken for vår virksomhet er sosial innovasjon"

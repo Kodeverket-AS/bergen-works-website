@@ -1,11 +1,11 @@
-import { FasiliteterCard } from "@/components/ui/FasiliteterCard";
+import { ImageTextCard } from "@/components/ui/ImageTextCard";
 import { Button } from "@/components/ui/buttons/Button";
 
 export default function Facilities() {
   return (
     <main className="">
       <div className=" mb-10">
-        <FasiliteterCard
+        <ImageTextCard
           imageSrc="/bygg.png"
           alt={"Image of building"}
           headerText={"Fasiliteter"}
@@ -24,7 +24,7 @@ export default function Facilities() {
         />
       </div>
       <div className="mb-10">
-        <FasiliteterCard
+        <ImageTextCard
           imageSrc="/FasImg2.png"
           alt={"Image of Meetingroom"}
           headerText={"Møterom"}
@@ -52,7 +52,7 @@ export default function Facilities() {
         />
       </div>
       <div className="mb-10">
-        <FasiliteterCard
+        <ImageTextCard
           imageSrc={"/FasImg3.png"}
           alt={"Image of kitchen area"}
           headerText={"Booking av hele lokaler til arrangement"}
