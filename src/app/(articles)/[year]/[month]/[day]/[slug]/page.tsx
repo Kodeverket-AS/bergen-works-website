@@ -32,7 +32,7 @@ export default async function Page({ params }: { params: Promise<Slugs> }) {
   }).format(postDate);
 
   return (
-    <main className="flex flex-col gap-4 pb-8 [&_h1]:text-[50px] [&_h2]:text-[25px] [&_p]:mb-7">
+    <main className="flex flex-col gap-4 pb-8 [&_h1]:text-[50px] [&_h2]:text-[25px] [&_h2]:font-light [&_p]:mb-7">
       {content?.contentStyles && <style dangerouslySetInnerHTML={{ __html: content.contentStyles }} />}
       <p className="capitalize">{postDateFormatted}</p>
       {content?.featuredImage && (
@@ -48,9 +48,9 @@ export default async function Page({ params }: { params: Promise<Slugs> }) {
           height={300}
         />
       )}
-      <h1>{content?.title}</h1>
+      <h1 className="self-center max-w-[768px]">{content?.title}</h1>
       {content?.content && (
-        <div dangerouslySetInnerHTML={{ __html: content.content }} className="flex flex-col gap-2" />
+        <div dangerouslySetInnerHTML={{ __html: content.content }} className="flex flex-col self-center gap-2 max-w-[768px]" />
       )}
     </main>
   );
