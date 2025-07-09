@@ -5,7 +5,10 @@ import {
   GET_ALL_WORDPRESS_POSTS,
   GET_WORDPRESS_POST,
 } from "./queries";
-import { WordpressPostsResponse } from "@/types/apollo/response.types";
+import {
+  WordpressPostResponse,
+  WordpressPostsResponse,
+} from "@/types/apollo/response.types";
 
 export async function getAllWordpressPostDetails() {
   try {
@@ -51,14 +54,18 @@ export async function getWordpressArticleSlugs() {
 
 export async function getWordpressArticle(slug: string) {
   try {
-    const { data } = await apolloClient.query({
+    const response: unknown = await apolloClient.query({
       query: GET_WORDPRESS_POST,
       variables: { id: slug },
     });
 
-    if (data.post?.content) {
-      return data.post.content as string;
+    if (!response) {
+      throw new Error("Something went wrong when fetching graphql");
     }
+
+    const { data } = response as WordpressPostResponse;
+
+    return data.post;
   } catch (err) {
     console.log(err);
   }
