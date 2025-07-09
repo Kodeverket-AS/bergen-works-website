@@ -8,12 +8,16 @@ const nextConfig: NextConfig = {
         hostname: "cdn.sanity.io",
         pathname: "/images/**",
       },
+      {
+        protocol: "https",
+        hostname: "admin.bergen.works",
+        pathname: "/wp-content/uploads/**",
+      },
     ],
   },
 
   async redirects() {
     return [
-
       {
         source: "/nyheter/:slug*",
         destination: "https://admin.bergen.works/nyheter/:slug*",
