@@ -1,7 +1,7 @@
-import { getAllWordpressPostDetails, getWordpressArticle, getWordpressArticleSlugs } from "@/lib/apollo/fetch";
-import Link from "next/link";
-import "@/assets/styles/frontend.min.css";
 import Image from "next/image";
+import { notFound } from "next/navigation";
+import { getWordpressArticle } from "@/lib/apollo/fetch";
+import "@/assets/styles/frontend.min.css";
 
 interface Slugs {
   year: string;
@@ -12,28 +12,24 @@ interface Slugs {
 
 export default async function Page({ params }: { params: Promise<Slugs> }) {
   const { year, month, day, slug } = await params;
-  // Add zod validation of dates, if typeof dates !== number throw normal 404.
 
-  // tmp null check on slug
-  if (!slug || slug.length === 0) {
-    return false;
-  }
+  // Check for empty slug, return 404 if missing
+  if (!slug || slug.length === 0) return notFound();
 
   // Generate date from slug
   const postDate = new Date(Number(year), Number(month) - 1, Number(day));
-  if (isNaN(postDate.getTime())) {
-    throw new Error("Invalid date parameters");
-  }
+  if (isNaN(postDate.getTime())) return notFound();
+
+  // Fetch content from wordpress site based on slug
+  const content = await getWordpressArticle(slug);
+  if (!content) return notFound();
+
+  // Format date for readability per client request
   const postDateFormatted = new Intl.DateTimeFormat("no-NO", {
     month: "long",
     day: "numeric",
     year: "numeric",
   }).format(postDate);
-
-  // tmp get content of post for rendering
-  const content = await getWordpressArticle(slug);
-
-  // Create fallback if !content
 
   return (
     <main className="flex flex-col gap-4 pb-8 [&_h1]:text-[50px] [&_h2]:text-[25px] [&_p]:mb-7">
