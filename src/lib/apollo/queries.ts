@@ -46,6 +46,12 @@ export const GET_WORDPRESS_POST = gql`
       slug
       content
       contentStyles
+      featuredImage {
+        node {
+          sourceUrl
+          altText
+        }
+      }
     }
   }
 `;

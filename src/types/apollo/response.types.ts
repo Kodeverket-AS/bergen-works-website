@@ -27,10 +27,16 @@ export interface WordpressPostsResponse {
 export interface WordpressPostResponse {
   data: {
     post: {
-      title: string
-      slug: string
-      content: string
-      contentStyles?: string
-    }
-  }
+      title: string;
+      slug: string;
+      content: string;
+      contentStyles?: string;
+      featuredImage: {
+        node: {
+          sourceUrl: string;
+          altText: string;
+        };
+      };
+    };
+  };
 }
