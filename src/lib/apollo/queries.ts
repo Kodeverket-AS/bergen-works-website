@@ -45,6 +45,7 @@ export const GET_WORDPRESS_POST = gql`
       title
       slug
       content
+      contentStyles
     }
   }
 `;
