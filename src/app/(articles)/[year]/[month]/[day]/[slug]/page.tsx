@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { getWordpressArticle } from "@/lib/apollo/fetch";
 import "@/assets/styles/frontend.min.css";
 
+// Todo - convert static min css to use fetch instead?
+
 interface Slugs {
   year: string;
   month: string;
