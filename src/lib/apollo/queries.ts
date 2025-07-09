@@ -10,6 +10,7 @@ export const GET_ALL_WORDPRESS_POST_DETAILS = gql`
           title
           uri
           modified
+          excerpt
           categories {
             nodes {
               name
@@ -22,6 +23,12 @@ export const GET_ALL_WORDPRESS_POST_DETAILS = gql`
           }
           isSticky
           date
+          featuredImage {
+            node {
+              sourceUrl
+              altText
+            }
+          }
         }
       }
     }

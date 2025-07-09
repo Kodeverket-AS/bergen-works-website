@@ -8,6 +8,7 @@ export interface WordpressPostsResponse {
         uri: string;
         date: Date;
         modified: Date;
+        excerpt: string;
         categories: {
           nodes: {
             name: string;
@@ -19,6 +20,12 @@ export interface WordpressPostsResponse {
           }[];
         };
         isSticky: boolean;
+        featuredImage: {
+          node: {
+            sourceUrl: string;
+            altText: string;
+          };
+        };
       }[];
     };
   };
