@@ -75,7 +75,7 @@ export default function NavBar() {
         </li>
         <li>
           <Link
-            href="/articlez"
+            href="/articles"
             className=" hover:underline md:text-lg"
             onClick={handleLinkClick}
           >
