@@ -4,7 +4,14 @@ import Link from "next/link";
 
 type ArticlePreviewCardProps = NonNullable<Awaited<ReturnType<typeof getAllWordpressPostDetails>>>[number];
 
-export async function ArticlePreviewCard({ title, slug, excerpt, featuredImage, date, tags }: ArticlePreviewCardProps) {
+export async function ArticlePreviewCard({
+  title,
+  excerpt,
+  featuredImage,
+  date,
+  tags,
+  uri,
+}: ArticlePreviewCardProps) {
   // Format date for readability per client request
   const postDate = new Date(date);
   const postDateFormatted = new Intl.DateTimeFormat("no-NO", {
@@ -27,7 +34,7 @@ export async function ArticlePreviewCard({ title, slug, excerpt, featuredImage, 
         height={300}
       />
       <span className="flex flex-col">
-        <Link href={slug} className="text-moss-600 font-medium">
+        <Link href={uri} className="text-moss-600 font-medium">
           {title}
         </Link>
         <p className="capitalize text-xs text-gray-400">{postDateFormatted}</p>
@@ -40,7 +47,7 @@ export async function ArticlePreviewCard({ title, slug, excerpt, featuredImage, 
           </Link>
         ))}
       </span>
-      <Link href={slug} className="ml-auto">
+      <Link href={uri} className="ml-auto">
         Les mer »
       </Link>
     </div>
