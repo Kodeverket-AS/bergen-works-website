@@ -23,3 +23,14 @@ export interface WordpressPostsResponse {
     };
   };
 }
+
+export interface WordpressPostResponse {
+  data: {
+    post: {
+      title: string
+      slug: string
+      content: string
+      contentStyles?: string
+    }
+  }
+}
