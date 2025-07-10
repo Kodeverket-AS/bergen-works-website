@@ -1,18 +1,26 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { getWordpressArticle } from "@/lib/apollo/fetch";
+import { getWordpressArticle, getWordpressPostsURIs } from "@/lib/apollo/fetch";
 import "@/assets/styles/frontend.min.css";
 
-// Todo - convert static min css to use fetch instead?
+export async function generateStaticParams() {
+  const postsURIs = await getWordpressPostsURIs();
 
-interface Slugs {
-  year: string;
-  month: string;
-  day: string;
-  slug: string;
+  return postsURIs.map((uri) => ({
+    slug: uri,
+  }))
 }
 
-export default async function Page({ params }: { params: Promise<Slugs> }) {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{
+    year: string;
+    month: string;
+    day: string;
+    slug: string;
+  }>;
+}) {
   const { year, month, day, slug } = await params;
 
   // Check for empty slug, return 404 if missing
@@ -52,7 +60,10 @@ export default async function Page({ params }: { params: Promise<Slugs> }) {
       )}
       <h1 className="self-center max-w-[768px]">{content?.title}</h1>
       {content?.content && (
-        <div dangerouslySetInnerHTML={{ __html: content.content }} className="flex flex-col self-center gap-2 max-w-[768px]" />
+        <div
+          dangerouslySetInnerHTML={{ __html: content.content }}
+          className="flex flex-col self-center gap-2 max-w-[768px]"
+        />
       )}
     </main>
   );
