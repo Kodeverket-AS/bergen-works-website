@@ -1,14 +1,6 @@
-import { gql } from "@apollo/client";
+import { type WordpressPostResponse, type WordpressPostsResponse } from "@/types/apollo/response.types";
+import { GET_ALL_WORDPRESS_POST_DETAILS, GET_WORDPRESS_POST } from "./queries";
 import apolloClient from "./client";
-import {
-  GET_ALL_WORDPRESS_POST_DETAILS,
-  GET_ALL_WORDPRESS_POSTS,
-  GET_WORDPRESS_POST,
-} from "./queries";
-import {
-  WordpressPostResponse,
-  WordpressPostsResponse,
-} from "@/types/apollo/response.types";
 
 export async function getAllWordpressPostDetails() {
   try {
@@ -23,12 +15,8 @@ export async function getAllWordpressPostDetails() {
     const { data } = response;
     const posts =
       data.posts?.nodes.map((post) => {
-        const categories = post.categories.nodes.map((category) =>
-          category.name.toLocaleLowerCase()
-        );
-        const tags = post.tags.nodes.map((tag) =>
-          tag.name.toLocaleLowerCase().replace("#", "")
-        );
+        const categories = post.categories.nodes.map((category) => category.name.toLocaleLowerCase());
+        const tags = post.tags.nodes.map((tag) => tag.name.toLocaleLowerCase().replace("#", ""));
         return { ...post, tags, categories };
       }) || [];
 
