@@ -16,14 +16,14 @@ export default async function Page({ params }: { params: Promise<Slugs> }) {
   const { year, month, day, slug } = await params;
 
   // Check for empty slug, return 404 if missing
-  if (!slug || slug.length === 0) return notFound();
+  if (!slug || slug.trim().length === 0) return notFound();
 
   // Generate date from slug
   const postDate = new Date(Number(year), Number(month) - 1, Number(day));
   if (isNaN(postDate.getTime())) return notFound();
 
   // Fetch content from wordpress site based on slug
-  const content = await getWordpressArticle(slug);
+  const content = await getWordpressArticle(slug.trim());
   if (!content) return notFound();
 
   // Format date for readability per client request
