@@ -70,3 +70,12 @@ export interface WordpressCategoriesResponse {
     }[];
   };
 }
+
+export interface WordpressTagsResponse {
+  tags: {
+    nodes: {
+      id: string;
+      name: string;
+    }[];
+  };
+}

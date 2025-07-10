@@ -78,8 +78,19 @@ export const GET_WORDPRESS_POSTS_URI = gql`
 `;
 
 export const QUERY_WORDPRESS_CATEGORIES = gql`
-  query GetCategoryEdges {
+  query GetCategories {
     categories {
+      nodes {
+        id
+        name
+      }
+    }
+  }
+`;
+
+export const QUERY_WORDPRESS_TAGS = gql`
+  query GetTags {
+    tags {
       nodes {
         id
         name
