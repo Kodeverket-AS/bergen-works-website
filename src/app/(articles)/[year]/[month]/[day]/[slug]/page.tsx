@@ -6,6 +6,7 @@ import "@/assets/styles/frontend.min.css";
 export async function generateStaticParams() {
   const postsURIs = await getWordpressPostsURIs();
 
+  // todo - check if dates are required constructors
   return postsURIs.map((uri) => ({
     slug: uri,
   }))
