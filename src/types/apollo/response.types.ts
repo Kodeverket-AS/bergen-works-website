@@ -61,3 +61,12 @@ export interface WordpressPostsURIResponse {
     };
   };
 }
+
+export interface WordpressCategoriesResponse {
+  categories: {
+    nodes: {
+      id: string;
+      name: string;
+    }[];
+  };
+}
