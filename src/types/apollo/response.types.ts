@@ -47,3 +47,17 @@ export interface WordpressPostResponse {
     };
   };
 }
+
+export interface WordpressPostsURIResponse {
+  posts: {
+    nodes: {
+      __typename: "Post";
+      uri: string;
+    }[];
+    pageInfo: {
+      __typename: string;
+      endCursor: string;
+      hasNextPage: boolean;
+    };
+  };
+}
