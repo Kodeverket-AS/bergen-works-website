@@ -2,6 +2,7 @@ export interface WordpressPostsResponse {
   data: {
     posts: {
       nodes: {
+        __typename: "Post";
         slug: string;
         status: "published" | "private";
         title: string;
@@ -27,6 +28,11 @@ export interface WordpressPostsResponse {
           };
         };
       }[];
+      pageInfo: {
+        __typename: string;
+        endCursor: string;
+        hasNextPage: boolean;
+      };
     };
   };
 }
