@@ -1,4 +1,4 @@
-import { FasiliteterCard } from "../../components/ui/FasiliteterCard";
+import { ImageTextCard } from "@/components/ui/ImageTextCard";
 import { Button } from "@/components/ui/buttons/Button";
 import { GetStarted } from "@/components/layout/GetStarted";
 import MedlemskapServices from "./MedlemskapServices";
@@ -8,7 +8,7 @@ export default function Incubator() {
   return (
     <main>
       <div className="mb-10">
-        <FasiliteterCard
+        <ImageTextCard
           imageSrc="/bygg.png"
           alt={"Image of building"}
           headerText={"Bli en del av et inspirerende fellesskap"}
@@ -18,7 +18,9 @@ export default function Incubator() {
           smallScreenReverse={false}
           largeScreenReverse={false}
           cardStyle={"gap-3 md:gap-6"}
-          imageContainerStyle={"w-full h-[400px] md:h-auto md:w-1/2 lg:w-3/5 lg:h-auto"}
+          imageContainerStyle={
+            "w-full h-[400px] md:h-auto md:w-1/2 lg:w-3/5 lg:h-auto"
+          }
           headerStyle={"text-2xl md:text-2xl xl:text-3xl"}
           textContainerStyle={"bg-black text-white md:w-1/2 lg:w-2/5 xl:h-auto"}
           paragraphStyle={"my-4"}
