@@ -2,8 +2,8 @@ import { gql } from "@apollo/client";
 
 // todo: pagination
 export const GET_ALL_WORDPRESS_POST_DETAILS = gql`
-  query PostDetails {
-    posts(where: { status: PUBLISH }) {
+  query PostDetails($first: Int!, $after: String) {
+    posts(first: $first, after: $after, where: { status: PUBLISH }) {
       nodes {
         slug
         status
@@ -83,6 +83,43 @@ export const QUERY_WORDPRESS_CATEGORIES = gql`
       nodes {
         id
         name
+      }
+    }
+  }
+`;
+
+export const QUERY_WORDPRESS_POSTS_BY_CATEGORY = gql`
+  query GetPostsByCategories($first: Int!, $after: String, $categorySlug: String) {
+    posts(first: $first, after: $after, where: { categoryName: "$categorySlug", status: PUBLISH }) {
+      nodes {
+        slug
+        status
+        title
+        uri
+        modified
+        excerpt
+        categories {
+          nodes {
+            name
+          }
+        }
+        tags {
+          nodes {
+            name
+          }
+        }
+        isSticky
+        date
+        featuredImage {
+          node {
+            sourceUrl
+            altText
+          }
+        }
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
       }
     }
   }
