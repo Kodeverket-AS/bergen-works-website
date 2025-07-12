@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/buttons/Button";
 
 export default function Hero() {
   return (
-    <div className="mb-10 flex">
+    <div className=" flex">
       <FasiliteterCard
         imageSrc="/bygg.png"
         alt={"Image of main building"}
