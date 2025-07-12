@@ -5,7 +5,7 @@ export default function Hero() {
   return (
 
     <div className=" flex">
-      <FasiliteterCard
+      <ImageTextCard
 
         imageSrc="/bygg.png"
         alt={"Image of main building"}
