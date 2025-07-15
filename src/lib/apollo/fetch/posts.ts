@@ -47,12 +47,12 @@ interface WpFetchPostsOptions {
   /**
    * Cursor for pagination. Fetches posts after this cursor (cursor is basically an id of a position).
    */
-  after?: string;
+  after?: string | null;
 }
 
 export async function wpFetchPosts(options: WpFetchPostsOptions = {}): Promise<WordpressPostsResult> {
   try {
-    const { tags, category, first = 100, after } = options;
+    const { tags, category, first = 100, after = null } = options;
 
     const response = await apolloClient.query<WordpressPostsResponse>({
       query: QUERY,
