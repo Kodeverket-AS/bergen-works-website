@@ -64,11 +64,13 @@ export default async function Page({
       />
       <h1 className="self-center max-w-[768px]">{article.title}</h1>
       <p className="self-center capitalize text-gray-500">{postDateFormatted}</p>
-      <div
-        dangerouslySetInnerHTML={{ __html: article.content }}
-        className="flex flex-col self-center gap-2 max-w-[768px]"
-      />
-      {article.contentStyles && <style dangerouslySetInnerHTML={{ __html: article.contentStyles }} />}
+      {article?.content && (
+        <div
+          dangerouslySetInnerHTML={{ __html: article.content }}
+          className="flex flex-col self-center gap-2 max-w-[768px]"
+        />
+      )}
+      {article?.contentStyles && <style dangerouslySetInnerHTML={{ __html: article.contentStyles }} />}
     </main>
   );
 }

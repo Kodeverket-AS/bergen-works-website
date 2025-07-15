@@ -1,23 +1,21 @@
 import type { Metadata } from "next";
-import { Space_Grotesk } from 'next/font/google';
+import { Space_Grotesk } from "next/font/google";
 import "@/assets/styles/globals.css";
 import { Header } from "@/components/layout/header/header";
 import Footer from "@/components/layout/footer/footer";
 import { SanityProvider } from "@/context/SanityContext";
-import { getArticles } from "./sanity/lib/getArticles"; 
+import { getArticles } from "./sanity/lib/getArticles";
 import { getEvents } from "./sanity/lib/getEvents";
-import MuiClientThemeProvider from '@/components/layout/MuiClientThemeProvider'; 
-import SommerKampanje from '../components/SommerKampanje'
+import MuiClientThemeProvider from "@/components/layout/MuiClientThemeProvider";
+/* import SommerKampanje from '../components/SommerKampanje' */
 
 const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  display: 'swap',
-  weight: ['400', '500', '600', '700'],
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
 });
 
-const baseUrl = process.env.NODE_ENV === 'development' 
-  ? 'http://localhost:3000'
-  : 'https://www.bergen.works';
+const baseUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://www.bergen.works";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -71,12 +69,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const articles = await getArticles(); 
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const articles = await getArticles();
   const events = await getEvents();
 
   return (
@@ -86,7 +80,7 @@ export default async function RootLayout({
           <SanityProvider articles={articles} events={events}>
             <Header />
             {children}
-              {/* <SommerKampanje /> */}
+            {/* <SommerKampanje /> */}
             <Footer />
           </SanityProvider>
         </MuiClientThemeProvider>
