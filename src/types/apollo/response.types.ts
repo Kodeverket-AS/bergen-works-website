@@ -29,6 +29,11 @@ interface WordpressImage {
   altText: string;
 }
 
+interface WordpressResponse {
+  pageInfo?: PageInfo;
+  error?: ApolloError["cause"] | string;
+}
+
 export interface WordpressPost {
   __typename: "Post";
   slug: string;
@@ -44,13 +49,12 @@ export interface WordpressPost {
   featuredImage: Node<WordpressImage>;
 }
 
-export interface WordpressResponse {
-  pageInfo?: PageInfo;
-  error?: ApolloError["cause"] | string;
-}
-
 export interface WordpressPostsResponse extends WordpressResponse {
   posts: Nodes<WordpressPost>;
+}
+
+export interface WordpressPostsResult extends WordpressResponse {
+  posts: WordpressPost[];
 }
 
 export interface WordpressPostsResponse1 {
