@@ -99,7 +99,7 @@ export interface WordpressCategory {
 }
 
 export interface WordpressCategoriesResponse extends WordpressResponse {
-  category: Nodes<WordpressCategory>;
+  categories: Nodes<WordpressCategory>;
 }
 
 export interface WordpressCategoriesResult extends WordpressResponse {
