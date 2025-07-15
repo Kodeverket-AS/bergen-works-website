@@ -34,6 +34,8 @@ interface WordpressResponse {
   error?: ApolloError["cause"] | string;
 }
 
+// todo: perhaps we can extract metadata?
+
 export interface WordpressPost {
   __typename: "Post";
   slug: string;
@@ -42,11 +44,21 @@ export interface WordpressPost {
   uri: string;
   date: Date;
   modified: Date;
-  excerpt: string;
   isSticky: boolean;
+  excerpt?: string;
+  content?: string;
+  contentStyles?: string;
   categories: Nodes<WordpressCategories>;
   tags: Nodes<WordpressTags>;
   featuredImage: Node<WordpressImage>;
+}
+
+export interface WordpressPostResponse extends WordpressResponse {
+  post: WordpressPost | null;
+}
+
+export interface WordpressPostResult extends WordpressResponse {
+  post: WordpressPost | null;
 }
 
 export interface WordpressPostsResponse extends WordpressResponse {
@@ -92,7 +104,7 @@ export interface WordpressPostsResponse1 {
   };
 }
 
-export interface WordpressPostResponse {
+export interface WordpressPostResponse1 {
   data: {
     post: {
       title: string;
