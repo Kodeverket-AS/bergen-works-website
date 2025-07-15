@@ -1,3 +1,5 @@
+import { ApolloError } from "@apollo/client";
+
 interface PageInfo {
   __typename: string;
   endCursor: string;
@@ -10,7 +12,6 @@ interface Node<T> {
 interface Nodes<T> {
   nodes: T[];
 }
-
 interface WordpressTags {
   id: string;
   slug: string;
@@ -28,11 +29,6 @@ interface WordpressImage {
   altText: string;
 }
 
-export interface WordpressResponse<Key extends string, T> {
-  data: {
-    [K in Key]: T;
-  };
-}
 export interface WordpressPost {
   __typename: "Post";
   slug: string;
@@ -42,13 +38,22 @@ export interface WordpressPost {
   date: Date;
   modified: Date;
   excerpt: string;
+  isSticky: boolean;
   categories: Nodes<WordpressCategories>;
   tags: Nodes<WordpressTags>;
-  isSticky: boolean;
   featuredImage: Node<WordpressImage>;
 }
 
-export interface WordpressPostsResponse {
+export interface WordpressResponse {
+  pageInfo?: PageInfo;
+  error?: ApolloError["cause"] | string;
+}
+
+export interface WordpressPostsResponse extends WordpressResponse {
+  posts: Nodes<WordpressPost>;
+}
+
+export interface WordpressPostsResponse1 {
   data: {
     posts: {
       nodes: {
