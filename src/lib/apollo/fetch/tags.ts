@@ -4,7 +4,7 @@ import apolloClient from "@/lib/apollo/client";
 
 const QUERY = gql`
   query GetTags {
-    tags {
+    tags(first: 100) {
       nodes {
         id
         name
