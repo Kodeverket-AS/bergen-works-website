@@ -12,17 +12,6 @@ interface Node<T> {
 interface Nodes<T> {
   nodes: T[];
 }
-interface WordpressTags {
-  id: string;
-  slug: string;
-  name: string;
-}
-
-interface WordpressCategories {
-  id: string;
-  slug: string;
-  name: string;
-}
 
 interface WordpressImage {
   sourceUrl: string;
@@ -36,6 +25,9 @@ interface WordpressResponse {
 
 // todo: perhaps we can extract metadata?
 
+/**
+ * Wordpress post & posts interfaces
+ */
 export interface WordpressPost {
   __typename: "Post";
   slug: string;
@@ -67,6 +59,37 @@ export interface WordpressPostsResponse extends WordpressResponse {
 
 export interface WordpressPostsResult extends WordpressResponse {
   posts: WordpressPost[];
+}
+
+/**
+ * Wordpress Tags & Category interfaces
+ */
+export interface WordpressTag {
+  id: string;
+  slug: string;
+  name: string;
+}
+
+export interface WordpressTagsResponse extends WordpressResponse {
+  tags: Nodes<WordpressTag>;
+}
+
+export interface WordpressTagsResult extends WordpressResponse {
+  tags: WordpressTag[];
+}
+
+export interface WordpressCategory {
+  id: string;
+  slug: string;
+  name: string;
+}
+
+export interface WordpressCategoriesResponse extends WordpressResponse {
+  category: Nodes<WordpressCategory>;
+}
+
+export interface WordpressCategoriesResult extends WordpressResponse {
+  categories: WordpressCategory[];
 }
 
 export interface WordpressPostsResponse1 {
