@@ -52,7 +52,7 @@ interface WpFetchPostsOptions {
 
 export async function wpFetchPosts(options: WpFetchPostsOptions = {}): Promise<WordpressPostsResult> {
   try {
-    const { tags, category, first = 2, after } = options;
+    const { tags, category, first = 100, after } = options;
 
     const response = await apolloClient.query<WordpressPostsResponse>({
       query: QUERY,
