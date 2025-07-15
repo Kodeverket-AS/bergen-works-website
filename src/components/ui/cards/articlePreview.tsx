@@ -1,17 +1,8 @@
-import { getAllWordpressPostDetails } from "@/lib/apollo/fetch";
+import { type WordpressPost } from "@/types/apollo/response.types";
 import Image from "next/image";
 import Link from "next/link";
 
-type ArticlePreviewCardProps = NonNullable<Awaited<ReturnType<typeof getAllWordpressPostDetails>>>[number];
-
-export async function ArticlePreviewCard({
-  title,
-  excerpt,
-  featuredImage,
-  date,
-  tags,
-  uri,
-}: ArticlePreviewCardProps) {
+export async function ArticlePreviewCard({ title, excerpt, featuredImage, date, tags, uri }: WordpressPost) {
   // Format date for readability per client request
   const postDate = new Date(date);
   const postDateFormatted = new Intl.DateTimeFormat("no-NO", {
@@ -23,8 +14,8 @@ export async function ArticlePreviewCard({
   return (
     <div className="flex flex-col gap-4 p-2 border-8 border-moss-200">
       <Image
-        src={featuredImage.node.sourceUrl}
-        alt={featuredImage.node.altText}
+        src={featuredImage.node?.sourceUrl ? featuredImage.node?.sourceUrl : "KoV-ov.png"}
+        alt={featuredImage.node?.altText ? featuredImage.node.altText : ""}
         sizes="50vw"
         style={{
           width: "100%",
@@ -41,9 +32,13 @@ export async function ArticlePreviewCard({
       </span>
       <span dangerouslySetInnerHTML={{ __html: excerpt }}></span>
       <span className="flex gap-2 flex-wrap mt-auto">
-        {tags.map((tag, index) => (
-          <Link key={index} href={"articles/tags/" + encodeURI(tag)} className="text-xs px-1 bg-moss-100 rounded-sm">
-            {tag}
+        {tags.nodes.map((tag, index) => (
+          <Link
+            key={index}
+            href={"articles/tags/" + encodeURI(tag.name)}
+            className="text-xs px-1 bg-moss-100 rounded-sm"
+          >
+            {tag.name}
           </Link>
         ))}
       </span>
