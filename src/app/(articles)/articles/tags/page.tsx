@@ -4,8 +4,8 @@ import Link from "next/link";
 export default async function Page() {
   const result = await wpFetchTags();
   return (
-    <main>
-      <h1 className="text-center text-2xl p-4">List of all available tags</h1>
+    <main className="flex flex-col gap-4 pb-4">
+      <h1 className="text-center text-2xl">List of all available tags</h1>
       <div className="flex justify-center">
         <div className="w-full sm:w-1/2 flex flex-wrap justify-center gap-2">
           {result.tags.map((tag) => (
