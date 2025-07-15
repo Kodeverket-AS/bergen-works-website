@@ -9,7 +9,7 @@ export default async function Page({ params }: { params: Promise<{ tag: string }
 
   // Get tag meta
   const availableTags = await wpFetchTags();
-  const tagMeta = availableTags.tags.find((el) => el.slug === tag);
+  const tagMeta = availableTags.tags.find((el) => el.slug === decodeURI(tag));
 
   // If tag can't be found return 404
   if (!tagMeta) return notFound();
@@ -27,7 +27,9 @@ export default async function Page({ params }: { params: Promise<{ tag: string }
           result.posts?.map((article) => <ArticlePreviewCard key={article.slug} {...article} />)}
       </div>
       <div className="flex justify-center">
-        <Link href="/articles/tags" className="hover:underline duration-300">Return to all tags</Link>
+        <Link href="/articles/tags" className="hover:underline duration-300">
+          Return to all tags
+        </Link>
       </div>
     </main>
   );
