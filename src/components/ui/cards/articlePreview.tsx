@@ -30,12 +30,12 @@ export async function ArticlePreviewCard({ title, excerpt, featuredImage, date, 
         </Link>
         <p className="capitalize text-xs text-gray-400">{postDateFormatted}</p>
       </span>
-      <span dangerouslySetInnerHTML={{ __html: excerpt }}></span>
+      {excerpt && <span dangerouslySetInnerHTML={{ __html: excerpt }}></span>}
       <span className="flex gap-2 flex-wrap mt-auto">
         {tags.nodes.map((tag, index) => (
           <Link
             key={index}
-            href={"articles/tags/" + encodeURI(tag.name)}
+            href={"/articles/tags/" + encodeURI(tag.slug)}
             className="text-xs px-1 bg-moss-100 rounded-sm"
           >
             {tag.name}
