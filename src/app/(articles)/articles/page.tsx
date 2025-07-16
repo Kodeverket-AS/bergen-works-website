@@ -11,7 +11,7 @@ export default async function Page() {
         {articles.posts.length > 0 &&
           articles.posts?.map((article) => <ArticlePreviewCard key={article.slug} {...article} />)}
       </div>
-      <PaginationContainer />
+      <PaginationContainer current={1} max={10} rootUrl="/articles/" />
     </main>
   );
 }
