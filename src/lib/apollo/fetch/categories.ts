@@ -1,6 +1,6 @@
-import { ApolloError, gql } from "@apollo/client";
-import apolloClient from "@/lib/apollo/client";
-import { WordpressCategoriesResponse, WordpressCategoriesResult } from "@/types/apollo/response.types";
+import { type WordpressCategoriesResponse, type WordpressCategoriesResult } from '@/types/apollo/response.types';
+import { ApolloError, gql } from '@apollo/client';
+import apolloClient from '@/lib/apollo/client';
 
 const QUERY = gql`
   query GetCategories {
@@ -33,30 +33,33 @@ export async function wpFetchCategories(): Promise<WordpressCategoriesResult> {
       console.error(error.cause);
       return { categories: [], error: error.cause };
     }
-    return { categories: [], error: "Unknown error occoured while fetching wordpress categories, contact site admin" };
+    return {
+      categories: [],
+      error: 'Unknown error occoured while fetching wordpress categories, contact site admin',
+    };
   }
 }
 
 // todo - remove dummy data
 export const availableCategories = [
   {
-    name: "Coworking",
-    slug: "coworking",
-    id: "dGVybTo0OA==",
+    name: 'Coworking',
+    slug: 'coworking',
+    id: 'dGVybTo0OA==',
   },
   {
-    name: "Inkubator",
-    slug: "inkubator",
-    id: "dGVybTo1Nw==",
+    name: 'Inkubator',
+    slug: 'inkubator',
+    id: 'dGVybTo1Nw==',
   },
   {
-    name: "Månedsoppsumering",
-    slug: "manedsoppsumering",
-    id: "dGVybTo2Nw==",
+    name: 'Månedsoppsumering',
+    slug: 'manedsoppsumering',
+    id: 'dGVybTo2Nw==',
   },
   {
-    name: "Medlemmer",
-    slug: "medlemmer",
-    id: "dGVybTox",
+    name: 'Medlemmer',
+    slug: 'medlemmer',
+    id: 'dGVybTox',
   },
 ];

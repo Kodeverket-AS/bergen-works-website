@@ -1,6 +1,6 @@
-import { type WordpressPostsResponse, type WordpressPostsResult } from "@/types/apollo/response.types";
-import { ApolloError, gql } from "@apollo/client";
-import apolloClient from "@/lib/apollo/client";
+import { type WordpressPostsResponse, type WordpressPostsResult } from '@/types/apollo/response.types';
+import { ApolloError, gql } from '@apollo/client';
+import apolloClient from '@/lib/apollo/client';
 
 const QUERY = gql`
   query Posts($first: Int!, $after: String, $tags: [ID], $categories: [ID]) {
@@ -73,6 +73,9 @@ export async function wpFetchPosts(options: WpFetchPostsOptions = {}): Promise<W
       console.error(error.cause);
       return { posts: [], error: error.cause };
     }
-    return { posts: [], error: "Unknown error occoured while fetching wordpress post, contact site admin" };
+    return {
+      posts: [],
+      error: 'Unknown error occoured while fetching wordpress post, contact site admin',
+    };
   }
 }

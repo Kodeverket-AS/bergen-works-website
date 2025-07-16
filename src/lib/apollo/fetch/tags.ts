@@ -1,6 +1,6 @@
-import { type WordpressTagsResponse, type WordpressTagsResult } from "@/types/apollo/response.types";
-import { ApolloError, gql } from "@apollo/client";
-import apolloClient from "@/lib/apollo/client";
+import { type WordpressTagsResponse, type WordpressTagsResult } from '@/types/apollo/response.types';
+import { ApolloError, gql } from '@apollo/client';
+import apolloClient from '@/lib/apollo/client';
 
 const QUERY = gql`
   query GetTags {
@@ -33,60 +33,63 @@ export async function wpFetchTags(): Promise<WordpressTagsResult> {
       console.error(error.cause);
       return { tags: [], error: error.cause };
     }
-    return { tags: [], error: "Unknown error occoured while fetching wordpress post, contact site admin" };
+    return {
+      tags: [],
+      error: 'Unknown error occoured while fetching wordpress post, contact site admin',
+    };
   }
 }
 
 // todo - remove dummy data
 export const availableTags = [
   {
-    name: "#april",
-    slug: "april",
-    id: "dGVybTo3Mw==",
+    name: '#april',
+    slug: 'april',
+    id: 'dGVybTo3Mw==',
   },
   {
-    name: "#bergenworks",
-    slug: "bergenworks-2",
-    id: "dGVybTo3Nw==",
+    name: '#bergenworks',
+    slug: 'bergenworks-2',
+    id: 'dGVybTo3Nw==',
   },
   {
-    name: "#coworking",
-    slug: "coworking-2",
-    id: "dGVybTo3OA==",
+    name: '#coworking',
+    slug: 'coworking-2',
+    id: 'dGVybTo3OA==',
   },
   {
-    name: "#felelskap",
-    slug: "felelskap",
-    id: "dGVybTo3OQ==",
+    name: '#felelskap',
+    slug: 'felelskap',
+    id: 'dGVybTo3OQ==',
   },
   {
-    name: "#felleskap",
-    slug: "felleskap-2",
-    id: "dGVybTo4MA==",
+    name: '#felleskap',
+    slug: 'felleskap-2',
+    id: 'dGVybTo4MA==',
   },
   {
-    name: "#lunsjmøte",
-    slug: "lunsjmote-2",
-    id: "dGVybTo3NQ==",
+    name: '#lunsjmøte',
+    slug: 'lunsjmote-2',
+    id: 'dGVybTo3NQ==',
   },
   {
-    name: "#markedsføring",
-    slug: "markedsforing",
-    id: "dGVybTo3Ng==",
+    name: '#markedsføring',
+    slug: 'markedsforing',
+    id: 'dGVybTo3Ng==',
   },
   {
-    name: "#oppsummering",
-    slug: "oppsummering",
-    id: "dGVybTo3NA==",
+    name: '#oppsummering',
+    slug: 'oppsummering',
+    id: 'dGVybTo3NA==',
   },
   {
-    name: "afterwork",
-    slug: "afterwork",
-    id: "dGVybTo1NA==",
+    name: 'afterwork',
+    slug: 'afterwork',
+    id: 'dGVybTo1NA==',
   },
   {
-    name: "bærekraft",
-    slug: "baerekraft",
-    id: "dGVybTo5",
+    name: 'bærekraft',
+    slug: 'baerekraft',
+    id: 'dGVybTo5',
   },
 ];
