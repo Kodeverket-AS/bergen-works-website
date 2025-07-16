@@ -68,9 +68,13 @@ export interface WordpressURI {
   slug: string;
   uri: string;
 }
-export interface WordpressPostsURIResponse extends WordpressResponse {
-  uri: Nodes<WordpressURI>;
+
+export interface WordpressPostsURIResponse extends Omit<WordpressResponse, 'pageInfo'> {
+  posts: Nodes<WordpressURI> & {
+    pageInfo: PageInfo;
+  };
 }
+
 export interface WordpressPostsURIResult extends WordpressResponse {
   uri: WordpressURI[];
 }
