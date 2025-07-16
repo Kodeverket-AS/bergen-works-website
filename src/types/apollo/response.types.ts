@@ -1,4 +1,4 @@
-import { ApolloError } from "@apollo/client";
+import { ApolloError } from '@apollo/client';
 
 interface PageInfo {
   __typename: string;
@@ -20,7 +20,7 @@ interface WordpressImage {
 
 interface WordpressResponse {
   pageInfo?: PageInfo;
-  error?: ApolloError["cause"] | string;
+  error?: ApolloError['cause'] | string;
 }
 
 // todo: perhaps we can extract metadata?
@@ -29,9 +29,9 @@ interface WordpressResponse {
  * Wordpress post & posts interfaces
  */
 export interface WordpressPost {
-  __typename: "Post";
+  __typename: 'Post';
   slug: string;
-  status: "published" | "private";
+  status: 'published' | 'private';
   title: string;
   uri: string;
   date: Date;
@@ -61,18 +61,18 @@ export interface WordpressPostsResult extends WordpressResponse {
   posts: WordpressPost[];
 }
 
-export interface WordpressPostsURIResponse {
-  posts: {
-    nodes: {
-      __typename: "Post";
-      uri: string;
-    }[];
-    pageInfo: {
-      __typename: string;
-      endCursor: string;
-      hasNextPage: boolean;
-    };
-  };
+/**
+ * Wordpress URI interfaces
+ */
+export interface WordpressURI {
+  slug: string;
+  uri: string;
+}
+export interface WordpressPostsURIResponse extends WordpressResponse {
+  uri: Nodes<WordpressURI>;
+}
+export interface WordpressPostsURIResult extends WordpressResponse {
+  uri: WordpressURI[];
 }
 
 /**
