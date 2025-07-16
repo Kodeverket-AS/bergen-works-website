@@ -4,12 +4,10 @@ import { wpFetchPost } from '@/lib/apollo/fetch/post';
 import { wpFetchURIs } from '@/lib/apollo/fetch/generateURIs';
 import '@/assets/styles/frontend.min.css';
 
-// todo: replace fetch function
 export async function generateStaticParams() {
-  const postsURIs = await wpFetchURIs();
+  const result = await wpFetchURIs();
 
-  // todo - check if dates are required constructors
-  return postsURIs.uri.map((item) => ({
+  return result.uri.map((item) => ({
     slug: item.uri,
   }));
 }
