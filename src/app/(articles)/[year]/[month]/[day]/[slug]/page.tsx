@@ -1,16 +1,16 @@
-import Image from "next/image";
-import { notFound } from "next/navigation";
-import { getWordpressPostsURIs } from "@/lib/apollo/fetch";
-import { wpFetchPost } from "@/lib/apollo/fetch/post";
-import "@/assets/styles/frontend.min.css";
+import Image from 'next/image';
+import { notFound } from 'next/navigation';
+import { wpFetchPost } from '@/lib/apollo/fetch/post';
+import { wpFetchURIs } from '@/lib/apollo/fetch/generateURIs';
+import '@/assets/styles/frontend.min.css';
 
 // todo: replace fetch function
 export async function generateStaticParams() {
-  const postsURIs = await getWordpressPostsURIs();
+  const postsURIs = await wpFetchURIs();
 
   // todo - check if dates are required constructors
-  return postsURIs.map((uri) => ({
-    slug: uri,
+  return postsURIs.uri.map((item) => ({
+    slug: item.uri,
   }));
 }
 
@@ -43,31 +43,31 @@ export default async function Page({
   // todo - replace placeholder image below
 
   // Format date for readability per client request
-  const postDateFormatted = new Intl.DateTimeFormat("no-NO", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
+  const postDateFormatted = new Intl.DateTimeFormat('no-NO', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
   }).format(postDate);
 
   return (
-    <main className="flex flex-col gap-4 pb-8 [&_h1]:text-[50px] [&_h2]:text-[25px] [&_h2]:font-light [&_p]:mb-7">
+    <main className='flex flex-col gap-4 pb-8 [&_h1]:text-[50px] [&_h2]:text-[25px] [&_h2]:font-light [&_p]:mb-7'>
       <Image
-        src={featuredImage ? featuredImage.sourceUrl : "/KoV-ov.png"}
-        alt={featuredImage ? featuredImage.altText : "Alt text missing"}
-        sizes="100vw"
+        src={featuredImage ? featuredImage.sourceUrl : '/KoV-ov.png'}
+        alt={featuredImage ? featuredImage.altText : 'Alt text missing'}
+        sizes='100vw'
         style={{
-          width: "100%",
-          height: "auto",
+          width: '100%',
+          height: 'auto',
         }}
         width={500}
         height={300}
       />
-      <h1 className="self-center max-w-[768px]">{article.title}</h1>
-      <p className="self-center capitalize text-gray-500">{postDateFormatted}</p>
+      <h1 className='self-center max-w-[768px]'>{article.title}</h1>
+      <p className='self-center capitalize text-gray-500'>{postDateFormatted}</p>
       {article?.content && (
         <div
           dangerouslySetInnerHTML={{ __html: article.content }}
-          className="flex flex-col self-center gap-2 max-w-[768px]"
+          className='flex flex-col self-center gap-2 max-w-[768px]'
         />
       )}
       {article?.contentStyles && <style dangerouslySetInnerHTML={{ __html: article.contentStyles }} />}
