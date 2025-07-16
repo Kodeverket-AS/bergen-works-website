@@ -1,11 +1,17 @@
-import { WordpressPostsURIResult, WordpressURI } from '@/types/apollo/response.types';
-import { ApolloError, gql } from '@apollo/client';
+import {
+  type WordpressPostsURIResponse,
+  type WordpressPostsURIResult,
+  type WordpressURI,
+} from '@/types/apollo/response.types';
+import { ApolloError, ApolloQueryResult, gql } from '@apollo/client';
+import apolloClient from '@/lib/apollo/client';
 
 const QUERY = gql`
   query Posts($first: Int!, $after: String, $tags: [ID], $categories: [ID]) {
     posts(first: $first, after: $after, where: { categoryIn: $categories, tagIn: $tags, status: PUBLISH }) {
       nodes {
         uri
+        slug
       }
       pageInfo {
         endCursor
@@ -22,10 +28,6 @@ interface WpFetchURIsOptions {
    * Number of posts to fetch per page. Defaults to 100 which is the max that we can request at once.
    */
   first?: number;
-  /**
-   * Cursor for pagination. Fetches posts after this cursor (cursor is basically an id of a position).
-   */
-  after?: string | null;
 }
 export async function wpFetchURIs({
   first = 2,
@@ -38,17 +40,40 @@ export async function wpFetchURIs({
 
     // Graphql pagination helper variables
     let after: string | null = null;
-    let hasNextPage = true;
+    let error: string | undefined = undefined;
+    let hasNextPage: boolean = true;
 
     // Itterate trough multiple pages until all posts URIs has been collected
     while (hasNextPage) {
-      const result = await wpFetchURIs({ first, after, tags, category });
+      const response: ApolloQueryResult<WordpressPostsURIResponse> = await apolloClient.query({
+        query: QUERY,
+        variables: { first, after, tags, category },
+      });
 
-      console.log(result);
-      hasNextPage = false;
+      // If fetch fails, return response as this helps ssg error handling
+      if (response?.error) {
+        error = response.error.cause?.message;
+        break;
+      }
+
+      // Gather reqruired fields
+      const nodes = response.data.posts.nodes;
+      const pageInfo = response.data.posts.pageInfo;
+
+      // Process fetched URIs
+      uri.push(
+        ...nodes.map((node) => ({
+          slug: node.slug,
+          uri: node.uri.replace(/^\/|\/$/g, ''),
+        }))
+      );
+
+      // Update pagination helpers
+      after = pageInfo?.endCursor ?? null;
+      hasNextPage = Boolean(pageInfo?.hasNextPage);
     }
 
-    return { uri };
+    return { uri, error };
   } catch (error) {
     if (error instanceof ApolloError) {
       console.error(error.cause);
