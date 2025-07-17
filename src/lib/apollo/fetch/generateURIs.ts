@@ -32,7 +32,7 @@ interface WpFetchURIsOptions {
   first?: number;
 }
 export async function wpFetchURIs({
-  first = 2,
+  first = 100,
   tags,
   category,
 }: WpFetchURIsOptions = {}): Promise<WordpressPostsURIResult> {
