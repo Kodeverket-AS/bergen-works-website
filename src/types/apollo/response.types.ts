@@ -67,6 +67,8 @@ export interface WordpressPostsResult extends WordpressResponse {
 export interface WordpressURI {
   slug: string;
   uri: string;
+  date: string;
+  modified: string;
 }
 
 export interface WordpressPostsURIResponse extends Omit<WordpressResponse, 'pageInfo'> {

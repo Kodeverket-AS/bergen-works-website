@@ -61,12 +61,7 @@ export async function wpFetchURIs({
       const pageInfo = response.data.posts.pageInfo;
 
       // Process fetched URIs
-      uri.push(
-        ...nodes.map((node) => ({
-          slug: node.slug,
-          uri: node.uri.replace(/^\/|\/$/g, ''),
-        }))
-      );
+      uri.push(...nodes.map((node) => ({ ...node, uri: node.uri.replace(/^\/|\/$/g, '') })));
 
       // Update pagination helpers
       after = pageInfo?.endCursor ?? null;
