@@ -1,8 +1,11 @@
 import Image from 'next/image';
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { wpFetchPost } from '@/lib/apollo/fetch/post';
 import { wpFetchURIs } from '@/lib/apollo/fetch/generateURIs';
 import '@/assets/styles/frontend.min.css';
+
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const result = await wpFetchURIs();
@@ -10,6 +13,12 @@ export async function generateStaticParams() {
   return result.uri.map((item) => ({
     slug: item.uri,
   }));
+}
+
+export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
+  return {
+    title: `Bergen Works - ${params.slug}`,
+  };
 }
 
 export default async function Page({
