@@ -12,6 +12,8 @@ const QUERY = gql`
       nodes {
         uri
         slug
+        date
+        modified
       }
       pageInfo {
         endCursor
