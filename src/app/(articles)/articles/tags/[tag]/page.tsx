@@ -1,8 +1,8 @@
-import Link from "next/link";
-import { notFound } from "next/navigation";
-import { wpFetchPosts } from "@/lib/apollo/fetch/posts";
-import { wpFetchTags } from "@/lib/apollo/fetch/tags";
-import { ArticlePreviewCard } from "@/components/ui/cards/articlePreview";
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import { wpFetchPosts } from '@/lib/apollo/fetch/posts';
+import { wpFetchTags } from '@/lib/apollo/fetch/tags';
+import { ArticlesContainer } from '@/components/layout/articles/container';
 
 export default async function Page({ params }: { params: Promise<{ tag: string }> }) {
   const { tag } = await params;
@@ -18,19 +18,14 @@ export default async function Page({ params }: { params: Promise<{ tag: string }
   const result = await wpFetchPosts({ tags: [tagMeta.id] });
 
   return (
-    <main className="flex flex-col gap-4 pb-4">
-      <h1>
-        List of all posts with tag <span className="font-bold">{tagMeta.name}</span>
+    <main className='flex flex-col gap-4 pb-4'>
+      <h1 className='text-center text-3xl'>
+        Alle artikler med <span className='font-bold'>{tagMeta.name}</span> tag
       </h1>
-      <div className="grid py-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-        {result.posts.length > 0 &&
-          result.posts?.map((article) => <ArticlePreviewCard key={article.slug} {...article} />)}
-      </div>
-      <div className="flex justify-center">
-        <Link href="/articles/tags" className="hover:underline duration-300">
-          Return to all tags
-        </Link>
-      </div>
+      <Link href='/articles/tags' className='text-center text-gray-600 hover:underline duration-300'>
+        Gå tilbake til artikkel tags
+      </Link>
+      <ArticlesContainer articles={result.posts} />
     </main>
   );
 }
