@@ -2,8 +2,10 @@ import { ApolloError } from '@apollo/client';
 
 interface PageInfo {
   __typename: string;
+  startCursor: string;
   endCursor: string;
   hasNextPage: boolean;
+  hasPreviousPage: boolean;
 }
 
 interface Node<T> {
@@ -53,8 +55,8 @@ export interface WordpressPostResult extends WordpressResponse {
   post: WordpressPost | null;
 }
 
-export interface WordpressPostsResponse extends WordpressResponse {
-  posts: Nodes<WordpressPost>;
+export interface WordpressPostsResponse {
+  posts: Nodes<WordpressPost> & WordpressResponse;
 }
 
 export interface WordpressPostsResult extends WordpressResponse {
