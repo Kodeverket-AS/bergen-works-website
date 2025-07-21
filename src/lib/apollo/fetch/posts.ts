@@ -3,12 +3,12 @@ import { ApolloError, gql } from '@apollo/client';
 import apolloClient from '@/lib/apollo/client';
 
 const QUERY = gql`
-  query Posts($first: Int!, $after: String, $before: String, $tag: String, $categories: String) {
+  query Posts($first: Int!, $after: String, $before: String, $tag: String, $category: String) {
     posts(
       first: $first
       after: $after
       before: $before
-      where: { categoryName: $categories, tag: $tag, status: PUBLISH }
+      where: { tag: $tag, categoryName: $category, status: PUBLISH }
     ) {
       nodes {
         slug
@@ -51,7 +51,7 @@ const QUERY = gql`
 `;
 
 interface WpFetchPostsOptions {
-  tags?: string;
+  tag?: string;
   category?: string;
   /**
    * Number of posts to fetch per page. Defaults to 100 which is the max that we can request at once.
@@ -66,11 +66,11 @@ interface WpFetchPostsOptions {
 
 export async function wpFetchPosts(options: WpFetchPostsOptions = {}): Promise<WordpressPostsResult> {
   try {
-    const { tags, category, first = 100, after = null, before = null } = options;
+    const { tag, category, first = 100, after = null, before = null } = options;
 
     const response = await apolloClient.query<WordpressPostsResponse>({
       query: QUERY,
-      variables: { tags, category, first, after, before },
+      variables: { tag, category, first, after, before },
     });
 
     // If fetch fails, return response as this helps ssg error handling
