@@ -1,7 +1,7 @@
 import { ApolloError } from '@apollo/client';
 
-interface PageInfo {
-  __typename: string;
+export interface PageInfo {
+  __typename?: string;
   startCursor: string;
   endCursor: string;
   hasNextPage: boolean;
