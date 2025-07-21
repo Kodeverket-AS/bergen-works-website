@@ -19,6 +19,8 @@ const QUERY = gql`
         excerpt
         categories {
           nodes {
+            id
+            slug
             name
           }
         }
