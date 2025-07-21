@@ -15,8 +15,8 @@ export default function Page() {
   // Store data
   const [articles, setArticles] = useState<WordpressPost[]>([]);
   const [pageInfo, setPageInfo] = useState<PageInfo>();
-  const [articlePerPage] = useState(9);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [articlePerPage] = useState(9);
 
   async function loadMore() {
     if (isLoading) return;
@@ -48,20 +48,21 @@ export default function Page() {
 
       setIsLoading(false);
     };
-    // fetchPosts();
+
+    fetchPosts();
   }, [articlePerPage, filterTag, filterCategory]);
 
   return (
     <main className='flex-1 flex flex-col gap-4 pb-4'>
       <h1 className='text-center text-3xl'>Artikler fra Bergen Works</h1>
       <span className='flex flex-col'>
-        {filterCategory && (
+        {filterCategory && !isLoading && (
           <p>
             Vi fant <span className='font-bold'>{articles.length}</span> artikkler i kategorien{' '}
             <span className='font-bold'>{filterCategory}</span>
           </p>
         )}
-        {filterTag && (
+        {filterTag && !isLoading && (
           <p>
             Vi fant <span className='font-bold'>{articles.length}</span> artikkler med tag{' '}
             <span className='font-bold'>{filterTag}</span>
