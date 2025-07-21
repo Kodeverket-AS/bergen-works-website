@@ -1,15 +1,8 @@
 import { ArticlePreviewCard } from '@/components/ui/cards/articlePreview';
 import { WordpressPost } from '@/types/apollo/response.types';
 
-// todo: Add loading state
 export function ArticlesContainer({ articles }: { articles: WordpressPost[] }) {
-  if (!articles || articles.length === 0)
-    return (
-      <div className='w-full'>
-        <p className='text-center'>Ingen artikler funnet, prøv å last inn siden på nytt</p>
-      </div>
-    );
-
+  if (!articles || articles.length === 0) return false;
   return (
     <div className='w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3'>
       {articles.map((article) => (
