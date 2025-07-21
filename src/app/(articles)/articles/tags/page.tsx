@@ -12,7 +12,7 @@ export default async function Page() {
           {result.tags.map((tag) => (
             <Link
               key={tag.id}
-              href={'/articles/tags/' + tag.slug}
+              href={'/articles?tags' + tag.slug}
               className='border rounded-md px-2 bg-moss-100 hover:bg-moss-200 duration-300'
             >
               {tag.name}

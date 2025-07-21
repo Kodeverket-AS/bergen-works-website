@@ -15,7 +15,7 @@ export default async function Page({ params }: { params: Promise<{ tag: string }
   if (!tagMeta) return notFound();
 
   // Fetch filtered posts
-  const result = await wpFetchPosts({ tags: [tagMeta.id] });
+  const result = await wpFetchPosts({ tags: tagMeta.slug });
 
   return (
     <main className='flex flex-col gap-4 pb-4'>

@@ -12,7 +12,7 @@ export default async function Page() {
           {result.categories.map((category) => (
             <Link
               key={category.id}
-              href={'/articles/category/' + category.slug}
+              href={'/articles?category=' + category.slug}
               className='border rounded-md px-2 bg-moss-100 hover:bg-moss-200 duration-300'
             >
               {category.name}

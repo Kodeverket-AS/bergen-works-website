@@ -15,7 +15,7 @@ export default async function Page({ params }: { params: Promise<{ category: str
   if (!categoryMeta) return notFound();
 
   // Fetch filtered posts
-  const result = await wpFetchPosts({ category: [categoryMeta.id] });
+  const result = await wpFetchPosts({ category: categoryMeta.slug });
 
   return (
     <main className='flex flex-col gap-4 pb-4'>
