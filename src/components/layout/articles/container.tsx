@@ -5,8 +5,8 @@ import { WordpressPost } from '@/types/apollo/response.types';
 export function ArticlesContainer({ articles }: { articles: WordpressPost[] }) {
   if (!articles || articles.length === 0)
     return (
-      <div>
-        <p>Ingen artikler funnet</p>
+      <div className='w-full'>
+        <p className='text-center'>Ingen artikler funnet, prøv å last inn siden på nytt</p>
       </div>
     );
 
