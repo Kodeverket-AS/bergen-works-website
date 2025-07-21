@@ -2,7 +2,7 @@ import { type WordpressPost } from '@/types/apollo/response.types';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export function ArticlePreviewCard({ title, excerpt, featuredImage, date, tags, uri }: WordpressPost) {
+export function ArticlePreviewCard({ title, excerpt, featuredImage, date, tags, categories, uri }: WordpressPost) {
   // Format date for readability per client request
   const postDate = new Date(date);
   const postDateFormatted = new Intl.DateTimeFormat('no-NO', {
@@ -10,6 +10,9 @@ export function ArticlePreviewCard({ title, excerpt, featuredImage, date, tags, 
     day: 'numeric',
     year: 'numeric',
   }).format(postDate);
+
+  // Get main category
+  const category = categories.nodes.at(0);
 
   return (
     <div className='flex flex-col gap-4 p-2 border-8 border-moss-200'>
@@ -28,7 +31,12 @@ export function ArticlePreviewCard({ title, excerpt, featuredImage, date, tags, 
         <Link href={uri} className='text-moss-600 font-medium'>
           {title}
         </Link>
-        <p className='capitalize text-xs text-gray-400'>{postDateFormatted}</p>
+        <span className='flex justify-between flex-wrap text-xs text-gray-400'>
+          <p className='capitalize'>{postDateFormatted}</p>
+          <Link href={category ? `/articles?category=${category.slug}` : '/articles'}>
+            {category ? category.name : 'ukategorisert'}
+          </Link>
+        </span>
       </span>
       {excerpt && <span dangerouslySetInnerHTML={{ __html: excerpt }}></span>}
       <span className='flex gap-2 flex-wrap mt-auto'>
