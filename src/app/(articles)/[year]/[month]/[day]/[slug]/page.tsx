@@ -5,8 +5,6 @@ import { wpFetchPost } from '@/lib/apollo/fetch/post';
 import { wpFetchURIs } from '@/lib/apollo/fetch/generateURIs';
 import '@/assets/styles/frontend.min.css';
 
-export const dynamicParams = false;
-
 export async function generateStaticParams() {
   const result = await wpFetchURIs();
 
