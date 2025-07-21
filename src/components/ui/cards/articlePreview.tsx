@@ -33,7 +33,7 @@ export function ArticlePreviewCard({ title, excerpt, featuredImage, date, tags, 
         </Link>
         <span className='flex justify-between flex-wrap text-xs text-gray-400'>
           <p className='capitalize'>{postDateFormatted}</p>
-          <Link href={category ? `/articles?category=${category.slug}` : '/articles'}>
+          <Link href={category ? `/artikler?category=${category.slug}` : '/articles'}>
             {category ? category.name : 'ukategorisert'}
           </Link>
         </span>
@@ -43,7 +43,7 @@ export function ArticlePreviewCard({ title, excerpt, featuredImage, date, tags, 
         {tags.nodes.map((tag, index) => (
           <Link
             key={index}
-            href={'/articles?tag=' + encodeURI(tag.slug)}
+            href={'/artikler?tag=' + encodeURI(tag.slug)}
             className='text-xs px-1 bg-moss-100 rounded-sm'
           >
             {tag.name}
