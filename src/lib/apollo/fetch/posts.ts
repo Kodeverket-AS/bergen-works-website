@@ -33,6 +33,12 @@ const QUERY = gql`
           }
         }
       }
+      pageInfo {
+        startCursor
+        endCursor
+        hasNextPage
+        hasPreviousPage
+      }
     }
   }
 `;
@@ -64,7 +70,7 @@ export async function wpFetchPosts(options: WpFetchPostsOptions = {}): Promise<W
 
     // Gather necessary datasets
     const posts = response.data.posts.nodes;
-    const pageInfo = response.data?.pageInfo;
+    const pageInfo = response.data.posts.pageInfo;
     const error = response.error?.cause;
 
     return { posts, pageInfo, error };
