@@ -16,8 +16,10 @@ const QUERY = gql`
         modified
       }
       pageInfo {
+        startCursor
         endCursor
         hasNextPage
+        hasPreviousPage
       }
     }
   }
@@ -46,6 +48,7 @@ export async function wpFetchURIs({
     let hasNextPage: boolean = true;
 
     // Itterate trough multiple pages until all posts URIs has been collected
+    // Using this type as client has problem extracting type in while loops
     while (hasNextPage) {
       const response: ApolloQueryResult<WordpressPostsURIResponse> = await apolloClient.query({
         query: QUERY,
