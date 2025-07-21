@@ -1,16 +1,13 @@
 'use client';
 
 import { type WordpressPost, type PageInfo, type WordpressPostsResult } from '@/types/apollo/response.types';
-import { useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { use, useEffect, useState } from 'react';
 import { ArticlesContainer } from '@/components/layout/articles/container';
 import RotateRightIcon from '@mui/icons-material/RotateRight';
 
-export default function Page() {
+export default function Page({ searchParams }: { searchParams: Promise<{ tag?: string; category?: string }> }) {
   // Retrieve tags or categories from search parameters
-  const searchParams = useSearchParams();
-  const filterTag = searchParams.get('tag') || '';
-  const filterCategory = searchParams.get('category') || '';
+  const { tag = null, category = null } = use(searchParams);
 
   // Store data
   const [articles, setArticles] = useState<WordpressPost[]>([]);
@@ -23,7 +20,7 @@ export default function Page() {
     setIsLoading(true);
 
     const response = await fetch(
-      `/api/wordpress?first=${articlePerPage}&after=${pageInfo?.endCursor}&tag=${filterTag}&category=${filterCategory}`
+      `/api/wordpress?first=${articlePerPage}&after=${pageInfo?.endCursor}&tag=${tag}&category=${category}`
     );
     const data: WordpressPostsResult = await response.json();
 
@@ -38,9 +35,7 @@ export default function Page() {
     const fetchPosts = async () => {
       setIsLoading(true);
 
-      const response = await fetch(
-        `/api/wordpress?first=${articlePerPage}&tag=${filterTag}&category=${filterCategory}`
-      );
+      const response = await fetch(`/api/wordpress?first=${articlePerPage}&tag=${tag}&category=${category}`);
       const data: WordpressPostsResult = await response.json();
 
       if (data?.posts) setArticles(data.posts);
@@ -50,22 +45,22 @@ export default function Page() {
     };
 
     fetchPosts();
-  }, [articlePerPage, filterTag, filterCategory]);
+  }, [articlePerPage, tag, category]);
 
   return (
     <main className='flex-1 flex flex-col gap-4 pb-4'>
       <h1 className='text-center text-3xl'>Artikler fra Bergen Works</h1>
       <span className='flex flex-col'>
-        {filterCategory && !isLoading && (
+        {category && !isLoading && (
           <p>
             Vi fant <span className='font-bold'>{articles.length}</span> artikkler i kategorien{' '}
-            <span className='font-bold'>{filterCategory}</span>
+            <span className='font-bold'>{category}</span>
           </p>
         )}
-        {filterTag && !isLoading && (
+        {tag && !isLoading && (
           <p>
             Vi fant <span className='font-bold'>{articles.length}</span> artikkler med tag{' '}
-            <span className='font-bold'>{filterTag}</span>
+            <span className='font-bold'>{tag}</span>
           </p>
         )}
       </span>
