@@ -3,8 +3,13 @@ import { ApolloError, gql } from '@apollo/client';
 import apolloClient from '@/lib/apollo/client';
 
 const QUERY = gql`
-  query Posts($first: Int!, $after: String, $tags: [ID], $categories: [ID]) {
-    posts(first: $first, after: $after, where: { categoryIn: $categories, tagIn: $tags, status: PUBLISH }) {
+  query Posts($first: Int!, $after: String, $before: String, $tags: [ID], $categories: [ID]) {
+    posts(
+      first: $first
+      after: $after
+      before: $before
+      where: { categoryIn: $categories, tagIn: $tags, status: PUBLISH }
+    ) {
       nodes {
         slug
         status
@@ -54,15 +59,16 @@ interface WpFetchPostsOptions {
    * Cursor for pagination. Fetches posts after this cursor (cursor is basically an id of a position).
    */
   after?: string | null;
+  before?: string | null;
 }
 
 export async function wpFetchPosts(options: WpFetchPostsOptions = {}): Promise<WordpressPostsResult> {
   try {
-    const { tags, category, first = 100, after = null } = options;
+    const { tags, category, first = 100, after = null, before = null } = options;
 
     const response = await apolloClient.query<WordpressPostsResponse>({
       query: QUERY,
-      variables: { tags, category, first, after },
+      variables: { tags, category, first, after, before },
     });
 
     // If fetch fails, return response as this helps ssg error handling
@@ -75,6 +81,7 @@ export async function wpFetchPosts(options: WpFetchPostsOptions = {}): Promise<W
 
     return { posts, pageInfo, error };
   } catch (error) {
+    console.log(error);
     if (error instanceof ApolloError) {
       console.error(error.cause);
       return { posts: [], error: error.cause };
