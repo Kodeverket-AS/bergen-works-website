@@ -3,12 +3,12 @@ import { ApolloError, gql } from '@apollo/client';
 import apolloClient from '@/lib/apollo/client';
 
 const QUERY = gql`
-  query Posts($first: Int!, $after: String, $before: String, $tags: [ID], $categories: [ID]) {
+  query Posts($first: Int!, $after: String, $before: String, $tag: String, $categories: String) {
     posts(
       first: $first
       after: $after
       before: $before
-      where: { categoryIn: $categories, tagIn: $tags, status: PUBLISH }
+      where: { categoryName: $categories, tag: $tag, status: PUBLISH }
     ) {
       nodes {
         slug
@@ -49,8 +49,8 @@ const QUERY = gql`
 `;
 
 interface WpFetchPostsOptions {
-  tags?: string[];
-  category?: string[];
+  tags?: string;
+  category?: string;
   /**
    * Number of posts to fetch per page. Defaults to 100 which is the max that we can request at once.
    */
