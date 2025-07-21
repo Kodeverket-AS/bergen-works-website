@@ -13,10 +13,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  return {
-    title: `Bergen Works - ${params.slug}`,
-  };
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  return { title: `Bergen Works - ${slug}` };
 }
 
 export default async function Page({
