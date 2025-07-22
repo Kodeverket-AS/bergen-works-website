@@ -12,7 +12,7 @@ export function ArticlePreviewCard({ title, excerpt, featuredImage, date, tags, 
   // Get main category
   const category = categories.nodes.at(0);
   return (
-    <div className='m-4 flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md transition-transform duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl'>
+    <div className='m-4 flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md transition-transform duration-300 ease-in-out  hover:shadow-2xl'>
       <Link href={uri} className='relative block'>
         <Image
           src={featuredImage.node?.sourceUrl || '/KoV-ov.png'}
