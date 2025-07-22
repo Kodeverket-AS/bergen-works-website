@@ -30,23 +30,20 @@ export default async function Page({
 }) {
   const { year, month, day, slug } = await params;
 
-  // Check for empty slug, return 404 if missing
+  // Early route validation to prevent unnecessary WordPress queries, returns 404 page if failed.
   if (!slug || slug.trim().length === 0) return notFound();
-
-  // Generate date from slug
   const postDate = new Date(Number(year), Number(month) - 1, Number(day));
   if (isNaN(postDate.getTime())) return notFound();
 
-  // Fetch content from wordpress site based on slug
+  // Fetch content from wordpress site based on slug, returns 404 page if not found.
   const result = await wpFetchPost(slug.trim());
   if (result.error || !result.post) return notFound();
 
   // Collect required data from result
   const article = result.post;
   const featuredImage = result.post.featuredImage.node || null;
-  // todo - replace placeholder image below
 
-  // Format date for readability per client request
+  // Format article date for readability
   const postDateFormatted = new Intl.DateTimeFormat('no-NO', {
     month: 'long',
     day: 'numeric',

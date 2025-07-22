@@ -14,6 +14,14 @@ const QUERY = gql`
   }
 `;
 
+/**
+ * Fetches all available categories from the WordPress GraphQL API.
+ *
+ * This function retrieves category nodes including their `id`, `name`, and `slug`.
+ * It is typically used for category-based filters, route generation, or grouping posts.
+ *
+ * @returns A result object containing the list of categories or an error if the fetch fails.
+ */
 export async function wpFetchCategories(): Promise<WordpressCategoriesResult> {
   try {
     const response = await apolloClient.query<WordpressCategoriesResponse>({
@@ -39,27 +47,3 @@ export async function wpFetchCategories(): Promise<WordpressCategoriesResult> {
     };
   }
 }
-
-// todo - remove dummy data
-export const availableCategories = [
-  {
-    name: 'Coworking',
-    slug: 'coworking',
-    id: 'dGVybTo0OA==',
-  },
-  {
-    name: 'Inkubator',
-    slug: 'inkubator',
-    id: 'dGVybTo1Nw==',
-  },
-  {
-    name: 'Månedsoppsumering',
-    slug: 'manedsoppsumering',
-    id: 'dGVybTo2Nw==',
-  },
-  {
-    name: 'Medlemmer',
-    slug: 'medlemmer',
-    id: 'dGVybTox',
-  },
-];

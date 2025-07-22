@@ -14,6 +14,15 @@ const QUERY = gql`
   }
 `;
 
+/**
+ * Fetches all available tags from the WordPress GraphQL API.
+ *
+ * This function retrieves the first 100 tag nodes including their `id`, `name`, and `slug`.
+ * It is typically used for displaying tag filters or generating tag-based routes.
+ *
+ * @returns A result object containing the list of tags or an error if the fetch fails.
+ */
+
 export async function wpFetchTags(): Promise<WordpressTagsResult> {
   try {
     const response = await apolloClient.query<WordpressTagsResponse>({
@@ -39,57 +48,3 @@ export async function wpFetchTags(): Promise<WordpressTagsResult> {
     };
   }
 }
-
-// todo - remove dummy data
-export const availableTags = [
-  {
-    name: '#april',
-    slug: 'april',
-    id: 'dGVybTo3Mw==',
-  },
-  {
-    name: '#bergenworks',
-    slug: 'bergenworks-2',
-    id: 'dGVybTo3Nw==',
-  },
-  {
-    name: '#coworking',
-    slug: 'coworking-2',
-    id: 'dGVybTo3OA==',
-  },
-  {
-    name: '#felelskap',
-    slug: 'felelskap',
-    id: 'dGVybTo3OQ==',
-  },
-  {
-    name: '#felleskap',
-    slug: 'felleskap-2',
-    id: 'dGVybTo4MA==',
-  },
-  {
-    name: '#lunsjmøte',
-    slug: 'lunsjmote-2',
-    id: 'dGVybTo3NQ==',
-  },
-  {
-    name: '#markedsføring',
-    slug: 'markedsforing',
-    id: 'dGVybTo3Ng==',
-  },
-  {
-    name: '#oppsummering',
-    slug: 'oppsummering',
-    id: 'dGVybTo3NA==',
-  },
-  {
-    name: 'afterwork',
-    slug: 'afterwork',
-    id: 'dGVybTo1NA==',
-  },
-  {
-    name: 'bærekraft',
-    slug: 'baerekraft',
-    id: 'dGVybTo5',
-  },
-];

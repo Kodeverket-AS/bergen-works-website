@@ -25,14 +25,38 @@ const QUERY = gql`
   }
 `;
 
+/**
+ * Options for fetching post URIs from the WordPress GraphQL API.
+ */
 interface WpFetchURIsOptions {
-  tags?: string[];
-  category?: string[];
   /**
-   * Number of posts to fetch per page. Defaults to 100 which is the max that we can request at once.
+   * Optional list of tag IDs to filter the post results.
+   */
+  tags?: string[];
+
+  /**
+   * Optional list of category IDs to filter the post results.
+   */
+  category?: string[];
+
+  /**
+   * Number of posts to fetch per request. Defaults to 100, which is the maximum allowed by WPGraphQL.
    */
   first?: number;
 }
+
+/**
+ * Fetches a complete list of published WordPress post URIs using cursor-based pagination.
+ *
+ * This function is commonly used in:
+ * - `generateStaticParams()` to statically generate dynamic article routes.
+ * - `sitemap.ts` to produce a complete sitemap of all article URLs.
+ *
+ * Posts are fetched in batches (default 100) until no further pages remain.
+ *
+ * @param options - Optional filter and pagination parameters.
+ * @returns A promise resolving to all available post URIs and pagination error info if applicable.
+ */
 export async function wpFetchURIs({
   first = 100,
   tags,

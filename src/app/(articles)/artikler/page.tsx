@@ -15,6 +15,7 @@ export default function Page({ searchParams }: { searchParams: Promise<{ tag?: s
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [articlePerPage] = useState(9);
 
+  // Load more posts based on current cursors
   async function loadMore() {
     if (isLoading) return;
     setIsLoading(true);

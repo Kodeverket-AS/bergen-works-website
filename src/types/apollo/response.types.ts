@@ -28,22 +28,55 @@ interface WordpressResponse {
 // todo: perhaps we can extract metadata?
 
 /**
- * Wordpress post & posts interfaces
+ * Represents a single post fetched from WordPress via GraphQL.
  */
 export interface WordpressPost {
   __typename: 'Post';
+  /**
+   * The URL-friendly slug of the post, used to identify it.
+   */
   slug: string;
+  /**
+   * The publication status of the post (e.g., 'published', 'private').
+   */
   status: 'published' | 'private';
   title: string;
+  /**
+   * Combined date and slug string in the format `/year/month/day/slug/`.
+   * Used to construct dynamic route paths.
+   */
   uri: string;
+  /**
+   * The original publication date of the post.
+   */
   date: Date;
+  /**
+   * The last modified date of the post.
+   */
   modified: Date;
+  /**
+   * Indicates whether the post is marked as "sticky" (featured).
+   */
   isSticky: boolean;
+  /**
+   * A short summary of the post, typically used in previews or cards.
+   */
   excerpt?: string;
+  /**
+   * The full HTML content of the post as returned from WordPress.
+   * Should be rendered using `dangerouslySetInnerHTML` in React.
+   */
   content?: string;
+  /**
+   * Raw CSS styles associated with the post (e.g., from Elementor).
+   * Should be injected into a `<style>` tag using `dangerouslySetInnerHTML`.
+   */
   contentStyles?: string;
   categories: Nodes<WordpressCategory>;
   tags: Nodes<WordpressTag>;
+  /**
+   * The post's featured image and its associated metadata.
+   */
   featuredImage: Node<WordpressImage>;
 }
 
@@ -84,7 +117,7 @@ export interface WordpressPostsURIResult extends WordpressResponse {
 }
 
 /**
- * Wordpress Tags & Category interfaces
+ * Wordpress Tag
  */
 export interface WordpressTag {
   id: string;
@@ -100,6 +133,9 @@ export interface WordpressTagsResult extends WordpressResponse {
   tags: WordpressTag[];
 }
 
+/**
+ * Wordpress Category
+ */
 export interface WordpressCategory {
   id: string;
   slug: string;

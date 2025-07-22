@@ -50,20 +50,45 @@ const QUERY = gql`
   }
 `;
 
+/**
+ * Options for fetching paginated WordPress post previews.
+ */
 interface WpFetchPostsOptions {
-  tag?: string;
-  category?: string;
   /**
-   * Number of posts to fetch per page. Defaults to 100 which is the max that we can request at once.
+   * Optional tag slug to filter posts by.
+   */
+  tag?: string;
+
+  /**
+   * Optional category slug to filter posts by.
+   */
+  category?: string;
+
+  /**
+   * Number of posts to fetch per page. Defaults to 100 (WordPress GraphQL max).
    */
   first?: number;
+
   /**
-   * Cursor for pagination. Fetches posts after this cursor (cursor is basically an id of a position).
+   * Cursor to fetch posts after this point (used for forward pagination).
    */
   after?: string | null;
+
+  /**
+   * Cursor to fetch posts before this point (used for backward pagination).
+   */
   before?: string | null;
 }
 
+/**
+ * Fetches a paginated list of published WordPress posts for use in article previews and listing components.
+ *
+ * This is typically used to populate article cards with title, excerpt, tags, categories, featured image, etc.
+ * Pagination is supported via GraphQL cursor-based pagination.
+ *
+ * @param options - Optional filtering and pagination options.
+ * @returns A list of post previews with pagination metadata and error info if applicable.
+ */
 export async function wpFetchPosts(options: WpFetchPostsOptions = {}): Promise<WordpressPostsResult> {
   try {
     const { tag, category, first = 100, after = null, before = null } = options;

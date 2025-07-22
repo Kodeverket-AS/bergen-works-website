@@ -19,6 +19,17 @@ const QUERY = gql`
   }
 `;
 
+/**
+ * Fetches the full content of a single WordPress post by its slug.
+ *
+ * This is used during static site generation to build individual article pages
+ *
+ * It queries the WordPress GraphQL API to retrieve the post's content,
+ * featured image, and styles, based on the provided slug.
+ *
+ * @param slug - The slug of the post to fetch.
+ * @returns A post result object containing content and metadata, or error details.
+ */
 export async function wpFetchPost(slug: string): Promise<WordpressPostResult> {
   try {
     const response = await apolloClient.query<WordpressPostResponse>({
