@@ -100,21 +100,31 @@ export function ContactForm() {
     }
   }
   return (
-    <div id="contact-form" className="flex justify-center items-center px-4 py-10 bg-white text-black">
+    <div
+      id="contact-form"
+      className="flex justify-center items-center w-full bg-white text-black"
+    >
       <div className="flex flex-col lg:flex-row w-full max-w-4xl gap-x-6">
         <div className="flex-1 space-y-6">
-          <Card className="py-6 bg-white rounded-3xl shadow-lg">
+          <Card
+            className="py-6 bg-white shadow-lg"
+            sx={{ borderRadius: "1rem" }}
+          >
             <CardContent>
               <Typography variant="h5" gutterBottom>
                 Kom i gang
               </Typography>
               <Typography variant="body1" className="text-lg">
-                Er du interessert i å bli en del av fellesskapet eller har du noen spørsmål? Fyll ut kontaktskjemaet, så
-                kontakter vi deg forløpende.
+                Er du interessert i å bli en del av fellesskapet eller har du
+                noen spørsmål? Fyll ut kontaktskjemaet, så kontakter vi deg
+                forløpende.
               </Typography>
             </CardContent>
           </Card>
-          <Card className="py-6 bg-white rounded-3xl shadow-lg">
+          <Card
+            className="py-6 bg-white shadow-lg"
+            sx={{ borderRadius: "1rem" }}
+          >
             <CardContent>
               <form onSubmit={handleSubmit}>
                 <TextField
@@ -128,6 +138,9 @@ export function ContactForm() {
                   margin="normal"
                   placeholder="Skriv inn ditt navn"
                   sx={{
+                    "& .MuiOutlinedInput-input:focus": {
+                      color: "grey",
+                    },
                     "& .MuiOutlinedInput-root": {
                       borderRadius: 2,
                     },
@@ -195,10 +208,13 @@ export function ContactForm() {
                   helperText={errors.message}
                 />
                 <div className="flex flex-col gap-4 my-4 p-4 border rounded-lg border-gray-300">
-                  <Typography variant="subtitle1" className="flex items-center gap-2">
+                  <Typography
+                    variant="subtitle1"
+                    className="flex items-center gap-2"
+                  >
                     Kategori
                     <Tooltip title="Velg alle alternativer som passer for deg">
-                      <InfoIcon fontSize="small" color="action" />
+                      <InfoIcon fontSize="medium" color="primary" />
                     </Tooltip>
                   </Typography>
                   <span className="flex flex-wrap gap-5">
@@ -268,17 +284,20 @@ export function ContactForm() {
                     }
                     label="Jeg gir samtykke til min kontakt informasjon blir lagret for å kunne kontakte meg. Du kan trekke dette samtykket tilbake når som helst."
                   />
-                  <Link href={"/personvern"} className="text-sm text-blue-700">
+                  <Link href={"/personvern"} className="text-sm text-moss-500">
                     Les vår personvernerklæring
                   </Link>
                 </div>
                 {errors.consent && (
                   <p className="pl-2 text-sm text-red-400">
-                    Du må godta vår personvernærklaring for lagring av e-post før du bruker kontakt oss skjema
+                    Du må godta vår personvernærklaring for lagring av e-post
+                    før du bruker kontakt oss skjema
                   </p>
                 )}
                 {success.message !== "" && (
-                  <p className={`text-center py-4 ${success.status ? "text-black" : "text-red-600"}`}>
+                  <p
+                    className={`text-center py-4 ${success.status ? "text-black" : "text-red-600"}`}
+                  >
                     {success.message}
                   </p>
                 )}
@@ -293,14 +312,18 @@ export function ContactForm() {
                       width: "auto",
                       padding: "10px 20px",
                       textAlign: "center",
-                      backgroundColor: "rgb(37, 58, 26)",
+                      backgroundColor: "#606c38",
                       "&:hover": {
-                        backgroundColor: "rgb(28, 43, 20)",
+                        backgroundColor: "#283618",
                       },
                       borderRadius: 2,
                     }}
                   >
-                    {pending ? <CircularProgress size={24} color="inherit" /> : "Send Melding"}
+                    {pending ? (
+                      <CircularProgress size={24} color="inherit" />
+                    ) : (
+                      "Send Melding"
+                    )}
                   </Button>
                 )}
               </form>

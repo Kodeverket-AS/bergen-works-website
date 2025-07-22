@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-interface FasiliteterCardProps {
+interface ImageTextCardProps {
   imageSrc: string;
   alt: string;
   headingTag?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
@@ -18,8 +18,8 @@ interface FasiliteterCardProps {
   button?: React.ReactNode;
 }
 
-export function FasiliteterCard({
-  imageSrc,
+export function ImageTextCard({
+  imageSrc = "",
   alt = "",
   headingTag = "h2",
   headerText,
@@ -34,24 +34,23 @@ export function FasiliteterCard({
   textContainerStyle = "",
   headerStyle = "",
   paragraphStyle = "",
-}: FasiliteterCardProps) {
+}: ImageTextCardProps) {
   const Heading = headingTag;
 
   return (
     <div
-      className={`flex w-full h-full mb-10 ${cardStyle}
-        ${smallScreenReverse ? "flex-col-reverse" : "flex-col"}
+      className={`flex w-full h-full mb-10 ${cardStyle} 
+        ${smallScreenReverse ? "flex-col-reverse" : "flex-col"} 
         ${largeScreenReverse ? "md:flex-row-reverse" : "md:flex-row"}`}
     >
       <div className={`relative w-full ${imageContainerStyle}`}>
         <div className={` ${imageInnerDivStyle}`}>
           {imageStyle ? (
-            <Image
+            <img
               src={imageSrc}
               alt={alt}
               className={`object-contain select-none pointer-events-none rounded-2xl ${imageStyle}`}
               draggable={false}
-              fill
             />
           ) : (
             <Image

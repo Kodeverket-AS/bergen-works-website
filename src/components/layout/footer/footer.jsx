@@ -31,7 +31,7 @@ function Footer() {
     return (
         <footer>
             <section >
-                <div className='mb-8'>
+                <div className='my-8'>
                     <div className='flex flex-col md:flex-row md:gap-5 mb-4'>
                         <div className='flex flex-col items-center justify-center'>
                             <a href='/'>
