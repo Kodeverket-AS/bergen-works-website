@@ -28,7 +28,7 @@ export function ArticlePreviewCard({ title, excerpt, featuredImage, date, tags, 
           className='transition-transform duration-300 group-hover:scale-105'
         />
         {category && (
-          <span className='absolute bottom-2 left-2 rounded-full bg-moss-500 px-3 py-1  text-white'>
+          <span className='absolute bottom-2 left-4 rounded-full bg-moss-500 px-3 py-1 text-white transition-transform duration-300 hover:scale-110'>
             {category.name}
           </span>
         )}
