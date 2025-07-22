@@ -58,7 +58,7 @@ export function ArticlePreviewCard({ title, excerpt, featuredImage, date, tags, 
               </Link>
             ))}
           </div>
-          <Link href={uri} className='ml-auto mt-4 font-semibold text-moss-600 hover:text-moss-800'>
+          <Link href={uri} className='ml-auto mt-4 font-semibold text-moss-600 hover:text-moss-800 transition-transform duration-300 hover:scale-110 inline-block'>
             Les mer →
           </Link>
         </div>
