@@ -5,14 +5,34 @@ import apolloClient from '@/lib/apollo/client';
 const QUERY = gql`
   query post($id: ID = "") {
     post(id: $id, idType: SLUG) {
+      __typename
       title
       slug
+      status
+      isSticky
+      uri
+      date
+      modified
       content
       contentStyles
       featuredImage {
         node {
           sourceUrl
           altText
+        }
+      }
+      categories {
+        nodes {
+          id
+          slug
+          name
+        }
+      }
+      tags {
+        nodes {
+          id
+          slug
+          name
         }
       }
     }

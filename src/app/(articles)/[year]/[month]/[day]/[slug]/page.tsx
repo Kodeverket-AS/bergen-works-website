@@ -1,8 +1,10 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { wpFetchPost } from '@/lib/apollo/fetch/post';
 import { wpFetchURIs } from '@/lib/apollo/fetch/generateURIs';
+import { ArticleTag } from '@/components/ui/tags/articleTag';
 import '@/assets/styles/frontend.min.css';
 
 export async function generateStaticParams() {
@@ -44,14 +46,14 @@ export default async function Page({
   const featuredImage = result.post.featuredImage.node || null;
 
   // Format article date for readability
-  const postDateFormatted = new Intl.DateTimeFormat('no-NO', {
+  const dateFormatter = new Intl.DateTimeFormat('no-NO', {
     month: 'long',
     day: 'numeric',
     year: 'numeric',
-  }).format(postDate);
+  });
 
   return (
-    <main className='flex flex-col gap-4 pb-8 [&_h1]:text-[50px] [&_h2]:text-[25px] [&_h2]:font-light [&_p]:mb-7'>
+    <main className='flex flex-col items-center gap-8 pb-8'>
       <Image
         src={featuredImage ? featuredImage.sourceUrl : '/KoV-ov.png'}
         alt={featuredImage ? featuredImage.altText : 'Alt text missing'}
@@ -63,15 +65,33 @@ export default async function Page({
         width={500}
         height={300}
       />
-      <h1 className='self-center max-w-[768px]'>{article.title}</h1>
-      <p className='self-center capitalize text-gray-500'>{postDateFormatted}</p>
-      {article?.content && (
-        <div
-          dangerouslySetInnerHTML={{ __html: article.content }}
-          className='flex flex-col self-center gap-2 max-w-[768px]'
-        />
-      )}
-      {article?.contentStyles && <style dangerouslySetInnerHTML={{ __html: article.contentStyles }} />}
+      <div className='flex flex-col items-center gap-8 max-w-3xl'>
+        <h1 className='text-5xl text-center'>{article.title}</h1>
+        <p className='text-gray-500'>
+          Skrevet <span className='capitalize'>{dateFormatter.format(new Date(article.date))}</span>
+        </p>
+      </div>
+      <section className='[&_h1]:text-[50px] [&_h2]:text-[25px] [&_h2]:font-light [&_p]:mb-7'>
+        {article?.contentStyles && <style dangerouslySetInnerHTML={{ __html: article.contentStyles }} />}
+        {article?.content && (
+          <div
+            dangerouslySetInnerHTML={{ __html: article.content }}
+            className='mx-auto flex flex-col self-center gap-2 max-w-[768px]'
+          />
+        )}
+        <p className='text-center p-4 text-gray-500'>
+          Sist oppdatert <span className='capitalize'>{dateFormatter.format(new Date(article.modified))}</span>
+        </p>
+      </section>
+      <div id='articleFooter' className='flex flex-col items-center gap-4'>
+        <p>Klikk på en tag for å finne artikler med lignende emner</p>
+        <span className='mx-auto w-full max-w-xl flex flex-wrap justify-center gap-2'>
+          {article.tags && article.tags.nodes.map((tag) => <ArticleTag key={tag.id} {...tag} />)}
+        </span>
+        <Link href='/artikler' className='hover:underline'>
+          Eller gå tilbake til hovedside for artikler
+        </Link>
+      </div>
     </main>
   );
 }
