@@ -35,6 +35,31 @@ export interface WpEvent {
 }
 
 /**
+ * Represents the structure of a GraphQL response for a single WordPress event.
+ *
+ * This type is passed to `apolloClient.query<T>()` to define the expected shape of the response
+ * when querying a single event (typically by ID or slug).
+ *
+ * @see WpEvent - The shape of the returned event object.
+ *
+ * Example usage:
+ * ```ts
+ * const response = await apolloClient.query<WpEventResponse>({
+ *   query: GET_EVENT_BY_SLUG,
+ *   variables: { slug: 'my-event-slug' },
+ * });
+ * const event = response.data.event;
+ * if (!event) {
+ *   console.error('Event not found');
+ * }
+ * ```
+ */
+export interface WpEventResponse {
+  /** The single WordPress event returned by the query, or `null` if not found. */
+  event: WpEvent | null;
+}
+
+/**
  * Represents the structure of a GraphQL response for a list of WordPress events.
  *
  * This type is passed to `apolloClient.query<T>()` to define the expected shape of the response.
@@ -61,5 +86,5 @@ export interface WpEventsResponse {
    * - `nodes` holds individual WordPress event entries.
    * - `pageInfo` provides cursor-based pagination details.
    */
-  events: GqlNodes<WpEvent> & GqlPageInfo;
+  events: (GqlNodes<WpEvent> & GqlPageInfo) | null;
 }
