@@ -1,3 +1,5 @@
+'use server';
+
 import { WpEvent, type WpEventsResponse } from '@/types/apollo/events.types';
 import { ApolloError, ApolloQueryResult, gql } from '@apollo/client';
 import apolloClient from '@/lib/apollo/client';
@@ -108,10 +110,11 @@ export async function wpFetchEvents({ first = 100 } = {}) {
 
     return { events, error };
   } catch (error) {
+    // Construct error message based on error type
     const errorMessage =
       error instanceof ApolloError
         ? error.message
-        : 'Unknown error occoured while fetching wordpress post, contact site admin';
+        : 'Unknown error occoured while fetching wordpress events, contact site admin';
     return { events: [], error: errorMessage };
   }
 }
