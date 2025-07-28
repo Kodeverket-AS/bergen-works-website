@@ -1,10 +1,10 @@
-import { ApolloError, gql } from '@apollo/client';
-import apolloClient from '../../client';
-import { WpEvent, WpEvents, WpEventsResponse } from '@/types/apollo/events.types';
+import { WpEvent, type WpEventsResponse } from '@/types/apollo/events.types';
+import { ApolloError, ApolloQueryResult, gql } from '@apollo/client';
+import apolloClient from '@/lib/apollo/client';
 
 const QUERY = gql`
-  query Events {
-    events {
+  query events($first: Int!, $after: String) {
+    events(first: $first, after: $after) {
       nodes {
         title
         slug
@@ -68,22 +68,50 @@ const QUERY = gql`
   }
 `;
 
-export async function wpFetchEvents() {
+export async function wpFetchEvents({ first = 100 } = {}) {
   try {
-    const response = await apolloClient.query<WpEventsResponse>({
-      query: QUERY,
-      variables: {},
-    });
+    // Start with empty event list
+    const events: WpEvent[] = [];
 
-    console.log(response.data.events.pageInfo);
-  } catch (error) {
-    if (error instanceof ApolloError) {
-      console.error(error.cause);
-      return { events: [], error: error.cause };
+    // Graphql pagination helper variables
+    let after: string | null = null;
+    let hasNextPage: boolean = true;
+
+    // Keep track of graphql error
+    let error: string | null = null;
+
+    while (hasNextPage) {
+      const response: ApolloQueryResult<WpEventsResponse> = await apolloClient.query({
+        query: QUERY,
+        variables: { first, after },
+      });
+
+      if (response.error) {
+        error = response.error.message;
+        break;
+      }
+
+      // Fix for edge case null return
+      if (!response.data.events) break;
+
+      // Deconstruct response
+      const nodes = response.data.events.nodes;
+      const pageInfo = response.data.events.pageInfo;
+
+      // Push events to collection
+      events.push(...nodes.map((event) => event));
+
+      // Update pagination helpers
+      after = pageInfo?.endCursor ?? null;
+      hasNextPage = Boolean(pageInfo?.hasNextPage);
     }
-    return {
-      events: [],
-      error: 'Unknown error occoured while fetching wordpress categories, contact site admin',
-    };
+
+    return { events, error };
+  } catch (error) {
+    const errorMessage =
+      error instanceof ApolloError
+        ? error.message
+        : 'Unknown error occoured while fetching wordpress post, contact site admin';
+    return { events: [], error: errorMessage };
   }
 }
