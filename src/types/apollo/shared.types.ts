@@ -71,22 +71,23 @@ export interface GqlNodes<T> {
 }
 
 /**
- * Represents pagination metadata in a GraphQL Relay-style connection.
- *
  * Provides cursors and directional flags used to paginate through a list of results.
  * Commonly returned as `pageInfo` in connection-based queries (e.g. WordPress posts, tags).
  */
 export interface GqlPageInfo {
-  /** Optional typename metadata for GraphQL introspection or caching purposes. */
-  __typename?: string;
-  /** Cursor representing the start of the current page of results. */
-  startCursor: string | null;
-  /** Cursor representing the end of the current page of results. */
-  endCursor: string | null;
-  /** Indicates whether there are more items available after this page. */
-  hasNextPage: boolean;
-  /** Indicates whether there are items available before this page. */
-  hasPreviousPage: boolean;
+  /** Represents pagination metadata in a GraphQL Relay-style connection. */
+  pageInfo: {
+    /** Optional typename metadata for GraphQL introspection or caching purposes. */
+    __typename?: string;
+    /** Cursor representing the start of the current page of results. */
+    startCursor?: string | null;
+    /** Indicates whether there are items available before this page. */
+    hasPreviousPage?: boolean;
+    /** Cursor representing the end of the current page of results. */
+    endCursor: string | null;
+    /** Indicates whether there are more items available after this page. */
+    hasNextPage: boolean;
+  };
 }
 
 /* ====================================================================================================
