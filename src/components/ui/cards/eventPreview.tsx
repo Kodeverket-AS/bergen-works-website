@@ -22,8 +22,6 @@ export function EventCardPreview(event: WpEvent) {
     minute: '2-digit',
   });
 
-  console.log(event);
-
   return (
     <div className='flex flex-col gap-4 pb-4 rounded-lg border border-gray-200 bg-white shadow-md hover:shadow-2xl duration-300'>
       <Link href={'/event/' + event.slug} className='relative block'>
@@ -39,7 +37,7 @@ export function EventCardPreview(event: WpEvent) {
           }}
           width={500}
           height={300}
-          className='transition-transform duration-300 group-hover:scale-105'
+          className='transition-transform rounded-t-md duration-300 group-hover:scale-105'
         />
         <div className='absolute top-2 left-2 size-12 p-1 flex flex-col flex-nowrap items-center justify-center rounded-md border border-gray-300 bg-white'>
           <p className='font-bold text-2xl leading-4'>{day}</p>
