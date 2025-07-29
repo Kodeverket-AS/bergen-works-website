@@ -59,6 +59,18 @@ const QUERY = gql`
             website
           }
         }
+        venue {
+          address
+          city
+          country
+          zip
+          featuredImage {
+            node {
+              sourceUrl
+              altText
+            }
+          }
+        }
       }
       pageInfo {
         __typename
