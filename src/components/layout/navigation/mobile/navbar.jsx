@@ -47,13 +47,18 @@ export default function NavBar() {
           </Link>
         </li>
         <li>
-          <Link href='/omoss' className=' hover:underline md:text-lg' onClick={handleLinkClick}>
-            Om oss
+          <Link href='/artikler' className=' hover:underline md:text-lg' onClick={handleLinkClick}>
+            Artikler
           </Link>
         </li>
         <li>
-          <Link href='/artikler' className=' hover:underline md:text-lg' onClick={handleLinkClick}>
-            Artikler
+          <Link href='/events' className=' hover:underline md:text-lg' onClick={handleLinkClick}>
+            Events
+          </Link>
+        </li>
+        <li>
+          <Link href='/omoss' className=' hover:underline md:text-lg' onClick={handleLinkClick}>
+            Om oss
           </Link>
         </li>
       </ul>
