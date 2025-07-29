@@ -7,69 +7,67 @@ import apolloClient from '@/lib/apollo/client';
 const QUERY = gql`
   query event($id: ID = "") {
     event(id: $id, idType: SLUG) {
-      nodes {
-        title
-        slug
-        allDay
-        excerpt
-        date
-        endDate
-        eventsCategories {
-          nodes {
-            id
-            slug
-            name
-          }
+      title
+      slug
+      allDay
+      excerpt
+      date
+      endDate
+      eventsCategories {
+        nodes {
+          id
+          slug
+          name
         }
-        tags {
-          nodes {
-            id
-            slug
-            name
-          }
+      }
+      tags {
+        nodes {
+          id
+          slug
+          name
         }
-        featured
-        featuredImage {
-          node {
-            uri
-            altText
-            description
-            status
-            caption
-            mediaDetails {
-              height
-              width
-            }
-            sourceUrl
+      }
+      featured
+      featuredImage {
+        node {
+          uri
+          altText
+          description
+          status
+          caption
+          mediaDetails {
+            height
+            width
           }
+          sourceUrl
         }
-        hideFromUpcoming
-        organizers {
-          nodes {
-            featuredImage {
-              node {
-                uri
-                altText
-              }
-            }
-            slug
-            link
-            title
-            website
-          }
-        }
-        cost
-        url
-        venue {
-          address
-          city
-          country
-          zip
+      }
+      hideFromUpcoming
+      organizers {
+        nodes {
           featuredImage {
             node {
-              sourceUrl
+              uri
               altText
             }
+          }
+          slug
+          link
+          title
+          website
+        }
+      }
+      cost
+      url
+      venue {
+        address
+        city
+        country
+        zip
+        featuredImage {
+          node {
+            sourceUrl
+            altText
           }
         }
       }
