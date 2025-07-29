@@ -4,6 +4,10 @@ import Link from 'next/link';
 
 export function UpcomingEvents({ events }: { events: WpEvent[] }) {
   const slizedArray = events.slice(0, 3);
+
+  // Hide component if there are no upcoming events
+  if (slizedArray.length === 0) return null;
+
   return (
     <div className='flex flex-col items-center gap-4 my-8'>
       <Link href='/events' className='text-3xl'>
