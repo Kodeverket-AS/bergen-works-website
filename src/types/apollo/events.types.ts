@@ -34,6 +34,10 @@ export interface WpEvent {
   organizers?: WpOrganizers;
   /** A physical or virtual venue associated with event. */
   venue?: WpVenue;
+  /** Cost associated with the event */
+  cost?: string | null;
+  /** Link to signup page */
+  url?: string | null;
 }
 
 /**
