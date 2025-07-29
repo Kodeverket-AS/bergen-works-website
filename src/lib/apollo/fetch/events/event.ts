@@ -58,6 +58,8 @@ const QUERY = gql`
             website
           }
         }
+        cost
+        url
         venue {
           address
           city
