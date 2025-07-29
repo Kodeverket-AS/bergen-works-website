@@ -181,11 +181,11 @@ export interface WpOrganizer {
   /** Unique slug used to identify the organizer. */
   slug: string;
   /** Absolute link to the organizer’s WordPress page. */
-  link: string;
+  link?: string;
   /** External website associated with the organizer. */
-  website: string;
+  website?: string;
   /** Optional featured image representing the organizer. */
-  featuredImage: WpFeaturedImage;
+  featuredImage?: WpFeaturedImage;
 }
 
 /**
@@ -195,3 +195,19 @@ export interface WpOrganizer {
  * one or more associated organizers.
  */
 export type WpOrganizers = GqlNodes<WpOrganizer>;
+
+/**
+ * Represents a physical or virtual venue associated with a WordPress event.
+ */
+export interface WpVenue {
+  /** The street address of the venue, or `null` if not provided. */
+  address: string | null;
+  /** The city where the venue is located, or `null` if not specified. */
+  city: string | null;
+  /** The country of the venue, or `null` if missing. */
+  country: string | null;
+  /** The postal or ZIP code for the venue, or `null` if absent. */
+  zip: string | null;
+  /** Optional featured image representing the organizer. */
+  featuredImage?: WpFeaturedImage;
+}

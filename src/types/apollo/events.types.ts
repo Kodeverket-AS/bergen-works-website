@@ -1,4 +1,4 @@
-import { GqlNodes, GqlPageInfo, WpCategories, WpFeaturedImage, WpOrganizers, WpTags } from './shared.types';
+import { GqlNodes, GqlPageInfo, WpCategories, WpFeaturedImage, WpOrganizers, WpTags, WpVenue } from './shared.types';
 
 /**
  * Represents a single WordPress event post fetched from WPGraphQL.
@@ -31,7 +31,9 @@ export interface WpEvent {
   /** If true, this event should be hidden from the "upcoming events" list */
   hideFromUpcoming?: boolean;
   /** Organizer(s) responsible for hosting the event */
-  organizers: WpOrganizers;
+  organizers?: WpOrganizers;
+  /** A physical or virtual venue associated with event. */
+  venue?: WpVenue;
 }
 
 /**
