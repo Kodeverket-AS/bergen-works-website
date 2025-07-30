@@ -8,12 +8,23 @@ const QUERY = gql`
   query events($first: Int!, $after: String) {
     events(first: $first, after: $after) {
       nodes {
-        title
+        id
         slug
-        allDay
+        title
+        content
         excerpt
+        url
+        cost
+        hideFromUpcoming
+        featured
+        duration
+        modified
+        showMap
         date
+        startDate
         endDate
+        duration
+        allDay
         eventsCategories {
           nodes {
             id
@@ -28,47 +39,35 @@ const QUERY = gql`
             name
           }
         }
-        featured
-        featuredImage {
-          node {
-            uri
-            altText
-            description
-            status
-            caption
-            mediaDetails {
-              height
-              width
-            }
-            sourceUrl
-          }
-        }
-        hideFromUpcoming
-        organizers {
-          nodes {
-            featuredImage {
-              node {
-                uri
-                altText
-              }
-            }
-            slug
-            link
-            title
-            website
-          }
-        }
-        cost
-        url
         venue {
+          title
           address
           city
           country
           zip
+          content
+          excerpt
+          url
           featuredImage {
             node {
               sourceUrl
               altText
+            }
+          }
+        }
+        organizers {
+          nodes {
+            title
+            content
+            excerpt
+            phone
+            email
+            website
+            featuredImage {
+              node {
+                sourceUrl
+                altText
+              }
             }
           }
         }
