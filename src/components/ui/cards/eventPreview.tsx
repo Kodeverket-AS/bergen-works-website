@@ -56,12 +56,12 @@ export function EventCardPreview(event: WpEvent) {
           <LocationPinIcon />
           <p className='line-clamp-1'>{event.venue?.address || 'Digital plattform'}</p>
         </span>
-        {event.organizers?.nodes.map((organizer) => (
-          <span key={organizer.slug} className='flex gap-2'>
+        {event.organizers.nodes.length > 0 && (
+          <span className='flex gap-2'>
             <AssignmentIndIcon />
-            <p>{organizer.title}</p>
+            <p>{event.organizers.nodes.map((organizer) => organizer.title).join(', ')}</p>
           </span>
-        ))}
+        )}
         {event.url && (
           <Link href={'/event/' + event.slug} className='flex gap-2'>
             <ExitToAppIcon />
