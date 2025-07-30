@@ -1,12 +1,12 @@
-import { EventOrginizerCard } from '@/components/ui/cards/eventOrginizer';
-import { SectionCard } from '@/components/ui/cards/sectionCard';
-import { wpFetchEvent } from '@/lib/apollo/fetch/events/event';
-import { wpFetchEvents } from '@/lib/apollo/fetch/events/events';
-import { Metadata } from 'next';
+import { type WpEvent } from '@/types/apollo/events.types';
 import Image from 'next/image';
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+// import { wpFetchEvent } from '@/lib/apollo/fetch/events/event';
+import { EventOrginizerCard } from '@/components/ui/cards/eventOrginizer';
+import { SectionWrapper } from '@/components/layout/sections/wrapper';
+
 import testData from '@/data/testEvents.json';
-import { WpEvent } from '@/types/apollo/events.types';
 
 /* export async function generateStaticParams() {
   const result = await wpFetchEvents();
@@ -37,7 +37,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
   return (
     <main className='w-full grid grid-cols-1: sm:grid-cols-3 gap-8 pb-8 h-s'>
-      <SectionCard className='relative aspect-video !p-0 sm:col-span-2 sm:row-span-2 overflow-clip'>
+      <SectionWrapper className='relative aspect-video !p-0 sm:col-span-2 sm:row-span-2 overflow-clip'>
         <Image
           src={event.featuredImage?.node?.sourceUrl || '/KoV-ov.png'}
           alt={event.featuredImage?.node?.altText || 'Alt text missing'}
@@ -49,31 +49,31 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
           {/* todo: fix header overflow i mobile */}
           <h1 className='text-3xl text-nowrap lg:text-wrap truncate'>{event.title}</h1>
         </span>
-      </SectionCard>
-      <SectionCard className='col-start-1 sm:col-span-2 sm:row-span-2 gap-4'>
+      </SectionWrapper>
+      <SectionWrapper className='col-start-1 sm:col-span-2 sm:row-span-2 gap-4'>
         {event.content && (
           <div dangerouslySetInnerHTML={{ __html: event.content }} className='flex flex-col gap-2'></div>
         )}
-      </SectionCard>
-      <SectionCard className='sm:col-start-3 sm:row-start-1'>
+      </SectionWrapper>
+      <SectionWrapper className='sm:col-start-3 sm:row-start-1'>
         <h2>Dato</h2>
-      </SectionCard>
-      <SectionCard className='sm:col-start-3 sm:row-start-2'>
+      </SectionWrapper>
+      <SectionWrapper className='sm:col-start-3 sm:row-start-2'>
         <h2>Lokasjon</h2>
-      </SectionCard>
-      <SectionCard className='sm:col-start-3 sm:row-start-3'>
+      </SectionWrapper>
+      <SectionWrapper className='sm:col-start-3 sm:row-start-3'>
         <h2>Meta</h2>
         <p>lag component for å lagre event i google calender etc</p>
         <p>lag component for å dele event på sosiale medier</p>
-      </SectionCard>
-      <SectionCard className='sm:col-start-1 sm:col-span-2'>
+      </SectionWrapper>
+      <SectionWrapper className='sm:col-start-1 sm:col-span-2'>
         <h2>Hosts</h2>
-        <div className='w-full flex flex-wrap gap-4'>
+        <div className='grid gap-2 grid-cols-1 xl:grid-cols-2'>
           {event.organizers.nodes.map((organizer, index) => (
             <EventOrginizerCard key={`${organizer.title}-${index}`} {...organizer} />
           ))}
         </div>
-      </SectionCard>
+      </SectionWrapper>
     </main>
   );
 }

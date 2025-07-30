@@ -35,14 +35,14 @@ export function IconLink({
   ...rest
 }: IconLinkProps) {
   return (
-    <span {...rest} className={`flex grow gap-2 bg-orange-200 ${className}`}>
+    <span {...rest} className={`flex gap-2 ${className}`}>
       {icon ? icon : <LinkIcon />}
       {isExternal || linkType ? (
-        <a href={`${linkType ? linkType + ':' : ''}${link}`} className={`truncate ${linkStyle}`}>
+        <a href={`${linkType ? linkType + ':' : ''}${link}`} className={`truncate hover:underline ${linkStyle}`}>
           {label ? label : link}
         </a>
       ) : (
-        <Link href={link} className={`truncate ${linkStyle}`}>
+        <Link href={link} className={`truncate hover:underline ${linkStyle}`}>
           {label ? label : link}
         </Link>
       )}
