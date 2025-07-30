@@ -33,6 +33,7 @@
         {
           "__typename": "Organizer",
           "title": "Test orginizer",
+          "slug": "blabla",
           "content": "<p>This is just a <strong>TEST</strong></p>\n",
           "excerpt": "<p>bla bla bla</p>\n",
           "phone": "55555555",
@@ -116,6 +117,7 @@
         {
           "__typename": "Organizer",
           "title": "Test orginizer",
+          "slug": "blabla2",
           "content": "<p>This is just a <strong>TEST</strong></p>\n",
           "excerpt": "<p>bla bla bla</p>\n",
           "phone": "55555555",
@@ -204,6 +206,7 @@
         {
           "__typename": "Organizer",
           "title": "Test orginizer",
+          "slug": "blaabla",
           "content": "<p>This is just a <strong>TEST</strong></p>\n",
           "excerpt": "<p>bla bla bla</p>\n",
           "phone": "55555555",
@@ -221,6 +224,7 @@
         {
           "__typename": "Organizer",
           "title": "Bergen.Works",
+          "slug": "blabla3",
           "content": null,
           "excerpt": "",
           "phone": null,
@@ -272,6 +276,7 @@
         {
           "__typename": "Organizer",
           "title": "Bergen.Works",
+          "slug": "blabla5",
           "content": null,
           "excerpt": "",
           "phone": null,
