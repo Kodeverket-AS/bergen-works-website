@@ -18,7 +18,12 @@ const QUERY = gql`
         cost
         hideFromUpcoming
         featured
-        featuredImage
+        featuredImage {
+          node {
+            sourceUrl
+            altText
+          }
+        }
         duration
         modified
         showMap
