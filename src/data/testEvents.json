@@ -1,0 +1,285 @@
+[
+  {
+    "__typename": "Event",
+    "id": "cG9zdDozMjMw",
+    "slug": "asd",
+    "title": "asd",
+    "content": null,
+    "excerpt": "",
+    "url": null,
+    "cost": null,
+    "hideFromUpcoming": false,
+    "featured": false,
+    "featuredImage": null,
+    "duration": 32400,
+    "modified": "2025-07-30T10:52:40",
+    "showMap": true,
+    "date": "2025-07-30T10:42:45",
+    "startDate": "2025-07-30 00:00:00",
+    "endDate": "2025-07-30 23:59:59",
+    "allDay": true,
+    "eventsCategories": {
+      "__typename": "EventToEventsCategoryConnection",
+      "nodes": []
+    },
+    "tags": {
+      "__typename": "EventToTagConnection",
+      "nodes": []
+    },
+    "venue": null,
+    "organizers": {
+      "__typename": "EventToOrganizerConnection",
+      "nodes": [
+        {
+          "__typename": "Organizer",
+          "title": "Test orginizer",
+          "content": "<p>This is just a <strong>TEST</strong></p>\n",
+          "excerpt": "<p>bla bla bla</p>\n",
+          "phone": "55555555",
+          "email": "test@bergen.works.test",
+          "website": "https://bergen.works/test",
+          "featuredImage": {
+            "__typename": "NodeWithFeaturedImageToMediaItemConnectionEdge",
+            "node": {
+              "__typename": "MediaItem",
+              "sourceUrl": "https://admin.bergen.works/wp-content/uploads/2025/05/IMG_9511.jpg",
+              "altText": "Joachim og en kompis iført påskekyllingdrakter på slalomski på fjellet"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "__typename": "Event",
+    "id": "cG9zdDozMjE4",
+    "slug": "test-ai-kaffe-en-smaksbasert-workshop",
+    "title": "TEST: AI & Kaffe – en smaksbasert workshop",
+    "content": "<p>Dette er <strong>en testhendelse</strong> og ingen ekte workshop, med mindre du tilfeldigvis er en robot på jakt etter koffein.</p>\n<p>Vi diskuterer:</p>\n<ul>\n<li>Hvordan espresso forbedrer model accuracy</li>\n<li>Cappuccino og bias-reduksjon</li>\n<li>Cold brew vs. cold starts i anbefalingssystemer</li>\n</ul>\n<p>Ingen påmelding nødvendig, fordi det finnes <em>ingen</em> workshop.</p>\n<p><strong>Testdata – vennligst ikke ta med kaffe.</strong></p>\n",
+    "excerpt": "<p>Dette er en testhendelse og ingen ekte workshop, med mindre du tilfeldigvis er en robot på jakt etter koffein. Vi diskuterer: Hvordan espresso forbedrer model accuracy Cappuccino og bias-reduksjon Cold [&hellip;]</p>\n",
+    "url": "bergen.works/this-is-a-test-link",
+    "cost": null,
+    "hideFromUpcoming": false,
+    "featured": false,
+    "featuredImage": {
+      "__typename": "NodeWithFeaturedImageToMediaItemConnectionEdge",
+      "node": {
+        "__typename": "MediaItem",
+        "sourceUrl": "https://admin.bergen.works/wp-content/uploads/2025/05/Fil_001-scaled.jpeg",
+        "altText": "Lunsjmøte i mai på bergen works"
+      }
+    },
+    "duration": 32400,
+    "modified": "2025-07-29T16:17:18",
+    "showMap": true,
+    "date": "2025-07-26T10:09:41",
+    "startDate": "2025-07-30 08:00:00",
+    "endDate": "2025-07-30 17:00:00",
+    "allDay": false,
+    "eventsCategories": {
+      "__typename": "EventToEventsCategoryConnection",
+      "nodes": [
+        {
+          "__typename": "EventsCategory",
+          "id": "dGVybTo4NA==",
+          "slug": "test-kategori",
+          "name": "Test Kategori"
+        }
+      ]
+    },
+    "tags": {
+      "__typename": "EventToTagConnection",
+      "nodes": []
+    },
+    "venue": {
+      "__typename": "Venue",
+      "title": "Vestre Skostredet 2",
+      "address": "2 Vestre Skostredet",
+      "city": "Bergen",
+      "country": "Norway",
+      "zip": "5017",
+      "content": "<p>Med en beliggenhet i vakre Skostredet har Bergen.Works drevet coworking space siden 2017</p>\n",
+      "excerpt": "<p>Med en beliggenhet i vakre Skostredet har Bergen.Works drevet coworking space siden 2017</p>\n",
+      "url": "https://bergen.works",
+      "featuredImage": {
+        "__typename": "NodeWithFeaturedImageToMediaItemConnectionEdge",
+        "node": {
+          "__typename": "MediaItem",
+          "sourceUrl": "https://admin.bergen.works/wp-content/uploads/2025/02/b3b9307d-8af7-4832-a0cd-5d61e58caf81-scaled.jpg",
+          "altText": "Sosial sone på Bergen.Works"
+        }
+      }
+    },
+    "organizers": {
+      "__typename": "EventToOrganizerConnection",
+      "nodes": [
+        {
+          "__typename": "Organizer",
+          "title": "Test orginizer",
+          "content": "<p>This is just a <strong>TEST</strong></p>\n",
+          "excerpt": "<p>bla bla bla</p>\n",
+          "phone": "55555555",
+          "email": "test@bergen.works.test",
+          "website": "https://bergen.works/test",
+          "featuredImage": {
+            "__typename": "NodeWithFeaturedImageToMediaItemConnectionEdge",
+            "node": {
+              "__typename": "MediaItem",
+              "sourceUrl": "https://admin.bergen.works/wp-content/uploads/2025/05/IMG_9511.jpg",
+              "altText": "Joachim og en kompis iført påskekyllingdrakter på slalomski på fjellet"
+            }
+          }
+        },
+        {
+          "__typename": "Organizer",
+          "title": "Bergen.Works",
+          "content": null,
+          "excerpt": "",
+          "phone": null,
+          "email": null,
+          "website": "https://www.eventbrite.com/o/bergenworks-27892527459",
+          "featuredImage": null
+        }
+      ]
+    }
+  },
+  {
+    "__typename": "Event",
+    "id": "cG9zdDozMjIw",
+    "slug": "test-arets-digitale-gurkemeie-kokekamp",
+    "title": "TEST: Årets digitale gurkemeie-kokekamp",
+    "content": "<p><strong>Testarrangement for frontend-utvikling</strong> – vi lager selvfølgelig ikke mat, og vi konkurrerer ikke.</p>\n<p>Det vil (ikke) være:</p>\n<ul>\n<li>Falske premier laget av HTML</li>\n<li>CSS-animerte grønnsaker</li>\n<li>En jury bestående av tre AI-er og en tilfeldig katt</li>\n</ul>\n<p><strong>Merk:</strong> Dette er kun for utvikling og testing. Ingen mennesker blir matforgiftet i løpet av dette eventet.</p>\n",
+    "excerpt": "<p>En ikke-eksisterende konkurranse i virtuell matlaging. Alt er tull. Dette er test.</p>\n",
+    "url": "www.bergen.works/this-is-a-test-link",
+    "cost": "99",
+    "hideFromUpcoming": false,
+    "featured": false,
+    "featuredImage": {
+      "__typename": "NodeWithFeaturedImageToMediaItemConnectionEdge",
+      "node": {
+        "__typename": "MediaItem",
+        "sourceUrl": "https://admin.bergen.works/wp-content/uploads/2025/05/IMG_8913-scaled.jpg",
+        "altText": "Sosial sone på bergen.works med sofa og stoler"
+      }
+    },
+    "duration": null,
+    "modified": "2025-07-28T14:55:36",
+    "showMap": false,
+    "date": "2025-07-28T14:55:36",
+    "startDate": "2025-08-10 00:00:00",
+    "endDate": "2025-08-10 23:59:59",
+    "allDay": true,
+    "eventsCategories": {
+      "__typename": "EventToEventsCategoryConnection",
+      "nodes": [
+        {
+          "__typename": "EventsCategory",
+          "id": "dGVybTo4NA==",
+          "slug": "test-kategori",
+          "name": "Test Kategori"
+        }
+      ]
+    },
+    "tags": {
+      "__typename": "EventToTagConnection",
+      "nodes": [
+        {
+          "__typename": "Tag",
+          "id": "dGVybTo0Nw==",
+          "slug": "kontorplass",
+          "name": "kontorplass"
+        },
+        {
+          "__typename": "Tag",
+          "id": "dGVybTo1NQ==",
+          "slug": "lunsjmote",
+          "name": "lunsjmøte"
+        }
+      ]
+    },
+    "venue": null,
+    "organizers": {
+      "__typename": "EventToOrganizerConnection",
+      "nodes": [
+        {
+          "__typename": "Organizer",
+          "title": "Test orginizer",
+          "content": "<p>This is just a <strong>TEST</strong></p>\n",
+          "excerpt": "<p>bla bla bla</p>\n",
+          "phone": "55555555",
+          "email": "test@bergen.works.test",
+          "website": "https://bergen.works/test",
+          "featuredImage": {
+            "__typename": "NodeWithFeaturedImageToMediaItemConnectionEdge",
+            "node": {
+              "__typename": "MediaItem",
+              "sourceUrl": "https://admin.bergen.works/wp-content/uploads/2025/05/IMG_9511.jpg",
+              "altText": "Joachim og en kompis iført påskekyllingdrakter på slalomski på fjellet"
+            }
+          }
+        },
+        {
+          "__typename": "Organizer",
+          "title": "Bergen.Works",
+          "content": null,
+          "excerpt": "",
+          "phone": null,
+          "email": null,
+          "website": "https://www.eventbrite.com/o/bergenworks-27892527459",
+          "featuredImage": null
+        }
+      ]
+    }
+  },
+  {
+    "__typename": "Event",
+    "id": "cG9zdDozMjIy",
+    "slug": "test-knuter-bugs-og-yoga-for-backend-hjerner",
+    "title": "TEST: Knuter, bugs og yoga for backend-hjerner",
+    "content": "<p>Velkommen til en <strong>ikke-eksisterende testhendelse</strong> hvor vi prøver å løse softwareproblemer med tau og duct tape.</p>\n<p>Agenda:</p>\n<ol>\n<li>Introduksjon til bug-fikse-knuten (OBS: Finnes ikke)</li>\n<li>Refleksjon: Hvilken HTTP-statuskode beskriver følelsene dine?</li>\n<li>Avslutning med lattermild feilsøking i sirkel</li>\n</ol>\n<p><strong>Denne hendelsen er 100% test. Ingen tau, ingen bugs, ingen backend.</strong></p>\n",
+    "excerpt": "<p>Vi later som vi løser bugs ved å knyte tau. Ikke ekte. Vennligst ikke møt opp.</p>\n",
+    "url": null,
+    "cost": "69",
+    "hideFromUpcoming": false,
+    "featured": false,
+    "featuredImage": null,
+    "duration": 637200,
+    "modified": "2025-07-28T14:56:53",
+    "showMap": true,
+    "date": "2025-07-28T14:55:41",
+    "startDate": "2025-08-29 08:00:00",
+    "endDate": "2025-09-05 17:00:00",
+    "allDay": false,
+    "eventsCategories": {
+      "__typename": "EventToEventsCategoryConnection",
+      "nodes": [
+        {
+          "__typename": "EventsCategory",
+          "id": "dGVybTo4NA==",
+          "slug": "test-kategori",
+          "name": "Test Kategori"
+        }
+      ]
+    },
+    "tags": {
+      "__typename": "EventToTagConnection",
+      "nodes": []
+    },
+    "venue": null,
+    "organizers": {
+      "__typename": "EventToOrganizerConnection",
+      "nodes": [
+        {
+          "__typename": "Organizer",
+          "title": "Bergen.Works",
+          "content": null,
+          "excerpt": "",
+          "phone": null,
+          "email": null,
+          "website": "https://www.eventbrite.com/o/bergenworks-27892527459",
+          "featuredImage": null
+        }
+      ]
+    }
+  }
+]
