@@ -1,9 +1,12 @@
 import { wpFetchEvents } from '@/lib/apollo/fetch/events/events';
 import Link from 'next/link';
+import event from '../sanity/schemaTypes/event';
+import testData from '@/data/testEvents.json';
 
 export default async function EventsPage() {
   // Fetch all events from wordpress
-  const response = await wpFetchEvents();
+  // const response = await wpFetchEvents();
+  const response = { events: testData, error: null };
 
   // Print error message if we encounter it
   if (response.error) return <main>{response.error}</main>;
