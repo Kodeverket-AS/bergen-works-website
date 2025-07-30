@@ -26,6 +26,8 @@ export interface WpEvent {
   hideFromUpcoming: boolean;
   /** If true, the event is marked as featured/promoted in listings. */
   featured: boolean;
+  /** Optional featured image representing the event. */
+  featuredImage: WpFeaturedImage;
   /** Categories associated with the event. */
   eventsCategories: WpCategories;
   /** Tags associated with the event. */

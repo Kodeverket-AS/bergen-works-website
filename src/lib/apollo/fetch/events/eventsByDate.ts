@@ -18,6 +18,7 @@ const QUERY = gql`
         cost
         hideFromUpcoming
         featured
+        featuredImage
         duration
         modified
         showMap
