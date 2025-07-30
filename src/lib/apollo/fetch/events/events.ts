@@ -64,6 +64,7 @@ const QUERY = gql`
         organizers {
           nodes {
             title
+            slug
             content
             excerpt
             phone
