@@ -180,10 +180,16 @@ export interface WpOrganizer {
   title: string;
   /** Unique slug used to identify the organizer. */
   slug: string;
-  /** Absolute link to the organizer’s WordPress page. */
-  link?: string;
   /** External website associated with the organizer. */
-  website?: string;
+  website: string | null;
+  /** Raw HTML content describing the organizer, useded with `dangerouslySetInnerHTML`. */
+  content: string | null;
+  /** Short summary or excerpt of the organizer's content, useded with `dangerouslySetInnerHTML`. */
+  excerpt: string | null;
+  /** Contact phone number for the organizer, if available. */
+  phone: string | null;
+  /** Contact email for the organizer, if available. */
+  email: string | null;
   /** Optional featured image representing the organizer. */
   featuredImage?: WpFeaturedImage;
 }
@@ -200,6 +206,14 @@ export type WpOrganizers = GqlNodes<WpOrganizer>;
  * Represents a physical or virtual venue associated with a WordPress event.
  */
 export interface WpVenue {
+  /** The title or name of the venue. */
+  title: string;
+  /** Raw HTML content describing the venue, useded with `dangerouslySetInnerHTML`. */
+  content: string | null;
+  /** A short excerpt or summary of the venue in HTML, useded with `dangerouslySetInnerHTML`. */
+  excerpt: string | null;
+  /** The URL or permalink to the venue’s full page, if available. */
+  url: string | null;
   /** The street address of the venue, or `null` if not provided. */
   address: string | null;
   /** The city where the venue is located, or `null` if not specified. */
@@ -209,5 +223,5 @@ export interface WpVenue {
   /** The postal or ZIP code for the venue, or `null` if absent. */
   zip: string | null;
   /** Optional featured image representing the organizer. */
-  featuredImage?: WpFeaturedImage;
+  featuredImage: WpFeaturedImage;
 }

@@ -8,36 +8,46 @@ import { GqlNodes, GqlPageInfo, WpCategories, WpFeaturedImage, WpOrganizers, WpT
  * and associated media.
  */
 export interface WpEvent {
-  /** The event title */
-  title: string;
-  /** The slug used to generate the event URL */
+  /** Unique identifier for the event, usually a GraphQL Node ID. */
+  id: string;
+  /** URL-friendly slug used for routing to the event detail page. */
   slug: string;
-  /** Short summary or teaser for the event in HTML format */
-  excerpt?: string;
-  /** ISO 8601 date string for when the event was created/published */
-  date: string;
-  /** End date and time of the event, as string (typically `YYYY-MM-DD HH:mm:ss`) */
-  endDate?: string;
-  /** Whether the event is marked as an all-day event */
-  allDay: boolean;
-  /** Associated categories for the event */
+  /** Title or name of the event. */
+  title: string;
+  /** Raw HTML content of the event description, used with `dangerouslySetInnerHTML`. */
+  content: string | null;
+  /** Short HTML excerpt or summary of the event, used with `dangerouslySetInnerHTML`. */
+  excerpt: string | null;
+  /** Link to the main event page for signup */
+  url: string | null;
+  /** Cost to attend the event, represented as a string. */
+  cost: string | null;
+  /** If true, the event should be excluded from "upcoming events" views. */
+  hideFromUpcoming: boolean;
+  /** If true, the event is marked as featured/promoted in listings. */
+  featured: boolean;
+  /** Categories associated with the event. */
   eventsCategories: WpCategories;
-  /** Associated tags for the event */
+  /** Tags associated with the event. */
   tags: WpTags;
-  /** Whether the event is marked as featured/promoted */
-  featured?: boolean;
-  /** Optional image attached to the event */
-  featuredImage: WpFeaturedImage;
-  /** If true, this event should be hidden from the "upcoming events" list */
-  hideFromUpcoming?: boolean;
-  /** Organizer(s) responsible for hosting the event */
-  organizers?: WpOrganizers;
-  /** A physical or virtual venue associated with event. */
-  venue?: WpVenue;
-  /** Cost associated with the event */
-  cost?: string | null;
-  /** Link to signup page */
-  url?: string | null;
+  /** ISO timestamp of when the event post was originally created in WordPress. */
+  date: string;
+  /** ISO timestamp of when the event post was last modified in WordPress. */
+  modified: string;
+  /** Indicates whether a map should be shown on the event detail page. */
+  showMap: boolean;
+  /** ISO datetime string representing when the event begins. */
+  startDate: string;
+  /** ISO datetime string representing when the event ends. */
+  endDate: string;
+  /** Duration of the event in seconds (calculated from `startDate` to `endDate`). */
+  duration: number;
+  /** Whether the event spans the full day (e.g., 00:00 to 23:59). */
+  allDay: boolean;
+  /** The venue where the event takes place, or `null` if not assigned. */
+  venue: WpVenue | null;
+  /** List of organizers associated with the event. */
+  organizers: WpOrganizers;
 }
 
 /**
