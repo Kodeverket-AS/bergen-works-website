@@ -1,14 +1,20 @@
+// Test data during development
+import testData from '@/data/testEvents.json';
+
+// Global
 import { type WpEvent } from '@/types/apollo/events.types';
-import Image from 'next/image';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-// import { wpFetchEvent } from '@/lib/apollo/fetch/events/event';
-import { EventOrginizerCard } from '@/components/ui/cards/eventOrginizer';
-import { SectionWrapper } from '@/components/layout/sections/wrapper';
-
-import testData from '@/data/testEvents.json';
 import { dateStringFormat, dateStringToRelative } from '@/utils/dates';
+import Image from 'next/image';
+// import { wpFetchEvent } from '@/lib/apollo/fetch/events/event';
+
+// Components
+import { SectionWrapper } from '@/components/layout/sections/wrapper';
 import { IconText } from '@/components/ui/text/iconText';
+import { EventOrginizerCard } from '@/components/ui/cards/eventOrginizer';
+import { AddToCalendarButton } from '@/components/ui/buttons/events/addToCalendar';
+import { ShareToSocialButton } from '@/components/ui/buttons/events/shareToSocial';
 
 // Icons
 import ShareIcon from '@mui/icons-material/Share';
@@ -17,7 +23,6 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import AvTimerIcon from '@mui/icons-material/AvTimer';
 import EditCalendarIcon from '@mui/icons-material/EditCalendar';
 import AddchartIcon from '@mui/icons-material/Addchart';
-import { AddToCalendarButton } from '@/components/ui/buttons/events/addToCalendar';
 
 /* export async function generateStaticParams() {
   const result = await wpFetchEvents();
@@ -102,6 +107,8 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
           text='Lagre i kalender'
           className='p-2 border border-blue-500 rounded-md hover:bg-blue-50'
         />
+        <AddToCalendarButton />
+        <ShareToSocialButton />
       </SectionWrapper>
       <SectionWrapper className='sm:col-start-3 sm:row-start-3'>
         <h2 className='text-2xl'>Lokasjon</h2>
