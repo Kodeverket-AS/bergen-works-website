@@ -1,26 +1,18 @@
-import { wpFetchEvents } from '@/lib/apollo/fetch/events/events';
-import Link from 'next/link';
-import event from '../sanity/schemaTypes/event';
+import { CalendarContainer } from '@/components/ui/calendar/calendar';
 import testData from '@/data/testEvents.json';
+import { WpEvent } from '@/types/apollo/events.types';
 
 export default async function EventsPage() {
   // Fetch all events from wordpress
   // const response = await wpFetchEvents();
-  const response = { events: testData, error: null };
+  const response = { events: testData as WpEvent[], error: null };
 
   // Print error message if we encounter it
   if (response.error) return <main>{response.error}</main>;
 
   return (
     <main className='flex flex-col gap-4 mb-8'>
-      <h1 className='text-center'>Alle events</h1>
-      <div className='flex flex-col gap-2'>
-        {response.events.map((event) => (
-          <Link key={event.slug} href={'/event/' + event.slug}>
-            {event.title}
-          </Link>
-        ))}
-      </div>
+      <CalendarContainer events={response.events} />
     </main>
   );
 }
