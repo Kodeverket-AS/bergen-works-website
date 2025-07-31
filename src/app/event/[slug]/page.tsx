@@ -69,8 +69,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
           className='object-cover rounded-md'
         />
         <span className='absolute left-0 bottom-0 m-4 p-4 rounded-md bg-white shadow-xl overflow-hidden'>
-          {/* todo: fix header overflow i mobile */}
-          <h1 className='text-3xl text-nowrap lg:text-wrap truncate'>{event.title}</h1>
+          <h1 className='text-2xl sm:text-3xl'>{event.title}</h1>
         </span>
       </SectionWrapper>
       <SectionWrapper className='col-start-1 sm:col-span-2 sm:row-span-2 gap-4'>
