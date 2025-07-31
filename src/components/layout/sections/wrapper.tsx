@@ -19,7 +19,7 @@ export function SectionWrapper(props: SectionWrapperProps) {
   return (
     <section
       {...rest}
-      className={`flex flex-col gap-2 p-4 border border-gray-200 shadow-md rounded-md ${className}`}
+      className={`flex flex-col gap-4 p-4 border border-gray-200 shadow-md rounded-md ${className}`}
     >
       {children}
     </section>
