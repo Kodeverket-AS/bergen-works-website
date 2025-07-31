@@ -7,6 +7,14 @@ import { EventOrginizerCard } from '@/components/ui/cards/eventOrginizer';
 import { SectionWrapper } from '@/components/layout/sections/wrapper';
 
 import testData from '@/data/testEvents.json';
+import { dateStringFormat, dateStringToRelative } from '@/utils/dates';
+import { IconText } from '@/components/ui/text/iconText';
+
+// Icons
+import EventIcon from '@mui/icons-material/Event';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import AvTimerIcon from '@mui/icons-material/AvTimer';
+import EditCalendarIcon from '@mui/icons-material/EditCalendar';
 
 /* export async function generateStaticParams() {
   const result = await wpFetchEvents();
@@ -27,13 +35,19 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   // const result = await wpFetchEvent(slug);
-  const result = { event: testData.at(1) as WpEvent, error: null };
+
+  const fileredEvent = testData.filter((event) => event.slug === slug);
+
+  const result = {
+    event: fileredEvent.length > 0 ? fileredEvent.at(0) : null,
+    error: fileredEvent.length === 0 ? 'No such post' : null,
+  };
 
   // Redirect to 404 page if event doesn't exist
   if (result.error || !result.event) return notFound();
 
   // Bind event result for easier access
-  const event = result.event;
+  const event = result.event as unknown as WpEvent;
 
   return (
     <main className='w-full grid grid-cols-1: sm:grid-cols-3 gap-8 pb-8 h-s'>
@@ -52,22 +66,66 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
       </SectionWrapper>
       <SectionWrapper className='col-start-1 sm:col-span-2 sm:row-span-2 gap-4'>
         {event.content && (
-          <div dangerouslySetInnerHTML={{ __html: event.content }} className='flex flex-col gap-2'></div>
+          <div
+            dangerouslySetInnerHTML={{ __html: event.content }}
+            className='flex flex-col gap-2 [&_ul]:list-disc [&_ul]:list-inside'
+          ></div>
         )}
       </SectionWrapper>
       <SectionWrapper className='sm:col-start-3 sm:row-start-1'>
-        <h2>Dato</h2>
+        <h2 className='text-2xl'>Event detaljer</h2>
+        <IconText icon={<EventIcon />} text={dateStringFormat(event.startDate, { dateStyle: 'full' })} />
+        {event.allDay ? (
+          <IconText icon={<AccessTimeIcon />} text='Hele dagen' />
+        ) : (
+          <>
+            <IconText icon={<AccessTimeIcon />} text={dateStringFormat(event.startDate, { timeStyle: 'short' })} />
+            <IconText icon={<AvTimerIcon />} text={`${event.duration / 60 / 60} timer`} />
+          </>
+        )}
       </SectionWrapper>
       <SectionWrapper className='sm:col-start-3 sm:row-start-2'>
-        <h2>Lokasjon</h2>
+        <h2 className='text-2xl'>Lokasjon</h2>
       </SectionWrapper>
       <SectionWrapper className='sm:col-start-3 sm:row-start-3'>
-        <h2>Meta</h2>
-        <p>lag component for å lagre event i google calender etc</p>
-        <p>lag component for å dele event på sosiale medier</p>
+        <h2 className='text-2xl'>Metadata</h2>
+        {event.eventsCategories.nodes.length > 0 && (
+          <div className='flex flex-col gap-4'>
+            <h3>Kategori</h3>
+            <span className='flex gap-2 flex-wrap'>
+              {event.eventsCategories.nodes.map((category) => (
+                <p key={category.slug} className='text-sm bg-blue-100 px-2 shadow-sm rounded-full'>
+                  {category.name}
+                </p>
+              ))}
+            </span>
+          </div>
+        )}
+        {event.tags.nodes.length > 0 && (
+          <div className='flex flex-col gap-4'>
+            <h3>Tags</h3>
+            <span className='flex gap-2 flex-wrap'>
+              {event.tags.nodes.map((tag) => (
+                <p key={tag.slug} className='text-sm bg-green-100 px-2 shadow-sm rounded-full'>
+                  {tag.name}
+                </p>
+              ))}
+            </span>
+          </div>
+        )}
+        <div className='flex flex-col gap-2'>
+          <h2>Eventen ble laget</h2>
+          <IconText icon={<EventIcon />} text={dateStringFormat(event.date, { dateStyle: 'full' })} />
+          {event.modified !== event.date && (
+            <>
+              <h2>Sist oppdatert</h2>
+              <IconText icon={<EditCalendarIcon />} text={dateStringToRelative(event.modified)} />
+            </>
+          )}
+        </div>
       </SectionWrapper>
       <SectionWrapper className='sm:col-start-1 sm:col-span-2'>
-        <h2>Hosts</h2>
+        <h2 className='text-2xl'>{event.organizers.nodes.length > 1 ? 'Hosts' : 'Host'}</h2>
         <div className='grid gap-2 grid-cols-1 xl:grid-cols-2'>
           {event.organizers.nodes.map((organizer, index) => (
             <EventOrginizerCard key={`${organizer.title}-${index}`} {...organizer} />
