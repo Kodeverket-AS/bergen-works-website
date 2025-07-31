@@ -58,6 +58,9 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   // Bind event result for easier access
   const event = result.event as unknown as WpEvent;
 
+  // Does event run over multiple days?
+  const multipleDays = Math.round(event.duration / 60 / 60 / 24) >= 1;
+
   return (
     <main className='w-full grid grid-cols-1: sm:grid-cols-3 gap-8 pb-8 h-s'>
       <SectionWrapper className='relative min-h-96 !p-0 sm:col-span-2 sm:row-span-2 overflow-clip'>
@@ -82,18 +85,35 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
       </SectionWrapper>
       <SectionWrapper className='sm:col-start-3 sm:row-start-1'>
         <h2 className='text-2xl'>Event detaljer</h2>
-        <IconText
-          icon={<EventIcon />}
-          text={dateStringFormat(event.startDate, { dateStyle: 'full' })}
-          className='capitalize'
-        />
-        {event.allDay ? (
-          <IconText icon={<AccessTimeIcon />} text='Hele dagen' />
-        ) : (
-          <>
-            <IconText icon={<AccessTimeIcon />} text={dateStringFormat(event.startDate, { timeStyle: 'short' })} />
-            <IconText icon={<AvTimerIcon />} text={`${event.duration / 60 / 60} Timer`} />
-          </>
+        <span className='flex flex-col'>
+          <p className='capitalize'>Starter</p>
+          <IconText
+            icon={<EventIcon />}
+            text={dateStringFormat(event.startDate, { dateStyle: 'full' })}
+            className='capitalize'
+          />
+          {event.allDay ? (
+            <IconText icon={<AccessTimeIcon />} text='Hele dagen' />
+          ) : (
+            <IconText
+              icon={<AccessTimeIcon />}
+              text={`Klokken ${dateStringFormat(event.startDate, { timeStyle: 'short' })}`}
+            />
+          )}
+        </span>
+        {multipleDays && (
+          <span className='flex flex-col'>
+            <p className='capitalize'>Slutter</p>
+            <IconText
+              icon={<EventIcon />}
+              text={dateStringFormat(event.endDate, { dateStyle: 'full' })}
+              className='capitalize'
+            />
+            <IconText
+              icon={<AccessTimeIcon />}
+              text={`Klokken ${dateStringFormat(event.startDate, { timeStyle: 'short' })}`}
+            />
+          </span>
         )}
       </SectionWrapper>
       <SectionWrapper className='sm:col-start-3 sm:row-start-2'>
