@@ -60,7 +60,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
   return (
     <main className='w-full grid grid-cols-1: sm:grid-cols-3 gap-8 pb-8 h-s'>
-      <SectionWrapper className='relative aspect-video !p-0 sm:col-span-2 sm:row-span-2 overflow-clip'>
+      <SectionWrapper className='relative min-h-96 !p-0 sm:col-span-2 sm:row-span-2 overflow-clip'>
         <Image
           src={event.featuredImage?.node?.sourceUrl || '/KoV-ov.png'}
           alt={event.featuredImage?.node?.altText || 'Alt text missing'}
@@ -104,7 +104,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
             icon={<HowToRegIcon />}
             link={event.url}
             label='Meld deg på event'
-            className='p-2 border rounded-md bg-sky-100 hover:bg-sky-200'
+            className='w-full flex items-center gap-2 p-2 border rounded-md text-sm bg-sky-100 hover:bg-sky-200'
           />
         )}
         <AddToCalendarButton

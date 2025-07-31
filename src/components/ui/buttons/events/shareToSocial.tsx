@@ -58,10 +58,10 @@ export function ShareToSocialButton({ title }: ShareToSocialButtonProps) {
     <span ref={containerRef} className='relative w-full border rounded-md'>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className='w-full flex gap-2 p-2 rounded-md bg-moss-100 hover:bg-moss-200'
+        className='w-full flex items-center gap-2 p-2 rounded-md text-sm bg-moss-100 hover:bg-moss-200'
       >
         <ShareIcon />
-        <p>Del på sosial media</p>
+        <p className='truncate'>Del på sosial media</p>
       </button>
       <div
         className={`z-10 absolute left-0 top-full w-full mt-1 px-2 border rounded-md bg-white ${isOpen ? 'h-fit py-2' : 'h-0 opacity-0 pointer-events-none'} overflow-hidden duration-200`}

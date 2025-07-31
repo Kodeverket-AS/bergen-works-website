@@ -60,10 +60,10 @@ export function AddToCalendarButton({ title, content, address, start, end, allDa
     <span ref={containerRef} className='relative w-full border rounded-md'>
       <button
         onClick={() => setIsOpen((prev) => !prev)}
-        className='w-full flex gap-2 p-2 rounded-md bg-moss-100 hover:bg-moss-200'
+        className='w-full flex items-center gap-2 p-2 rounded-md text-sm bg-moss-100 hover:bg-moss-200'
       >
         <AddchartIcon />
-        <p>Legg til i kalender</p>
+        <p className='truncate'>Legg til i kalender</p>
       </button>
       <div
         className={`z-10 absolute left-0 top-full w-full mt-1 px-2 border rounded-md bg-white ${isOpen ? 'h-fit py-2' : 'h-0 opacity-0 pointer-events-none'} overflow-hidden duration-200`}
@@ -71,7 +71,7 @@ export function AddToCalendarButton({ title, content, address, start, end, allDa
         {calendarSites.map((site) => (
           <IconLink key={site.title} link={site.href} label={site.title} isExternal />
         ))}
-        <button className='group flex gap-2 items-center text-gray-300'>
+        <button className='group flex gap-2 items-center truncate text-gray-300'>
           <DownloadIcon />
           <p className='line-through'>Last ned .isc fil</p>
         </button>
