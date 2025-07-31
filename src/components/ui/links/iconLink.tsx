@@ -39,7 +39,11 @@ export function IconLink({
     <span {...rest} className={`flex gap-2 items-center ${className}`}>
       {icon ? icon : <LinkIcon className={`${iconStyle}`} />}
       {isExternal || linkType ? (
-        <a href={`${linkType ? linkType + ':' : ''}${link}`} className={`truncate hover:underline ${linkStyle}`}>
+        <a
+          href={`${linkType ? linkType + ':' : ''}${link}`}
+          className={`truncate hover:underline ${linkStyle}`}
+          target='_blank'
+        >
           {label ? label : link}
         </a>
       ) : (
