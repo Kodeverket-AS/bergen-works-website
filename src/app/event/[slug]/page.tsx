@@ -22,7 +22,6 @@ import EventIcon from '@mui/icons-material/Event';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import AvTimerIcon from '@mui/icons-material/AvTimer';
 import EditCalendarIcon from '@mui/icons-material/EditCalendar';
-import MapIcon from '@mui/icons-material/Map';
 
 /* export async function generateStaticParams() {
   const result = await wpFetchEvents();
@@ -109,7 +108,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
       </SectionWrapper>
       <SectionWrapper className='sm:col-start-3 sm:row-start-3'>
         <h2 className='text-2xl'>Lokasjon</h2>
-        {event.venue?.address && (
+        {event.venue ? (
           <>
             <div className='bg-gray-100 rounded-md overflow-hidden'>
               {/* todo: Skaff ny api nøkkel for dette prosjektet @andreas */}
@@ -130,6 +129,11 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
               </p>
             </span>
           </>
+        ) : (
+          <div className='flex flex-col'>
+            <p>Dette er en digital event</p>
+            <p>Les innhold for detaljer</p>
+          </div>
         )}
       </SectionWrapper>
       <SectionWrapper className='sm:col-start-1 sm:col-span-3'>
