@@ -16,12 +16,14 @@ import { IconText } from '@/components/ui/text/iconText';
 import { EventOrginizerCard } from '@/components/ui/cards/eventOrginizer';
 import { AddToCalendarButton } from '@/components/ui/buttons/events/addToCalendar';
 import { ShareToSocialButton } from '@/components/ui/buttons/events/shareToSocial';
+import { IconLink } from '@/components/ui/links/iconLink';
 
 // Icons
 import EventIcon from '@mui/icons-material/Event';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import AvTimerIcon from '@mui/icons-material/AvTimer';
 import EditCalendarIcon from '@mui/icons-material/EditCalendar';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
 
 /* export async function generateStaticParams() {
   const result = await wpFetchEvents();
@@ -96,6 +98,15 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
         )}
       </SectionWrapper>
       <SectionWrapper className='sm:col-start-3 sm:row-start-2'>
+        <h2 className='text-2xl'>Handlinger</h2>
+        {event.url && (
+          <IconLink
+            icon={<HowToRegIcon />}
+            link={event.url}
+            label='Meld deg på event'
+            className='p-2 border rounded-md bg-sky-100 hover:bg-sky-200'
+          />
+        )}
         <AddToCalendarButton
           title={event.title}
           content={event.excerpt || ''}
