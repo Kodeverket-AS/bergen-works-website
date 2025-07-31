@@ -17,12 +17,10 @@ import { AddToCalendarButton } from '@/components/ui/buttons/events/addToCalenda
 import { ShareToSocialButton } from '@/components/ui/buttons/events/shareToSocial';
 
 // Icons
-import ShareIcon from '@mui/icons-material/Share';
 import EventIcon from '@mui/icons-material/Event';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import AvTimerIcon from '@mui/icons-material/AvTimer';
 import EditCalendarIcon from '@mui/icons-material/EditCalendar';
-import AddchartIcon from '@mui/icons-material/Addchart';
 
 /* export async function generateStaticParams() {
   const result = await wpFetchEvents();
@@ -97,18 +95,15 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
         )}
       </SectionWrapper>
       <SectionWrapper className='sm:col-start-3 sm:row-start-2'>
-        <IconText
-          icon={<ShareIcon className='text-blue-500' />}
-          text='Del'
-          className='p-2 border border-blue-500 rounded-md hover:bg-blue-50'
+        <AddToCalendarButton
+          title={event.title}
+          content={event.excerpt || ''}
+          address={event.venue?.address || ''}
+          end={event.endDate}
+          start={event.startDate}
+          allDay={event.allDay}
         />
-        <IconText
-          icon={<AddchartIcon className='text-blue-500' />}
-          text='Lagre i kalender'
-          className='p-2 border border-blue-500 rounded-md hover:bg-blue-50'
-        />
-        <AddToCalendarButton />
-        <ShareToSocialButton />
+        <ShareToSocialButton title={event.title} />
       </SectionWrapper>
       <SectionWrapper className='sm:col-start-3 sm:row-start-3'>
         <h2 className='text-2xl'>Lokasjon</h2>
