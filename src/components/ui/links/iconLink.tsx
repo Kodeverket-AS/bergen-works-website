@@ -10,7 +10,7 @@ interface IconLinkProps extends ComponentProps<'span'> {
   /** The Icon you want to use as a React component */
   icon?: ReactNode;
   /** Optional field for styling default icon */
-  iconStyle?: ComponentProps<'a'>['className'];
+  iconStyle?: ComponentProps<'svg'>['className'];
   /** Optional field for defining link text styles */
   linkStyle?: ComponentProps<'a'>['className'];
   /** Optional field for defining link type. Example:  */
@@ -26,6 +26,7 @@ interface IconLinkProps extends ComponentProps<'span'> {
  */
 export function IconLink({
   icon,
+  iconStyle,
   link,
   label,
   linkStyle,
@@ -35,8 +36,8 @@ export function IconLink({
   ...rest
 }: IconLinkProps) {
   return (
-    <span {...rest} className={`flex gap-2 ${className}`}>
-      {icon ? icon : <LinkIcon />}
+    <span {...rest} className={`flex gap-2 items-center ${className}`}>
+      {icon ? icon : <LinkIcon className={`${iconStyle}`} />}
       {isExternal || linkType ? (
         <a href={`${linkType ? linkType + ':' : ''}${link}`} className={`truncate hover:underline ${linkStyle}`}>
           {label ? label : link}
