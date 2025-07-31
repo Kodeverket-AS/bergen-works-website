@@ -1,14 +1,12 @@
-// Test data during development
-import testData from '@/data/testEvents.json';
-
 // Global
 import { type WpEvent } from '@/types/apollo/events.types';
 import Image from 'next/image';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { GoogleMapsEmbed } from '@next/third-parties/google';
+import { wpFetchEvent } from '@/lib/apollo/fetch/events/event';
+import { wpFetchEvents } from '@/lib/apollo/fetch/events/events';
 import { dateStringFormat, dateStringToRelative } from '@/utils/dates';
-// import { wpFetchEvent } from '@/lib/apollo/fetch/events/event';
 
 // Components
 import { SectionWrapper } from '@/components/layout/sections/wrapper';
@@ -25,7 +23,7 @@ import AvTimerIcon from '@mui/icons-material/AvTimer';
 import EditCalendarIcon from '@mui/icons-material/EditCalendar';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 
-/* export async function generateStaticParams() {
+export async function generateStaticParams() {
   const result = await wpFetchEvents();
 
   // Quietly quit on error
@@ -34,7 +32,7 @@ import HowToRegIcon from '@mui/icons-material/HowToReg';
   return result.events.map((item) => ({
     slug: item.slug,
   }));
-} */
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
@@ -43,14 +41,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  // const result = await wpFetchEvent(slug);
-
-  const fileredEvent = testData.filter((event) => event.slug === slug);
-
-  const result = {
-    event: fileredEvent.length > 0 ? fileredEvent.at(0) : null,
-    error: fileredEvent.length === 0 ? 'No such post' : null,
-  };
+  const result = await wpFetchEvent(slug);
 
   // Redirect to 404 page if event doesn't exist
   if (result.error || !result.event) return notFound();
