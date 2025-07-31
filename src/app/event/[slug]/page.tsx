@@ -112,6 +112,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
         {event.venue?.address && (
           <>
             <div className='bg-gray-100 rounded-md overflow-hidden'>
+              {/* todo: Skaff ny api nøkkel for dette prosjektet @andreas */}
               <GoogleMapsEmbed
                 apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!}
                 height={300}
