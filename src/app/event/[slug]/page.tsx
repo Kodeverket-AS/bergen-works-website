@@ -3,10 +3,11 @@ import testData from '@/data/testEvents.json';
 
 // Global
 import { type WpEvent } from '@/types/apollo/events.types';
+import Image from 'next/image';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { GoogleMapsEmbed } from '@next/third-parties/google';
 import { dateStringFormat, dateStringToRelative } from '@/utils/dates';
-import Image from 'next/image';
 // import { wpFetchEvent } from '@/lib/apollo/fetch/events/event';
 
 // Components
@@ -21,6 +22,7 @@ import EventIcon from '@mui/icons-material/Event';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import AvTimerIcon from '@mui/icons-material/AvTimer';
 import EditCalendarIcon from '@mui/icons-material/EditCalendar';
+import MapIcon from '@mui/icons-material/Map';
 
 /* export async function generateStaticParams() {
   const result = await wpFetchEvents();
@@ -107,16 +109,37 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
       </SectionWrapper>
       <SectionWrapper className='sm:col-start-3 sm:row-start-3'>
         <h2 className='text-2xl'>Lokasjon</h2>
+        {event.venue?.address && (
+          <>
+            <div className='bg-gray-100 rounded-md overflow-hidden'>
+              <GoogleMapsEmbed
+                apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!}
+                height={300}
+                width='100%'
+                mode='place'
+                q={`${event.venue.address}%2C+${event.venue.city}%2C+${event.venue.country}`}
+              />
+            </div>
+            <span className='flex flex-col p-2 border rounded-md'>
+              <p>
+                {event.venue?.address}, {event.venue?.city}
+              </p>
+              <p>
+                {event.venue?.zip}, {event.venue?.country}
+              </p>
+            </span>
+          </>
+        )}
       </SectionWrapper>
-      <SectionWrapper className='sm:col-start-3 sm:row-start-4'>
+      <SectionWrapper className='sm:col-start-1 sm:col-span-3'>
         <h2 className='text-2xl'>{event.organizers.nodes.length > 1 ? 'Hosts' : 'Host'}</h2>
-        <div className='grid gap-2 grid-cols-1 xl:grid-cols-2'>
+        <div className='grid gap-2 grid-cols-1 lg:grid-cols-2'>
           {event.organizers.nodes.map((organizer, index) => (
             <EventOrginizerCard key={`${organizer.title}-${index}`} {...organizer} />
           ))}
         </div>
       </SectionWrapper>
-      <SectionWrapper className='sm:col-start-3 sm:row-start-5'>
+      <SectionWrapper className='sm:col-start-3 sm:row-start-4'>
         <h2 className='text-2xl'>Metadata</h2>
         {event.eventsCategories.nodes.length > 0 && (
           <div className='flex flex-col gap-2'>
