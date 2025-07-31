@@ -11,10 +11,13 @@ import { dateStringFormat, dateStringToRelative } from '@/utils/dates';
 import { IconText } from '@/components/ui/text/iconText';
 
 // Icons
+import ShareIcon from '@mui/icons-material/Share';
 import EventIcon from '@mui/icons-material/Event';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import AvTimerIcon from '@mui/icons-material/AvTimer';
 import EditCalendarIcon from '@mui/icons-material/EditCalendar';
+import AddchartIcon from '@mui/icons-material/Addchart';
+import { AddToCalendarButton } from '@/components/ui/buttons/events/addToCalendar';
 
 /* export async function generateStaticParams() {
   const result = await wpFetchEvents();
@@ -59,7 +62,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
           fill
           className='object-cover rounded-md'
         />
-        <span className='absolute left-0 bottom-0 m-10 p-4 rounded-md bg-white shadow-xl overflow-hidden'>
+        <span className='absolute left-0 bottom-0 m-4 p-4 rounded-md bg-white shadow-xl overflow-hidden'>
           {/* todo: fix header overflow i mobile */}
           <h1 className='text-3xl text-nowrap lg:text-wrap truncate'>{event.title}</h1>
         </span>
@@ -74,23 +77,47 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
       </SectionWrapper>
       <SectionWrapper className='sm:col-start-3 sm:row-start-1'>
         <h2 className='text-2xl'>Event detaljer</h2>
-        <IconText icon={<EventIcon />} text={dateStringFormat(event.startDate, { dateStyle: 'full' })} />
+        <IconText
+          icon={<EventIcon />}
+          text={dateStringFormat(event.startDate, { dateStyle: 'full' })}
+          className='capitalize'
+        />
         {event.allDay ? (
           <IconText icon={<AccessTimeIcon />} text='Hele dagen' />
         ) : (
           <>
             <IconText icon={<AccessTimeIcon />} text={dateStringFormat(event.startDate, { timeStyle: 'short' })} />
-            <IconText icon={<AvTimerIcon />} text={`${event.duration / 60 / 60} timer`} />
+            <IconText icon={<AvTimerIcon />} text={`${event.duration / 60 / 60} Timer`} />
           </>
         )}
       </SectionWrapper>
       <SectionWrapper className='sm:col-start-3 sm:row-start-2'>
-        <h2 className='text-2xl'>Lokasjon</h2>
+        <IconText
+          icon={<ShareIcon className='text-blue-500' />}
+          text='Del'
+          className='p-2 border border-blue-500 rounded-md hover:bg-blue-50'
+        />
+        <IconText
+          icon={<AddchartIcon className='text-blue-500' />}
+          text='Lagre i kalender'
+          className='p-2 border border-blue-500 rounded-md hover:bg-blue-50'
+        />
       </SectionWrapper>
       <SectionWrapper className='sm:col-start-3 sm:row-start-3'>
+        <h2 className='text-2xl'>Lokasjon</h2>
+      </SectionWrapper>
+      <SectionWrapper className='sm:col-start-3 sm:row-start-4'>
+        <h2 className='text-2xl'>{event.organizers.nodes.length > 1 ? 'Hosts' : 'Host'}</h2>
+        <div className='grid gap-2 grid-cols-1 xl:grid-cols-2'>
+          {event.organizers.nodes.map((organizer, index) => (
+            <EventOrginizerCard key={`${organizer.title}-${index}`} {...organizer} />
+          ))}
+        </div>
+      </SectionWrapper>
+      <SectionWrapper className='sm:col-start-3 sm:row-start-5'>
         <h2 className='text-2xl'>Metadata</h2>
         {event.eventsCategories.nodes.length > 0 && (
-          <div className='flex flex-col gap-4'>
+          <div className='flex flex-col gap-2'>
             <h3>Kategori</h3>
             <span className='flex gap-2 flex-wrap'>
               {event.eventsCategories.nodes.map((category) => (
@@ -102,7 +129,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
           </div>
         )}
         {event.tags.nodes.length > 0 && (
-          <div className='flex flex-col gap-4'>
+          <div className='flex flex-col gap-2'>
             <h3>Tags</h3>
             <span className='flex gap-2 flex-wrap'>
               {event.tags.nodes.map((tag) => (
@@ -116,21 +143,13 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
         <div className='flex flex-col gap-2'>
           <h2>Eventen ble laget</h2>
           <IconText icon={<EventIcon />} text={dateStringFormat(event.date, { dateStyle: 'full' })} />
-          {event.modified !== event.date && (
-            <>
-              <h2>Sist oppdatert</h2>
-              <IconText icon={<EditCalendarIcon />} text={dateStringToRelative(event.modified)} />
-            </>
-          )}
         </div>
-      </SectionWrapper>
-      <SectionWrapper className='sm:col-start-1 sm:col-span-2'>
-        <h2 className='text-2xl'>{event.organizers.nodes.length > 1 ? 'Hosts' : 'Host'}</h2>
-        <div className='grid gap-2 grid-cols-1 xl:grid-cols-2'>
-          {event.organizers.nodes.map((organizer, index) => (
-            <EventOrginizerCard key={`${organizer.title}-${index}`} {...organizer} />
-          ))}
-        </div>
+        {event.modified !== event.date && (
+          <div className='flex flex-col gap-2'>
+            <h2>Sist oppdatert</h2>
+            <IconText icon={<EditCalendarIcon />} text={dateStringToRelative(event.modified)} />
+          </div>
+        )}
       </SectionWrapper>
     </main>
   );
