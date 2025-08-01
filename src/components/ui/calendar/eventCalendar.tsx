@@ -165,8 +165,8 @@ export function EventCalendar({ events }: { events: WpEvent[] }) {
         </button>
         <p className='absolute left-1/2 -translate-x-1/2 bottom-1 text-sm text-gray-500'>{currentYear}</p>
       </div>
-      <div className='flex gap-4'>
-        <div className='grid grid-cols-7'>
+      <div className='flex flex-col lg:flex-row gap-8 lg:gap-0'>
+        <div className='flex-2 grid grid-cols-7'>
           {DAY_NAME.map((day) => (
             <div key={day} className='flex justify-center p-2'>
               {day}
@@ -175,8 +175,16 @@ export function EventCalendar({ events }: { events: WpEvent[] }) {
           {calendarDays.map((calendarDay, dayIndex) => {
             const dayEvents = getEventsByDate(calendarDay.date);
             return (
-              <div key={dayIndex} className='relative flex justify-center items-center aspect-square p-2'>
-                <p className={` ${calendarDay.isInCurrentMonth ? '' : 'text-gray-400'}`}>{calendarDay.dayNumber}</p>
+              <div
+                key={dayIndex}
+                className={`group relative flex justify-center items-center aspect-square p-2 cursor-pointer ${calendarDay.isToday ? 'border border-moss-200' : ''} hover:shadow rounded-full duration-200`}
+                onClick={() => setActiveDate(calendarDay.date)}
+              >
+                <p
+                  className={` ${calendarDay.isToday ? 'font-bold' : calendarDay.isInCurrentMonth ? '' : 'text-gray-400'} will-change-transform group-hover:scale-125 duration-200`}
+                >
+                  {calendarDay.dayNumber}
+                </p>
                 {dayEvents.length > 0 &&
                   dayEvents.map((event, eventIndex) => {
                     const eventStart = new Date(event.startDate);
@@ -202,6 +210,7 @@ export function EventCalendar({ events }: { events: WpEvent[] }) {
           })}
         </div>
         <div className='flex-1 flex flex-col gap-2 p-2'>
+          <h3 className='text-center'>Hendelser denne måned</h3>
           {activeEvents.length === 0 && (
             <p className='my-auto text-center italic text-gray-500'>Ingen events for denne måned</p>
           )}
