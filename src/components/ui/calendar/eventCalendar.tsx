@@ -8,6 +8,8 @@ import { getColorFromString } from '@/utils/strings';
 // Icons
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Link from 'next/link';
+import { dateStringFormat } from '@/utils/dates';
 
 interface DayItem {
   dayNumber: number;
@@ -220,14 +222,16 @@ export function EventCalendar({ events }: { events: WpEvent[] }) {
               className='flex flex-col gap-2 p-2 border rounded-md'
               style={{ backgroundColor: getColorFromString(event.slug) }}
             >
-              <p>{event.title}</p>
+              <Link href={`/event/` + event.slug}>{event.title}</Link>
               <div
                 dangerouslySetInnerHTML={{
                   __html: event.excerpt || '<p style="font-style: italic;">Mangler beskrivelse</p>',
                 }}
                 className='text-sm text-gray-600'
               ></div>
-              <p className='ml-auto'>Les mer</p>
+              <Link href={`/event/` + event.slug} className='ml-auto text-sm hover:underline'>
+                Les mer
+              </Link>
             </div>
           ))}
         </div>
