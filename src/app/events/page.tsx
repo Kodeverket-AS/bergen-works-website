@@ -1,5 +1,6 @@
-import { CalendarContainer } from '@/components/ui/calendar/calendar';
 import testData from '@/data/testEvents.json';
+import { CalendarContainer } from '@/components/ui/calendar/calendar';
+import { CalendarUpcomingContainer } from '@/components/ui/calendar/upcoming';
 import { WpEvent } from '@/types/apollo/events.types';
 
 export default async function EventsPage() {
@@ -11,8 +12,9 @@ export default async function EventsPage() {
   if (response.error) return <main>{response.error}</main>;
 
   return (
-    <main className='flex flex-col gap-4 mb-8'>
+    <main className='w-full grid grid-cols-1: sm:grid-cols-3 gap-8 pb-8'>
       <CalendarContainer events={response.events} />
+      <CalendarUpcomingContainer events={response.events} />
     </main>
   );
 }
