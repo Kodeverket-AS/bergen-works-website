@@ -192,7 +192,7 @@ export function EventCalendar({ events }: { events: WpEvent[] }) {
                         className={`absolute -z-10 inset-0 origin-center ${isMultiday ? (isStart ? 'rounded-l-full' : isEnd ? 'rounded-r-full' : '') : 'rounded-full'}`}
                         style={{
                           margin: eventIndex * 5,
-                          backgroundColor: getColorFromString(event.id, 100, calendarDay.isInCurrentMonth ? 80 : 95),
+                          backgroundColor: getColorFromString(event.slug, 100, calendarDay.isInCurrentMonth ? 90 : 95),
                         }}
                       ></div>
                     );
@@ -209,7 +209,7 @@ export function EventCalendar({ events }: { events: WpEvent[] }) {
             <div
               key={event.id}
               className='flex flex-col gap-2 p-2 border rounded-md'
-              style={{ backgroundColor: getColorFromString(event.id) }}
+              style={{ backgroundColor: getColorFromString(event.slug) }}
             >
               <p>{event.title}</p>
               <div
