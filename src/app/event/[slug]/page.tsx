@@ -53,7 +53,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   const multipleDays = Math.round(event.duration / 60 / 60 / 24) >= 1;
 
   return (
-    <main className='w-full grid grid-cols-1: sm:grid-cols-3 gap-8 pb-8 h-s'>
+    <main className='w-full grid grid-cols-1: sm:grid-cols-3 gap-8 pb-8'>
       <SectionWrapper className='relative min-h-96 !p-0 sm:col-span-2 sm:row-span-2 overflow-clip'>
         <Image
           src={event.featuredImage?.node?.sourceUrl || '/KoV-ov.png'}
