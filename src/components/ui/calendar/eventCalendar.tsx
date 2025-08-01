@@ -179,11 +179,11 @@ export function EventCalendar({ events }: { events: WpEvent[] }) {
             return (
               <div
                 key={dayIndex}
-                className={`group relative flex justify-center items-center aspect-square p-2 cursor-pointer ${calendarDay.isToday ? 'border border-moss-200' : ''} hover:shadow rounded-full duration-200`}
+                className={`group relative flex justify-center items-center aspect-square p-2 cursor-pointer hover:shadow rounded-full duration-200`}
                 onClick={() => setActiveDate(calendarDay.date)}
               >
                 <p
-                  className={` ${calendarDay.isToday ? 'font-bold' : calendarDay.isInCurrentMonth ? '' : 'text-gray-400'} will-change-transform group-hover:scale-125 duration-200`}
+                  className={` ${calendarDay.isToday ? 'font-bold text-red-600' : calendarDay.isInCurrentMonth ? '' : 'text-gray-400'}`}
                 >
                   {calendarDay.dayNumber}
                 </p>
