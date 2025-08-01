@@ -23,27 +23,19 @@ export function CalendarContainer({ events }: { events: WpEvent[] }) {
 
   useEffect(() => {}, [activeDate]);
   return (
-    <div>
-      <div className='flex justify-between'>
-        <p className='p-2 border rounded-md'>Denne måneden</p>
-        <span className='flex gap-2'>
-          <button className='p-2 border rounded-md'>
+    <div className='sm:col-span-2'>
+      <div className='flex justify-center gap-4'>
+          <button className=''>
             <NavigateBeforeIcon />
           </button>
-          <select name='' id='' className='p-2 border rounded-md bg-red-50'>
+          <select name='' id='' className='p-2 capitalize font-bold text-2xl text-center'>
             {MONTH_NAME.map((month) => (
-              <option key={month}>{month}</option>
+              <option key={month} className='capitalize text-start'>{month}</option>
             ))}
           </select>
-          <button className='p-2 border rounded-md'>
+          <button className=''>
             <NavigateNextIcon />
           </button>
-        </span>
-        <span className='flex gap-2 items-center'>
-          <p>Framvisning</p>
-          <p className='p-2 border rounded-md'>Uke</p>
-          <p className='p-2 border rounded-md'>Måned</p>
-        </span>
       </div>
       <div className='flex flex-col'>
         <div className='grid grid-cols-7 border-b'>
