@@ -2,14 +2,14 @@
 
 // Global
 import { type WpEvent } from '@/types/apollo/events.types';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { getColorFromString } from '@/utils/strings';
+import { getEventsByDate } from '@/utils/events/filter';
 
 // Icons
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Link from 'next/link';
-import { dateStringFormat } from '@/utils/dates';
 
 interface DayItem {
   dayNumber: number;
@@ -124,26 +124,6 @@ export function EventCalendar({ events }: { events: WpEvent[] }) {
     });
   }
 
-  /**
-   * Helper function for quickly finding events within a date range
-   */
-  function getEventsByDate(date: Date): WpEvent[] {
-    const targetDate = new Date(date);
-    targetDate.setHours(0, 0, 0, 0);
-
-    return events.filter((event) => {
-      const eventStart = new Date(event.startDate);
-      const eventEnd = new Date(event.endDate);
-
-      // Set times to start of day for comparison
-      eventStart.setHours(0, 0, 0, 0);
-      eventEnd.setHours(23, 59, 59, 999);
-
-      // Check if the target date falls within the event's date range
-      return targetDate >= eventStart && targetDate <= eventEnd;
-    });
-  }
-
   return (
     <div className='flex flex-col'>
       <div className='relative flex justify-center gap-4 p-4'>
@@ -175,7 +155,7 @@ export function EventCalendar({ events }: { events: WpEvent[] }) {
             </div>
           ))}
           {calendarDays.map((calendarDay, dayIndex) => {
-            const dayEvents = getEventsByDate(calendarDay.date);
+            const dayEvents = getEventsByDate(calendarDay.date, events);
             return (
               <div
                 key={dayIndex}
