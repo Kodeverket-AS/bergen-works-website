@@ -125,7 +125,7 @@ export function EventCalendar({ events }: { events: WpEvent[] }) {
   }
 
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col gap-8'>
       <div className='relative flex justify-center gap-4 p-4'>
         <button onClick={() => navigateMonth('prev')} className=''>
           <ArrowBackIcon />
@@ -147,8 +147,8 @@ export function EventCalendar({ events }: { events: WpEvent[] }) {
         </button>
         <p className='absolute left-1/2 -translate-x-1/2 bottom-1 text-sm text-gray-500'>{currentYear}</p>
       </div>
-      <div className='flex flex-col lg:flex-row gap-8 lg:gap-0'>
-        <div className='flex-2 grid grid-cols-7'>
+      <div className='flex flex-col lg:flex-row gap-8'>
+        <div className='flex-2 grid grid-cols-7 p-4 border border-gray-200 shadow-md rounded-md'>
           {DAY_NAME.map((day) => (
             <div key={day} className='flex justify-center p-2'>
               {day}
@@ -163,7 +163,7 @@ export function EventCalendar({ events }: { events: WpEvent[] }) {
                 onClick={() => setActiveDate(calendarDay.date)}
               >
                 <p
-                  className={` ${calendarDay.isToday ? 'font-bold text-red-600' : calendarDay.isInCurrentMonth ? '' : 'text-gray-400'}`}
+                  className={` ${calendarDay.isToday ? 'font-bold text-2xl' : calendarDay.isInCurrentMonth ? '' : 'text-gray-400'}`}
                 >
                   {calendarDay.dayNumber}
                 </p>
@@ -191,15 +191,14 @@ export function EventCalendar({ events }: { events: WpEvent[] }) {
             );
           })}
         </div>
-        <div className='flex-1 flex flex-col gap-2 p-2'>
-          <h3 className='text-center'>Hendelser denne måned</h3>
+        <div className='flex-1 flex flex-col gap-2 p-4 border border-gray-200 shadow-md rounded-md'>
           {activeEvents.length === 0 && (
-            <p className='my-auto text-center italic text-gray-500'>Ingen events for denne måned</p>
+            <p className='my-auto text-center italic text-gray-500'>Ingen hendelser denne måned</p>
           )}
           {activeEvents.map((event) => (
             <div
               key={event.id}
-              className='flex flex-col gap-2 p-2 border rounded-md'
+              className='flex flex-col gap-2 p-2 rounded-md shadow-md hover:brightness-95 hover:shadow-xl duration-200'
               style={{ backgroundColor: getColorFromString(event.slug) }}
             >
               <Link href={`/event/` + event.slug}>{event.title}</Link>
@@ -207,7 +206,7 @@ export function EventCalendar({ events }: { events: WpEvent[] }) {
                 dangerouslySetInnerHTML={{
                   __html: event.excerpt || '<p style="font-style: italic;">Mangler beskrivelse</p>',
                 }}
-                className='text-sm text-gray-600'
+                className='text-sm text-gray-800'
               ></div>
               <Link href={`/event/` + event.slug} className='ml-auto text-sm hover:underline'>
                 Les mer

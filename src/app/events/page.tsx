@@ -1,5 +1,5 @@
 import { wpFetchEvents } from '@/lib/apollo/fetch/events/events';
-import { EventCalendarContainer } from '@/components/layout/events/calendarContainer';
+import { EventCalendar } from '@/components/ui/calendar/eventCalendar';
 
 export default async function EventsPage() {
   // Fetch all events from wordpress
@@ -10,7 +10,7 @@ export default async function EventsPage() {
 
   return (
     <main className='flex flex-col pb-8'>
-      <EventCalendarContainer events={response.events} />
+      <EventCalendar events={response.events} />
     </main>
   );
 }
