@@ -53,8 +53,8 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   const multipleDays = Math.round(event.duration / 60 / 60 / 24) >= 1;
 
   return (
-    <main className='w-full grid grid-cols-1: sm:grid-cols-3 gap-8 pb-8'>
-      <SectionWrapper className='relative min-h-96 !p-0 sm:col-span-2 sm:row-span-2 overflow-clip'>
+    <main className='w-full grid grid-cols-1: md:grid-cols-3 gap-8 pb-8'>
+      <SectionWrapper className='relative min-h-96 !p-0 md:col-span-2 md:row-span-2 overflow-clip'>
         <Image
           src={event.featuredImage?.node?.sourceUrl || '/KoV-ov.png'}
           alt={event.featuredImage?.node?.altText || 'Alt text missing'}
@@ -63,10 +63,10 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
           className='object-cover rounded-md'
         />
         <span className='absolute left-0 bottom-0 m-4 p-4 rounded-md bg-white shadow-xl overflow-hidden'>
-          <h1 className='text-2xl sm:text-3xl'>{event.title}</h1>
+          <h1 className='text-2xl md:text-3xl'>{event.title}</h1>
         </span>
       </SectionWrapper>
-      <SectionWrapper className='col-start-1 sm:col-span-2 sm:row-span-2 gap-4'>
+      <SectionWrapper className='col-start-1 md:col-span-2 md:row-span-2 gap-4'>
         {event.content && (
           <div
             dangerouslySetInnerHTML={{ __html: event.content }}
@@ -74,7 +74,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
           ></div>
         )}
       </SectionWrapper>
-      <SectionWrapper className='sm:col-start-3 sm:row-start-1'>
+      <SectionWrapper className='md:col-start-3 md:row-start-1'>
         <h2 className='text-2xl'>Event detaljer</h2>
         <span className='flex flex-col'>
           <p className='capitalize'>Starter</p>
@@ -107,7 +107,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
           </span>
         )}
       </SectionWrapper>
-      <SectionWrapper className='sm:col-start-3 sm:row-start-2'>
+      <SectionWrapper className='md:col-start-3 md:row-start-2'>
         <h2 className='text-2xl'>Handlinger</h2>
         {event.url && (
           <IconLink
@@ -127,7 +127,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
         />
         <ShareToSocialButton title={event.title} />
       </SectionWrapper>
-      <SectionWrapper className='sm:col-start-3 sm:row-start-3'>
+      <SectionWrapper className='md:col-start-3 md:row-start-3'>
         <h2 className='text-2xl'>Lokasjon</h2>
         {event.venue ? (
           <>
@@ -157,7 +157,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
           </div>
         )}
       </SectionWrapper>
-      <SectionWrapper className='sm:col-start-1 sm:col-span-3'>
+      <SectionWrapper className='md:col-start-1 md:col-span-3'>
         <h2 className='text-2xl'>{event.organizers.nodes.length > 1 ? 'Hosts' : 'Host'}</h2>
         <div className='grid gap-2 grid-cols-1 lg:grid-cols-2'>
           {event.organizers.nodes.map((organizer, index) => (
@@ -165,7 +165,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
           ))}
         </div>
       </SectionWrapper>
-      <SectionWrapper className='sm:col-start-3 sm:row-start-4'>
+      <SectionWrapper className='md:col-start-3 md:row-start-4'>
         <h2 className='text-2xl'>Metadata</h2>
         {event.eventsCategories.nodes.length > 0 && (
           <div className='flex flex-col gap-2'>
