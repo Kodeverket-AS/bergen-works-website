@@ -1,5 +1,6 @@
+import { EventCalendar } from '@/components/ui/calendar/eventCalendarV2';
 import { wpFetchEvents } from '@/lib/apollo/fetch/events/events';
-import { EventCalendar } from '@/components/ui/calendar/eventCalendar';
+// import { EventCalendar } from '@/components/ui/calendar/eventCalendar';
 
 export default async function EventsPage() {
   // Fetch all events from wordpress
