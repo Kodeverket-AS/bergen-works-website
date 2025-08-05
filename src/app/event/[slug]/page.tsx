@@ -70,7 +70,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
         {event.content && (
           <div
             dangerouslySetInnerHTML={{ __html: event.content }}
-            className='flex flex-col gap-2 [&_ul]:list-disc [&_ul]:list-inside'
+            className='flex flex-col gap-2 [&_ul]:list-disc [&_ul]:list-inside [&_ul]:pl-4 [&_blockquote]:pl-4 [&_cite]:ml-auto'
           ></div>
         )}
       </SectionWrapper>
