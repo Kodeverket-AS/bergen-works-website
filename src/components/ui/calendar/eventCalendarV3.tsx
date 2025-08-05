@@ -159,11 +159,11 @@ export function EventCalendar({ events }: { events: WpEvent[] }) {
             return (
               <div key={dayIndex} className='aspect-square w-full'>
                 <div
-                  className={`flex flex-col gap-1 p-2 w-full h-full cursor-pointer border [&>*:nth-child(n+4)]:hidden ${calendarDay.date.toDateString() === activeDate.toDateString() ? 'shadow-md' : ''} border-gray-200 rounded-md duration-200`}
+                  className={`flex flex-col gap-1 p-2 w-full h-full cursor-pointer border [&>*:nth-child(n+4)]:hidden ${calendarDay.date.toDateString() === activeDate.toDateString() ? 'shadow-md' : ''} ${calendarDay.isInCurrentMonth ? 'border-gray-300' : 'border-gray-200'} rounded-md duration-200`}
                   onClick={() => setActiveDate(calendarDay.date)}
                 >
                   <p
-                    className={` ${calendarDay.isToday ? 'text-2xl' : ''} ${calendarDay.isInCurrentMonth ? '' : 'text-gray-400'}`}
+                    className={` ${calendarDay.isToday ? 'text-2xl' : ''} ${calendarDay.isInCurrentMonth ? '' : 'text-gray-300'}`}
                   >
                     {calendarDay.dayNumber}
                   </p>
@@ -181,8 +181,8 @@ export function EventCalendar({ events }: { events: WpEvent[] }) {
             );
           })}
         </div>
-        <div className='lg:flex-1/3 flex flex-col gap-2 p-4 border border-gray-200 shadow-md rounded-md'>
-          <h3 className='text-center text-2xl py-1'>
+        <div className='lg:flex-1/3 flex flex-col gap-4 p-4 border border-gray-200 shadow-md rounded-md'>
+          <h3 className='text-center text-2xl'>
             Hva skjer i <span className='capitalize'>{MONTH_NAME[currentMonth]}</span>
           </h3>
           {activeEvents.map((event) => (
