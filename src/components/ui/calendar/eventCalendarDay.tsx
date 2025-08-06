@@ -27,7 +27,7 @@ export function EventCalendarDay({ event, thisDate, index }: { event: WpEvent; t
   return (
     <span
       ref={containerRef}
-      className={`relative px-1 text-xs border border-gray-300 ${isMultiday ? (isStart ? '-mr-2 rounded-l-md border-r-0' : isEnd ? '-ml-2 rounded-r-md border-l-0' : 'border-x-0 -mx-2') : 'rounded-md'} ${index % 2 ? 'bg-moss-100/50 hover:bg-moss-100' : 'bg-moss-100/50 hover:bg-moss-100'}`}
+      className={`relative px-1 text-xs border border-gray-300 ${isMultiday ? (isStart ? '-mr-2 rounded-l-md border-r-0' : isEnd ? '-ml-2 rounded-r-md border-l-0' : 'border-x-0 -mx-2') : 'rounded-md'}`}
       onClick={(e) => {
         e.stopPropagation();
         setIsActive(!isActive);

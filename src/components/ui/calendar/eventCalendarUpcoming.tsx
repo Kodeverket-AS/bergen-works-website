@@ -23,7 +23,7 @@ export function EventCalendarUpcoming({ event, activeDate }: { event: WpEvent; a
   });
 
   return (
-    <div key={`upcoming-events-${event.slug}`} className='flex flex-col gap-2 p-2 text-sm rounded-md bg-moss-100/50'>
+    <div key={`upcoming-events-${event.slug}`} className='flex flex-col gap-2 p-2 text-sm rounded-md bg-moss-100'>
       <Link href={'/event/' + event.slug}>
         <h3 className='text-xl'>{event.title}</h3>
       </Link>
