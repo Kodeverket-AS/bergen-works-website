@@ -38,7 +38,7 @@ export function EventCalendarDay({ event, thisDate, index }: { event: WpEvent; t
         title={event.title}
         className={`truncate ${isMultiday ? (isStart ? '' : isEnd ? 'opacity-0' : 'opacity-0') : ''}`}
       >
-        {event.title}
+        {event.eventsCategories.nodes.map(category => category.name)}
       </p>
       {isActive && (
         <div className='z-10 w-screen max-w-96 absolute m-2 flex flex-col gap-1 p-2 border rounded-md shadow-md bg-white'>
