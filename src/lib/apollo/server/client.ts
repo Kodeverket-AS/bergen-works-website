@@ -1,3 +1,5 @@
+'use server';
+
 import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
 
 const apolloClientServer = new ApolloClient({

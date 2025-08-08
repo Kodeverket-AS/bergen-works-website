@@ -1,3 +1,5 @@
+'use server';
+
 import { type WordpressPostsResponse, type WordpressPostsResult } from '@/types/apollo/response.types';
 import { ApolloError, gql } from '@apollo/client';
 import apolloClientServer from '@/lib/apollo/server/client';

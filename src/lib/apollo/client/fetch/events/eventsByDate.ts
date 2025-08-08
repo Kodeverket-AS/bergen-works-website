@@ -1,5 +1,3 @@
-'use server';
-
 import { WpEvent, type WpEventsResponse } from '@/types/apollo/events.types';
 import { ApolloError, gql } from '@apollo/client';
 import { isValidDateString } from '@/utils/dates';

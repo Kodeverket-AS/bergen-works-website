@@ -1,5 +1,3 @@
-'use server';
-
 import { WpEvent, type WpEventsResponse } from '@/types/apollo/events.types';
 import { ApolloError, ApolloQueryResult, gql } from '@apollo/client';
 import apolloClient from '@/lib/apollo/client';
