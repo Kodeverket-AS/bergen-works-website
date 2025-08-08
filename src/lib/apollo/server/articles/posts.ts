@@ -89,7 +89,7 @@ interface WpFetchPostsOptions {
  * @param options - Optional filtering and pagination options.
  * @returns A list of post previews with pagination metadata and error info if applicable.
  */
-export async function wpFetchPosts(options: WpFetchPostsOptions = {}): Promise<WordpressPostsResult> {
+export async function wpFetchPostsServer(options: WpFetchPostsOptions = {}): Promise<WordpressPostsResult> {
   try {
     const { tag, category, first = 100, after = null, before = null } = options;
 

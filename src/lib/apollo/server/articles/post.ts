@@ -50,7 +50,7 @@ const QUERY = gql`
  * @param slug - The slug of the post to fetch.
  * @returns A post result object containing content and metadata, or error details.
  */
-export async function wpFetchPost(slug: string): Promise<WordpressPostResult> {
+export async function wpFetchPostServer(slug: string): Promise<WordpressPostResult> {
   try {
     const response = await apolloClientServer.query<WordpressPostResponse>({
       query: QUERY,
