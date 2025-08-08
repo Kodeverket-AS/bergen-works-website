@@ -5,7 +5,7 @@ import { type WpEvent } from '@/types/apollo/events.types';
 import { useState } from 'react';
 import { getEventsByDate } from '@/utils/events/filter';
 import { EventCalendarDay } from './eventCalendarDay';
-import { EventCalendarUpcoming } from './eventCalendarUpcoming';
+import { EventCalendarUpcoming } from './eventCalendarUpcomingV2';
 
 // Icons
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -172,7 +172,6 @@ export function EventCalendar({ events }: { events: WpEvent[] }) {
                       <EventCalendarDay
                         key={`calendar-day-${dayIndex}-${eventIndex}`}
                         event={event}
-                        index={eventIndex}
                         thisDate={calendarDay.date}
                       />
                     ))}
@@ -185,9 +184,12 @@ export function EventCalendar({ events }: { events: WpEvent[] }) {
           <h3 className='text-center text-2xl'>
             Hva skjer i <span className='capitalize'>{MONTH_NAME[currentMonth]}</span>
           </h3>
-          {activeEvents.map((event) => (
-            <EventCalendarUpcoming key={`calendar-upcoming-${event.id}`} event={event} activeDate={activeDate} />
-          ))}
+          {activeEvents.length === 0 && (
+            <p className='italic text-sm my-auto'>
+              Ingen arrangementer ennå - følg med, det kommer kanskje noe spennende!
+            </p>
+          )}
+          <EventCalendarUpcoming events={activeEvents} activeDate={activeDate} />
         </div>
       </div>
     </div>
