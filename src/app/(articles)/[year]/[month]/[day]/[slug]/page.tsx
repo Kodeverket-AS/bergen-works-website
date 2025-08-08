@@ -84,13 +84,21 @@ export default async function Page({
         </p>
       </section>
       <div id='articleFooter' className='flex flex-col items-center gap-4'>
-        <p>Klikk på en tag for å finne artikler med lignende emner</p>
-        <span className='mx-auto w-full max-w-xl flex flex-wrap justify-center gap-2'>
-          {article.tags && article.tags.nodes.map((tag) => <ArticleTag key={tag.id} {...tag} />)}
-        </span>
-        <Link href='/artikler' className='hover:underline'>
-          Eller gå tilbake til hovedside for artikler
-        </Link>
+        {article.tags.nodes.length > 0 ? (
+          <>
+            <p>Klikk på en tag for å finne artikler med lignende emner</p>
+            <span className='mx-auto w-full max-w-xl flex flex-wrap justify-center gap-2'>
+              {article.tags && article.tags.nodes.map((tag) => <ArticleTag key={tag.id} {...tag} />)}
+            </span>
+            <Link href='/artikler' className='hover:underline'>
+              Eller gå tilbake til hovedside for artikler
+            </Link>
+          </>
+        ) : (
+          <Link href='/artikler' className='hover:underline'>
+            Gå tilbake til hovedside for artikler
+          </Link>
+        )}
       </div>
     </main>
   );
