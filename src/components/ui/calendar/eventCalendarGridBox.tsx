@@ -2,6 +2,9 @@
 
 import { type WpEvent } from '@/types/apollo/events.types';
 import { EventCalendarGridBoxEvent } from './eventCalendarGridBoxEvent';
+import { useState } from 'react';
+import { EventCalendarTooltip } from '../modal/eventCalendarTooltip';
+import { useClickPosition } from '@/hooks/useClickPosition';
 
 export interface DayItem {
   dayNumber: number;
@@ -16,22 +19,22 @@ export function EventCalendarGridBox({
   dayItem,
   index,
   activeDate,
-  setDate,
 }: {
   dayItem: DayItem;
   index: number;
   activeDate: Date;
-  setDate: () => void;
 }) {
+  const [modalData, setModalData] = useState<WpEvent | null>(null);
+  const [position, setPosition] = useClickPosition();
+
   return (
     <div
-      onClick={setDate}
       className={`
         relative
         aspect-square w-full border rounded-md cursor-pointer pb-1 pt-4 sm:pt-6
         ${dayItem.isInCurrentMonth ? 'border-gray-300' : 'border-gray-200'}
-        ${dayItem.date.toDateString() === activeDate.toDateString() ? 'shadow-md' : ''}
-        duration-200
+        ${dayItem.date.toDateString() === activeDate.toDateString() ? '' : ''}
+        hover:shadow-md duration-200
       `}
     >
       {dayItem.hasEvents && (
@@ -41,6 +44,8 @@ export function EventCalendarGridBox({
               key={`calendar-day-${index}-${eventIndex}`}
               event={event}
               thisDate={dayItem.date}
+              setModal={(data) => setModalData(data)}
+              setPosition={setPosition}
             />
           ))}
         </div>
@@ -55,6 +60,7 @@ export function EventCalendarGridBox({
       >
         {dayItem.dayNumber}
       </p>
+      {modalData && <EventCalendarTooltip event={modalData} onClose={() => setModalData(null)} position={position} />}
     </div>
   );
 }

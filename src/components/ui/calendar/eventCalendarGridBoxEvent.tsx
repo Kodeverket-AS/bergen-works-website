@@ -1,14 +1,18 @@
 import { type WpEvent } from '@/types/apollo/events.types';
-import { useState } from 'react';
-import { createPortal } from 'react-dom';
 import { getPresetColorFromString } from '@/utils/strings';
-import { EventCalendarTooltip } from '../modal/eventCalendarTooltip';
-import { useClickPosition } from '@/hooks/useClickPosition';
+import { MouseEvent } from 'react';
 
-export function EventCalendarGridBoxEvent({ event, thisDate }: { event: WpEvent; thisDate: Date }) {
-  const [showModal, setShowModal] = useState<boolean>(false);
-  const [modalPosition, setModalPosition] = useClickPosition();
-
+export function EventCalendarGridBoxEvent({
+  event,
+  thisDate,
+  setModal,
+  setPosition,
+}: {
+  event: WpEvent;
+  thisDate: Date;
+  setModal: (event: WpEvent) => void;
+  setPosition: (e: MouseEvent) => void;
+}) {
   const eventStart = new Date(event.startDate);
   const eventEnd = new Date(event.endDate);
 
@@ -25,8 +29,8 @@ export function EventCalendarGridBoxEvent({ event, thisDate }: { event: WpEvent;
       }}
       onClick={(e) => {
         e.stopPropagation();
-        setModalPosition(e);
-        setShowModal(!showModal);
+        setPosition(e);
+        setModal(event);
       }}
     >
       <p
@@ -36,16 +40,6 @@ export function EventCalendarGridBoxEvent({ event, thisDate }: { event: WpEvent;
       >
         {event.eventsCategories.nodes.map((category) => category.name)}
       </p>
-      {showModal &&
-        createPortal(
-          <EventCalendarTooltip
-            event={event}
-            position={modalPosition}
-            onClose={() => setShowModal(false)}
-            isVisible={showModal}
-          />,
-          document.body
-        )}
     </span>
   );
 }
