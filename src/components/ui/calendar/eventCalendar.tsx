@@ -3,13 +3,12 @@
 // Global
 import { type WpEvent } from '@/types/apollo/events.types';
 import { useState } from 'react';
-import { getColorFromString } from '@/utils/strings';
-import { getEventsByDate } from '@/utils/events/filter';
+import { EventCalendarUpcoming } from './eventCalendarUpcoming';
+import { EventCalendarGridBox } from './eventCalendarGridBox';
 
 // Icons
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import Link from 'next/link';
 
 interface DayItem {
   dayNumber: number;
@@ -134,7 +133,7 @@ export function EventCalendar({ events }: { events: WpEvent[] }) {
           aria-label='Velg måned'
           value={currentMonth}
           onChange={(e) => handleMonthSelect(Number(e.target.value))}
-          className='p-2 capitalize font-bold text-3xl text-center'
+          className='p-2 capitalize font-bold sm:text-3xl text-center'
         >
           {MONTH_NAME.map((month, index) => (
             <option key={month} value={index} className='text-xl'>
@@ -147,72 +146,33 @@ export function EventCalendar({ events }: { events: WpEvent[] }) {
         </button>
         <p className='absolute left-1/2 -translate-x-1/2 bottom-1 text-sm text-gray-500'>{currentYear}</p>
       </div>
-      <div className='flex flex-col lg:flex-row gap-8'>
-        <div className='flex-2 grid grid-cols-7 p-4 border border-gray-200 shadow-md rounded-md'>
+      <div className='flex flex-col lg:flex-row gap-4'>
+        <div className='w-full lg:sticky lg:top-4 self-start lg:flex-2/3 grid grid-cols-7 gap-1 p-4 border border-gray-200 shadow-md rounded-md'>
           {DAY_NAME.map((day) => (
             <div key={day} className='flex justify-center p-2'>
-              {day}
+              <p className='truncate text-clip'>{day}</p>
             </div>
           ))}
-          {calendarDays.map((calendarDay, dayIndex) => {
-            const dayEvents = getEventsByDate(calendarDay.date, events);
-            return (
-              <div
-                key={dayIndex}
-                className={`group relative flex justify-center items-center aspect-square p-2 cursor-pointer hover:shadow rounded-full duration-200`}
-                onClick={() => setActiveDate(calendarDay.date)}
-              >
-                <p
-                  className={` ${calendarDay.isToday ? 'font-bold text-2xl' : calendarDay.isInCurrentMonth ? '' : 'text-gray-400'}`}
-                >
-                  {calendarDay.dayNumber}
-                </p>
-                {dayEvents.length > 0 &&
-                  dayEvents.map((event, eventIndex) => {
-                    const eventStart = new Date(event.startDate);
-                    const eventEnd = new Date(event.endDate);
-
-                    const isMultiday = eventStart.toDateString() !== eventEnd.toDateString();
-                    const isStart = calendarDay.date.toDateString() === eventStart.toDateString();
-                    const isEnd = calendarDay.date.toDateString() === eventEnd.toDateString();
-
-                    return (
-                      <div
-                        key={eventIndex}
-                        className={`absolute -z-10 inset-0 origin-center ${isMultiday ? (isStart ? 'rounded-l-full' : isEnd ? 'rounded-r-full' : '') : 'rounded-full'}`}
-                        style={{
-                          margin: eventIndex * 5,
-                          backgroundColor: getColorFromString(event.slug, 100, calendarDay.isInCurrentMonth ? 90 : 95),
-                        }}
-                      ></div>
-                    );
-                  })}
-              </div>
-            );
-          })}
+          {calendarDays.map((calendarDay, dayIndex) => (
+            <EventCalendarGridBox
+              key={`calendar-grid-box-${dayIndex}`}
+              dayItem={calendarDay}
+              index={dayIndex}
+              activeDate={activeDate}
+              setDate={() => setActiveDate(calendarDay.date)}
+            />
+          ))}
         </div>
-        <div className='flex-1 flex flex-col gap-2 p-4 border border-gray-200 shadow-md rounded-md'>
+        <div className='lg:flex-1/3 flex flex-col gap-4 p-4 border border-gray-200 shadow-md rounded-md'>
+          <h3 className='text-center text-2xl'>
+            Hva skjer i <span className='capitalize'>{MONTH_NAME[currentMonth]}</span>
+          </h3>
           {activeEvents.length === 0 && (
-            <p className='my-auto text-center italic text-gray-500'>Ingen hendelser denne måned</p>
+            <p className='italic text-sm my-auto'>
+              Ingen arrangementer ennå - følg med, det kommer kanskje noe spennende!
+            </p>
           )}
-          {activeEvents.map((event) => (
-            <div
-              key={event.id}
-              className='flex flex-col gap-2 p-2 rounded-md shadow-md hover:brightness-95 hover:shadow-xl duration-200'
-              style={{ backgroundColor: getColorFromString(event.slug) }}
-            >
-              <Link href={`/event/` + event.slug}>{event.title}</Link>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: event.excerpt || '<p style="font-style: italic;">Mangler beskrivelse</p>',
-                }}
-                className='text-sm text-gray-800'
-              ></div>
-              <Link href={`/event/` + event.slug} className='ml-auto text-sm hover:underline'>
-                Les mer
-              </Link>
-            </div>
-          ))}
+          <EventCalendarUpcoming events={activeEvents} activeDate={activeDate} />
         </div>
       </div>
     </div>
