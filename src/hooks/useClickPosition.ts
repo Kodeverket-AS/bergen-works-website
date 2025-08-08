@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { type MouseEvent, useState } from 'react';
 
 interface ClickPosition {
   x: number;
@@ -16,10 +16,10 @@ interface ClickPosition {
  * const [position, handleClick] = useClickPosition();
  * return <div onClick={handleClick}>Click me</div>
  */
-export function useClickPosition(): [ClickPosition, (event: React.MouseEvent) => void] {
+export function useClickPosition(): [ClickPosition, (event: MouseEvent) => void] {
   const [position, setPosition] = useState<ClickPosition>({ x: 0, y: 0 });
 
-  const updatePosition = (event: React.MouseEvent) => {
+  const updatePosition = (event: MouseEvent) => {
     setPosition({
       x: event.clientX,
       y: event.clientY,
