@@ -69,7 +69,7 @@ export function EventCalendarTooltip({
           <p
             className='px-2 py-1 max-sm:text-sm rounded-md'
             style={{
-              backgroundColor: getPresetColorFromString(event.eventsCategories.nodes.at(0)!.name, 0.5),
+              backgroundColor: getPresetColorFromString(event.eventsCategories.nodes.at(0)!.slug, 0.5),
             }}
           >
             {event.eventsCategories.nodes.at(0)!.name}

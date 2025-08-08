@@ -25,7 +25,7 @@ export function EventCalendarGridBoxEvent({
     <span
       className={`relative px-1 text-xs border border-gray-300 ${isMultiday ? (isStart ? 'ml-1 rounded-l-md border-r-0' : isEnd ? 'mr-1 rounded-r-md border-l-0' : 'border-x-0') : 'mx-1 rounded-md'}`}
       style={{
-        backgroundColor: getPresetColorFromString(event.eventsCategories.nodes.at(0)?.name, 0.5),
+        backgroundColor: getPresetColorFromString(event.eventsCategories.nodes.at(0)?.slug, 0.5),
       }}
       onClick={(e) => {
         e.stopPropagation();
