@@ -1,0 +1,206 @@
+// Global
+import { type WpEvent } from '@/types/apollo/events.types';
+import Image from 'next/image';
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import { GoogleMapsEmbed } from '@next/third-parties/google';
+import { wpFetchEvent } from '@/lib/apollo/fetch/events/event';
+import { wpFetchEvents } from '@/lib/apollo/fetch/events/events';
+import { dateStringFormat, dateStringToRelative } from '@/utils/dates';
+
+// Components
+import { SectionWrapper } from '@/components/layout/sections/wrapper';
+import { IconText } from '@/components/ui/text/iconText';
+import { EventOrginizerCard } from '@/components/ui/cards/eventOrginizer';
+import { AddToCalendarButton } from '@/components/ui/buttons/events/addToCalendar';
+import { ShareToSocialButton } from '@/components/ui/buttons/events/shareToSocial';
+import { IconLink } from '@/components/ui/links/iconLink';
+
+// Icons
+import EventIcon from '@mui/icons-material/Event';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import EditCalendarIcon from '@mui/icons-material/EditCalendar';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
+
+export async function generateStaticParams() {
+  const result = await wpFetchEvents();
+
+  // Quietly quit on error
+  if (result.error) return [];
+
+  return result.events.map((item) => ({
+    slug: item.slug,
+  }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  return { title: `Bergen Works - ${slug}` };
+}
+
+export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const result = await wpFetchEvent(slug);
+
+  // Redirect to 404 page if event doesn't exist
+  if (result.error || !result.event) return notFound();
+
+  // Bind event result for easier access
+  const event = result.event as unknown as WpEvent;
+
+  // Does event run over multiple days?
+  const multipleDays = Math.round(event.duration / 60 / 60 / 24) >= 1;
+
+  return (
+    <main className='w-full grid grid-cols-1: md:grid-cols-3 gap-8 pb-8'>
+      <SectionWrapper className='relative min-h-96 !p-0 md:col-span-2 md:row-span-2 overflow-clip'>
+        <Image
+          src={event.featuredImage?.node?.sourceUrl || '/KoV-ov.png'}
+          alt={event.featuredImage?.node?.altText || 'Alt text missing'}
+          sizes='100vw'
+          fill
+          className='object-cover rounded-md'
+        />
+        <span className='absolute left-0 bottom-0 m-4 p-4 rounded-md bg-white shadow-xl overflow-hidden'>
+          <h1 className='text-2xl md:text-3xl'>{event.title}</h1>
+        </span>
+      </SectionWrapper>
+      <SectionWrapper className='col-start-1 md:col-span-2 md:row-span-2 gap-4'>
+        {event.content && (
+          <div
+            dangerouslySetInnerHTML={{ __html: event.content }}
+            className='flex flex-col gap-2 [&_ul]:list-disc [&_ul]:list-inside [&_ul]:pl-4 [&_blockquote]:pl-4 [&_cite]:ml-auto'
+          ></div>
+        )}
+      </SectionWrapper>
+      <SectionWrapper className='md:col-start-3 md:row-start-1'>
+        <h2 className='text-2xl'>Event detaljer</h2>
+        <span className='flex flex-col'>
+          <p className='capitalize'>Starter</p>
+          <IconText
+            icon={<EventIcon />}
+            text={dateStringFormat(event.startDate, { dateStyle: 'full' })}
+            className='capitalize'
+          />
+          {event.allDay ? (
+            <IconText icon={<AccessTimeIcon />} text='Hele dagen' />
+          ) : (
+            <IconText
+              icon={<AccessTimeIcon />}
+              text={`Klokken ${dateStringFormat(event.startDate, { timeStyle: 'short' })}`}
+            />
+          )}
+        </span>
+        {multipleDays && (
+          <span className='flex flex-col'>
+            <p className='capitalize'>Slutter</p>
+            <IconText
+              icon={<EventIcon />}
+              text={dateStringFormat(event.endDate, { dateStyle: 'full' })}
+              className='capitalize'
+            />
+            <IconText
+              icon={<AccessTimeIcon />}
+              text={`Klokken ${dateStringFormat(event.startDate, { timeStyle: 'short' })}`}
+            />
+          </span>
+        )}
+      </SectionWrapper>
+      <SectionWrapper className='md:col-start-3 md:row-start-2'>
+        <h2 className='text-2xl'>Handlinger</h2>
+        {event.url && (
+          <IconLink
+            icon={<HowToRegIcon />}
+            link={event.url}
+            label='Meld deg på event'
+            className='w-full flex items-center gap-2 p-2 border rounded-md text-sm bg-sky-100 hover:bg-sky-200'
+          />
+        )}
+        <AddToCalendarButton
+          title={event.title}
+          content={event.excerpt || ''}
+          address={event.venue?.address || ''}
+          end={event.endDate}
+          start={event.startDate}
+          allDay={event.allDay}
+        />
+        <ShareToSocialButton title={event.title} />
+      </SectionWrapper>
+      <SectionWrapper className='md:col-start-3 md:row-start-3'>
+        <h2 className='text-2xl'>Lokasjon</h2>
+        {event.venue ? (
+          <>
+            <div className='bg-gray-100 rounded-md overflow-hidden'>
+              {/* todo: Skaff ny api nøkkel for dette prosjektet @andreas */}
+              <GoogleMapsEmbed
+                apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!}
+                height={300}
+                width='100%'
+                mode='place'
+                q={`${event.venue.address}%2C+${event.venue.city}%2C+${event.venue.country}`}
+              />
+            </div>
+            <span className='flex flex-col p-2 border rounded-md'>
+              <p>
+                {event.venue?.address}, {event.venue?.city}
+              </p>
+              <p>
+                {event.venue?.zip}, {event.venue?.country}
+              </p>
+            </span>
+          </>
+        ) : (
+          <div className='flex flex-col'>
+            <p>Dette er en digital event</p>
+            <p>Les innhold for detaljer</p>
+          </div>
+        )}
+      </SectionWrapper>
+      <SectionWrapper className='md:col-start-1 md:col-span-3'>
+        <h2 className='text-2xl'>{event.organizers.nodes.length > 1 ? 'Hosts' : 'Host'}</h2>
+        <div className='grid gap-2 grid-cols-1 lg:grid-cols-2'>
+          {event.organizers.nodes.map((organizer, index) => (
+            <EventOrginizerCard key={`${organizer.title}-${index}`} {...organizer} />
+          ))}
+        </div>
+      </SectionWrapper>
+      <SectionWrapper className='md:col-start-3 md:row-start-4'>
+        <h2 className='text-2xl'>Metadata</h2>
+        {event.eventsCategories.nodes.length > 0 && (
+          <div className='flex flex-col gap-2'>
+            <h3>Kategori</h3>
+            <span className='flex gap-2 flex-wrap'>
+              {event.eventsCategories.nodes.map((category) => (
+                <p key={category.slug} className='text-sm bg-blue-100 px-2 shadow-sm rounded-full'>
+                  {category.name}
+                </p>
+              ))}
+            </span>
+          </div>
+        )}
+        {event.tags.nodes.length > 0 && (
+          <div className='flex flex-col gap-2'>
+            <h3>Tags</h3>
+            <span className='flex gap-2 flex-wrap'>
+              {event.tags.nodes.map((tag) => (
+                <p key={tag.slug} className='text-sm bg-green-100 px-2 shadow-sm rounded-full'>
+                  {tag.name}
+                </p>
+              ))}
+            </span>
+          </div>
+        )}
+        <div className='flex flex-col gap-2'>
+          <h2>Eventen ble laget</h2>
+          <IconText icon={<EventIcon />} text={dateStringFormat(event.date, { dateStyle: 'full' })} />
+        </div>
+        {event.modified !== event.date && (
+          <div className='flex flex-col gap-2'>
+            <h2>Sist oppdatert</h2>
+            <IconText icon={<EditCalendarIcon />} text={dateStringToRelative(event.modified)} />
+          </div>
+        )}
+      </SectionWrapper>
+    </main>
+  );
+}

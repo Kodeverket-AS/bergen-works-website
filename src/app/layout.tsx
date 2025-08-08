@@ -2,9 +2,6 @@ import { type Metadata } from 'next';
 import { Space_Grotesk } from 'next/font/google';
 import { Header } from '@/components/layout/header/header';
 import Footer from '@/components/layout/footer/footer';
-import { SanityProvider } from '@/context/SanityContext';
-import { getArticles } from './sanity/lib/getArticles';
-import { getEvents } from './sanity/lib/getEvents';
 import MuiClientThemeProvider from '@/components/layout/MuiClientThemeProvider';
 import '@/assets/styles/globals.css';
 
@@ -69,18 +66,13 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const articles = await getArticles();
-  const events = await getEvents();
-
   return (
     <html lang='en' className={spaceGrotesk.className}>
       <body>
         <MuiClientThemeProvider>
-          <SanityProvider articles={articles} events={events}>
-            <Header />
-            {children}
-            <Footer />
-          </SanityProvider>
+          <Header />
+          {children}
+          <Footer />
         </MuiClientThemeProvider>
       </body>
     </html>
