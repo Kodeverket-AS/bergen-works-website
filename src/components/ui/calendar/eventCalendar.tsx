@@ -155,7 +155,6 @@ export function EventCalendar({ events }: { events: WpEvent[] }) {
               dayItem={calendarDay}
               index={dayIndex}
               activeDate={activeDate}
-              setDate={() => setActiveDate(calendarDay.date)}
             />
           ))}
         </div>
