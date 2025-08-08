@@ -6,12 +6,12 @@ import { useClickOutside } from '@/hooks/useClickOutside';
 import { getPresetColorFromString } from '@/utils/strings';
 
 // Icons
-import LocationPinIcon from '@mui/icons-material/LocationPin';
-import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+// import LocationPinIcon from '@mui/icons-material/LocationPin';
+// import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
+// import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
-export function EventCalendarDay({ event, thisDate }: { event: WpEvent; thisDate: Date }) {
+export function EventCalendarGridBoxEvent({ event, thisDate }: { event: WpEvent; thisDate: Date }) {
   const [isActive, setIsActive] = useState<boolean>(false);
   const containerRef = useRef<HTMLSpanElement>(null);
   useClickOutside(containerRef, () => setIsActive(false));
@@ -27,7 +27,7 @@ export function EventCalendarDay({ event, thisDate }: { event: WpEvent; thisDate
   return (
     <span
       ref={containerRef}
-      className={`relative px-1 text-xs border border-gray-300 ${isMultiday ? (isStart ? '-mr-2 rounded-l-md border-r-0' : isEnd ? '-ml-2 rounded-r-md border-l-0' : 'border-x-0 -mx-2') : 'rounded-md'}`}
+      className={`relative px-1 text-xs border border-gray-300 ${isMultiday ? (isStart ? 'ml-1 rounded-l-md border-r-0' : isEnd ? 'mr-1 rounded-r-md border-l-0' : 'border-x-0') : 'mx-1 rounded-md'}`}
       style={{
         backgroundColor: getPresetColorFromString(event.eventsCategories.nodes.at(0)?.name, 0.5),
       }}
