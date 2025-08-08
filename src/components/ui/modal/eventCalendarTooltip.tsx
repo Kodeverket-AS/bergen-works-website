@@ -1,65 +1,88 @@
 'use client';
 
 import { type WpEvent } from '@/types/apollo/events.types';
+import { type CSSProperties, useLayoutEffect, useRef, useState } from 'react';
+import { useClickOutside } from '@/hooks/useClickOutside';
 import Link from 'next/link';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import { useLayoutEffect, useRef, useState } from 'react';
-import { useClickOutside } from '@/hooks/useClickOutside';
+import CloseIcon from '@mui/icons-material/Close';
+import { getPresetColorFromString } from '@/utils/strings';
 
 export function EventCalendarTooltip({
   event,
   position,
   onClose,
-  isVisible,
 }: {
   event: WpEvent;
   position: { x: number; y: number };
   onClose: () => void;
-  isVisible: boolean;
 }) {
   // Handle closing when clicking outside
   const containerRef = useRef<HTMLDivElement>(null);
   useClickOutside(containerRef, onClose);
 
-  // handle overflow by adjusting tooltip position after render, based on tooltip size
-  const [adjustedPos, setAdjustedPos] = useState({ x: 0, y: 0 });
+  // Avoid component going off screen
+  const [style, setStyle] = useState<CSSProperties>({});
+
   useLayoutEffect(() => {
-    if (containerRef.current && isVisible) {
-      const tooltipRect = containerRef.current.getBoundingClientRect();
-      const margin = 10;
+    const container = containerRef.current;
+    if (!container) return;
 
-      let x = position.x + margin;
-      let y = position.y + margin;
+    const { right, bottom, width, height } = container.getBoundingClientRect();
+    const newStyle: CSSProperties = {};
+    const padding = 8;
 
-      if (x + tooltipRect.width > window.innerWidth) {
-        x = window.innerWidth - tooltipRect.width - margin;
-      }
-
-      if (y + tooltipRect.height > window.innerHeight) {
-        y = window.innerHeight - tooltipRect.height - margin;
-      }
-
-      setAdjustedPos({ x, y });
+    console.log(bottom, innerHeight);
+    // Keep tooltip above screen bottom
+    if (bottom > innerHeight - 50) {
+      newStyle.top = -height;
     }
-  }, [position, isVisible]);
+
+    if (innerWidth > 1023 && position.x > width + padding) {
+      // Keep tooltip inside calendar container
+      newStyle.right = 0;
+    } else if (right > innerWidth) {
+      // Keep tooltip inside screen
+      newStyle.left = innerWidth - right - padding;
+    }
+
+    setStyle(newStyle);
+  }, [position]);
+
   return (
     <div
       ref={containerRef}
-      className='z-10 w-screen max-w-96 absolute flex flex-col gap-1 p-2 border rounded-md shadow-md bg-white'
-      style={{
-        top: adjustedPos.y,
-        left: adjustedPos.x,
-      }}
+      className={`absolute z-10 w-96 min-w-48 max-w-[90svw] flex flex-col gap-2 md:gap-4 p-2 border rounded-md shadow-2xl bg-white`}
+      style={style}
     >
-      <button onClick={onClose}>Close</button>
-      <h4 className='text-xl'>{event.title}</h4>
-      <div className='line-clamp-3' dangerouslySetInnerHTML={{ __html: event.content || 'Beskrivelse mangler' }}></div>
+      <Link href={`#event-${event.slug}`} className='text-xl hover:underline'>
+        {event.title}
+      </Link>
+      <div
+        className='line-clamp-3 max-sm:text-sm'
+        dangerouslySetInnerHTML={{ __html: event.content || 'Beskrivelse mangler' }}
+      ></div>
       {/* <IconText icon={<LocationPinIcon />} text={event.venue?.address || 'Digital plattform'} /> */}
       {/* <IconText icon={<AssignmentIndIcon />} text={event.organizers.nodes.map((organizer) => organizer.title).join(', ')} /> */}
-      <Link className='group ml-auto hover:underline' href={'/event/' + event.slug}>
-        Les mer
-        <NavigateNextIcon className='inline-block origin-center group-hover:-rotate-45 duration-200' />
-      </Link>
+      <span className='flex justify-between gap-2'>
+        {event.eventsCategories.nodes.length > 0 && (
+          <p
+            className='px-2 py-1 max-sm:text-sm rounded-md'
+            style={{
+              backgroundColor: getPresetColorFromString(event.eventsCategories.nodes.at(0)!.name, 0.5),
+            }}
+          >
+            {event.eventsCategories.nodes.at(0)!.name}
+          </p>
+        )}
+        <Link className='group ml-auto hover:underline' href={'/event/' + event.slug}>
+          Les mer
+          <NavigateNextIcon className='inline-block origin-center group-hover:-rotate-45 duration-200' />
+        </Link>
+      </span>
+      <button onClick={onClose} className='absolute top-0 right-0 '>
+        <CloseIcon className='hover:scale-110 duration-200' />
+      </button>
     </div>
   );
 }
