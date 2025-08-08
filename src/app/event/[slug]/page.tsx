@@ -19,7 +19,6 @@ import { IconLink } from '@/components/ui/links/iconLink';
 // Icons
 import EventIcon from '@mui/icons-material/Event';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import AvTimerIcon from '@mui/icons-material/AvTimer';
 import EditCalendarIcon from '@mui/icons-material/EditCalendar';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 

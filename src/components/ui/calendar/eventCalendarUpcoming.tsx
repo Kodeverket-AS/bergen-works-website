@@ -1,7 +1,9 @@
 // Global
 import { type WpEvent } from '@/types/apollo/events.types';
 import Link from 'next/link';
+import { IconLink } from '../links/iconLink';
 import { IconText } from '../text/iconText';
+import { getPresetColorFromString } from '@/utils/strings';
 
 // Icons
 import LocationPinIcon from '@mui/icons-material/LocationPin';
@@ -9,8 +11,6 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import { IconLink } from '../links/iconLink';
-import { getPresetColorFromString } from '@/utils/strings';
 
 export function EventCalendarUpcoming({ events }: { events: WpEvent[]; activeDate: Date }) {
   // Formatter for human readable dates
