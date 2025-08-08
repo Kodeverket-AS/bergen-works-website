@@ -1,5 +1,5 @@
+import { wpFetchTags } from '@/lib/apollo/client/fetch/articles/tags';
 import Link from 'next/link';
-import { wpFetchTags } from '@/lib/apollo/fetch/tags';
 
 export default async function Page() {
   const result = await wpFetchTags();
