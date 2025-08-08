@@ -28,16 +28,16 @@ export function getColorFromString(input: string, saturation = 100, lightness = 
 
 export function getPresetColorFromString(categoryName: string = '', alpha: number = 1): string {
   const approvedColors: Record<string, string> = {
-    red: 'rgba(248, 113, 113, ALPHA)',
-    yellow: 'rgba(251, 191, 36, ALPHA)',
+    /* emerald: 'rgba(74, 222, 128, ALPHA)', */
     /* green: 'rgba(52, 211, 153, ALPHA)', */
     blue: 'rgba(96, 165, 250, ALPHA)',
-    purple: 'rgba(167, 139, 250, ALPHA)',
-    pink: 'rgba(244, 114, 182, ALPHA)',
     orange: 'rgba(251, 146, 60, ALPHA)',
-    /* emerald: 'rgba(74, 222, 128, ALPHA)', */
+    pink: 'rgba(244, 114, 182, ALPHA)',
+    purple: 'rgba(167, 139, 250, ALPHA)',
+    red: 'rgba(248, 113, 113, ALPHA)',
     sky: 'rgba(56, 189, 248, ALPHA)',
     violet: 'rgba(192, 132, 252, ALPHA)',
+    yellow: 'rgba(251, 191, 36, ALPHA)',
   };
   const colorNames = Object.keys(approvedColors);
 
