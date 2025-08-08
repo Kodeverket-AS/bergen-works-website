@@ -43,15 +43,17 @@ export function EventCalendarUpcoming({ events }: { events: WpEvent[]; activeDat
         const eventDates = group[0].split('-');
         return (
           <div key={'eventGroup' + groupIndex} className='flex flex-col gap-2'>
-            <span className='flex justify-between p-2 rounded-md bg-moss-100'>
+            <span className='flex justify-between p-2 rounded-md bg-moss-100 shadow-md'>
               <p>{eventDates.at(0)}</p>
               {eventDates.length > 1 && <p>{eventDates.at(1)}</p>}
             </span>
             {group[1].map((event) => (
-              <div key={`upcoming-events-${event.slug}`} className='flex flex-col gap-2 p-2 text-sm rounded-md'>
-                <Link href={'/event/' + event.slug}>
-                  <h3 className='text-xl hover:underline'>{event.title}</h3>
-                </Link>
+              <div
+                id={`event-${event.slug}`}
+                key={`upcoming-events-${event.slug}`}
+                className='group/card flex flex-col gap-2 p-2 text-sm rounded-md border border-gray-300 shadow-md'
+              >
+                <h3 className='text-xl'>{event.title}</h3>
                 <div
                   className='line-clamp-6 lg:line-clamp-3'
                   dangerouslySetInnerHTML={{ __html: event.content || 'Beskrivelse mangler' }}
@@ -73,17 +75,17 @@ export function EventCalendarUpcoming({ events }: { events: WpEvent[]; activeDat
                 <span className='flex justify-between gap-2'>
                   {event.eventsCategories.nodes.length > 0 && (
                     <p
-                      className='px-2 rounded-md'
+                      className='px-2 py-1 rounded-md'
                       style={{
-                        backgroundColor: getPresetColorFromString(event.eventsCategories.nodes.at(0)?.name, 0.5),
+                        backgroundColor: getPresetColorFromString(event.eventsCategories.nodes.at(0)?.slug, 0.5),
                       }}
                     >
                       {event.eventsCategories.nodes.at(0)!.name}
                     </p>
                   )}
-                  <Link className='group ml-auto hover:underline' href={'/event/' + event.slug}>
+                  <Link className='group/link ml-auto hover:underline' href={'/event/' + event.slug}>
                     Les mer
-                    <NavigateNextIcon className='inline-block origin-center group-hover:-rotate-45 duration-200' />
+                    <NavigateNextIcon className='inline-block origin-center group-hover/link:-rotate-45 duration-200' />
                   </Link>
                 </span>
               </div>
