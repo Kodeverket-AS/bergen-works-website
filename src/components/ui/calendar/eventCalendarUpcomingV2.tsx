@@ -1,0 +1,90 @@
+// Global
+import { type WpEvent } from '@/types/apollo/events.types';
+import Link from 'next/link';
+import { IconText } from '../text/iconText';
+
+// Icons
+import LocationPinIcon from '@mui/icons-material/LocationPin';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import { IconLink } from '../links/iconLink';
+import { getPresetColorFromString } from '@/utils/strings';
+
+export function EventCalendarUpcoming({ events }: { events: WpEvent[]; activeDate: Date }) {
+  // Formatter for human readable dates
+  const dateFormatter = new Intl.DateTimeFormat('no-NO', {
+    month: 'long',
+    day: 'numeric',
+  });
+
+  // Group events by start date
+  const eventMap = new Map<string, WpEvent[]>();
+  for (const event of events) {
+    const startDate = dateFormatter.format(new Date(event.startDate));
+    const endDate = dateFormatter.format(new Date(event.endDate));
+    const isMultiday = startDate !== endDate;
+
+    if (isMultiday) {
+      const multiday = `${startDate}-${endDate}`;
+      if (!eventMap.has(multiday)) eventMap.set(multiday, []);
+      eventMap.get(multiday)!.push(event);
+    } else {
+      if (!eventMap.has(startDate)) eventMap.set(startDate, []);
+      eventMap.get(startDate)!.push(event);
+    }
+  }
+  const grouped = Array.from(eventMap.entries());
+
+  return (
+    <div className='flex flex-col gap-4'>
+      {grouped.map((group, groupIndex) => (
+        <div key={'eventGroup' + groupIndex} className='flex flex-col gap-2'>
+          <span className='flex justify-between p-2 rounded-md bg-moss-100'>
+            {group[0].includes('-') ? (
+              group[0].split('-').map((date) => <p key={date}>{date}</p>)
+            ) : (
+              <p className='w-full capitalize'>{group[0]}</p>
+            )}
+          </span>
+          {group[1].map((event) => (
+            <div
+              key={`upcoming-events-${event.slug}`}
+              className='flex flex-col gap-2 p-2 text-sm rounded-md'
+              style={{
+                backgroundColor: getPresetColorFromString(event.eventsCategories.nodes.at(0)?.name, 0.1),
+              }}
+            >
+              <Link href={'/event/' + event.slug}>
+                <h3 className='text-xl'>{event.title}</h3>
+              </Link>
+              <div
+                className='line-clamp-6 lg:line-clamp-3'
+                dangerouslySetInnerHTML={{ __html: event.content || 'Beskrivelse mangler' }}
+              ></div>
+              <IconText
+                icon={<AccessTimeIcon />}
+                text={
+                  event.allDay
+                    ? 'Hele dagen'
+                    : new Date(event.startDate).toLocaleTimeString('no', { hour: '2-digit', minute: '2-digit' })
+                }
+              />
+              <IconText icon={<LocationPinIcon />} text={event.venue?.address || 'Digital plattform'} />
+              <IconText
+                icon={<AssignmentIndIcon />}
+                text={event.organizers.nodes.map((organizer) => organizer.title).join(', ')}
+              />
+              {event.url && <IconLink icon={<ExitToAppIcon />} link={event.url} label='Gå til påmelding' />}
+              <Link className='group ml-auto hover:underline' href={'/event/' + event.slug}>
+                Les mer
+                <NavigateNextIcon className='inline-block origin-center group-hover:-rotate-45 duration-200' />
+              </Link>
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+}
