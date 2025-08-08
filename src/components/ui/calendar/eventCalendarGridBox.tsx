@@ -23,6 +23,7 @@ export function EventCalendarGridBox({
 }) {
   return (
     <div
+      onClick={setDate}
       className={`
         relative
         aspect-square w-full border rounded-md cursor-pointer pt-4 sm:pt-6
@@ -32,7 +33,7 @@ export function EventCalendarGridBox({
         duration-200
       `}
     >
-      <div className={`flex flex-col gap-1 w-full h-full rounded-md overflow-scroll`} onClick={setDate}>
+      <div className={`flex flex-col gap-1 w-full h-full rounded-md overflow-scroll`}>
         {dayItem.hasEvents &&
           dayItem.events.map((event, eventIndex) => (
             <EventCalendarGridBoxEvent

@@ -1,20 +1,13 @@
 import { type WpEvent } from '@/types/apollo/events.types';
-import Link from 'next/link';
-import { useRef, useState } from 'react';
-import { IconText } from '../text/iconText';
-import { useClickOutside } from '@/hooks/useClickOutside';
+import { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { getPresetColorFromString } from '@/utils/strings';
-
-// Icons
-// import LocationPinIcon from '@mui/icons-material/LocationPin';
-// import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
-// import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import { EventCalendarTooltip } from '../modal/eventCalendarTooltip';
+import { useClickPosition } from '@/hooks/useClickPosition';
 
 export function EventCalendarGridBoxEvent({ event, thisDate }: { event: WpEvent; thisDate: Date }) {
-  const [isActive, setIsActive] = useState<boolean>(false);
-  const containerRef = useRef<HTMLSpanElement>(null);
-  useClickOutside(containerRef, () => setIsActive(false));
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [modalPosition, setModalPosition] = useClickPosition();
 
   const eventStart = new Date(event.startDate);
   const eventEnd = new Date(event.endDate);
@@ -26,14 +19,14 @@ export function EventCalendarGridBoxEvent({ event, thisDate }: { event: WpEvent;
   // todo: create useMousePos hook for å plasere tooltip
   return (
     <span
-      ref={containerRef}
       className={`relative px-1 text-xs border border-gray-300 ${isMultiday ? (isStart ? 'ml-1 rounded-l-md border-r-0' : isEnd ? 'mr-1 rounded-r-md border-l-0' : 'border-x-0') : 'mx-1 rounded-md'}`}
       style={{
         backgroundColor: getPresetColorFromString(event.eventsCategories.nodes.at(0)?.name, 0.5),
       }}
       onClick={(e) => {
         e.stopPropagation();
-        setIsActive(!isActive);
+        setModalPosition(e);
+        setShowModal(!showModal);
       }}
     >
       <p
@@ -43,21 +36,16 @@ export function EventCalendarGridBoxEvent({ event, thisDate }: { event: WpEvent;
       >
         {event.eventsCategories.nodes.map((category) => category.name)}
       </p>
-      {isActive && (
-        <div className='z-10 w-screen max-w-96 absolute m-2 flex flex-col gap-1 p-2 border rounded-md shadow-md bg-white'>
-          <h4 className='text-xl'>{event.title}</h4>
-          <div
-            className='line-clamp-3'
-            dangerouslySetInnerHTML={{ __html: event.content || 'Beskrivelse mangler' }}
-          ></div>
-          {/* <IconText icon={<LocationPinIcon />} text={event.venue?.address || 'Digital plattform'} /> */}
-          {/* <IconText icon={<AssignmentIndIcon />} text={event.organizers.nodes.map((organizer) => organizer.title).join(', ')} /> */}
-          <Link className='group ml-auto hover:underline' href={'/event/' + event.slug}>
-            Les mer
-            <NavigateNextIcon className='inline-block origin-center group-hover:-rotate-45 duration-200' />
-          </Link>
-        </div>
-      )}
+      {showModal &&
+        createPortal(
+          <EventCalendarTooltip
+            event={event}
+            position={modalPosition}
+            onClose={() => setShowModal(false)}
+            isVisible={showModal}
+          />,
+          document.body
+        )}
     </span>
   );
 }
