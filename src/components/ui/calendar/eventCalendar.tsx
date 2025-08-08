@@ -4,20 +4,11 @@
 import { type WpEvent } from '@/types/apollo/events.types';
 import { useState } from 'react';
 import { EventCalendarUpcoming } from './eventCalendarUpcoming';
-import { EventCalendarGridBox } from './eventCalendarGridBox';
+import { type DayItem, EventCalendarGridBox } from './eventCalendarGridBox';
 
 // Icons
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-
-interface DayItem {
-  dayNumber: number;
-  date: Date;
-  isToday: boolean;
-  isInCurrentMonth: boolean;
-  hasEvents: boolean;
-  events: WpEvent[];
-}
 
 export function EventCalendar({ events }: { events: WpEvent[] }) {
   // States
@@ -67,6 +58,11 @@ export function EventCalendar({ events }: { events: WpEvent[] }) {
     const eventsFiltered = events.filter((event) => {
       const eventStart = new Date(event.startDate);
       const eventEnd = new Date(event.endDate);
+
+      // Set times to start of day for comparison
+      eventStart.setHours(0, 0, 0, 0);
+      eventEnd.setHours(23, 59, 59, 999);
+
       if (date >= eventStart && date <= eventEnd) return event;
     });
     const hasEvents = eventsFiltered.length > 0;
