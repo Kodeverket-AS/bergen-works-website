@@ -1,7 +1,7 @@
 import { WpEvent, type WpEventsResponse } from '@/types/apollo/events.types';
 import { ApolloError, gql } from '@apollo/client';
 import { isValidDateString } from '@/utils/dates';
-import apolloClient from '@/lib/apollo/client';
+import apolloClient from '@/lib/apollo/client/client';
 
 const QUERY = gql`
   query events($first: Int = 100, $after: String = null, $startDate: String!, $endDate: String!) {

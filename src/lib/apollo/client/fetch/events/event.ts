@@ -1,6 +1,6 @@
 import { type WpEventResponse } from '@/types/apollo/events.types';
 import { ApolloError, gql } from '@apollo/client';
-import apolloClient from '@/lib/apollo/client';
+import apolloClient from '@/lib/apollo/client/client';
 
 const QUERY = gql`
   query event($id: ID = "") {
