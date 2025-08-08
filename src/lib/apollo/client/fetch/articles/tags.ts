@@ -1,6 +1,6 @@
 import { type WordpressTagsResponse, type WordpressTagsResult } from '@/types/apollo/response.types';
 import { ApolloError, gql } from '@apollo/client';
-import apolloClient from '@/lib/apollo/client';
+import apolloClient from '@/lib/apollo/client/client';
 
 const QUERY = gql`
   query GetTags {
