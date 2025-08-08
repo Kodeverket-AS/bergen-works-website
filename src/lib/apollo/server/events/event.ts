@@ -2,7 +2,7 @@
 
 import { type WpEventResponse } from '@/types/apollo/events.types';
 import { ApolloError, gql } from '@apollo/client';
-import apolloClient from '@/lib/apollo/client';
+import apolloClientServer from '@/lib/apollo/server/client';
 
 const QUERY = gql`
   query event($id: ID = "") {
@@ -81,9 +81,9 @@ const QUERY = gql`
   }
 `;
 
-export async function wpFetchEvent(slug: string) {
+export async function wpFetchEventServer(slug: string) {
   try {
-    const response = await apolloClient.query<WpEventResponse>({
+    const response = await apolloClientServer.query<WpEventResponse>({
       query: QUERY,
       variables: { id: slug },
     });

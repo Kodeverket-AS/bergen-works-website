@@ -1,6 +1,6 @@
 import { type WordpressPostsResponse, type WordpressPostsResult } from '@/types/apollo/response.types';
 import { ApolloError, gql } from '@apollo/client';
-import apolloClient from '@/lib/apollo/client';
+import apolloClient from '@/lib/apollo/client/client';
 
 const QUERY = gql`
   query Posts($first: Int!, $after: String, $before: String, $tag: String, $category: String) {

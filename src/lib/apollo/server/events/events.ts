@@ -2,7 +2,7 @@
 
 import { WpEvent, type WpEventsResponse } from '@/types/apollo/events.types';
 import { ApolloError, ApolloQueryResult, gql } from '@apollo/client';
-import apolloClient from '@/lib/apollo/client';
+import apolloClientServer from '@/lib/apollo/server/client';
 
 const QUERY = gql`
   query events($first: Int!, $after: String) {
@@ -90,7 +90,7 @@ const QUERY = gql`
   }
 `;
 
-export async function wpFetchEvents({ first = 100 } = {}) {
+export async function wpFetchEventsServer({ first = 100 } = {}) {
   try {
     // Start with empty event list
     const events: WpEvent[] = [];
@@ -103,7 +103,7 @@ export async function wpFetchEvents({ first = 100 } = {}) {
     let error: string | null = null;
 
     while (hasNextPage) {
-      const response: ApolloQueryResult<WpEventsResponse> = await apolloClient.query({
+      const response: ApolloQueryResult<WpEventsResponse> = await apolloClientServer.query({
         query: QUERY,
         variables: { first, after },
       });

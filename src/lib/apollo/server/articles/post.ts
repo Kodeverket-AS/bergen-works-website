@@ -1,6 +1,8 @@
+'use server';
+
 import { type WordpressPostResponse, type WordpressPostResult } from '@/types/apollo/response.types';
 import { ApolloError, gql } from '@apollo/client';
-import apolloClient from '@/lib/apollo/client';
+import apolloClientServer from '@/lib/apollo/server/client';
 
 const QUERY = gql`
   query post($id: ID = "") {
@@ -50,9 +52,9 @@ const QUERY = gql`
  * @param slug - The slug of the post to fetch.
  * @returns A post result object containing content and metadata, or error details.
  */
-export async function wpFetchPost(slug: string): Promise<WordpressPostResult> {
+export async function wpFetchPostServer(slug: string): Promise<WordpressPostResult> {
   try {
-    const response = await apolloClient.query<WordpressPostResponse>({
+    const response = await apolloClientServer.query<WordpressPostResponse>({
       query: QUERY,
       variables: { id: slug },
     });

@@ -1,6 +1,8 @@
+'use server';
+
 import { type WordpressTagsResponse, type WordpressTagsResult } from '@/types/apollo/response.types';
 import { ApolloError, gql } from '@apollo/client';
-import apolloClient from '@/lib/apollo/client';
+import apolloClientServer from '@/lib/apollo/server/client';
 
 const QUERY = gql`
   query GetTags {
@@ -23,9 +25,9 @@ const QUERY = gql`
  * @returns A result object containing the list of tags or an error if the fetch fails.
  */
 
-export async function wpFetchTags(): Promise<WordpressTagsResult> {
+export async function wpFetchTagsServer(): Promise<WordpressTagsResult> {
   try {
-    const response = await apolloClient.query<WordpressTagsResponse>({
+    const response = await apolloClientServer.query<WordpressTagsResponse>({
       query: QUERY,
     });
 

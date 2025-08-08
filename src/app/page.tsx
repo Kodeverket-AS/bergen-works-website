@@ -1,6 +1,9 @@
+// Global
 import Link from 'next/link';
-import { wpFetchPosts } from '@/lib/apollo/fetch/posts';
-import { wpFetchEvents } from '@/lib/apollo/fetch/events/events';
+import { wpFetchPostsServer } from '@/lib/apollo/server/articles/posts';
+import { wpFetchEventsServer } from '@/lib/apollo/server/events/events';
+
+// Components
 import Hero from '../components/layout/navigation/hero/Hero';
 import Partnere from '../components/Partnere';
 import Fasiliteter from '../components/Fasiliteter';
@@ -10,8 +13,8 @@ import { ArticlesContainer } from '@/components/layout/articles/container';
 import { UpcomingEvents } from '@/components/layout/events/upcomingEvents';
 
 export default async function Home() {
-  const articles = await wpFetchPosts({ first: 3 });
-  const events = await wpFetchEvents({ first: 3 });
+  const articles = await wpFetchPostsServer({ first: 3 });
+  const events = await wpFetchEventsServer({ first: 3 });
 
   // Todo gjør om main til å bruke gap for mellomrom, fjern y margin fra underkomponter som bruker det
   return (

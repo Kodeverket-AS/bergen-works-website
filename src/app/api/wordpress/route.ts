@@ -1,5 +1,5 @@
+import { wpFetchPostsServer } from '@/lib/apollo/server/articles/posts';
 import { NextResponse, type NextRequest } from 'next/server';
-import { wpFetchPosts } from '@/lib/apollo/fetch/posts';
 
 export async function GET(request: NextRequest) {
   // Variables for filtering wordpress response
@@ -20,7 +20,7 @@ export async function GET(request: NextRequest) {
   };
 
   // Query wordpress for posts using filter
-  const result = await wpFetchPosts(filters);
+  const result = await wpFetchPostsServer(filters);
 
   // todo: Add better error handling
   if (!result || result.error) {

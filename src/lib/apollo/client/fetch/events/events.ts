@@ -1,0 +1,138 @@
+import { WpEvent, type WpEventsResponse } from '@/types/apollo/events.types';
+import { ApolloError, ApolloQueryResult, gql } from '@apollo/client';
+import apolloClient from '@/lib/apollo/client/client';
+
+const QUERY = gql`
+  query events($first: Int!, $after: String) {
+    events(first: $first, after: $after) {
+      nodes {
+        id
+        slug
+        title
+        content
+        excerpt
+        url
+        cost
+        hideFromUpcoming
+        featured
+        featuredImage {
+          node {
+            sourceUrl
+            altText
+          }
+        }
+        duration
+        modified
+        showMap
+        date
+        startDate
+        endDate
+        duration
+        allDay
+        eventsCategories {
+          nodes {
+            id
+            slug
+            name
+          }
+        }
+        tags {
+          nodes {
+            id
+            slug
+            name
+          }
+        }
+        venue {
+          title
+          address
+          city
+          country
+          zip
+          content
+          excerpt
+          url
+          featuredImage {
+            node {
+              sourceUrl
+              altText
+            }
+          }
+        }
+        organizers {
+          nodes {
+            title
+            slug
+            content
+            excerpt
+            phone
+            email
+            website
+            featuredImage {
+              node {
+                sourceUrl
+                altText
+              }
+            }
+          }
+        }
+      }
+      pageInfo {
+        __typename
+        startCursor
+        endCursor
+        hasNextPage
+        hasPreviousPage
+      }
+    }
+  }
+`;
+
+export async function wpFetchEvents({ first = 100 } = {}) {
+  try {
+    // Start with empty event list
+    const events: WpEvent[] = [];
+
+    // Graphql pagination helper variables
+    let after: string | null = null;
+    let hasNextPage: boolean = true;
+
+    // Keep track of graphql error
+    let error: string | null = null;
+
+    while (hasNextPage) {
+      const response: ApolloQueryResult<WpEventsResponse> = await apolloClient.query({
+        query: QUERY,
+        variables: { first, after },
+      });
+
+      if (response.error) {
+        error = response.error.message;
+        break;
+      }
+
+      // Fix for edge case null return
+      if (!response.data.events) break;
+
+      // Deconstruct response
+      const nodes = response.data.events.nodes;
+      const pageInfo = response.data.events.pageInfo;
+
+      // Push events to collection
+      events.push(...nodes.map((event) => event));
+
+      // Update pagination helpers
+      after = pageInfo?.endCursor ?? null;
+      hasNextPage = Boolean(pageInfo?.hasNextPage);
+    }
+
+    return { events, error };
+  } catch (error) {
+    // Construct error message based on error type
+    const errorMessage =
+      error instanceof ApolloError
+        ? error.message
+        : 'Unknown error occoured while fetching wordpress events, contact site admin';
+    return { events: [], error: errorMessage };
+  }
+}

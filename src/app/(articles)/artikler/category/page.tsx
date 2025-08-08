@@ -1,8 +1,8 @@
-import { wpFetchCategories } from '@/lib/apollo/fetch/categories';
 import Link from 'next/link';
+import { wpFetchCategoriesServer } from '@/lib/apollo/server/articles/categories';
 
 export default async function Page() {
-  const result = await wpFetchCategories();
+  const result = await wpFetchCategoriesServer();
 
   return (
     <main className='flex flex-col gap-4 pb-4'>

@@ -4,9 +4,8 @@ import Image from 'next/image';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { GoogleMapsEmbed } from '@next/third-parties/google';
-import { wpFetchEvent } from '@/lib/apollo/fetch/events/event';
-import { wpFetchEvents } from '@/lib/apollo/fetch/events/events';
 import { dateStringFormat, dateStringToRelative } from '@/utils/dates';
+import { wpFetchEventsServer } from '@/lib/apollo/server/events/events';
 
 // Components
 import { SectionWrapper } from '@/components/layout/sections/wrapper';
@@ -21,9 +20,10 @@ import EventIcon from '@mui/icons-material/Event';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import EditCalendarIcon from '@mui/icons-material/EditCalendar';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
+import { wpFetchEventServer } from '@/lib/apollo/server/events/event';
 
 export async function generateStaticParams() {
-  const result = await wpFetchEvents();
+  const result = await wpFetchEventsServer();
 
   // Quietly quit on error
   if (result.error) return [];
@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const result = await wpFetchEvent(slug);
+  const result = await wpFetchEventServer(slug);
 
   // Redirect to 404 page if event doesn't exist
   if (result.error || !result.event) return notFound();
