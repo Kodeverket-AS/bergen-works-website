@@ -15,41 +15,52 @@ interface IconLinkProps extends ComponentProps<'span'> {
   linkStyle?: ComponentProps<'a'>['className'];
 }
 
-/**
- * Detects if the given link should be treated as external or protocol-based.
- */
-function isExternalOrProtocol(link: string): boolean {
-  return /^(https?:|mailto:|tel:)/i.test(link);
+const PROTOCOL_RE = /^[a-zA-Z][a-zA-Z0-9+.-]*:/;
+
+function isExternalLink(link: string): boolean {
+  // Protocol links (http:, https:, mailto:, tel:, etc.)
+  if (PROTOCOL_RE.test(link)) return true;
+
+  // Internal: starts with "/" or "#"
+  if (link.startsWith('/') || link.startsWith('#')) return false;
+
+  // Internal: single word without a dot (e.g. "events", "artikler")
+  if (!link.includes('.')) return false;
+
+  // Otherwise: looks like a external link
+  return true;
+}
+
+function normalizeExternal(link: string): string {
+  // keep existing protocol
+  if (PROTOCOL_RE.test(link)) return link;
+
+  // scheme-relative → https
+  if (link.startsWith('//')) return `https:${link}`;
+
+  // add https:// to bare domain
+  return `https://${link.replace(/^\/+/, '')}`;
 }
 
 /**
- * Normalizes external and protocol links.
- * - Adds https:// if it's missing on external URLs.
- * - Leaves protocol links intact.
- */
-function normalizeLink(link: string): string {
-  if (/^(mailto:|tel:)/i.test(link)) return link; // already protocol link
-  if (/^https?:\/\//i.test(link)) return link; // already full URL
-  return `https://${link.replace(/^\/+/, '')}`; // add https:// if missing
-}
-
-/**
- * Small wrapper for creating links with icons
+ * Small wrapper for creating links with icons, automatically detects if links are local or external
  *
  * Optional fields: label, icon, iconStyle & linkStyle
  */
 export function IconLink({ icon, iconStyle, link, label, linkStyle, className, ...rest }: IconLinkProps) {
-  const externalOrProtocol = isExternalOrProtocol(link);
+  const isExternal = isExternalLink(link);
+  const href = isExternal ? normalizeExternal(link) : link;
+
   return (
     <span {...rest} className={`flex gap-2 items-center ${className}`}>
       {icon ? icon : <LinkIcon className={`${iconStyle}`} />}
-      {externalOrProtocol ? (
-        <a href={normalizeLink(link)} className={`truncate hover:underline ${linkStyle}`} target='_blank'>
-          {label ?? link}
+      {isExternal ? (
+        <a href={href} className={`truncate hover:underline ${linkStyle}`} target='_blank'>
+          {label ?? href}
         </a>
       ) : (
-        <Link href={link} className={`truncate hover:underline ${linkStyle}`}>
-          {label ?? link}
+        <Link href={href} className={`truncate hover:underline ${linkStyle}`}>
+          {label ?? href}
         </Link>
       )}
     </span>
