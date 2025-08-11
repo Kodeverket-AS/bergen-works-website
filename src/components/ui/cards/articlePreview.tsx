@@ -1,8 +1,8 @@
-import { type WordpressPost } from '@/types/apollo/response.types';
+import { type WpPost } from '@/types/apollo/articles.types';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export function ArticlePreviewCard({ title, excerpt, featuredImage, date, uri }: WordpressPost) {
+export function ArticlePreviewCard({ title, excerpt, featuredImage, date, uri }: WpPost) {
   // Format date for readability
   const postDate = new Date(date);
   const postDateFormatted = new Intl.DateTimeFormat('no-NO', {
@@ -18,8 +18,8 @@ export function ArticlePreviewCard({ title, excerpt, featuredImage, date, uri }:
     <div className='flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md transition-transform duration-300 ease-in-out  hover:shadow-2xl'>
       <Link href={uri} className='relative block'>
         <Image
-          src={featuredImage.node?.sourceUrl || '/KoV-ov.png'}
-          alt={featuredImage.node?.altText || 'Article image'}
+          src={featuredImage?.node?.sourceUrl || '/KoV-ov.png'}
+          alt={featuredImage?.node?.altText || 'Article image'}
           sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
           style={{
             width: '100%',
