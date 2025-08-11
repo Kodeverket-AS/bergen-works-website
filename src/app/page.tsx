@@ -1,5 +1,4 @@
 // Global
-import Link from 'next/link';
 import { wpFetchEventsServer } from '@/lib/apollo/server/events/events';
 import { wpFetchPostsPaginatedServer } from '@/lib/apollo/server/articles/postsPaginated';
 
@@ -22,12 +21,7 @@ export default async function Home() {
       <Hero />
       <InformationSection />
       <Fasiliteter />
-      <div className='flex flex-col items-center gap-4'>
-        <Link href='articles' className='text-3xl'>
-          Nyeste artikler
-        </Link>
-        <ArticlesContainer articles={articles.posts} />
-      </div>
+      <ArticlesContainer articles={articles.posts} />
       <Partnere />
       <UpcomingEvents events={events.events} />
       <ContactForm />

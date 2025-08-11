@@ -2,7 +2,7 @@
 
 import { type WpArticlesResult } from '@/types/apollo/articles.types';
 import { useEffect, useState } from 'react';
-import { ArticlesContainer } from '@/components/layout/articles/container';
+import { ArticlePreviewCard } from '@/components/ui/cards/articlePreview';
 import RotateRightIcon from '@mui/icons-material/RotateRight';
 
 export default function ArticlesClientContainer({
@@ -70,7 +70,11 @@ export default function ArticlesClientContainer({
           </p>
         )}
       </span>
-      <ArticlesContainer articles={articles} />
+      <div className='w-full grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'>
+        {articles.map((article) => (
+          <ArticlePreviewCard key={article.slug} {...article} />
+        ))}
+      </div>
       {isLoading && (
         <p className='text-center p-4 animate-pulse'>
           <RotateRightIcon className='animate-[spin_4s_ease-in-out_infinite] anim' /> Laster inn innhold...
