@@ -1,4 +1,4 @@
-import { type WordpressPostsResponse, type WordpressPostsResult } from '@/types/apollo/response.types';
+import { type WpArticlesResponse, type WpArticlesResult } from '@/types/apollo/articles.types';
 import { ApolloError, gql } from '@apollo/client';
 import apolloClient from '@/lib/apollo/client/client';
 
@@ -54,29 +54,15 @@ const QUERY = gql`
  * Options for fetching paginated WordPress post previews.
  */
 interface WpFetchPostsOptions {
-  /**
-   * Optional tag slug to filter posts by.
-   */
+  /** Optional tag slug to filter posts by. */
   tag?: string;
-
-  /**
-   * Optional category slug to filter posts by.
-   */
+  /** Optional category slug to filter posts by. */
   category?: string;
-
-  /**
-   * Number of posts to fetch per page. Defaults to 100 (WordPress GraphQL max).
-   */
+  /** Number of posts to fetch per page. Defaults to 100 (WordPress GraphQL max). */
   first?: number;
-
-  /**
-   * Cursor to fetch posts after this point (used for forward pagination).
-   */
+  /** Cursor to fetch posts after this point (used for forward pagination). */
   after?: string | null;
-
-  /**
-   * Cursor to fetch posts before this point (used for backward pagination).
-   */
+  /** Cursor to fetch posts before this point (used for backward pagination). */
   before?: string | null;
 }
 
@@ -89,29 +75,23 @@ interface WpFetchPostsOptions {
  * @param options - Optional filtering and pagination options.
  * @returns A list of post previews with pagination metadata and error info if applicable.
  */
-export async function wpFetchPosts(options: WpFetchPostsOptions = {}): Promise<WordpressPostsResult> {
+export async function wpFetchPosts(options: WpFetchPostsOptions = {}): Promise<WpArticlesResult> {
   try {
     const { tag, category, first = 100, after = null, before = null } = options;
 
-    const response = await apolloClient.query<WordpressPostsResponse>({
+    const { data, error } = await apolloClient.query<WpArticlesResponse>({
       query: QUERY,
       variables: { tag, category, first, after, before },
     });
 
-    // If fetch fails, return response as this helps ssg error handling
-    if (response?.error) return { posts: [], error: response.error.cause };
+    if (error) return { posts: [], error: error.message };
 
-    // Gather necessary datasets
-    const posts = response.data.posts.nodes;
-    const pageInfo = response.data.posts.pageInfo;
-    const error = response.error?.cause;
-
-    return { posts, pageInfo, error };
+    return { posts: data.posts?.nodes || [], pageInfo: data.posts?.pageInfo, error: null };
   } catch (error) {
     console.log(error);
     if (error instanceof ApolloError) {
       console.error(error.cause);
-      return { posts: [], error: error.cause };
+      return { posts: [], error: error.message };
     }
     return {
       posts: [],
