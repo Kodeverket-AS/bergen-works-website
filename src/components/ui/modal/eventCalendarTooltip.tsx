@@ -32,7 +32,6 @@ export function EventCalendarTooltip({
     const newStyle: CSSProperties = {};
     const padding = 8;
 
-    console.log(bottom, innerHeight);
     // Keep tooltip above screen bottom
     if (bottom > innerHeight - 50) {
       newStyle.top = -height;
