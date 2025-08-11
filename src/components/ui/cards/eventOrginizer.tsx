@@ -26,8 +26,10 @@ export function EventOrginizerCard(organizer: WpOrganizer) {
             }}
           ></div>
         )}
-        {organizer.phone && <IconLink icon={<CallIcon />} link={organizer.phone} linkType='tel' />}
-        {organizer.email && <IconLink icon={<AlternateEmailIcon />} link={organizer.email} linkType='mailto' />}
+        {organizer.phone && <IconLink icon={<CallIcon />} link={'tel:' + organizer.phone} label={organizer.phone} />}
+        {organizer.email && (
+          <IconLink icon={<AlternateEmailIcon />} link={'mailto:' + organizer.email} label={organizer.email} />
+        )}
         {organizer.website && <IconLink link={organizer.website} />}
       </span>
     </div>

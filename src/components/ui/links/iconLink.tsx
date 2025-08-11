@@ -13,42 +13,43 @@ interface IconLinkProps extends ComponentProps<'span'> {
   iconStyle?: ComponentProps<'svg'>['className'];
   /** Optional field for defining link text styles */
   linkStyle?: ComponentProps<'a'>['className'];
-  /** Optional field for defining link type. Example:  */
-  linkType?: 'tel' | 'mailto';
-  /** Set this to true if the link is to an external adress */
-  isExternal?: boolean;
+}
+
+/**
+ * Detects if the given link should be treated as external or protocol-based.
+ */
+function isExternalOrProtocol(link: string): boolean {
+  return /^(https?:|mailto:|tel:)/i.test(link);
+}
+
+/**
+ * Normalizes external and protocol links.
+ * - Adds https:// if it's missing on external URLs.
+ * - Leaves protocol links intact.
+ */
+function normalizeLink(link: string): string {
+  if (/^(mailto:|tel:)/i.test(link)) return link; // already protocol link
+  if (/^https?:\/\//i.test(link)) return link; // already full URL
+  return `https://${link.replace(/^\/+/, '')}`; // add https:// if missing
 }
 
 /**
  * Small wrapper for creating links with icons
  *
- * Optional fields: label, icon, iconStyle, linkStyle & isExternal
+ * Optional fields: label, icon, iconStyle & linkStyle
  */
-export function IconLink({
-  icon,
-  iconStyle,
-  link,
-  label,
-  linkStyle,
-  linkType,
-  isExternal = false,
-  className,
-  ...rest
-}: IconLinkProps) {
+export function IconLink({ icon, iconStyle, link, label, linkStyle, className, ...rest }: IconLinkProps) {
+  const externalOrProtocol = isExternalOrProtocol(link);
   return (
     <span {...rest} className={`flex gap-2 items-center ${className}`}>
       {icon ? icon : <LinkIcon className={`${iconStyle}`} />}
-      {isExternal || linkType ? (
-        <a
-          href={`${linkType ? linkType + ':' : ''}${link}`}
-          className={`truncate hover:underline ${linkStyle}`}
-          target='_blank'
-        >
-          {label ? label : link}
+      {externalOrProtocol ? (
+        <a href={normalizeLink(link)} className={`truncate hover:underline ${linkStyle}`} target='_blank'>
+          {label ?? link}
         </a>
       ) : (
         <Link href={link} className={`truncate hover:underline ${linkStyle}`}>
-          {label ? label : link}
+          {label ?? link}
         </Link>
       )}
     </span>

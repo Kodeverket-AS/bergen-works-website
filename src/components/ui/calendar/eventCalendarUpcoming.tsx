@@ -72,7 +72,7 @@ export function EventCalendarUpcoming({ events }: { events: WpEvent[]; activeDat
                   text={event.organizers.nodes.map((organizer) => organizer.title).join(', ')}
                 />
                 {event.url && (
-                  <IconLink icon={<ExitToAppIcon />} link={event.url} isExternal label='Gå til påmelding' />
+                  <IconLink icon={<ExitToAppIcon />} link={event.url} label='Gå til påmelding' />
                 )}
                 <span className='flex justify-between gap-2'>
                   {event.eventsCategories.nodes.length > 0 && (
