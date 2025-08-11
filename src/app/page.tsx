@@ -1,7 +1,6 @@
 // Global
-import Link from 'next/link';
-import { wpFetchPostsServer } from '@/lib/apollo/server/articles/posts';
 import { wpFetchEventsServer } from '@/lib/apollo/server/events/events';
+import { wpFetchPostsPaginatedServer } from '@/lib/apollo/server/articles/postsPaginated';
 
 // Components
 import Hero from '../components/layout/navigation/hero/Hero';
@@ -13,7 +12,7 @@ import { ArticlesContainer } from '@/components/layout/articles/container';
 import { UpcomingEvents } from '@/components/layout/events/upcomingEvents';
 
 export default async function Home() {
-  const articles = await wpFetchPostsServer({ first: 3 });
+  const articles = await wpFetchPostsPaginatedServer({ first: 3 });
   const events = await wpFetchEventsServer({ first: 3 });
 
   // Todo gjør om main til å bruke gap for mellomrom, fjern y margin fra underkomponter som bruker det
@@ -22,12 +21,7 @@ export default async function Home() {
       <Hero />
       <InformationSection />
       <Fasiliteter />
-      <div className='flex flex-col items-center gap-4'>
-        <Link href='articles' className='text-3xl'>
-          Nyeste artikler
-        </Link>
-        <ArticlesContainer articles={articles.posts} />
-      </div>
+      <ArticlesContainer articles={articles.posts} />
       <Partnere />
       <UpcomingEvents events={events.events} />
       <ContactForm />

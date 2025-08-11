@@ -69,7 +69,7 @@ export function AddToCalendarButton({ title, content, address, start, end, allDa
         className={`z-10 absolute left-0 top-full w-full mt-1 px-2 border rounded-md bg-white ${isOpen ? 'h-fit py-2' : 'h-0 opacity-0 pointer-events-none'} overflow-hidden duration-200`}
       >
         {calendarSites.map((site) => (
-          <IconLink key={site.title} link={site.href} label={site.title} isExternal />
+          <IconLink key={site.title} link={site.href} label={site.title} />
         ))}
         <button className='group flex gap-2 items-center truncate text-gray-300'>
           <DownloadIcon />

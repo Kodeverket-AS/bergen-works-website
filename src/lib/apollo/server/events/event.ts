@@ -1,11 +1,12 @@
 'use server';
 
-import { type WpEventResponse } from '@/types/apollo/events.types';
-import { ApolloError, gql } from '@apollo/client';
-import apolloClientServer from '@/lib/apollo/server/client';
+import { type WpEvent, type WpEventResponse } from '@/types/apollo/events.types';
+import { gql } from '@apollo/client';
+import { getApolloClient } from '@/lib/apollo/server/client';
+import { isValidSlug } from '@/utils/validation/url';
 
 const QUERY = gql`
-  query event($id: ID = "") {
+  query event($id: ID!) {
     event(id: $id, idType: SLUG) {
       id
       slug
@@ -22,7 +23,6 @@ const QUERY = gql`
           altText
         }
       }
-      duration
       modified
       showMap
       date
@@ -81,22 +81,55 @@ const QUERY = gql`
   }
 `;
 
-export async function wpFetchEventServer(slug: string) {
+export async function wpFetchEventServer(slug: string): Promise<{ event: WpEvent | null; error: string | null }> {
+  if (!slug || !isValidSlug(slug)) {
+    return { event: null, error: 'Invalid slug' };
+  }
+
+  // Add time-out check for query
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 12_000);
+
   try {
-    const response = await apolloClientServer.query<WpEventResponse>({
+    const client = getApolloClient();
+    const { data, errors } = await client.query<WpEventResponse>({
       query: QUERY,
       variables: { id: slug },
+      context: {
+        fetchOptions: {
+          signal: controller.signal,
+          next: {
+            tags: [`event:${slug}`, 'events', 'wordpress'],
+          },
+        },
+      },
     });
 
-    if (response.error) return { event: null, error: response.error.message };
+    // Handle errors
+    if (errors?.length) {
+      console.error('[wpFetchEventServer] Failed to fetch event:', { errors });
+      return { event: null, error: 'GraphQL response error' };
+    }
 
-    return { event: response.data.event, error: null };
+    // Handle empty results
+    if (!data?.event) {
+      return { event: null, error: `Event doesn't exist` };
+    }
+
+    // Return result
+    return { event: data.event, error: null };
   } catch (error) {
-    // Construct error message based on error type
-    const errorMessage =
-      error instanceof ApolloError
-        ? error.message
-        : 'Unknown error occoured while fetching wordpress event, contact site admin';
-    return { event: null, error: errorMessage };
+    // Log full error server-side for debugging
+    console.error('[wpFetchEventServer] GraphQl error:', { error });
+
+    // Request timed out
+    if (error instanceof DOMException && error.name === 'AbortError') {
+      return { event: null, error: 'GraphQL request timed out' };
+    }
+
+    // Unkonw error
+    return { event: null, error: 'Unknown error occoured while fetching wordpress event, contact site admin.' };
+  } finally {
+    clearTimeout(timeout);
   }
 }

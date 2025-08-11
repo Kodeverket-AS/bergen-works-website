@@ -10,6 +10,9 @@ import '@/assets/styles/frontend.min.css';
 export async function generateStaticParams() {
   const result = await wpFetchURIsServer();
 
+  // Quietly quit on error
+  if (result.error) return [];
+
   return result.uri.map((item) => ({
     slug: item.uri,
   }));
@@ -43,7 +46,7 @@ export default async function Page({
 
   // Collect required data from result
   const article = result.post;
-  const featuredImage = result.post.featuredImage.node || null;
+  const featuredImage = result.post.featuredImage?.node || null;
 
   // Format article date for readability
   const dateFormatter = new Intl.DateTimeFormat('no-NO', {

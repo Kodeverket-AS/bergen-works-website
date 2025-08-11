@@ -1,16 +1,24 @@
 'use server';
 
-import { type WordpressTagsResponse, type WordpressTagsResult } from '@/types/apollo/response.types';
-import { ApolloError, gql } from '@apollo/client';
-import apolloClientServer from '@/lib/apollo/server/client';
+import { type WpTagsResponse } from '@/types/apollo/articles.types';
+import { type WpTag } from '@/types/apollo/shared.types';
+import { ApolloQueryResult, gql } from '@apollo/client';
+import { getApolloClient } from '@/lib/apollo/server/client';
 
 const QUERY = gql`
-  query GetTags {
-    tags(first: 100) {
+  query GetTags($first: Int!, $after: String) {
+    tags(first: $first, after: $after) {
       nodes {
         id
         name
         slug
+      }
+      pageInfo {
+        __typename
+        startCursor
+        endCursor
+        hasNextPage
+        hasPreviousPage
       }
     }
   }
@@ -25,28 +33,77 @@ const QUERY = gql`
  * @returns A result object containing the list of tags or an error if the fetch fails.
  */
 
-export async function wpFetchTagsServer(): Promise<WordpressTagsResult> {
+export async function wpFetchTagsServer({ first = 100 } = {}): Promise<{
+  tags: WpTag[];
+  error: string | null;
+}> {
+  // Add time-out check for query
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 12_000);
+
   try {
-    const response = await apolloClientServer.query<WordpressTagsResponse>({
-      query: QUERY,
-    });
+    // Init client
+    const client = getApolloClient();
 
-    // If fetch fails, return response as this helps ssg error handling
-    if (response?.error) return { tags: [], error: response.error.cause };
+    // Start with empty tags list
+    const tags: WpTag[] = [];
 
-    // Gather necessary datasets
-    const tags = response.data.tags.nodes;
-    const error = response.error?.cause;
+    // Graphql pagination helper variables
+    let after: string | null = null;
+    let hasNextPage: boolean = true;
+
+    // Cap to avoid infinite loops if server sends weird cursors
+    const MAX_PAGES = 100;
+    let pageCount = 0;
+
+    // Keep track of graphql error
+    let error: string | null = null;
+
+    while (hasNextPage && pageCount < MAX_PAGES) {
+      const response: ApolloQueryResult<WpTagsResponse> = await client.query({
+        query: QUERY,
+        variables: { first, after },
+        context: {
+          fetchOptions: {
+            next: {
+              signal: controller.signal,
+              tags: ['tags', 'wordpress'],
+            },
+          },
+        },
+      });
+
+      if (response?.errors) {
+        console.error('[wpFetchTagsServer] Failed to fetch tags:', { errors: response.errors });
+        error = 'GraphQL response error';
+        break;
+      }
+
+      // Fix for edge case null return
+      if (!response.data.tags) break;
+
+      // Push events to collection
+      tags.push(...response.data.tags.nodes.map((tag) => tag));
+
+      // Update pagination helpers
+      after = response.data.tags.pageInfo?.endCursor ?? null;
+      hasNextPage = Boolean(response.data.tags.pageInfo?.hasNextPage);
+      pageCount++;
+    }
 
     return { tags, error };
   } catch (error) {
-    if (error instanceof ApolloError) {
-      console.error(error.cause);
-      return { tags: [], error: error.cause };
+    // Log full error server-side for debugging
+    console.error('[wpFetchTagsServer] GraphQl error:', { error });
+
+    // Request timed out
+    if (error instanceof DOMException && error.name === 'AbortError') {
+      return { tags: [], error: 'GraphQL request timed out' };
     }
-    return {
-      tags: [],
-      error: 'Unknown error occoured while fetching wordpress post, contact site admin',
-    };
+
+    // Unknown error
+    return { tags: [], error: 'Unknown error occoured while fetching wordpress tags, contact site admin.' };
+  } finally {
+    clearTimeout(timeout);
   }
 }

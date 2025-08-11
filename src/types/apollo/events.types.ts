@@ -1,4 +1,12 @@
-import { GqlNodes, GqlPageInfo, WpCategories, WpFeaturedImage, WpOrganizers, WpTags, WpVenue } from './shared.types';
+import {
+  type GqlNodes,
+  type GqlPageInfo,
+  type WpCategories,
+  type WpFeaturedImage,
+  type WpOrganizers,
+  type WpTags,
+  type WpVenue,
+} from './shared.types';
 
 /**
  * Represents a single WordPress event post fetched from WPGraphQL.

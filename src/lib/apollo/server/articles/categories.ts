@@ -1,12 +1,13 @@
 'use server';
 
-import { type WordpressCategoriesResponse, type WordpressCategoriesResult } from '@/types/apollo/response.types';
-import { ApolloError, gql } from '@apollo/client';
-import apolloClientServer from '@/lib/apollo/server/client';
+import { type WpCategoriesResponse } from '@/types/apollo/articles.types';
+import { type WpCategory } from '@/types/apollo/shared.types';
+import { gql } from '@apollo/client';
+import { getApolloClient } from '@/lib/apollo/server/client';
 
 const QUERY = gql`
   query GetCategories {
-    categories {
+    categories(first: 100) {
       nodes {
         id
         name
@@ -24,28 +25,52 @@ const QUERY = gql`
  *
  * @returns A result object containing the list of categories or an error if the fetch fails.
  */
-export async function wpFetchCategoriesServer(): Promise<WordpressCategoriesResult> {
+export async function wpFetchCategoriesServer(): Promise<{
+  categories: WpCategory[];
+  error: string | null;
+}> {
+  // Add time-out check for query
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 12_000);
+
   try {
-    const response = await apolloClientServer.query<WordpressCategoriesResponse>({
+    const client = getApolloClient();
+    const { data, errors } = await client.query<WpCategoriesResponse>({
       query: QUERY,
+      context: {
+        fetchOptions: {
+          signal: controller.signal,
+          next: {
+            tags: ['categories', 'wordpress'],
+          },
+        },
+      },
     });
 
-    // If fetch fails, return response as this helps ssg error handling
-    if (response?.error) return { categories: [], error: response.error.cause };
-
-    // Gather necessary datasets
-    const categories = response.data.categories.nodes;
-    const error = response.error?.cause;
-
-    return { categories, error };
-  } catch (error) {
-    if (error instanceof ApolloError) {
-      console.error(error.cause);
-      return { categories: [], error: error.cause };
+    // Handle errors
+    if (errors?.length) {
+      console.error('[wpFetchCategoriesServer] Failed to fetch categories:', { errors });
+      return { categories: [], error: 'GraphQL response error' };
     }
-    return {
-      categories: [],
-      error: 'Unknown error occoured while fetching wordpress categories, contact site admin',
-    };
+
+    // Handle empty results
+    if (!data?.categories) {
+      return { categories: [], error: `No categories found` };
+    }
+
+    return { categories: data.categories.nodes, error: null };
+  } catch (error) {
+    // Log full error server-side for debugging
+    console.error('[wpFetchCategoriesServer] GraphQl error:', { error });
+
+    // Request timed out
+    if (error instanceof DOMException && error.name === 'AbortError') {
+      return { categories: [], error: 'GraphQL request timed out' };
+    }
+
+    // Unknown error
+    return { categories: [], error: 'Unknown error occoured while fetching wordpress categories, contact site admin.' };
+  } finally {
+    clearTimeout(timeout);
   }
 }

@@ -1,7 +1,8 @@
-import { wpFetchPostsServer } from '@/lib/apollo/server/articles/posts';
+import { wpFetchPostsPaginatedServer } from '@/lib/apollo/server/articles/postsPaginated';
 import { NextResponse, type NextRequest } from 'next/server';
 
 export async function GET(request: NextRequest) {
+  // todo: add validation, omg
   // Variables for filtering wordpress response
   const searchParams = request.nextUrl.searchParams;
   const first = parseInt(searchParams.get('first') || '100', 10);
@@ -20,7 +21,7 @@ export async function GET(request: NextRequest) {
   };
 
   // Query wordpress for posts using filter
-  const result = await wpFetchPostsServer(filters);
+  const result = await wpFetchPostsPaginatedServer(filters);
 
   // todo: Add better error handling
   if (!result || result.error) {
