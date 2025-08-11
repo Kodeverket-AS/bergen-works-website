@@ -13,13 +13,13 @@ const QUERY = gql`
         name
         slug
       }
-    }
-    pageInfo {
-      __typename
-      startCursor
-      endCursor
-      hasNextPage
-      hasPreviousPage
+      pageInfo {
+        __typename
+        startCursor
+        endCursor
+        hasNextPage
+        hasPreviousPage
+      }
     }
   }
 `;

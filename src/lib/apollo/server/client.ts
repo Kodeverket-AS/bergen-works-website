@@ -15,6 +15,7 @@ export function getApolloClient(): ApolloClient<NormalizedCacheObject> {
           fields: {
             events: relayStylePagination(['where']),
             posts: relayStylePagination(['where']),
+            tags: relayStylePagination(['where']),
           },
         },
       },
