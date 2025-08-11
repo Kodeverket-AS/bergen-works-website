@@ -12,7 +12,7 @@ export default function NotFound() {
         <p className='text-[clamp(10rem,30vw,30rem)] h-[clamp(120px,22vw,350px)] flex items-center ml-2 '>4</p>
       </div>
       <div className='flex flex-col items-center mt-10'>
-        <h1 className='font-space-grotesk text-lg lg:text-2xl'>Beklager. Eventen du ser etter eksisterer ikke.</h1>
+        <h1 className='font-space-grotesk text-lg lg:text-2xl'>Beklager. Artikkelen du ser etter eksisterer ikke.</h1>
         <div className='w-full my-10 gap-10 flex justify-center'>
           <BackButton variant={'primary'} className={'rounded-lg'}>
             Tilbake
