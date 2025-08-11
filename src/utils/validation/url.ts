@@ -47,6 +47,8 @@ export function isSafeRelativePath(uri: string): boolean {
  * isArticleUri("/artikler/2025/08/11/min-artikkel"); // false (no prefix allowed)
  */
 export function isArticleUri(uri: string): boolean {
+  if (typeof uri !== 'string' || !uri) return false;
+
   // Accept either "/YYYY/MM/DD/slug" or "/artikler/YYYY/MM/DD/slug"
   const re = /^(?:\/artikler)?\/\d{4}\/(0[1-9]|1[0-2])\/(0[1-9]|[12]\d|3[01])\/[A-Za-z0-9-_~%]+\/?$/;
   return re.test(uri);
@@ -69,8 +71,37 @@ export function isArticleUri(uri: string): boolean {
  * isEventUri("/events/min-event"); // false (wrong base path)
  */
 export function isEventUri(uri: string): boolean {
+  if (typeof uri !== 'string' || !uri) return false;
+
   const re = /^\/event\/[A-Za-z0-9-_~%]+\/?$/;
   return re.test(uri);
+}
+
+/**
+ * Checks whether a given string is a valid slug.
+ *
+ * A "slug" here is defined as:
+ * - Only URL-safe characters (letters, digits, dash, underscore, tilde, dot, and percent-encoded)
+ * - No spaces or reserved URL characters like `?`, `#`, `&`, `/`
+ * - Must be at least 1 character long
+ *
+ * This is a broad check so it won't reject unusual but technically valid URL-safe slugs.
+ *
+ * @param {string} slug - The slug string to test.
+ * @returns {boolean} `true` if the slug is valid; otherwise `false`.
+ *
+ * @example
+ * isValidSlug('my-article');     // true
+ * isValidSlug('my_article');     // true
+ * isValidSlug('100%-free');      // true
+ * isValidSlug('bad/slug');       // false
+ * isValidSlug('has spaces');     // false
+ */
+export function isValidSlug(slug: string): boolean {
+  if (typeof slug !== 'string' || !slug) return false;
+
+  const re = /^[A-Za-z0-9._~%-]+$/;
+  return re.test(slug);
 }
 
 /**
