@@ -1,7 +1,6 @@
 'use server';
 
-import { WpArticlesResult, type WpArticlesResponse, type WpPost } from '@/types/apollo/articles.types';
-import { type GqlPageInfo } from '@/types/apollo/shared.types';
+import { WpArticlesResult, type WpArticlesResponse } from '@/types/apollo/articles.types';
 import { gql } from '@apollo/client';
 import { getApolloClient } from '@/lib/apollo/server/client';
 
