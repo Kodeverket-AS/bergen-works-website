@@ -10,6 +10,9 @@ import '@/assets/styles/frontend.min.css';
 export async function generateStaticParams() {
   const result = await wpFetchURIsServer();
 
+  // Quietly quit on error
+  if (result.error) return [];
+
   return result.uri.map((item) => ({
     slug: item.uri,
   }));
