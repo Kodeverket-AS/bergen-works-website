@@ -1,12 +1,8 @@
 'use server';
 
-import {
-  type WordpressPostsURIResponse,
-  type WordpressPostsURIResult,
-  type WordpressURI,
-} from '@/types/apollo/response.types';
-import { ApolloError, ApolloQueryResult, gql } from '@apollo/client';
-import apolloClientServer from '@/lib/apollo/server/client';
+import { ApolloQueryResult, gql } from '@apollo/client';
+import { getApolloClient } from '@/lib/apollo/server/client';
+import { WpUri, WpUriResponse } from '@/types/apollo/articles.types';
 
 const QUERY = gql`
   query Posts($first: Int!, $after: String, $tags: [ID], $categories: [ID]) {
@@ -27,24 +23,14 @@ const QUERY = gql`
   }
 `;
 
-/**
- * Options for fetching post URIs from the WordPress GraphQL API.
- */
+/** Options for fetching post URIs from the WordPress GraphQL API. */
 interface WpFetchURIsOptions {
-  /**
-   * Optional list of tag IDs to filter the post results.
-   */
-  tags?: string[];
-
-  /**
-   * Optional list of category IDs to filter the post results.
-   */
-  category?: string[];
-
-  /**
-   * Number of posts to fetch per request. Defaults to 100, which is the maximum allowed by WPGraphQL.
-   */
+  /** Number of posts to fetch per request. Defaults to 100, which is the maximum allowed by WPGraphQL. */
   first?: number;
+  /** Optional list of tag IDs to filter the post results. */
+  tags?: string[];
+  /** Optional list of category IDs to filter the post results. */
+  category?: string[];
 }
 
 /**
@@ -59,57 +45,77 @@ interface WpFetchURIsOptions {
  * @param options - Optional filter and pagination parameters.
  * @returns A promise resolving to all available post URIs and pagination error info if applicable.
  */
-export async function wpFetchURIsServer({
-  first = 100,
-  tags,
-  category,
-}: WpFetchURIsOptions = {}): Promise<WordpressPostsURIResult> {
+export async function wpFetchURIsServer({ first = 100, tags, category }: WpFetchURIsOptions = {}): Promise<{
+  uri: WpUri[];
+  error: string | null;
+}> {
+  // Add time-out check for query
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 12_000);
+
   try {
+    // Init client
+    const client = getApolloClient();
+
     // Start with empty list
-    const uri: WordpressURI[] = [];
+    const uri: WpUri[] = [];
 
     // Graphql pagination helper variables
     let after: string | null = null;
-    let error: string | undefined = undefined;
     let hasNextPage: boolean = true;
 
-    // Itterate trough multiple pages until all posts URIs has been collected
-    // Using this type as client has problem extracting type in while loops
-    while (hasNextPage) {
-      const response: ApolloQueryResult<WordpressPostsURIResponse> = await apolloClientServer.query({
+    // Cap to avoid infinite loops if server sends weird cursors
+    const MAX_PAGES = 100;
+    let pageCount = 0;
+
+    // Keep track of graphql error
+    let error: string | null = null;
+
+    while (hasNextPage && pageCount < MAX_PAGES) {
+      const response: ApolloQueryResult<WpUriResponse> = await client.query({
         query: QUERY,
         variables: { first, after, tags, category },
+        context: {
+          fetchOptions: {
+            next: {
+              signal: controller.signal,
+              tags: ['posts', 'wordpress'],
+            },
+          },
+        },
       });
 
-      // If fetch fails, return response as this helps ssg error handling
-      if (response?.error) {
-        error = response.error.cause?.message;
+      if (response?.errors) {
+        console.error('[wpFetchURIsServer] Failed to fetch posts uris:', { errors: response.errors });
+        error = 'GraphQL response error';
         break;
       }
 
-      // Gather reqruired fields
-      const nodes = response.data.posts.nodes;
-      const pageInfo = response.data.posts.pageInfo;
+      // Fix for edge case null return
+      if (!response.data.posts) break;
 
-      // Process fetched URIs
-      uri.push(...nodes.map((node) => ({ ...node, uri: node.uri.replace(/^\/|\/$/g, '') })));
+      // Push events to collection
+      uri.push(...response.data.posts.nodes.map((post) => post));
 
       // Update pagination helpers
-      after = pageInfo?.endCursor ?? null;
-      hasNextPage = Boolean(pageInfo?.hasNextPage);
+      after = response.data.posts.pageInfo?.endCursor ?? null;
+      hasNextPage = Boolean(response.data.posts.pageInfo?.hasNextPage);
+      pageCount++;
     }
 
     return { uri, error };
   } catch (error) {
-    if (error instanceof ApolloError) {
-      console.error(error.cause);
-      return { uri: [], error: error.cause };
+    // Log full error server-side for debugging
+    console.error('[wpFetchURIsServer] GraphQl error:', { error });
+
+    // Request timed out
+    if (error instanceof DOMException && error.name === 'AbortError') {
+      return { uri: [], error: 'GraphQL request timed out' };
     }
 
-    console.error('Unknown error occoured while fetching wordpress URIs, contact site admin');
-    return {
-      uri: [],
-      error: 'Unknown error occoured while fetching wordpress URIs, contact site admin',
-    };
+    // Unkonw error
+    return { uri: [], error: 'Unknown error occoured while fetching wordpress posts uris, contact site admin.' };
+  } finally {
+    clearTimeout(timeout);
   }
 }

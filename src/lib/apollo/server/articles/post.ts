@@ -1,11 +1,12 @@
 'use server';
 
-import { type WordpressPostResponse, type WordpressPostResult } from '@/types/apollo/response.types';
-import { ApolloError, gql } from '@apollo/client';
-import apolloClientServer from '@/lib/apollo/server/client';
+import { type WpArticleResponse, type WpPost } from '@/types/apollo/articles.types';
+import { gql } from '@apollo/client';
+import { getApolloClient } from '@/lib/apollo/server/client';
+import { isValidSlug } from '@/utils/validation/url';
 
 const QUERY = gql`
-  query post($id: ID = "") {
+  query post($id: ID!) {
     post(id: $id, idType: SLUG) {
       __typename
       title
@@ -52,29 +53,55 @@ const QUERY = gql`
  * @param slug - The slug of the post to fetch.
  * @returns A post result object containing content and metadata, or error details.
  */
-export async function wpFetchPostServer(slug: string): Promise<WordpressPostResult> {
+export async function wpFetchPostServer(slug: string): Promise<{ post: WpPost | null; error: string | null }> {
+  if (!slug || !isValidSlug(slug)) {
+    return { post: null, error: 'Invalid slug' };
+  }
+
+  // Add time-out check for query
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 12_000);
+
   try {
-    const response = await apolloClientServer.query<WordpressPostResponse>({
+    const client = getApolloClient();
+    const { data, errors } = await client.query<WpArticleResponse>({
       query: QUERY,
       variables: { id: slug },
+      context: {
+        fetchOptions: {
+          signal: controller.signal,
+          next: {
+            tags: [`post:${slug}`, 'posts', 'wordpress'],
+          },
+        },
+      },
     });
 
-    // If fetch fails, return response as this helps ssg error handling
-    if (response?.error) return { post: null, error: response.error.cause };
-
-    // Gather necessary datasets
-    const post = response.data?.post;
-    const error = response.error?.cause;
-
-    return { post, error };
-  } catch (error) {
-    if (error instanceof ApolloError) {
-      console.error(error.cause);
-      return { post: null, error: error.cause };
+    // Handle errors
+    if (errors?.length) {
+      console.error('[wpFetchPostServer] Failed to fetch post:', { errors });
+      return { post: null, error: 'GraphQL response error' };
     }
-    return {
-      post: null,
-      error: 'Unknown error occoured while fetching wordpress post, contact site admin',
-    };
+
+    // Handle empty results
+    if (!data?.post) {
+      return { post: null, error: `Post doesn't exist` };
+    }
+
+    // Return result
+    return { post: data.post, error: null };
+  } catch (error) {
+    // Log full error server-side for debugging
+    console.error('[wpFetchPostServer] GraphQl error:', { error });
+
+    // Request timed out
+    if (error instanceof DOMException && error.name === 'AbortError') {
+      return { post: null, error: 'GraphQL request timed out' };
+    }
+
+    // Unkonw error
+    return { post: null, error: 'Unknown error occoured while fetching wordpress post, contact site admin.' };
+  } finally {
+    clearTimeout(timeout);
   }
 }
