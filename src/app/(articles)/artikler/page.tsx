@@ -1,6 +1,6 @@
 'use client';
 
-import { type WordpressPost, type PageInfo, type WordpressPostsResult } from '@/types/apollo/response.types';
+import { type WpArticlesResult } from '@/types/apollo/articles.types';
 import { use, useEffect, useState } from 'react';
 import { ArticlesContainer } from '@/components/layout/articles/container';
 import RotateRightIcon from '@mui/icons-material/RotateRight';
@@ -10,8 +10,8 @@ export default function Page({ searchParams }: { searchParams: Promise<{ tag?: s
   const { tag = null, category = null } = use(searchParams);
 
   // Store data
-  const [articles, setArticles] = useState<WordpressPost[]>([]);
-  const [pageInfo, setPageInfo] = useState<PageInfo>();
+  const [articles, setArticles] = useState<WpArticlesResult['posts']>([]);
+  const [pageInfo, setPageInfo] = useState<WpArticlesResult['pageInfo']>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [articlePerPage] = useState(9);
 
@@ -21,12 +21,12 @@ export default function Page({ searchParams }: { searchParams: Promise<{ tag?: s
     setIsLoading(true);
 
     const response = await fetch(
-      `/api/wordpress?first=${articlePerPage}&after=${pageInfo?.endCursor}&tag=${tag}&category=${category}`
+      `/api/wordpress/paginate/posts?first=${articlePerPage}&after=${pageInfo?.endCursor}&tag=${tag}&category=${category}`
     );
-    const data: WordpressPostsResult = await response.json();
+    const data: WpArticlesResult = await response.json();
 
-    if (data?.posts) setArticles((old) => [...old, ...data.posts]);
-    if (data?.pageInfo) setPageInfo(data.pageInfo);
+    if (data.posts.length) setArticles((old) => [...old, ...data.posts]);
+    if (data.pageInfo) setPageInfo(data.pageInfo);
 
     setIsLoading(false);
   }
@@ -36,11 +36,13 @@ export default function Page({ searchParams }: { searchParams: Promise<{ tag?: s
     const fetchPosts = async () => {
       setIsLoading(true);
 
-      const response = await fetch(`/api/wordpress?first=${articlePerPage}&tag=${tag}&category=${category}`);
-      const data: WordpressPostsResult = await response.json();
+      const response = await fetch(
+        `/api/wordpress/paginate/posts?first=${articlePerPage}&tag=${tag}&category=${category}`
+      );
+      const data: WpArticlesResult = await response.json();
 
-      if (data?.posts) setArticles(data.posts);
-      if (data?.pageInfo) setPageInfo(data.pageInfo);
+      if (data.posts.length) setArticles((old) => [...old, ...data.posts]);
+      if (data.pageInfo) setPageInfo(data.pageInfo);
 
       setIsLoading(false);
     };
