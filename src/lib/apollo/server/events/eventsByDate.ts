@@ -1,9 +1,9 @@
 'use server';
 
-import { WpEvent, type WpEventsResponse } from '@/types/apollo/events.types';
-import { ApolloError, gql } from '@apollo/client';
+import { type WpEvent, type WpEventsResponse } from '@/types/apollo/events.types';
+import { gql } from '@apollo/client';
+import { getApolloClient } from '@/lib/apollo/server/client';
 import { isValidDateString } from '@/utils/dates';
-import apolloClientServer from '@/lib/apollo/server/client';
 
 const QUERY = gql`
   query events($first: Int = 100, $after: String = null, $startDate: String!, $endDate: String!) {
@@ -24,7 +24,6 @@ const QUERY = gql`
             altText
           }
         }
-        duration
         modified
         showMap
         date
@@ -101,29 +100,52 @@ interface WpQueryOptions {
 export async function wpFetchEventsByDateRangeServer(
   queryOptions: WpQueryOptions
 ): Promise<{ events: WpEvent[]; error: string | null }> {
+  // Deconstruct params
+  const { first = 100, after = null, endDate, startDate } = queryOptions;
+
+  if (!isValidDateString(startDate) || !isValidDateString(endDate))
+    return {
+      events: [],
+      error: 'Invalid date strings',
+    };
+
+  // Add time-out check for query
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 12_000);
+
   try {
-    const { first = 100, after = null, endDate, startDate } = queryOptions;
-
-    if (!isValidDateString(startDate) || !isValidDateString(endDate))
-      return {
-        events: [],
-        error: 'Invalid date strings',
-      };
-
-    const response = await apolloClientServer.query<WpEventsResponse>({
+    const client = getApolloClient();
+    const { data, errors } = await client.query<WpEventsResponse>({
       query: QUERY,
       variables: { first, after, startDate, endDate },
+      context: {
+        fetchOptions: {
+          next: {
+            tags: ['events', 'wordpress'],
+          },
+        },
+      },
     });
 
-    if (response.error) return { events: [], error: response.error.message };
+    // Handle errors
+    if (errors?.length) {
+      console.error('[wpFetchEventsByDateRangeServer] Failed to fetch event:', { errors });
+      return { events: [], error: 'GraphQL response error' };
+    }
 
-    return { events: response.data.events?.nodes || [], error: null };
+    return { events: data.events?.nodes || [], error: null };
   } catch (error) {
-    // Construct error message based on error type
-    const errorMessage =
-      error instanceof ApolloError
-        ? error.message
-        : 'Unknown error occoured while fetching wordpress post, contact site admin';
-    return { events: [], error: errorMessage };
+    // Log full error server-side for debugging
+    console.error('[wpFetchEventsByDateRangeServer] GraphQl error:', { error });
+
+    // Request timed out
+    if (error instanceof DOMException && error.name === 'AbortError') {
+      return { events: [], error: 'GraphQL request timed out' };
+    }
+
+    // Unkonw error
+    return { events: [], error: 'Unknown error occoured while fetching wordpress event, contact site admin.' };
+  } finally {
+    clearTimeout(timeout);
   }
 }
