@@ -10,7 +10,6 @@ import ShareIcon from '@mui/icons-material/Share';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TwitterIcon from '@mui/icons-material/Twitter';
-import EmailIcon from '@mui/icons-material/Email';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 interface ShareToSocialButtonProps {
@@ -67,12 +66,8 @@ export function ShareToSocialButton({ title }: ShareToSocialButtonProps) {
         className={`z-10 absolute left-0 top-full w-full mt-1 px-2 border rounded-md bg-white ${isOpen ? 'h-fit py-2' : 'h-0 opacity-0 pointer-events-none'} overflow-hidden duration-200`}
       >
         {socialMediaSites.map((site) => (
-          <IconLink key={site.title} icon={site.icon} link={basePath + currentPath} label={site.title} />
+          <IconLink key={site.title} icon={site.icon} link={site.href} label={site.title} />
         ))}
-        <button className='group flex gap-2 items-center'>
-          <EmailIcon />
-          <p className='group-hover:underline'>Email</p>
-        </button>
         <button onClick={handleCopyLinkClick} className='group flex gap-2 items-center'>
           <ContentCopyIcon />
           <p className='group-hover:underline'>Kopier link</p>
