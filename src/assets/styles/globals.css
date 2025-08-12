@@ -1,9 +1,14 @@
 @import "tailwindcss";
 
+@utility no-scrollbar {
+  @apply [scrollbar-width:none] [&::-webkit-scrollbar]:hidden;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
+
 @font-face {
   font-family: "Montserrat";
   src: url("Montserrat-VariableFont_wght.ttf") format("truetype");
@@ -45,7 +50,9 @@
   --color-dark-text: #1e1e1e;
 
   --font-space-grotesk: "Space Grotesk", sans-serif;
+
   --font-montserrat: "Montserrat" , sans-serif;
+
 
   /* --breakpoint-3xl: 120rem; */
   --breakpoint-middle: 42.5rem;
@@ -54,9 +61,11 @@
 
 
 }
+
 .text-glow {
   text-shadow: 0 0 4px white;
-} 
+}
+
 .animate-spin-slow {
   animation: spin 12s linear infinite;
 }
@@ -70,7 +79,8 @@
     transform: rotate(360deg);
   }
 }
-/* 
+
+/*
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -104,11 +114,3 @@ Header {
   flex: 1;
   @apply container;
 }
-
-
-
-
-
-
-
-

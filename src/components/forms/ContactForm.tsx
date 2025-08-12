@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
 // Global
-import { useFormStatus } from "react-dom";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { useFormStatus } from 'react-dom';
+import { ChangeEvent, FormEvent, useState } from 'react';
 
 // Email validation and handler
-import { handleContactFormSignup } from "@/lib/brevo/contact/handler";
+import { handleContactFormSignup } from '@/lib/brevo/contact/handler';
 import {
   type ContactFormKeys,
   type ContactFormSchema,
@@ -13,7 +13,7 @@ import {
   contactFormSchemaInitial,
   ContactFormSchemaSubjects,
   contactFormValidateField,
-} from "@/schema/brevo";
+} from '@/schema/brevo';
 
 // User interface
 import {
@@ -28,21 +28,21 @@ import {
   Alert,
   Tooltip,
   Snackbar,
-} from "@mui/material";
-import InfoIcon from "@mui/icons-material/Info";
-import Link from "next/link";
+} from '@mui/material';
+import InfoIcon from '@mui/icons-material/Info';
+import Link from 'next/link';
 
 export function ContactForm() {
   // Form states
   const [formData, setFormData] = useState<Required<ContactFormSchema>>(contactFormSchemaInitial);
   const [errors, setErrors] = useState<Partial<Record<ContactFormKeys, string | undefined>>>({});
-  const [success, setSuccess] = useState<{ status: boolean; message: string }>({ status: false, message: "" });
+  const [success, setSuccess] = useState<{ status: boolean; message: string }>({ status: false, message: '' });
 
   // MUI toast notification
-  const [snackbar, setSnackbar] = useState<{ open: boolean; message: string; severity: "success" | "error" }>({
+  const [snackbar, setSnackbar] = useState<{ open: boolean; message: string; severity: 'success' | 'error' }>({
     open: false,
-    message: "",
-    severity: "success",
+    message: '',
+    severity: 'success',
   });
 
   // Helper function for checking progress status
@@ -59,14 +59,14 @@ export function ContactForm() {
 
   function handleChange(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     const { name, type } = e.target;
-    const value = type === "checkbox" ? (e.target as HTMLInputElement).checked : e.target.value;
+    const value = type === 'checkbox' ? (e.target as HTMLInputElement).checked : e.target.value;
 
     // Special rule for handling subject checkboxes with data attributes
     const category = e.target.dataset.category as ContactFormSchemaSubjects;
 
     // Update formdata and handle early validation for input feedback
-    setFormData((prev) => ({ ...prev, [name]: name === "category" ? category : value }));
-    handleValidate(name as ContactFormKeys, name === "category" ? category : value);
+    setFormData((prev) => ({ ...prev, [name]: name === 'category' ? category : value }));
+    handleValidate(name as ContactFormKeys, name === 'category' ? category : value);
   }
 
   // Extends handleChange by also running validation when input field looses focus
@@ -83,7 +83,7 @@ export function ContactForm() {
     const validation = contactFormSchema.safeParse(formData);
     if (!validation.success) {
       // Schema validation during form submit handling failed
-      setSuccess({ status: false, message: "Sjekk at alle felt er fylt ut riktig" });
+      setSuccess({ status: false, message: 'Sjekk at alle felt er fylt ut riktig' });
       return;
     }
 
@@ -92,7 +92,7 @@ export function ContactForm() {
         const res = await handleContactFormSignup(validation.data);
         setSuccess({ status: res.code === 200 ? true : false, message: res.message });
       } catch (error) {
-        if (typeof error === "string") {
+        if (typeof error === 'string') {
           setSuccess({ status: false, message: error });
         }
         console.log(error);
@@ -100,48 +100,38 @@ export function ContactForm() {
     }
   }
   return (
-    <div
-      id="contact-form"
-      className="flex justify-center items-center w-full bg-white text-black"
-    >
-      <div className="flex flex-col lg:flex-row w-full max-w-4xl gap-x-6">
-        <div className="flex-1 space-y-6">
-          <Card
-            className="py-6 bg-white shadow-lg"
-            sx={{ borderRadius: "1rem" }}
-          >
+    <div id='contact-form' className='flex justify-center items-center w-full bg-white text-black'>
+      <div className='flex flex-col lg:flex-row w-full max-w-4xl gap-x-6'>
+        <div className='flex-1 space-y-6'>
+          <Card className='py-6 bg-white shadow-lg' sx={{ borderRadius: '1rem' }}>
             <CardContent>
-              <Typography variant="h5" gutterBottom>
+              <Typography variant='h5' gutterBottom>
                 Kom i gang
               </Typography>
-              <Typography variant="body1" className="text-lg">
-                Er du interessert i å bli en del av fellesskapet eller har du
-                noen spørsmål? Fyll ut kontaktskjemaet, så kontakter vi deg
-                forløpende.
+              <Typography variant='body1' className='text-lg'>
+                Er du interessert i å bli en del av fellesskapet eller har du noen spørsmål? Fyll ut kontaktskjemaet, så
+                kontakter vi deg forløpende.
               </Typography>
             </CardContent>
           </Card>
-          <Card
-            className="py-6 bg-white shadow-lg"
-            sx={{ borderRadius: "1rem" }}
-          >
+          <Card className='py-6 bg-white shadow-lg' sx={{ borderRadius: '1rem' }}>
             <CardContent>
               <form onSubmit={handleSubmit}>
                 <TextField
-                  label="Navn"
-                  name="name"
-                  type="text"
+                  label='Navn'
+                  name='name'
+                  type='text'
                   fullWidth
                   required
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  margin="normal"
-                  placeholder="Skriv inn ditt navn"
+                  margin='normal'
+                  placeholder='Skriv inn ditt navn'
                   sx={{
-                    "& .MuiOutlinedInput-input:focus": {
-                      color: "grey",
+                    '& .MuiOutlinedInput-input:focus': {
+                      color: 'grey',
                     },
-                    "& .MuiOutlinedInput-root": {
+                    '& .MuiOutlinedInput-root': {
                       borderRadius: 2,
                     },
                   }}
@@ -150,17 +140,17 @@ export function ContactForm() {
                   helperText={errors.name}
                 />
                 <TextField
-                  label="E-post"
-                  name="email"
-                  type="email"
+                  label='E-post'
+                  name='email'
+                  type='email'
                   fullWidth
                   required
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  margin="normal"
-                  placeholder="din.epost@eksempel.no"
+                  margin='normal'
+                  placeholder='din.epost@eksempel.no'
                   sx={{
-                    "& .MuiOutlinedInput-root": {
+                    '& .MuiOutlinedInput-root': {
                       borderRadius: 2,
                     },
                   }}
@@ -169,17 +159,17 @@ export function ContactForm() {
                   helperText={errors.email}
                 />
                 <TextField
-                  label="Telefonnummer"
-                  name="phone"
-                  type="tel"
+                  label='Telefonnummer'
+                  name='phone'
+                  type='tel'
                   fullWidth
                   required
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  margin="normal"
-                  placeholder="Skriv inn ditt telefonnummer"
+                  margin='normal'
+                  placeholder='Skriv inn ditt telefonnummer'
                   sx={{
-                    "& .MuiOutlinedInput-root": {
+                    '& .MuiOutlinedInput-root': {
                       borderRadius: 2,
                     },
                   }}
@@ -188,18 +178,18 @@ export function ContactForm() {
                   helperText={errors.phone}
                 />
                 <TextField
-                  label="Melding"
-                  name="message"
+                  label='Melding'
+                  name='message'
                   multiline
                   rows={4}
                   fullWidth
                   required
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  margin="normal"
-                  placeholder="Skriv din melding her..."
+                  margin='normal'
+                  placeholder='Skriv din melding her...'
                   sx={{
-                    "& .MuiOutlinedInput-root": {
+                    '& .MuiOutlinedInput-root': {
                       borderRadius: 2,
                     },
                   }}
@@ -207,123 +197,129 @@ export function ContactForm() {
                   error={!!errors.message}
                   helperText={errors.message}
                 />
-                <div className="flex flex-col gap-4 my-4 p-4 border rounded-lg border-gray-300">
-                  <Typography
-                    variant="subtitle1"
-                    className="flex items-center gap-2"
-                  >
+                <div className='flex flex-col gap-4 my-4 p-4 border rounded-lg border-gray-300'>
+                  <Typography variant='subtitle1' className='flex items-center gap-2'>
                     Kategori
-                    <Tooltip title="Velg alle alternativer som passer for deg">
-                      <InfoIcon fontSize="medium" color="primary" />
+                    <Tooltip title='Velg alle alternativer som passer for deg'>
+                      <InfoIcon fontSize='medium' color='primary' />
                     </Tooltip>
                   </Typography>
-                  <span className="flex flex-wrap gap-5">
+                  <span className='flex flex-wrap gap-5'>
                     <FormControlLabel
                       control={
                         <Checkbox
-                          checked={formData.category === "åpen plass"}
+                          checked={formData.category === 'åpen plass'}
                           onChange={handleChange}
                           disabled={success.status}
-                          name="category"
+                          name='category'
                           slotProps={{
                             input: {
-                              "data-category": "åpen plass",
+                              'data-category': 'åpen plass',
                             } as React.InputHTMLAttributes<HTMLInputElement>,
                           }}
                         />
                       }
-                      label="Åpen plass"
+                      label='Åpen plass'
                     />
                     <FormControlLabel
                       control={
                         <Checkbox
-                          checked={formData.category === "fast plass"}
+                          checked={formData.category === 'fast plass'}
                           onChange={handleChange}
                           disabled={success.status}
-                          name="category"
+                          name='category'
                           slotProps={{
                             input: {
-                              "data-category": "fast plass",
+                              'data-category': 'fast plass',
                             } as React.InputHTMLAttributes<HTMLInputElement>,
                           }}
                         />
                       }
-                      label="Fast plass"
+                      label='Fast plass'
                     />
                     <FormControlLabel
                       control={
                         <Checkbox
-                          checked={formData.category === "annet"}
+                          checked={formData.category === 'kontor'}
                           onChange={handleChange}
                           disabled={success.status}
-                          name="category"
+                          name='category'
                           slotProps={{
                             input: {
-                              "data-category": "annet",
+                              'data-category': 'kontor',
                             } as React.InputHTMLAttributes<HTMLInputElement>,
                           }}
                         />
                       }
-                      label="Annet"
+                      label='Kontor'
+                    />
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          checked={formData.category === 'annet'}
+                          onChange={handleChange}
+                          disabled={success.status}
+                          name='category'
+                          slotProps={{
+                            input: {
+                              'data-category': 'annet',
+                            } as React.InputHTMLAttributes<HTMLInputElement>,
+                          }}
+                        />
+                      }
+                      label='Annet'
                     />
                   </span>
                 </div>
                 <div
-                  className={`flex flex-col gap-4 my-4 p-4 border rounded-lg border-gray-300 ${errors.consent ? "border-red-500" : ""}`}
+                  className={`flex flex-col gap-4 my-4 p-4 border rounded-lg border-gray-300 ${errors.consent ? 'border-red-500' : ''}`}
                 >
                   <h3>Samtykke til lagring av data</h3>
                   <FormControlLabel
                     control={
                       <Checkbox
-                        id="consent"
-                        name="consent"
+                        id='consent'
+                        name='consent'
                         checked={formData.consent}
                         onChange={handleChange}
                         disabled={success.status}
                       />
                     }
-                    label="Jeg gir samtykke til min kontakt informasjon blir lagret for å kunne kontakte meg. Du kan trekke dette samtykket tilbake når som helst."
+                    label='Jeg gir samtykke til min kontakt informasjon blir lagret for å kunne kontakte meg. Du kan trekke dette samtykket tilbake når som helst.'
                   />
-                  <Link href={"/personvern"} className="text-sm text-moss-500">
+                  <Link href={'/personvern'} className='text-sm text-moss-500'>
                     Les vår personvernerklæring
                   </Link>
                 </div>
                 {errors.consent && (
-                  <p className="pl-2 text-sm text-red-400">
-                    Du må godta vår personvernærklaring for lagring av e-post
-                    før du bruker kontakt oss skjema
+                  <p className='pl-2 text-sm text-red-400'>
+                    Du må godta vår personvernærklaring for lagring av e-post før du bruker kontakt oss skjema
                   </p>
                 )}
-                {success.message !== "" && (
-                  <p
-                    className={`text-center py-4 ${success.status ? "text-black" : "text-red-600"}`}
-                  >
+                {success.message !== '' && (
+                  <p className={`text-center py-4 ${success.status ? 'text-black' : 'text-red-600'}`}>
                     {success.message}
                   </p>
                 )}
                 {!success.status && (
                   <Button
-                    type="submit"
-                    variant="contained"
-                    color="primary"
+                    type='submit'
+                    variant='contained'
+                    color='primary'
                     disabled={!isFormValid()}
                     sx={{
-                      marginTop: "16px",
-                      width: "auto",
-                      padding: "10px 20px",
-                      textAlign: "center",
-                      backgroundColor: "#606c38",
-                      "&:hover": {
-                        backgroundColor: "#283618",
+                      marginTop: '16px',
+                      width: 'auto',
+                      padding: '10px 20px',
+                      textAlign: 'center',
+                      backgroundColor: '#606c38',
+                      '&:hover': {
+                        backgroundColor: '#283618',
                       },
                       borderRadius: 2,
                     }}
                   >
-                    {pending ? (
-                      <CircularProgress size={24} color="inherit" />
-                    ) : (
-                      "Send Melding"
-                    )}
+                    {pending ? <CircularProgress size={24} color='inherit' /> : 'Send Melding'}
                   </Button>
                 )}
               </form>
@@ -337,14 +333,14 @@ export function ContactForm() {
         onClose={() => {
           setSnackbar({ ...snackbar, open: false });
         }}
-        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       >
         <Alert
           onClose={() => {
             setSnackbar({ ...snackbar, open: false });
           }}
           severity={snackbar.severity}
-          sx={{ width: "100%" }}
+          sx={{ width: '100%' }}
         >
           {snackbar.message}
         </Alert>

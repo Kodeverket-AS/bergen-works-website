@@ -1,18 +1,38 @@
-import { type WordpressPostResponse, type WordpressPostResult } from '@/types/apollo/response.types';
+import { type WpArticleResponse, type WpPost } from '@/types/apollo/articles.types';
 import { ApolloError, gql } from '@apollo/client';
-import apolloClient from '@/lib/apollo/client';
+import apolloClient from '@/lib/apollo/client/client';
 
 const QUERY = gql`
   query post($id: ID = "") {
     post(id: $id, idType: SLUG) {
+      __typename
       title
       slug
+      status
+      isSticky
+      uri
+      date
+      modified
       content
       contentStyles
       featuredImage {
         node {
           sourceUrl
           altText
+        }
+      }
+      categories {
+        nodes {
+          id
+          slug
+          name
+        }
+      }
+      tags {
+        nodes {
+          id
+          slug
+          name
         }
       }
     }
@@ -30,25 +50,20 @@ const QUERY = gql`
  * @param slug - The slug of the post to fetch.
  * @returns A post result object containing content and metadata, or error details.
  */
-export async function wpFetchPost(slug: string): Promise<WordpressPostResult> {
+export async function wpFetchPost(slug: string): Promise<{ post: WpPost | null; error: string | null }> {
   try {
-    const response = await apolloClient.query<WordpressPostResponse>({
+    const { data, error } = await apolloClient.query<WpArticleResponse>({
       query: QUERY,
       variables: { id: slug },
     });
 
-    // If fetch fails, return response as this helps ssg error handling
-    if (response?.error) return { post: null, error: response.error.cause };
+    if (error) return { post: null, error: error.message };
 
-    // Gather necessary datasets
-    const post = response.data?.post;
-    const error = response.error?.cause;
-
-    return { post, error };
+    return { post: data.post, error: null };
   } catch (error) {
     if (error instanceof ApolloError) {
       console.error(error.cause);
-      return { post: null, error: error.cause };
+      return { post: null, error: error.message };
     }
     return {
       post: null,

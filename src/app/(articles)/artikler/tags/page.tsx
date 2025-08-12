@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import { wpFetchTags } from '@/lib/apollo/fetch/tags';
+import { wpFetchTagsServer } from '@/lib/apollo/server/articles/tags';
 
 export default async function Page() {
-  const result = await wpFetchTags();
+  const result = await wpFetchTagsServer();
 
   return (
     <main className='flex flex-col gap-4 pb-4'>
