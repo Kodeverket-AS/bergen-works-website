@@ -1,2 +1,6 @@
 import article from "./article";
-export const schemaTypes = [article];
+import event from "./event";
+import vipps from "./vipps";
+
+
+export const schemaTypes = [article, event, vipps, ];

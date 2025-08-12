@@ -46,7 +46,7 @@ export function Modal({
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className={`bg-moss-200 rounded-lg shadow-xl w-full max-w-5xl py-4 md:py-10 lg:py-16 px-2  transform transition-all duration-500 ${
+        className={`bg-moss-200 rounded-lg shadow-xl w-full max-w-5xl py-4 md:py-10 lg:py-16 px-5 md:px-2  transform transition-all duration-500 ${
           show ? "scale-100 opacity-100" : "scale-30 opacity-0"
         } flex flex-col justify-center items-center md:flex-row`}
       >
@@ -59,8 +59,10 @@ export function Modal({
             draggable={false}
           />
         </div>
-        <div className="w-full md:w-1/2 text-[var(--text-dark)] p-6 lg:p-0  lg:pr-16 flex flex-col">
-          <h2 className="text-3xl md:text-4xl font-bold mb-2">{modalHeader}</h2>
+        <div className="w-full md:w-1/2 text-dark-text p-6 lg:p-0  lg:pr-16 flex flex-col">
+          <h2 className="text-3xl md:text-4xl font-bold mb-2  ">
+            {modalHeader}
+          </h2>
           <p className="mb-4 text-lg  md:text-xl font-semibold">
             {modalParagraph1}
           </p>
@@ -69,7 +71,7 @@ export function Modal({
             <Link
               onClick={onClose}
               href={modalLink}
-              className="inline-block w-full md:w-auto px-4 py-2 text-center md:text-lg rounded-md font-semibold bg-white hover:bg-gray-200  transition-colors duration-300 "
+              className="inline-block w-full md:w-auto px-8 py-4  text-center md:text-lg rounded-md font-semibold bg-white hover:bg-gray-200  transition-colors duration-300 "
             >
               {modalLinkText}
             </Link>

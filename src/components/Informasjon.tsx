@@ -1,136 +1,127 @@
-import Image from "next/image";
-import { InfoCard } from "./ui/InfoCard";
-import { Button } from "./ui/buttons/Button";
+import Image from 'next/image';
+import { InfoCard } from './ui/InfoCard';
+// import { Button } from "./ui/buttons/Button";
 
 export default function InformationSection() {
   return (
-    <main className="my-10 flex flex-col items-center justify-center ">
-      <div className="  bg-[#1D1D1D] lg:bg-transparent rounded-2xl flex flex-col items-center lg:flex-row justify-between h-[567px] w-[342px] md:h-[650px] md:w-[430px] lg:w-full lg:h-[411] xl:h-[450] gap-4 md:gap-5 xl:gap-9  lg:mb-[2em]">
-        <div className="select-none md:bg-[#1D1D1D] lg:flex lg:items-center lg:justify-center md:p-[1em] md:w-[400] rounded-2xl lg:w-[400] lg:h-full xl:w-[500] xl:h-[450]">
-          <Image
-            src="/infoImage.png"
-            alt="Picture of logo and people in meetingroom"
-            width={300}
-            height={300}
-            draggable={false}
-            className=" mt-[1.5em] md:mt-[1em] lg:mt-0 lg:p-[0.5em] object-cover rounded-2xl md:h-[360px] md:w-[450] xl:h-[400]"
-            priority
-          />
+    <div className='  flex flex-col items-center justify-center'>
+      <div className='co-work  lg:max-h-[360px] xl:max-h-[400px] bg-[#1D1D1D] text-light-text lg:bg-transparent rounded-2xl flex flex-col items-center lg:flex-row  h-[780px] w-full lg:h-[450px] xl:h-[500px] gap-3 md:gap-6 lg:mb-[2em] items-stretch'>
+        <div className='p-10 select-none  md:bg-[#1D1D1D]  w-full h-full lg:w-1/3 rounded-2xl'>
+          <div className='bg-black relative rounded-lg w-full h-70  xl:h-full '>
+            <Image
+              src='/officeCircle.png'
+              alt='Picture of logo and people in meetingroom'
+              fill
+              draggable={false}
+              className='object-contain rounded-2xl p-4  '
+              priority
+            />
+          </div>
         </div>
-        <div className="text-[var(--text-light)] w-[294px] h-full md:w-[400] rounded-2xl md:p-[1em] lg:w-10/12 xl:w-8/12 lg:h-[411] xl:h-[450] lg:bg-[#1D1D1D]">
-          <div className=" xl:h-[45px] lg:px-10">
-            <h1 className="font-bold text-[40px] xl:text-[50px] md:-mt-10 lg:my-2">
-              Co-work
-            </h1>
-            <p className="text-sm md:text-base lg:hidden">
-              Vi jobber med å utvikle et splitter nytt inkubasjonskonsept på
-              huset. Stay tuned!
+        <div className='text-[var(--text-light)] w-full px-10 rounded-2xl lg:w-2/3 h-full lg:bg-[#1D1D1D]'>
+          <div className='lg:px-2 3xl:px-10 '>
+            <h2 className='font-bold text-[40px] xl:text-[50px] md:mt-1 lg:my-8 xl:mt-10 3xl:mt-12'>Co-work</h2>
+            <p className='lg:hidden my-1'>
+              Med en beliggenhet i vakre Skostredet har Bergen.Works drevet coworking space siden 2017. Vi ble startet
+              av gründere og for gründere.
             </p>
-            <p className="hidden lg:block lg:w-[550] xl:w-[650] ">
-              Med en beliggenhet i vakre Skostredet har Bergen.Works drevet
-              coworking space siden 2017. Vi ble startet av gründere og for
-              gründere, og Bergen.Works skal være mer enn en kontorplass.
-              Bærebjelkene våre er sosial, kreativ og grønn innovasjon, og vi
-              vil bidra til å utvikle smarte hoder innen disse feltene. Derfor
-              ønsker vi å legge til rette for en arena for samarbeid og
-              inkludering der det enkelte medlem kan ta del i fellesskapet som
-              mentor, innovatør, arbeidssøkende eller vekstbedrift. Sammen
-              finner vi morgendagens løsninger på dagens problemstillinger.
+            <p className='hidden lg:block xl:text-lg '>
+              Med en beliggenhet i vakre Skostredet har Bergen.Works drevet coworking space siden 2017. Vi ble startet
+              av gründere og for gründere.
             </p>
-            <div className="w-full md:flex md:justify-center lg:justify-start mt-[1em] md:mt-[1.5em] lg:mt-[1em] xl:mt-[3em]">
-              <Button
-                href="/#contact-form"
-                className="text-base md:text-md lg:text-lg mt-[3.5em]  md:mt-[2em] lg:mt-4 xl:mt-10  w-[294px] lg:w-[148px] rounded-sm "
-                variant={"secondary"}
-              >
-                Ta kontakt
-              </Button>
-            </div>
+            <p className=' xl:text-lg mt-2 pb-4 md:mb-0 '>
+              Coworking space gir deg tilgang til et inspirerende miljø, nye samarbeidspartnere og økt produktivitet.
+              Hos Bergen.Works har vi ledige plasser for deg som vil jobbe i et dynamisk og sosialt fellesskap – enten
+              du er gründer, investor, freelancer eller en del av en bedrift.
+            </p>
+            {/* <div className='w-full my-8 xl:my-14 3xl:mt-24'>
+                            <Button
+                                href='/#contact-form'
+                                className=' lg:text-lg font-bold w-full lg:w-auto rounded-sm'
+                                variant={"secondary"}
+                            >
+                                Ta kontakt
+                            </Button>
+                        </div> */}
           </div>
         </div>
       </div>
-      <div className="w-[342] mt-[1em] h-[398] md:w-[430px] md:h-[430] flex flex-col lg:flex-row lg:h-[194] lg:w-full justify-around xl:justify-center gap-5 xl:gap-10 ">
-        <div className="text-[var(--text-dark)] lg:w-1/3  ">
+      <div className='w-full mt-[1em]  flex flex-col lg:flex-row  lg:w-full  xl:justify-center gap-5 xl:gap-10 '>
+        <div className='text-dark-text lg:w-1/3  '>
           <InfoCard
-            cardStyle="bg-moss-200 flex justify-center items-center w-full h-[140] group cursor-pointer lg:h-[200]  rounded-2xl  md:hover:scale-105"
-            imageSrc="/infoIcon1.png"
-            alt="Icon"
-            title="Fast Plass"
-            description="3990,- / mnd"
-            imageStyle={
-              "w-[80px] h-[80px] md:w-[90px] md:h-[90px] lg:w-[120px] lg:h-[120px] xl:w-[140px] xl:h-[140px]"
-            }
-            textContentStyle={"p-4 xl:px-8"}
-            headerStyle={"h-full text-2xl  font-bold"}
-            paragraphStyle={"mt-2 text-sm sm:text-base"}
+            cardStyle='bg-moss-200 flex justify-center items-center w-full h-[140px] group cursor-pointer lg:h-[200px] rounded-2xl md:hover:scale-105'
+            imageSrc='/infoIcon1.png'
+            alt='Icon'
+            title='Fast Plass'
+            description='3990,- / mnd'
+            imageStyle={'w-[80px] h-[80px] md:w-[90px] md:h-[90px] lg:w-[120px] lg:h-[120px] xl:w-[140px] xl:h-[140px]'}
+            textContentStyle={'p-4 xl:px-8'}
+            headerStyle={'h-full text-2xl  font-bold'}
+            paragraphStyle={'mt-2 text-sm sm:text-base'}
             arrowStyle={
-              "absolute bottom-4 right-4 duration-300 md:group-hover:-translate-x-1 md:group-hover:translate-y-1 md:group-hover:rotate-45"
+              'absolute bottom-4 right-4 duration-300 md:group-hover:scale-[1.2]  md:group-hover:-translate-x-1 md:group-hover:translate-y-1 md:group-hover:rotate-45'
             }
-            modalImageSrc={"/infoIcon1.png"}
-            modalImageAlt={"Icon"}
-            modalHeader={"Fast Plass"}
-            modalParagraph1={"3990,-/ mnd (eks. MVA)"}
+            modalImageSrc={'/infoIcon1.png'}
+            modalImageAlt={'Icon'}
+            modalHeader={'Fast Plass'}
+            modalParagraph1={'3990,-/ mnd (eks. MVA)'}
             modalParagraph2={
-              "Dette inkluderer følgende: Fast plass i åpent kontorlandskap, nytraktet kaffe, tilgang til møterom, rask wifi, rengjøring, strøm, telefonbåser samt invitasjon til alle arrangementer i Bergen.Works regi."
+              'Dette inkluderer følgende: Fast plass i åpent kontorlandskap, nytraktet kaffe, tilgang til møterom, rask wifi, rengjøring, strøm, telefonbåser samt invitasjon til alle arrangementer i Bergen.Works regi.'
             }
-            modalLinkText={"Ta kontakt"}
-            modalLink={"/#contact-form"}
+            modalLinkText={'Ta kontakt'}
+            modalLink={'/#contact-form'}
           />
         </div>
-        <div className="text-[var(--text-light)] lg:w-1/3">
+        <div className='text-light-text lg:w-1/3'>
           <InfoCard
-            cardStyle="bg-moss-600 flex justify-center items-center w-full h-[140] group cursor-pointer lg:h-[200]  rounded-2xl  duration-300 md:hover:scale-105"
-            imageSrc="/infoIcon2.png"
-            alt="Icon"
-            title="Åpen Plass"
-            description="3200,- / mnd"
-            imageStyle={
-              "w-[80px] h-[80px] md:w-[90px] md:h-[90px] lg:w-[120px] lg:h-[120px] xl:w-[140px] xl:h-[140px]"
-            }
-            textContentStyle={"p-4 xl:px-8"}
-            headerStyle={"h-full text-2xl  font-bold"}
-            paragraphStyle={"mt-2 text-sm sm:text-base"}
+            cardStyle='bg-moss-600 flex justify-center items-center w-full h-[140px] group cursor-pointer lg:h-[200px]  rounded-2xl  duration-300 md:hover:scale-105'
+            imageSrc='/infoIcon2.png'
+            alt='Icon'
+            title='Åpen Plass'
+            description='3200,- / mnd'
+            imageStyle={'w-[80px] h-[80px] md:w-[90px] md:h-[90px] lg:w-[120px] lg:h-[120px] xl:w-[140px] xl:h-[140px]'}
+            textContentStyle={'p-4 xl:px-8'}
+            headerStyle={'h-full text-2xl  font-bold'}
+            paragraphStyle={'mt-2 text-sm sm:text-base'}
             arrowStyle={
-              "absolute bottom-4 right-4 duration-300  md:group-hover:-translate-x-1 md:group-hover:translate-y-1 md:group-hover:rotate-45"
+              'absolute bottom-4 right-4 duration-300 md:group-hover:scale-[1.2]  md:group-hover:-translate-x-1 md:group-hover:translate-y-1 md:group-hover:rotate-45'
             }
-            modalImageSrc={"/infoIcon2.png"}
-            modalImageAlt={"Icon"}
-            modalHeader={"Åpen plass"}
-            modalParagraph1={"3200,-/ mnd (eks. MVA)"}
+            modalImageSrc={'/infoIcon2.png'}
+            modalImageAlt={'Icon'}
+            modalHeader={'Åpen plass'}
+            modalParagraph1={'3200,-/ mnd (eks. MVA)'}
             modalParagraph2={
-              "Dette inkluderer følgende: Tilgang til ledig plass i åpent kontorlandskap, nytraktet kaffe, tilgang til møterom, rask wifi, rengjøring, strøm, telefonbåser samt invitasjon til alle arrangementer i Bergen.Works regi."
+              'Dette inkluderer følgende: Tilgang til ledig plass i åpent kontorlandskap, nytraktet kaffe, tilgang til møterom, rask wifi, rengjøring, strøm, telefonbåser samt invitasjon til alle arrangementer i Bergen.Works regi.'
             }
-            modalLinkText={"Ta kontakt"}
-            modalLink={"/#contact-form"}
+            modalLinkText={'Ta kontakt'}
+            modalLink={'/#contact-form'}
           />
         </div>
-        <div className="text-[var(--text-dark)] lg:w-1/3">
+        <div className='text-[var(--text-dark)] lg:w-1/3'>
           <InfoCard
-            cardStyle="bg-moss-200 flex justify-center items-center w-full h-[140] group cursor-pointer lg:h-[200]  rounded-2xl duration-300 md:hover:scale-105"
-            imageSrc="/infoIcon3.png"
-            alt="Icon"
-            title="Inkubasjon"
-            description="Gratis for deltakere"
-            imageStyle={
-              "w-[80px] h-[80px] md:w-[90px] md:h-[90px] lg:w-[120px] lg:h-[120px] xl:w-[140px] xl:h-[140px]"
-            }
-            textContentStyle={"flex flex-col justify-center p-4 xl:px-8"}
-            headerStyle={"h-full text-2xl  font-bold "}
-            paragraphStyle={"mt-2 text-sm sm:text-base"}
+            cardStyle='bg-moss-200 flex justify-center items-center w-full h-[140px] group cursor-pointer lg:h-[200px] rounded-2xl duration-300 md:hover:scale-105'
+            imageSrc='/infoIcon3.png'
+            alt='Icon'
+            title='Inkubasjon'
+            description='Gratis for deltakere'
+            imageStyle={'w-[80px] h-[80px] md:w-[90px] md:h-[90px] lg:w-[120px] lg:h-[120px] xl:w-[140px] xl:h-[140px]'}
+            textContentStyle={'flex flex-col justify-center p-4 xl:px-8'}
+            headerStyle={'h-full text-2xl  font-bold '}
+            paragraphStyle={'mt-2 text-sm sm:text-base'}
             arrowStyle={
-              "absolute bottom-4 right-4  duration-300 md:group-hover:-translate-x-1 md:group-hover:translate-y-1 md:group-hover:rotate-45"
+              'absolute bottom-4 right-4  duration-300  md:group-hover:scale-[1.2]  md:group-hover:-translate-x-1 md:group-hover:translate-y-1 md:group-hover:rotate-45'
             }
-            modalImageSrc={"/infoIcon3.png"}
-            modalImageAlt={"Icon"}
-            modalHeader={"Inkubator på Bergen.Works"}
+            modalImageSrc={'/infoIcon3.png'}
+            modalImageAlt={'Icon'}
+            modalHeader={'Inkubator på Bergen.Works'}
             modalParagraph2={
-              "Har du en Gründer i magen? Bergen.Works utvikler et nytt inkubasjonskonsept for de som ønsker å realisere dine drømmer og idéer! Ta turen innom oss for en uformell prat og en kopp kaffe! Bergen.Works er startet av gründere, for gründere; hos oss finner du kompetanse innen ethvert felt! Kom for kontorplass, bli for miljøet."
+              'Har du en Gründer i magen? Bergen.Works utvikler et nytt inkubasjonskonsept for de som ønsker å realisere dine drømmer og idéer! Ta turen innom oss for en uformell prat og en kopp kaffe! Bergen.Works er startet av gründere, for gründere; hos oss finner du kompetanse innen ethvert felt! Kom for kontorplass, bli for miljøet.'
             }
-            modalLinkText={"Ta kontakt"}
-            modalLink={"/#contact-form"}
+            modalLinkText={'Ta kontakt'}
+            modalLink={'/#contact-form'}
           />
         </div>
       </div>
-    </main>
+    </div>
   );
 }

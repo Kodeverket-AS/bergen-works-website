@@ -21,14 +21,12 @@ const LoadingSkeleton = () => (
 const ArticlesMain = () => {
   const { articles, loading } = useSanity();
 
-
   if (loading) return <LoadingSkeleton />;
 
-const last6Articles = articles.slice(0, 6);
-
+  const last6Articles = articles.slice(0, 6);
   return (
-    <div className="w-9/10 md:w-full my-20 mx-auto ">
-      <h1 className="text-4xl text-center mb-8">Artikler og nyheter</h1>
+    <div className="w-full my-20 mx-auto ">
+      <h2 className="text-4xl text-center mb-8">Artikler og nyheter</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 2xl:gap-20 w-full max-w-7xl mx-auto">
         {last6Articles.map((article, index) => (
           <Card
@@ -131,7 +129,7 @@ const last6Articles = articles.slice(0, 6);
                 right: "20px",
               }}
             >
-              <Link href={`/articles/${article._id}`} passHref>
+              <Link href={`/articles/${article.slug?.current}`} passHref>
                 <ArrowForwardIcon
                   sx={{
                     cursor: "pointer",

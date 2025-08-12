@@ -1,110 +1,57 @@
-import { type Article } from "@/types/sanity/sanity.types";
-import Link from "next/link";
-import { urlFor } from "@/libs/sanity/fetch";
-import { motion } from "framer-motion";
-import { Card, CardMedia, Typography } from "@mui/material";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { type WpPost } from '@/types/apollo/articles.types';
+import Image from 'next/image';
+import Link from 'next/link';
 
-export async function ArticlePreviewCard({
-  article,
-  index,
-}: {
-  article: Article;
-  index: number;
-}) {
+export function ArticlePreviewCard({ title, excerpt, featuredImage, date, uri }: WpPost) {
+  // Format date for readability
+  const postDate = new Date(date);
+  const postDateFormatted = new Intl.DateTimeFormat('no-NO', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  }).format(postDate);
+
+  // Modify excerpt text string to replace [...] with just ...
+  const modifiedExcerpt = excerpt?.replace('[&hellip;]', '...') || '';
+
   return (
-    <div>
-      <Card
-        sx={{
-          display: "flex",
-          flexDirection: { xs: "column", md: "row" },
-          p: 2,
-        }}
-      >
-        <CardMedia
-          component="img"
-          image={
-            article.background
-              ? (await urlFor(article.background)).url()
-              : "/infoIcon3.png"
-          }
-          alt={article.title}
-          sx={{
-            width: { xs: "100%", md: "42%" },
-            height: { xs: 220, s: 300, md: 240 },
-            borderRadius: "10px",
-            objectFit: "cover",
-            marginBottom: { xs: 2, md: 0 },
-            marginRight: { md: 2 },
+    <div className='flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md transition-transform duration-300 ease-in-out  hover:shadow-2xl'>
+      <Link href={uri} className='relative block'>
+        <Image
+          src={featuredImage?.node?.sourceUrl || '/KoV-ov.png'}
+          alt={featuredImage?.node?.altText || 'Article image'}
+          sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+          style={{
+            width: '100%',
+            height: 'auto',
+            aspectRatio: '16/9',
+            objectFit: 'cover',
           }}
+          width={500}
+          height={300}
+          className='transition-transform duration-300 group-hover:scale-105'
         />
-        <div className="flex flex-col justify-between flex-1">
-          <div>
-            <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-              {article.title}
-            </Typography>
-            <div className="flex j items-center space-x-4 mb-6 text-sm text-moss-200">
-              <Typography variant="body2" color="text.secondary">
-                {new Date(article.releaseDate || Date.now()).toLocaleDateString(
-                  "no-NO",
-                  {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  }
-                )}
-              </Typography>
-              <span className="font-semibold px-2">|</span>
-              <Typography variant="body2" color="text.secondary">
-                Autor: {article.author || ""}
-              </Typography>
-            </div>
-            {/* <Typography
-              variant="body2"
-              color="text.primary"
-              sx={{
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                display: "-webkit-box",
-                WebkitLineClamp: 3,
-                WebkitBoxOrient: "vertical",
-              }}
-            >
-              {articleText?.substring(0, 250)}...
-            </Typography> */}
-          </div>
-          <div className="flex justify-end items-center mt-2">
-            <Link href={`/test/${article.slug?.current}`} passHref>
-              <Typography
-                variant="body2"
-                color="primary"
-                sx={{
-                  cursor: "pointer",
-                  fontSize: "16px",
-
-                  transition: "color 0.3s",
-                  color: "gray",
-                }}
-              >
-                Les mer
-              </Typography>{" "}
-              <ArrowForwardIcon
-                sx={{
-                  cursor: "pointer",
-                  color: "gray",
-                  fontSize: "36px",
-                  marginLeft: "3px",
-                  transition: "color 0.3s ease, transform 0.3s ease",
-                  "&:hover": {
-                    color: "black",
-                    transform: "rotate(45deg) scale(1.2)",
-                  },
-                }}
-              />
-            </Link>
-          </div>
+      </Link>
+      <div className='flex flex-1 flex-col mt-6 p-6'>
+        <div className='flex-1'>
+          <p className='text-sm text-gray-500'>{postDateFormatted}</p>
+          <Link href={uri}>
+            <h2 className='mt-2 text-xl font-bold text-gray-800 hover:text-moss-600'>{title}</h2>
+          </Link>
+          {excerpt && (
+            <div
+              className='prose prose-sm mt-3 text-gray-600'
+              dangerouslySetInnerHTML={{ __html: modifiedExcerpt }}
+            ></div>
+          )}
         </div>
-      </Card>
+        <Link
+          href={uri}
+          className='ml-auto mt-4 font-semibold text-moss-600 hover:text-moss-800 transition-transform duration-300 hover:scale-110 inline-block'
+        >
+          Les mer →
+        </Link>
+      </div>
     </div>
   );
 }

@@ -1,24 +1,30 @@
-"use client"
-import React from "react";
-import Hero from "../components/layout/navigation/hero/Hero";
-import Partnere from "../components/Partnere";
-import Fasiliteter from "../components/Fasiliteter";
-import InformationSection from "@/components/Informasjon";
-import ArticlesMain from "../components/ArticlesMain"
-import KontaktForm from "../components/KontaktForm"
-export default function Home() {
+// Global
+import { wpFetchEventsServer } from '@/lib/apollo/server/events/events';
+import { wpFetchPostsPaginatedServer } from '@/lib/apollo/server/articles/postsPaginated';
 
+// Components
+import Hero from '../components/layout/navigation/hero/Hero';
+import Partnere from '../components/Partnere';
+import Fasiliteter from '../components/Fasiliteter';
+import InformationSection from '@/components/Informasjon';
+import { ContactForm } from '@/components/forms/ContactForm';
+import { ArticlesContainer } from '@/components/layout/articles/container';
+import { UpcomingEvents } from '@/components/layout/events/upcomingEvents';
+
+export default async function Home() {
+  const articles = await wpFetchPostsPaginatedServer({ first: 3 });
+  const events = await wpFetchEventsServer({ first: 3 });
+
+  // Todo gjør om main til å bruke gap for mellomrom, fjern y margin fra underkomponter som bruker det
   return (
-    <main>
-    
+    <main className=''>
       <Hero />
       <InformationSection />
-      <ArticlesMain />
       <Fasiliteter />
+      <ArticlesContainer articles={articles.posts} />
       <Partnere />
-      <KontaktForm />
-
-
+      <UpcomingEvents events={events.events} />
+      <ContactForm />
     </main>
   );
 }

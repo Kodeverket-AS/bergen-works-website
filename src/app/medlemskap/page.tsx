@@ -1,34 +1,42 @@
-import { FasiliteterCard } from "../../components/ui/FasiliteterCard";
-import Eget_Kontor from "../../components/layout/eget_komtor/page";
-import Medlemskap_iconer from "../../components/layout/Medlemskap_iconer";
-import Kom_i_gang from "../../components/layout/kom_i_gang";
+import { ImageTextCard } from '@/components/ui/ImageTextCard';
+import { Button } from '@/components/ui/buttons/Button';
+import { GetStarted } from '@/components/layout/GetStarted';
+import MedlemskapServices from './MedlemskapServices';
+import Medlemskap_iconer from './MedlemskapIconer';
 
 export default function Incubator() {
   return (
     <main>
-      <div className="mb-10">
-        <FasiliteterCard
-          imageSrc="/bygg.png"
-          alt={"Image of building"}
-          headerText={"Medlemskap på dine premisser"}
+      <div className='mb-10'>
+        <ImageTextCard
+          imageSrc='/bygg.png'
+          alt={'Image of building'}
+          headerText={'Bli en del av et inspirerende fellesskap'}
+          headingTag='h1'
           paragraphText={
-            "Hos Bergen.Works finnes det ingen standardløsninger – bare fleksible medlemskap tilpasset deg og din hverdag. Velg mellom faste plasser, åpne kontorlandskap eller vårt populære Vennskap, der du har fast plass én dag i uken – perfekt for deg som kombinerer med hjemmekontor. Trenger du bare en digital base? Vi tilbyr også virtuelle medlemskap med tilgang til møterom, seminarer og faglige nettverk. Som medlem blir du en del av et levende fellesskap av gründere, rådgivere, investorer og kreative sjeler. Du får tilgang til mentoring, workshops, arrangementer og spennende samarbeid – både hos oss og våre partnere."
+            'Jobb side om side med noen av Bergens mest innovative  selskaper. Få tilgang til moderne fasiliteter, sosiale soner, møterom, medlemsfordeler, digitale tjenester og inspirerende arrangementer – alt tilrettelagt for at du og din bedrift skal vokse.'
           }
-          buttonText={"Ta kontakt"}
-          buttonLink={"/#contact-form"}
           smallScreenReverse={false}
           largeScreenReverse={false}
-          cardStyle={"gap-3 mg:gap-6"}
-          imageContainerStyle={"w-full h-[400] md:h-auto lg:w-3/5  lg:h-auto"}
-          headerStyle={"text-2xl md:text-2xl xl:text-3xl  "}
-          textContainerStyle={"bg-black text-white lg:w-2/5 xl:h-auto"}
-          paragraphStyle={"lg:my-4"}
-          buttonStyle="mt-8 bg-white text-[var(--text-dark)] hover:bg-gray-300 w-full md:w-auto mt-6 lg:text-lg"
+          cardStyle={'gap-3 md:gap-6'}
+          imageContainerStyle={'w-full h-[400px] md:h-auto md:w-1/2 lg:w-3/5 lg:h-auto'}
+          headerStyle={'text-2xl md:text-2xl xl:text-3xl'}
+          textContainerStyle={'bg-black text-white md:w-1/2 lg:w-2/5 xl:h-auto'}
+          paragraphStyle={'my-4'}
+          button={
+            <Button
+              href='/#contact-form'
+              variant={'secondary'}
+              className={'rounded-md w-full md:w-auto mt-8 lg:text-lg'}
+            >
+              Ta kontakt
+            </Button>
+          }
         />
       </div>
-      <Eget_Kontor />
+      <MedlemskapServices />
       <Medlemskap_iconer />
-      <Kom_i_gang />
+      <GetStarted />
     </main>
   );
 }
