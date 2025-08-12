@@ -5,35 +5,35 @@ import { GetStarted } from "@/components/layout/GetStarted";
 
 export default function Membership() {
   return (
-    <main className="">
-      <section className="flex flex-col w-full h-full md:flex-row gap-5">
-        <div className="relative flex-1 aspect-square">
-          <Image src="/Incubator.png" alt="Incubator landing page img" fill draggable={false} className="" />
+    <main className=' flex flex-col gap-3 md:gap-6'>
+      <section className='flex flex-col w-full h-full md:flex-row  gap-3 md:gap-6'>
+        <div className='relative flex-1 aspect-square'>
+          <Image src='/Incubator.png' alt='Incubator landing page img' fill draggable={false} className='' />
         </div>
-        <div className="bg-black text-light-text pt-6 pb-10 lg:pt-8 px-10  rounded-2xl w-full h-auto md:w-1/2 lg:w-2/3 ">
-          <h1 className="text-3xl font-bold mb-8 md:mb-4 lg:text-4xl xl:mb-8 xl:text-5xl font-space-grotesk">
+        <div className='bg-black text-light-text pt-6 pb-10 lg:pt-8 px-10  rounded-2xl w-full h-auto md:w-1/2 lg:w-2/3 '>
+          <h1 className='text-3xl font-bold mb-8 md:mb-4 lg:text-4xl xl:mb-8 xl:text-5xl font-space-grotesk'>
             Vi gir startups en stor fordel når det gjelder kapital innhenting
           </h1>
-          <p className="xl:text-lg">
+          <p className='xl:text-lg'>
             Har du en Gründer i magen? Bergen.Works utvikler et nytt inkubasjonskonsept for de som ønsker å realisere
             dine drømmer og idéer! Ta turen innom oss for en uformell prat og en kopp kaffe! Bergen.Works er startet av
             gründere, for gründere; hos oss finner du kompetanse innen ethvert felt! Kom for kontorplass, bli for
             miljøet.
           </p>
           <Button
-            href="/#contact-form"
-            variant={"secondary"}
-            className={"rounded-md w-full md:w-auto mt-8 md:mt-6 lg:mt-16 xl:text-lg"}
+            href='/#contact-form'
+            variant={'secondary'}
+            className={'rounded-md w-full md:w-auto mt-8 md:mt-6 lg:mt-16 xl:text-lg'}
           >
             Ta kontakt
           </Button>
         </div>
       </section>
 
-      <section className="w-full mt-10">
-        <div className="bg-moss-500 text-light-text p-10 rounded-2xl shadow-lg space-y-6">
-          <h2 className="text-3xl xl:text-4xl font-semibold">Hva kan du forvente som medlem?</h2>
-          <p className="text-lg xl:text-xl">
+      <section className='w-full flex flex-col gap-3 md:gap-6'>
+        <div className='bg-moss-500 text-light-text p-10 rounded-2xl shadow-lg space-y-6'>
+          <h2 className='text-3xl xl:text-4xl font-semibold'>Hva kan du forvente som medlem?</h2>
+          <p className='text-lg xl:text-xl'>
             Som medlem av Bergen.Works får du tilgang til en rekke tjenester og fordeler som hjelper deg å realisere
             ditt fulle potensial.
             <br />
@@ -42,7 +42,7 @@ export default function Membership() {
             forretningsmodellen din eller finne de rette investorene. Hos oss får du tilgang til et komplett
             støtteapparat som gir deg de beste forutsetningene for å lykkes.
           </p>
-          <ul className="space-y-4 text-base xl:text-lg list-disc list-inside">
+          <ul className='space-y-4 text-base xl:text-lg list-disc list-inside'>
             <li>
               <strong>Workshops:</strong> Praktiske og hands-on workshops som dekker viktige emner som produktutvikling,
               markedsføringsstrategier og operasjonell effektivitet.
@@ -73,7 +73,7 @@ export default function Membership() {
           </ul>
         </div>
       </section>
-    <GetStarted/>
+      <GetStarted />
     </main>
   );
 }

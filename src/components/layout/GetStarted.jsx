@@ -5,7 +5,7 @@ import { ContactForm } from "../forms/ContactForm";
 
 export function GetStarted() {
   return (
-    <section className="flex w-full h-auto my-4 ">
+    <section className="flex w-full h-auto  ">
       <div className="container mx-auto ">
         <div className="flex flex-col xl:flex-row gap-4 ">
           <div className="relative  w-full h-64 md:h-90 lg:h-100 xl:h-auto xl:flex-1">
