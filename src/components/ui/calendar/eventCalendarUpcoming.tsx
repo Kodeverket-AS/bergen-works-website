@@ -53,7 +53,7 @@ export function EventCalendarUpcoming({ events }: { events: WpEvent[]; activeDat
                 key={`upcoming-events-${event.slug}`}
                 className='group/card flex flex-col gap-2 p-2 text-sm rounded-md border border-gray-300 shadow-md'
               >
-                <h3 className='text-xl'>{event.title}</h3>
+                <h2 className='text-xl'>{event.title}</h2>
                 <div
                   className='line-clamp-6 lg:line-clamp-3'
                   dangerouslySetInnerHTML={{ __html: event.content || 'Beskrivelse mangler' }}
@@ -71,9 +71,7 @@ export function EventCalendarUpcoming({ events }: { events: WpEvent[]; activeDat
                   icon={<AssignmentIndIcon />}
                   text={event.organizers.nodes.map((organizer) => organizer.title).join(', ')}
                 />
-                {event.url && (
-                  <IconLink icon={<ExitToAppIcon />} link={event.url} label='Gå til påmelding' />
-                )}
+                {event.url && <IconLink icon={<ExitToAppIcon />} link={event.url} label='Gå til påmelding' />}
                 <span className='flex justify-between gap-2'>
                   {event.eventsCategories.nodes.length > 0 && (
                     <p
