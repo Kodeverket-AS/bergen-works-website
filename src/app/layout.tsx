@@ -1,5 +1,5 @@
 import { type Metadata } from 'next';
-import { Space_Grotesk } from 'next/font/google';
+import { Space_Grotesk, Montserrat } from 'next/font/google';
 import { Header } from '@/components/layout/header/header';
 import Footer from '@/components/layout/footer/footer';
 import { SanityProvider } from '@/context/SanityContext';
@@ -9,6 +9,12 @@ import MuiClientThemeProvider from '@/components/layout/MuiClientThemeProvider';
 import '@/assets/styles/globals.css';
 
 const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['400', '500', '600', '700'],
+});
+
+const montserrat = Montserrat({
   subsets: ['latin'],
   display: 'swap',
   weight: ['400', '500', '600', '700'],
@@ -74,7 +80,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   return (
     <html lang='en' className={spaceGrotesk.className}>
-      <body>
+      <body className={montserrat.className}>
         <MuiClientThemeProvider>
           <SanityProvider articles={articles} events={events}>
             <Header />

@@ -5,8 +5,8 @@
   --foreground: #171717;
 }
 @font-face {
-  font-family: "Work Sans";
-  src: url("WorkSans-VariableFont_wght.ttf") format("truetype");
+  font-family: "Montserrat";
+  src: url("Montserrat-VariableFont_wght.ttf") format("truetype");
 }
 
 @font-face {
@@ -45,7 +45,7 @@
   --color-dark-text: #1e1e1e;
 
   --font-space-grotesk: "Space Grotesk", sans-serif;
-  --font-work-sans: "Work Sans" , sans-serif;
+  --font-montserrat: "Montserrat" , sans-serif;
 
   /* --breakpoint-3xl: 120rem; */
   --breakpoint-middle: 42.5rem;
@@ -92,7 +92,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family:
-    Work Sans,
+    Montserrat,
     sans-serif;
   transition:
     background-color 0.3s ease,
