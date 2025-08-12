@@ -1,7 +1,8 @@
-import React from "react";
-import { partners } from "@/data/dataPartnere";
+import React from 'react';
+import { partners } from '@/data/dataPartnere';
 
 const Partnere = () => {
+
     return (
       <div className='w-full flex flex-col lg:flex-row  gap-3 md:gap-6 my-8 '>
         <div className='flex shadow-xl w-full lg:w-1/3 rounded-xl '>
@@ -21,5 +22,6 @@ const Partnere = () => {
         </div>
       </div>
     );
+
 };
 export default Partnere;

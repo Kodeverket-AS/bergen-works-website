@@ -1,9 +1,9 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 interface ImageTextCardProps {
   imageSrc: string;
   alt: string;
-  headingTag?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+  headingTag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   headerText: string;
   paragraphText: string;
   smallScreenReverse: boolean;
@@ -27,7 +27,9 @@ export function ImageTextCard({
   button,
   smallScreenReverse = false,
   largeScreenReverse = false,
+
   cardStyle = 'flex flex-col gap-3 md:gap-6',
+
   imageContainerStyle = '',
   imageStyle = '',
   imageInnerDivStyle = '',
@@ -39,7 +41,9 @@ export function ImageTextCard({
 
   return (
     <div
+
       className={`flex w-full h-full  ${cardStyle} 
+
         ${smallScreenReverse ? 'flex-col-reverse' : 'flex-col'} 
         ${largeScreenReverse ? 'md:flex-row-reverse' : 'md:flex-row'}`}
     >

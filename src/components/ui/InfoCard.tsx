@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import React, { useState } from "react";
-import { Modal } from "./Modal";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import Image from 'next/image';
+import React, { useState } from 'react';
+import { Modal } from './Modal';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 interface InfoCardProps {
   imageSrc: string;
@@ -30,6 +30,7 @@ export function InfoCard({
   imageSrc,
   title,
   description,
+
   modalImageSrc = "",
   modalImageAlt = "",
   modalHeader = "",
@@ -38,6 +39,7 @@ export function InfoCard({
   modalLinkText = "",
   modalLink = "",
   cardStyle= "flex flex-col gap-3 md:gap-6",
+
   imageStyle,
   textContentStyle,
   headerStyle,
@@ -49,8 +51,8 @@ export function InfoCard({
     <>
       <div
         onClick={() => setIsModalOpen(true)}
-        onKeyDown={(e) => e.key === "Enter" && setIsModalOpen(true)}
-        role="button"
+        onKeyDown={(e) => e.key === 'Enter' && setIsModalOpen(true)}
+        role='button'
         tabIndex={0}
         className={`transition-transform duration-300 will-change-transform ${cardStyle}`}
       >
@@ -58,17 +60,17 @@ export function InfoCard({
           <Image src={imageSrc} alt={title} fill draggable={false} />
         </div>
         <div className={`${textContentStyle}`}>
-          <h4 className={`${headerStyle}`}>{title}</h4>
+          <h3 className={`${headerStyle}`}>{title}</h3>
           <p className={`${paragraphStyle}`}>{description}</p>
-          <div className="mt-2 lg:mt-10">
+          <div className='mt-2 lg:mt-10'>
             <div className={`${arrowStyle}`}>
               <ArrowForwardIcon
                 sx={{
-                  cursor: "pointer",
-                  color: "inherit",
-                  transition: "color 0.3s ease, transform 0.3s ease",
+                  cursor: 'pointer',
+                  color: 'inherit',
+                  transition: 'color 0.3s ease, transform 0.3s ease',
 
-                  fontSize: "36px",
+                  fontSize: '36px',
                 }}
               />
             </div>

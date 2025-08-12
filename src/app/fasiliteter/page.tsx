@@ -1,14 +1,19 @@
-import { ImageTextCard } from "@/components/ui/ImageTextCard";
-import { Button } from "@/components/ui/buttons/Button";
+import { ImageTextCard } from '@/components/ui/ImageTextCard';
+import { Button } from '@/components/ui/buttons/Button';
 
 export default function Facilities() {
   return (
+
     <main className='flex flex-col gap-3 md:gap-6'>
       <div className=' flex flex-col gap-3 md:gap-6'>
+
         <ImageTextCard
           imageSrc='/bygg.png'
           alt={'Image of building'}
           headerText={'Fasiliteter'}
+
+          headingTag='h1'
+
           paragraphText={
             'Bergen.Works er stedet hvor du kan realisere ditt potensial. Her kombineres fleksible & moderne kontorløsninger, profesjonalitet og et varmt fellesskap. Vi legger til rette for at du kan fokusere på det du gjør best – mens vi tar oss av resten.'
           }
@@ -21,7 +26,9 @@ export default function Facilities() {
           smallScreenReverse={false}
         />
       </div>
+
       <div className='flex flex-col gap-3 md:gap-6'>
+
         <ImageTextCard
           imageSrc='/FasImg2.png'
           alt={'Image of Meetingroom'}
@@ -47,7 +54,9 @@ export default function Facilities() {
           }
         />
       </div>
+
       <div className='flex flex-col gap-3 md:gap-6'>
+
         <ImageTextCard
           imageSrc={'/FasImg3.png'}
           alt={'Image of kitchen area'}
