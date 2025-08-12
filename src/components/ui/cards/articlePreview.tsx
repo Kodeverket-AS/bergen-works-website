@@ -36,7 +36,7 @@ export function ArticlePreviewCard({ title, excerpt, featuredImage, date, uri }:
         <div className='flex-1'>
           <p className='text-sm text-gray-500'>{postDateFormatted}</p>
           <Link href={uri}>
-            <h3 className='mt-2 text-xl font-bold text-gray-800 hover:text-moss-600'>{title}</h3>
+            <h2 className='mt-2 text-xl font-bold text-gray-800 hover:text-moss-600'>{title}</h2>
           </Link>
           {excerpt && (
             <div

@@ -1,9 +1,9 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 interface ImageTextCardProps {
   imageSrc: string;
   alt: string;
-  headingTag?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+  headingTag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   headerText: string;
   paragraphText: string;
   smallScreenReverse: boolean;
@@ -19,29 +19,29 @@ interface ImageTextCardProps {
 }
 
 export function ImageTextCard({
-  imageSrc = "",
-  alt = "",
-  headingTag = "h2",
+  imageSrc = '',
+  alt = '',
+  headingTag = 'h2',
   headerText,
   paragraphText,
   button,
   smallScreenReverse = false,
   largeScreenReverse = false,
-  cardStyle = "",
-  imageContainerStyle = "",
-  imageStyle = "",
-  imageInnerDivStyle = "",
-  textContainerStyle = "",
-  headerStyle = "",
-  paragraphStyle = "",
+  cardStyle = '',
+  imageContainerStyle = '',
+  imageStyle = '',
+  imageInnerDivStyle = '',
+  textContainerStyle = '',
+  headerStyle = '',
+  paragraphStyle = '',
 }: ImageTextCardProps) {
   const Heading = headingTag;
 
   return (
     <div
       className={`flex w-full h-full mb-10 ${cardStyle} 
-        ${smallScreenReverse ? "flex-col-reverse" : "flex-col"} 
-        ${largeScreenReverse ? "md:flex-row-reverse" : "md:flex-row"}`}
+        ${smallScreenReverse ? 'flex-col-reverse' : 'flex-col'} 
+        ${largeScreenReverse ? 'md:flex-row-reverse' : 'md:flex-row'}`}
     >
       <div className={`relative w-full ${imageContainerStyle}`}>
         <div className={` ${imageInnerDivStyle}`}>
@@ -64,14 +64,10 @@ export function ImageTextCard({
         </div>
       </div>
 
-      <div
-        className={`p-10 shadow-card flex flex-col rounded-2xl ${textContainerStyle}`}
-      >
-        <Heading className={`font-semibold ${headerStyle}`}>
-          {headerText}
-        </Heading>
+      <div className={`p-10 shadow-card flex flex-col rounded-2xl ${textContainerStyle}`}>
+        <Heading className={`font-semibold ${headerStyle}`}>{headerText}</Heading>
         <p className={`${paragraphStyle}`}>{paragraphText}</p>
-        {<div className="">{button}</div>}
+        {<div className=''>{button}</div>}
       </div>
     </div>
   );
