@@ -21,7 +21,7 @@ interface ImageTextCardProps {
 export function ImageTextCard({
   imageSrc = '',
   alt = '',
-  headingTag = 'h1',
+  headingTag = 'h2',
   headerText,
   paragraphText,
   button,
