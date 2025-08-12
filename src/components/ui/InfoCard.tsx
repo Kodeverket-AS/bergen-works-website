@@ -11,6 +11,7 @@ interface InfoCardProps {
   description: string;
   alt: string;
   link?: string;
+  isVippsLink?: boolean;
   modalImageSrc?: string;
   modalImageAlt?: string;
   modalHeader?: string;
@@ -29,6 +30,7 @@ interface InfoCardProps {
 export function InfoCard({
   imageSrc,
   title,
+  isVippsLink = false,
   description,
   modalImageSrc = "",
   modalImageAlt = "",
@@ -78,6 +80,7 @@ export function InfoCard({
       <Modal
         open={isModalOpen}
         onClose={() => setIsModalOpen(false)}
+        isVippsLink={isVippsLink}
         modalImageSrc={modalImageSrc}
         modalImageAlt={modalImageAlt}
         modalHeader={modalHeader}

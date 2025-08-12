@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { InfoCard } from "./ui/InfoCard";
-// import { Button } from "./ui/buttons/Button";
+
 
 export default function InformationSection() {
   return (
@@ -76,9 +76,10 @@ export default function InformationSection() {
             modalParagraph2={
               "Dette inkluderer følgende: Fast plass i åpent kontorlandskap, nytraktet kaffe, tilgang til møterom, rask wifi, rengjøring, strøm, telefonbåser samt invitasjon til alle arrangementer i Bergen.Works regi."
             }
+            isVippsLink
             modalLinkText={"Ta kontakt"}
-            modalLink={"/#contact-form"}
-          />
+            modalLink={"www.vipps.no"}
+          />          
         </div>
         <div className="text-light-text lg:w-1/3">
           <InfoCard
@@ -102,10 +103,13 @@ export default function InformationSection() {
             modalParagraph1={"3200,-/ mnd (eks. MVA)"}
             modalParagraph2={
               "Dette inkluderer følgende: Tilgang til ledig plass i åpent kontorlandskap, nytraktet kaffe, tilgang til møterom, rask wifi, rengjøring, strøm, telefonbåser samt invitasjon til alle arrangementer i Bergen.Works regi."
-            }
+            }            
+            isVippsLink
             modalLinkText={"Ta kontakt"}
-            modalLink={"/#contact-form"}
-          />
+            modalLink={"www.vipps.no"}            
+          />          
+         
+
         </div>
         <div className="text-[var(--text-dark)] lg:w-1/3">
           <InfoCard
