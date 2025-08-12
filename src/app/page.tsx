@@ -17,7 +17,7 @@ export default async function Home() {
 
   // Todo gjør om main til å bruke gap for mellomrom, fjern y margin fra underkomponter som bruker det
   return (
-    <main className=''>
+    <main className='flex flex-col gap-3 md:gap-6'>
       <Hero />
       <InformationSection />
       <Fasiliteter />

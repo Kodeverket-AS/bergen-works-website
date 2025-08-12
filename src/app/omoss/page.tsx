@@ -5,7 +5,8 @@ import Image from "next/image";
 
 export default function Incubator() {
   return (
-    <main className="">
+   
+    <main className="flex flex-col gap-3 md:gap-6">
       <ImageTextCard
         imageSrc="/bygg.png"
         alt="Image of building"
@@ -44,7 +45,8 @@ export default function Incubator() {
           </Button>
         }
       />
-      <section className="w-full my-10">
+
+      <section className="w-full flex flex-col gap-3 md:gap-6">
         <div className="bg-[#606c38] text-[#fffafa] p-8 md:p-10 rounded-2xl shadow-lg flex flex-col md:flex-row items-center gap-6">
           <Image
             src="/joachim.jpg"

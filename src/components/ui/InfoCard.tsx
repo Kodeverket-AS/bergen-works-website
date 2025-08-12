@@ -37,7 +37,7 @@ export function InfoCard({
   modalParagraph2 = "",
   modalLinkText = "",
   modalLink = "",
-  cardStyle,
+  cardStyle= "flex flex-col gap-3 md:gap-6",
   imageStyle,
   textContentStyle,
   headerStyle,
