@@ -191,12 +191,12 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
           </div>
         )}
         <div className='flex flex-col gap-2'>
-          <h2>Eventen ble laget</h2>
+          <h3>Eventen ble laget</h3>
           <IconText icon={<EventIcon />} text={dateStringFormat(event.date, { dateStyle: 'full' })} />
         </div>
         {event.modified !== event.date && (
           <div className='flex flex-col gap-2'>
-            <h2>Sist oppdatert</h2>
+            <h3>Sist oppdatert</h3>
             <IconText icon={<EditCalendarIcon />} text={dateStringToRelative(event.modified)} />
           </div>
         )}

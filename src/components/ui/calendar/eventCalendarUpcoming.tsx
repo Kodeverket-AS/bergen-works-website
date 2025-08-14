@@ -53,7 +53,7 @@ export function EventCalendarUpcoming({ events }: { events: WpEvent[]; activeDat
                 key={`upcoming-events-${event.slug}`}
                 className='group/card flex flex-col gap-2 p-2 text-sm rounded-md border border-gray-300 shadow-md'
               >
-                <h2 className='text-xl'>{event.title}</h2>
+                <h3 className='text-xl'>{event.title}</h3>
                 <div
                   className='line-clamp-6 lg:line-clamp-3'
                   dangerouslySetInnerHTML={{ __html: event.content || 'Beskrivelse mangler' }}
