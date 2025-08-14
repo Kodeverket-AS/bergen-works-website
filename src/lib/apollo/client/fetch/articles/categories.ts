@@ -1,6 +1,7 @@
-import { type WordpressCategoriesResponse, type WordpressCategoriesResult } from '@/types/apollo/response.types';
+import { type WpCategory } from '@/types/apollo/shared.types';
+import { type WpCategoriesResponse } from '@/types/apollo/articles.types';
 import { ApolloError, gql } from '@apollo/client';
-import apolloClient from '@/lib/apollo/client';
+import apolloClient from '@/lib/apollo/client/client';
 
 const QUERY = gql`
   query GetCategories {
@@ -22,24 +23,19 @@ const QUERY = gql`
  *
  * @returns A result object containing the list of categories or an error if the fetch fails.
  */
-export async function wpFetchCategories(): Promise<WordpressCategoriesResult> {
+export async function wpFetchCategories(): Promise<{ categories: WpCategory[]; error: string | null }> {
   try {
-    const response = await apolloClient.query<WordpressCategoriesResponse>({
+    const { data, error } = await apolloClient.query<WpCategoriesResponse>({
       query: QUERY,
     });
 
-    // If fetch fails, return response as this helps ssg error handling
-    if (response?.error) return { categories: [], error: response.error.cause };
+    if (error) return { categories: [], error: error.message };
 
-    // Gather necessary datasets
-    const categories = response.data.categories.nodes;
-    const error = response.error?.cause;
-
-    return { categories, error };
+    return { categories: data.categories?.nodes || [], error: null };
   } catch (error) {
     if (error instanceof ApolloError) {
       console.error(error.cause);
-      return { categories: [], error: error.cause };
+      return { categories: [], error: error.message };
     }
     return {
       categories: [],

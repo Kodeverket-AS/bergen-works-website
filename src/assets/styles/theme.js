@@ -1,6 +1,12 @@
 import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
+  typography: {
+    fontFamily: 'var(--font-montserrat), sans-serif',
+    allVariants: {
+      fontFamily: 'var(--font-montserrat), sans-serif',
+    },
+  },
   breakpoints: {
     values: {
       xs: 0,

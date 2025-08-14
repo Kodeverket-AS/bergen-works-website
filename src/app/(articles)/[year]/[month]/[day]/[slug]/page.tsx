@@ -2,13 +2,16 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { wpFetchPost } from '@/lib/apollo/fetch/post';
-import { wpFetchURIs } from '@/lib/apollo/fetch/generateURIs';
+import { wpFetchURIsServer } from '@/lib/apollo/server/articles/generateURIs';
+import { wpFetchPostServer } from '@/lib/apollo/server/articles/post';
 import { ArticleTag } from '@/components/ui/tags/articleTag';
 import '@/assets/styles/frontend.min.css';
 
 export async function generateStaticParams() {
-  const result = await wpFetchURIs();
+  const result = await wpFetchURIsServer();
+
+  // Quietly quit on error
+  if (result.error) return [];
 
   return result.uri.map((item) => ({
     slug: item.uri,
@@ -38,12 +41,12 @@ export default async function Page({
   if (isNaN(postDate.getTime())) return notFound();
 
   // Fetch content from wordpress site based on slug, returns 404 page if not found.
-  const result = await wpFetchPost(slug.trim());
+  const result = await wpFetchPostServer(slug.trim());
   if (result.error || !result.post) return notFound();
 
   // Collect required data from result
   const article = result.post;
-  const featuredImage = result.post.featuredImage.node || null;
+  const featuredImage = result.post.featuredImage?.node || null;
 
   // Format article date for readability
   const dateFormatter = new Intl.DateTimeFormat('no-NO', {
@@ -84,13 +87,21 @@ export default async function Page({
         </p>
       </section>
       <div id='articleFooter' className='flex flex-col items-center gap-4'>
-        <p>Klikk på en tag for å finne artikler med lignende emner</p>
-        <span className='mx-auto w-full max-w-xl flex flex-wrap justify-center gap-2'>
-          {article.tags && article.tags.nodes.map((tag) => <ArticleTag key={tag.id} {...tag} />)}
-        </span>
-        <Link href='/artikler' className='hover:underline'>
-          Eller gå tilbake til hovedside for artikler
-        </Link>
+        {article.tags.nodes.length > 0 ? (
+          <>
+            <p>Klikk på en tag for å finne artikler med lignende emner</p>
+            <span className='mx-auto w-full max-w-xl flex flex-wrap justify-center gap-2'>
+              {article.tags && article.tags.nodes.map((tag) => <ArticleTag key={tag.id} {...tag} />)}
+            </span>
+            <Link href='/artikler' className='hover:underline'>
+              Eller gå tilbake til hovedside for artikler
+            </Link>
+          </>
+        ) : (
+          <Link href='/artikler' className='hover:underline'>
+            Gå tilbake til hovedside for artikler
+          </Link>
+        )}
       </div>
     </main>
   );

@@ -1,6 +1,7 @@
-import { type WordpressTagsResponse, type WordpressTagsResult } from '@/types/apollo/response.types';
+import { type WpTagsResponse } from '@/types/apollo/articles.types';
+import { type WpTag } from '@/types/apollo/shared.types';
 import { ApolloError, gql } from '@apollo/client';
-import apolloClient from '@/lib/apollo/client';
+import apolloClient from '@/lib/apollo/client/client';
 
 const QUERY = gql`
   query GetTags {
@@ -23,24 +24,18 @@ const QUERY = gql`
  * @returns A result object containing the list of tags or an error if the fetch fails.
  */
 
-export async function wpFetchTags(): Promise<WordpressTagsResult> {
+export async function wpFetchTags(): Promise<{ tags: WpTag[]; error: string | null }> {
   try {
-    const response = await apolloClient.query<WordpressTagsResponse>({
+    const { data, error } = await apolloClient.query<WpTagsResponse>({
       query: QUERY,
     });
 
-    // If fetch fails, return response as this helps ssg error handling
-    if (response?.error) return { tags: [], error: response.error.cause };
+    if (error) return { tags: [], error: 'GraphQL response error' };
 
-    // Gather necessary datasets
-    const tags = response.data.tags.nodes;
-    const error = response.error?.cause;
-
-    return { tags, error };
+    return { tags: data.tags?.nodes || [], error: null };
   } catch (error) {
     if (error instanceof ApolloError) {
-      console.error(error.cause);
-      return { tags: [], error: error.cause };
+      return { tags: [], error: error.message };
     }
     return {
       tags: [],
