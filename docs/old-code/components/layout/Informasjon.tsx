@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { InfoCard } from './ui/InfoCard';
+import { InfoCard } from '@/components/ui/InfoCard';
 
 export function InformationSection() {
   return (

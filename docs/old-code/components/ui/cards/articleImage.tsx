@@ -1,4 +1,4 @@
-import { urlFor } from '@/libs/sanity/client';
+import { urlFor } from '@/lib/sanity/client';
 import { Article } from '@/types/sanity/sanity.types';
 import Image from 'next/image';
 
