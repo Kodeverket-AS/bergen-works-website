@@ -1,26 +1,24 @@
 import Image from 'next/image';
-import { InfoCard } from './ui/InfoCard';
-// import { Button } from "./ui/buttons/Button";
 
-export default function InformationSection() {
+export function InformationSection() {
   return (
-    <div className='  flex flex-col items-center justify-center gap-3 md:gap-6'>
-      <div className='co-work  lg:max-h-[360px] xl:max-h-[400px] bg-[#1D1D1D] text-light-text lg:bg-transparent rounded-2xl flex flex-col items-center lg:flex-row  h-[780px] w-full lg:h-[450px] xl:h-[500px] gap-3 md:gap-6 '>
-        <div className='p-10 select-none  md:bg-[#1D1D1D]  w-full h-full lg:w-1/3 rounded-2xl'>
-          <div className='bg-black relative rounded-lg w-full h-70  xl:h-full '>
+    <div className='flex flex-col items-center justify-center gap-3 md:gap-6'>
+      <div className='co-work lg:max-h-[360px] xl:max-h-[400px] bg-[#1D1D1D] text-light-text lg:bg-transparent rounded-2xl grid lg:grid-cols-3 items-center lg:flex-row h-[780px] w-full lg:h-[450px] xl:h-[500px] gap-3 md:gap-6 '>
+        <div className='p-10 select-none md:bg-[#1D1D1D] w-full h-full lg:col-span-1 rounded-2xl'>
+          <div className='bg-black relative rounded-lg w-full h-70 xl:h-full '>
             <Image
               src='/officeCircle.png'
               alt='Picture of logo and people in meetingroom'
               fill
               draggable={false}
-              className='object-contain rounded-2xl p-4  '
+              className='object-contain rounded-2xl p-4 '
               priority
             />
           </div>
         </div>
-        <div className='text-[var(--text-light)] w-full px-10 rounded-2xl lg:w-2/3 h-full lg:bg-[#1D1D1D]'>
+        <div className='text-[var(--text-light)] w-full px-10 rounded-2xl lg:col-span-2 h-full lg:bg-[#1D1D1D]'>
           <div className='lg:px-2 3xl:px-10 '>
-            <h1 className='font-bold text-[40px] xl:text-[50px] md:mt-1 lg:my-8 xl:mt-10 3xl:mt-12'>Co-work</h1>
+            <h2 className='font-bold text-[40px] xl:text-[50px] md:mt-1 lg:my-8 xl:mt-10 3xl:mt-12'>Co-work</h2>
             <p className='lg:hidden my-1'>
               Med en beliggenhet i vakre Skostredet har Bergen.Works drevet coworking space siden 2017. Vi ble startet
               av gründere og for gründere.
@@ -34,92 +32,6 @@ export default function InformationSection() {
               Hos Bergen.Works har vi ledige plasser for deg som vil jobbe i et dynamisk og sosialt fellesskap – enten
               du er gründer, investor, freelancer eller en del av en bedrift.
             </p>
-          </div>
-        </div>
-      </div>
-      <div className='w-full flex flex-col lg:flex-row gap-3 md:gap-6 '>
-        <div className='lg:w-1/3'>
-          <div className='text-dark-text '>
-            <InfoCard
-              cardStyle='bg-moss-200 flex justify-center items-center w-full h-[140px] group cursor-pointer lg:h-[200px] rounded-2xl md:hover:scale-105'
-              imageSrc='/infoIcon1.png'
-              alt='Icon'
-              title='Fast Plass'
-              description='3990,- / mnd'
-              imageStyle={
-                'w-[80px] h-[80px] md:w-[90px] md:h-[90px] lg:w-[120px] lg:h-[120px] xl:w-[140px] xl:h-[140px]'
-              }
-              textContentStyle={'p-4 xl:px-8'}
-              headerStyle={'h-full text-2xl  font-bold'}
-              paragraphStyle={'mt-2 text-sm sm:text-base'}
-              arrowStyle={
-                'absolute bottom-4 right-4 duration-300 md:group-hover:scale-[1.2]  md:group-hover:-translate-x-1 md:group-hover:translate-y-1 md:group-hover:rotate-45'
-              }
-              modalImageSrc={'/infoIcon1.png'}
-              modalImageAlt={'Icon'}
-              modalHeader={'Fast Plass'}
-              modalParagraph1={'3990,-/ mnd (eks. MVA)'}
-              modalParagraph2={
-                'Dette inkluderer følgende: Fast plass i åpent kontorlandskap, nytraktet kaffe, tilgang til møterom, rask wifi, rengjøring, strøm, telefonbåser samt invitasjon til alle arrangementer i Bergen.Works regi.'
-              }
-              modalLinkText={'Ta kontakt'}
-              modalLink={'/#contact-form'}
-            />
-          </div>
-        </div>
-        <div className='lg:w-2/3 flex flex-col lg:flex-row gap-3 md:gap-6'>
-          <div className='text-light-text lg:w-1/2'>
-            <InfoCard
-              cardStyle='bg-moss-600 flex justify-center items-center w-full h-[140px] group cursor-pointer lg:h-[200px]  rounded-2xl  duration-300 md:hover:scale-105'
-              imageSrc='/infoIcon2.png'
-              alt='Icon'
-              title='Åpen Plass'
-              description='3200,- / mnd'
-              imageStyle={
-                'w-[80px] h-[80px] md:w-[90px] md:h-[90px] lg:w-[120px] lg:h-[120px] xl:w-[140px] xl:h-[140px]'
-              }
-              textContentStyle={'p-4 xl:px-8'}
-              headerStyle={'h-full text-2xl  font-bold'}
-              paragraphStyle={'mt-2 text-sm sm:text-base'}
-              arrowStyle={
-                'absolute bottom-4 right-4 duration-300 md:group-hover:scale-[1.2]  md:group-hover:-translate-x-1 md:group-hover:translate-y-1 md:group-hover:rotate-45'
-              }
-              modalImageSrc={'/infoIcon2.png'}
-              modalImageAlt={'Icon'}
-              modalHeader={'Åpen plass'}
-              modalParagraph1={'3200,-/ mnd (eks. MVA)'}
-              modalParagraph2={
-                'Dette inkluderer følgende: Tilgang til ledig plass i åpent kontorlandskap, nytraktet kaffe, tilgang til møterom, rask wifi, rengjøring, strøm, telefonbåser samt invitasjon til alle arrangementer i Bergen.Works regi.'
-              }
-              modalLinkText={'Ta kontakt'}
-              modalLink={'/#contact-form'}
-            />
-          </div>
-          <div className='text-[var(--text-dark)] lg:w-1/2'>
-            <InfoCard
-              cardStyle='bg-moss-200 flex justify-center items-center w-full h-[140px] group cursor-pointer lg:h-[200px] rounded-2xl duration-300 md:hover:scale-105'
-              imageSrc='/infoIcon3.png'
-              alt='Icon'
-              title='Inkubasjon'
-              description='Gratis for deltakere'
-              imageStyle={
-                'w-[80px] h-[80px] md:w-[90px] md:h-[90px] lg:w-[120px] lg:h-[120px] xl:w-[140px] xl:h-[140px]'
-              }
-              textContentStyle={'flex flex-col justify-center p-4 xl:px-8'}
-              headerStyle={'h-full text-2xl  font-bold '}
-              paragraphStyle={'mt-2 text-sm sm:text-base'}
-              arrowStyle={
-                'absolute bottom-4 right-4  duration-300  md:group-hover:scale-[1.2]  md:group-hover:-translate-x-1 md:group-hover:translate-y-1 md:group-hover:rotate-45'
-              }
-              modalImageSrc={'/infoIcon3.png'}
-              modalImageAlt={'Icon'}
-              modalHeader={'Inkubator på Bergen.Works'}
-              modalParagraph2={
-                'Har du en Gründer i magen? Bergen.Works utvikler et nytt inkubasjonskonsept for de som ønsker å realisere dine drømmer og idéer! Ta turen innom oss for en uformell prat og en kopp kaffe! Bergen.Works er startet av gründere, for gründere; hos oss finner du kompetanse innen ethvert felt! Kom for kontorplass, bli for miljøet.'
-              }
-              modalLinkText={'Ta kontakt'}
-              modalLink={'/#contact-form'}
-            />
           </div>
         </div>
       </div>

@@ -23,6 +23,9 @@
 # local backups
 /.backups
 
+# local settings
+/.vscode
+
 # misc
 .DS_Store
 *.pem
