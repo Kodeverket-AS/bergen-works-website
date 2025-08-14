@@ -9,7 +9,8 @@ export default async function EventsPage() {
   if (response.error) return <main>{response.error}</main>;
 
   return (
-    <main className='flex flex-col pb-8'>
+    <main className='flex flex-col gap-6 pb-8'>
+      <h1 className='text-center'>Eventer</h1>
       <EventCalendar events={response.events} />
     </main>
   );
