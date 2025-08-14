@@ -28,9 +28,10 @@ export async function POST(req: NextRequest) {
       revalidateTag(tag);
     });
 
+    console.info('[Sanity revalidate tag api route]', { ok: true, tags: body.tags });
     return NextResponse.json({ body });
-  } catch (err) {
-    console.error('[Sanity revalidate tag api route]', { err });
-    return new Response((err as Error).message, { status: 500 });
+  } catch (error) {
+    console.error('[Sanity revalidate tag api route]', { error });
+    return new Response((error as Error).message, { status: 500 });
   }
 }

@@ -74,6 +74,7 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    console.info('[Wordpress revalidate tag api route]', { ok: true, type, cause, slug });
     return NextResponse.json({ ok: true });
   } catch (error) {
     // Catch any runtime errors during revalidation
