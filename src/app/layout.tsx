@@ -74,7 +74,7 @@ export const metadata: Metadata = {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang='en' className={spaceGrotesk.className}>
-      <body className={montserrat.className}>
+      <body className={montserrat.className + ' flex flex-col gap-3 md:gap-6'}>
         <MuiClientThemeProvider>
           <Header />
           {children}

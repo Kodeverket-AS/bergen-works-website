@@ -159,9 +159,9 @@ export function EventCalendar({ events }: { events: WpEvent[] }) {
           ))}
         </div>
         <div className='lg:flex-1/3 flex flex-col gap-4 p-4 border border-gray-200 shadow-md rounded-md'>
-          <h3 className='text-center text-2xl'>
+          <h1 className='text-center text-2xl'>
             Hva skjer i <span className='capitalize'>{MONTH_NAME[currentMonth]}</span>
-          </h3>
+          </h1>
           {activeEvents.length === 0 && (
             <p className='italic text-sm my-auto'>
               Ingen arrangementer ennå - følg med, det kommer kanskje noe spennende!

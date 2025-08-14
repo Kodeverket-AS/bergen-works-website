@@ -105,7 +105,7 @@ export function ContactForm() {
         <div className='flex-1 space-y-6'>
           <Card className='py-6 bg-white shadow-lg' sx={{ borderRadius: '1rem' }}>
             <CardContent>
-              <Typography variant='h5' gutterBottom>
+              <Typography variant='h2' gutterBottom>
                 Kom i gang
               </Typography>
               <Typography variant='body1' className='text-lg'>
@@ -198,7 +198,7 @@ export function ContactForm() {
                   helperText={errors.message}
                 />
                 <div className='flex flex-col gap-4 my-4 p-4 border rounded-lg border-gray-300'>
-                  <Typography variant='subtitle1' className='flex items-center gap-2'>
+                  <Typography variant='h3' className='flex items-center gap-2'>
                     Kategori
                     <Tooltip title='Velg alle alternativer som passer for deg'>
                       <InfoIcon fontSize='medium' color='primary' />
