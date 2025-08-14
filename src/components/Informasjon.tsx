@@ -4,13 +4,8 @@ import { InfoCard } from './ui/InfoCard';
 
 export default function InformationSection() {
   return (
-
     <div className='  flex flex-col items-center justify-center gap-3 md:gap-6'>
-      <div
-        className='co-work  lg:max-h-[360px] xl:max-h-[400px] bg-[#1D1D1D] text-light-text lg:bg-transparent 
-      rounded-2xl flex flex-col items-center lg:flex-row  h-[780px] w-full lg:h-[450px] xl:h-[500px] gap-3 md:gap-6 '
-      >
-
+      <div className='co-work  lg:max-h-[360px] xl:max-h-[400px] bg-[#1D1D1D] text-light-text lg:bg-transparent rounded-2xl flex flex-col items-center lg:flex-row  h-[780px] w-full lg:h-[450px] xl:h-[500px] gap-3 md:gap-6 '>
         <div className='p-10 select-none  md:bg-[#1D1D1D]  w-full h-full lg:w-1/3 rounded-2xl'>
           <div className='bg-black relative rounded-lg w-full h-70  xl:h-full '>
             <Image
@@ -25,9 +20,7 @@ export default function InformationSection() {
         </div>
         <div className='text-[var(--text-light)] w-full px-10 rounded-2xl lg:w-2/3 h-full lg:bg-[#1D1D1D]'>
           <div className='lg:px-2 3xl:px-10 '>
-
             <h1 className='font-bold text-[40px] xl:text-[50px] md:mt-1 lg:my-8 xl:mt-10 3xl:mt-12'>Co-work</h1>
-
             <p className='lg:hidden my-1'>
               Med en beliggenhet i vakre Skostredet har Bergen.Works drevet coworking space siden 2017. Vi ble startet
               av gründere og for gründere.
@@ -41,22 +34,11 @@ export default function InformationSection() {
               Hos Bergen.Works har vi ledige plasser for deg som vil jobbe i et dynamisk og sosialt fellesskap – enten
               du er gründer, investor, freelancer eller en del av en bedrift.
             </p>
-            {/* <div className='w-full my-8 xl:my-14 3xl:mt-24'>
-                            <Button
-                                href='/#contact-form'
-                                className=' lg:text-lg font-bold w-full lg:w-auto rounded-sm'
-                                variant={"secondary"}
-                            >
-                                Ta kontakt
-                            </Button>
-                        </div> */}
           </div>
         </div>
       </div>
-
-      <div className='w-full   flex flex-col lg:flex-row  gap-3 md:gap-6 '>
-
-        <div className="lg:w-1/3">
+      <div className='w-full flex flex-col lg:flex-row gap-3 md:gap-6 '>
+        <div className='lg:w-1/3'>
           <div className='text-dark-text '>
             <InfoCard
               cardStyle='bg-moss-200 flex justify-center items-center w-full h-[140px] group cursor-pointer lg:h-[200px] rounded-2xl md:hover:scale-105'
@@ -85,7 +67,6 @@ export default function InformationSection() {
             />
           </div>
         </div>
-
         <div className='lg:w-2/3 flex flex-col lg:flex-row gap-3 md:gap-6'>
           <div className='text-light-text lg:w-1/2'>
             <InfoCard
@@ -140,7 +121,6 @@ export default function InformationSection() {
               modalLink={'/#contact-form'}
             />
           </div>
-
         </div>
       </div>
     </div>
