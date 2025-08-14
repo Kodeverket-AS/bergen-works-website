@@ -1,13 +1,13 @@
-import { type QueryParams } from "sanity";
-import { type SanityImageSource } from "@sanity/image-url/lib/types/types";
-import { ClientConfig, createClient } from "next-sanity";
-import imageUrlBuilder from "@sanity/image-url";
+import { type QueryParams } from 'sanity';
+import { type SanityImageSource } from '@sanity/image-url/lib/types/types';
+import { ClientConfig, createClient } from 'next-sanity';
+import imageUrlBuilder from '@sanity/image-url';
 
 // Client configuration setup
 const clientConfig: ClientConfig = {
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-  apiVersion: process.env.NEXT_PUBLIC_SANITY_API_VERSION ?? "2024-11-04",
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? "development",
+  apiVersion: process.env.NEXT_PUBLIC_SANITY_API_VERSION ?? '2024-11-04',
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? 'development',
 };
 
 // Initialize sanity client
@@ -21,7 +21,7 @@ export const sanityBuilder = imageUrlBuilder(sanityClient);
  * @param source sanity image object
  * @returns url location for given resource, handles both cdn and no cache states
  */
-export async function urlFor(source: SanityImageSource) {
+export function urlFor(source: SanityImageSource) {
   return sanityBuilder.image(source);
 }
 
