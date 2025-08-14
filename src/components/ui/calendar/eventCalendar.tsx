@@ -121,29 +121,29 @@ export function EventCalendar({ events }: { events: WpEvent[] }) {
 
   return (
     <div className='flex flex-col gap-8'>
-      <div className='relative flex justify-center gap-4 p-4'>
-        <button onClick={() => navigateMonth('prev')} className=''>
-          <ArrowBackIcon />
-        </button>
-        <select
-          aria-label='Velg måned'
-          value={currentMonth}
-          onChange={(e) => handleMonthSelect(Number(e.target.value))}
-          className='p-2 capitalize font-bold sm:text-3xl text-center'
-        >
-          {MONTH_NAME.map((month, index) => (
-            <option key={month} value={index} className='text-xl'>
-              {month}
-            </option>
-          ))}
-        </select>
-        <button onClick={() => navigateMonth('next')} className=''>
-          <ArrowForwardIcon />
-        </button>
-        <p className='absolute left-1/2 -translate-x-1/2 bottom-1 text-sm text-gray-500'>{currentYear}</p>
-      </div>
       <div className='flex flex-col lg:flex-row gap-4'>
         <div className='w-full lg:sticky lg:top-4 self-start lg:flex-2/3 grid grid-cols-7 gap-1 p-4 border border-gray-200 shadow-md rounded-md'>
+          <div className='col-span-7 relative flex justify-center gap-4 pb-2'>
+            <button onClick={() => navigateMonth('prev')} className=''>
+              <ArrowBackIcon />
+            </button>
+            <select
+              aria-label='Velg måned'
+              value={currentMonth}
+              onChange={(e) => handleMonthSelect(Number(e.target.value))}
+              className='p-2 capitalize font-bold sm:text-xl text-center'
+            >
+              {MONTH_NAME.map((month, index) => (
+                <option key={month} value={index}>
+                  {month}
+                </option>
+              ))}
+            </select>
+            <button onClick={() => navigateMonth('next')} className=''>
+              <ArrowForwardIcon />
+            </button>
+            <p className='absolute left-1/2 -translate-x-1/2 -bottom-1 text-sm text-gray-500'>{currentYear}</p>
+          </div>
           {DAY_NAME.map((day) => (
             <div key={day} className='flex justify-center p-2'>
               <p className='truncate text-clip'>{day}</p>
@@ -159,9 +159,9 @@ export function EventCalendar({ events }: { events: WpEvent[] }) {
           ))}
         </div>
         <div className='lg:flex-1/3 flex flex-col gap-4 p-4 border border-gray-200 shadow-md rounded-md'>
-          <h1 className='text-center text-2xl'>
+          <h2 className='text-center !text-2xl'>
             Hva skjer i <span className='capitalize'>{MONTH_NAME[currentMonth]}</span>
-          </h1>
+          </h2>
           {activeEvents.length === 0 && (
             <p className='italic text-sm my-auto'>
               Ingen arrangementer ennå - følg med, det kommer kanskje noe spennende!
