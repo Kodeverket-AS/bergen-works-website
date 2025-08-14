@@ -5,7 +5,7 @@ import { wpFetchPostsPaginatedServer } from '@/lib/apollo/server/articles/postsP
 // Components
 import Hero from '../components/layout/navigation/hero/Hero';
 import Partnere from '../components/Partnere';
-import Fasiliteter from '../components/Fasiliteter';
+import { Fasiliteter } from '../components/Fasiliteter';
 import { InformationSection } from '@/components/Informasjon';
 import { ContactForm } from '@/components/forms/ContactForm';
 import { ArticlesContainer } from '@/components/layout/articles/container';
@@ -15,7 +15,6 @@ export default async function Home() {
   const articles = await wpFetchPostsPaginatedServer({ first: 3 });
   const events = await wpFetchEventsServer({ first: 3 });
 
-  // Todo gjør om main til å bruke gap for mellomrom, fjern y margin fra underkomponter som bruker det
   return (
     <main className='flex flex-col gap-3 md:gap-6'>
       <Hero />
