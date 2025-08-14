@@ -1,34 +1,43 @@
-import { Article } from "@/types/sanity/sanity.types";
-import { sanityFetch } from "./client";
+import { Article, VippsCard } from '@/types/sanity/sanity.types';
+import { sanityFetch } from './client';
 
-/**
- * Function fetches all articles available from sanity
- * @returns array of articles
- */
 export async function getArticles() {
   try {
     const QUERY = `*[_type == "article"]`;
     const result: Article[] = await sanityFetch({
       query: QUERY,
-      tags: ["article"],
+      tags: ['article'],
     });
     return result;
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.error('[getArticles] fetch error:', { error });
     return [];
   }
 }
 
 export async function getArticle(slug: string) {
   try {
-    if (typeof slug !== "string") return null;
+    if (typeof slug !== 'string') return null;
     const result: Article = await sanityFetch({
       query: `*[_type == "article" && slug.current == "${slug}"][0]`,
-      tags: ["all", "articles"],
+      tags: ['all', 'articles'],
     });
     return result;
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.error('[getArticle] fetch error:', { error });
     return null;
+  }
+}
+
+export async function getVippsCards() {
+  try {
+    const result: VippsCard[] = await sanityFetch({
+      query: `*[_type == "vippsCard"]`,
+      tags: ['vipps', 'sanity'],
+    });
+    return result;
+  } catch (error) {
+    console.error('[getVippsCards] fetch error:', { error });
+    return [];
   }
 }
