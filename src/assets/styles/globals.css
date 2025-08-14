@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @utility no-scrollbar {
   @apply [scrollbar-width:none] [&::-webkit-scrollbar]:hidden;
@@ -10,13 +10,13 @@
 }
 
 @font-face {
-  font-family: "Montserrat";
-  src: url("Montserrat-VariableFont_wght.ttf") format("truetype");
+  font-family: 'Montserrat';
+  src: url('Montserrat-VariableFont_wght.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: "Space Grotesk";
-  src: url("/SpaceGrostek-VariableFont_wght.ttf") format("truetype");
+  font-family: 'Space Grotesk';
+  src: url('/SpaceGrostek-VariableFont_wght.ttf') format('truetype');
 }
 
 @theme inline {
@@ -49,17 +49,17 @@
   --color-light-text: #fffafa;
   --color-dark-text: #1e1e1e;
 
-  --font-space-grotesk: "Space Grotesk", sans-serif;
-
-  --font-montserrat: "Montserrat" , sans-serif;
-
+  /* Font family*/
+  --font-space-grotesk: 'Space Grotesk', sans-serif;
+  --font-montserrat: 'Montserrat', sans-serif;
 
   /* --breakpoint-3xl: 120rem; */
   --breakpoint-middle: 42.5rem;
 
-
-
-
+  /* Vipps branding @see https://brand.vippsmobilepay.com/document/18#/guidelines */
+  --color-vipps-text: #fff4ec;
+  --color-vipps-primary: #ff5b24;
+  --color-vipps-secondary: #562c83;
 }
 
 .text-glow {
@@ -101,9 +101,7 @@ body {
   min-height: 100svh;
   background: var(--background);
   color: var(--foreground);
-  font-family:
-    Montserrat,
-    sans-serif;
+  font-family: Montserrat, sans-serif;
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
