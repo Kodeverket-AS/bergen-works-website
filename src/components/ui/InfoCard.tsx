@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { ComponentProps, useState } from 'react';
 import { Modal } from './Modal';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
@@ -19,12 +19,12 @@ interface InfoCardProps {
   modalParagraph2?: string;
   modalLinkText?: string;
   modalLink?: string;
-  cardStyle: string;
-  imageStyle: string;
-  textContentStyle: string;
-  headerStyle: string;
-  paragraphStyle: string;
-  arrowStyle: string;
+  cardStyle: ComponentProps<'div'>['className'];
+  imageStyle: ComponentProps<'div'>['className'];
+  textContentStyle: ComponentProps<'div'>['className'];
+  headerStyle: ComponentProps<'h3'>['className'];
+  paragraphStyle: ComponentProps<'p'>['className'];
+  arrowStyle: ComponentProps<'div'>['className'];
 }
 
 export function InfoCard({
@@ -33,14 +33,14 @@ export function InfoCard({
   isVippsLink = false,
   description,
 
-  modalImageSrc = "",
-  modalImageAlt = "",
-  modalHeader = "",
-  modalParagraph1 = "",
-  modalParagraph2 = "",
-  modalLinkText = "",
-  modalLink = "",
-  cardStyle= "flex flex-col gap-3 md:gap-6",
+  modalImageSrc = '',
+  modalImageAlt = '',
+  modalHeader = '',
+  modalParagraph1 = '',
+  modalParagraph2 = '',
+  modalLinkText = '',
+  modalLink = '',
+  cardStyle = 'flex flex-col gap-3 md:gap-6',
 
   imageStyle,
   textContentStyle,
