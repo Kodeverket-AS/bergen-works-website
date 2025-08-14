@@ -44,7 +44,7 @@ export default function ArticlesClientContainer({
       );
       const data: WpArticlesResult = await response.json();
 
-      if (data.posts.length) setArticles((old) => [...old, ...data.posts]);
+      if (data.posts.length) setArticles(data.posts);
       if (data.pageInfo) setPageInfo(data.pageInfo);
 
       setIsLoading(false);

@@ -6,13 +6,17 @@ import Medlemskap_iconer from './MedlemskapIconer';
 
 export default function Incubator() {
   return (
-    <main>
-      <div className='mb-10'>
+
+    <main className='flex flex-col gap-3 md:gap-6'>
+      <div className='flex flex-col gap-3 md:gap-6'>
+
         <ImageTextCard
           imageSrc='/bygg.png'
           alt={'Image of building'}
           headerText={'Bli en del av et inspirerende fellesskap'}
+
           headingTag='h1'
+
           paragraphText={
             'Jobb side om side med noen av Bergens mest innovative  selskaper. Få tilgang til moderne fasiliteter, sosiale soner, møterom, medlemsfordeler, digitale tjenester og inspirerende arrangementer – alt tilrettelagt for at du og din bedrift skal vokse.'
           }

@@ -2,7 +2,7 @@ import NavBar from "../navigation/mobile/navbar";
 
 export function Header() {
   return (
-    <header className="  my-10  w-full mb-8">
+    <header className='flex flex-col gap-3 md:gap-6 w-full '>
       <NavBar />
     </header>
   );

@@ -27,7 +27,9 @@ export function ImageTextCard({
   button,
   smallScreenReverse = false,
   largeScreenReverse = false,
-  cardStyle = '',
+
+  cardStyle = 'flex flex-col gap-3 md:gap-6',
+
   imageContainerStyle = '',
   imageStyle = '',
   imageInnerDivStyle = '',
@@ -39,7 +41,9 @@ export function ImageTextCard({
 
   return (
     <div
-      className={`flex w-full h-full mb-10 ${cardStyle} 
+
+      className={`flex w-full h-full  ${cardStyle} 
+
         ${smallScreenReverse ? 'flex-col-reverse' : 'flex-col'} 
         ${largeScreenReverse ? 'md:flex-row-reverse' : 'md:flex-row'}`}
     >
