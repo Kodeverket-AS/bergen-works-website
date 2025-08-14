@@ -7,9 +7,9 @@ export function ArticlesContainer({ articles }: { articles: WpPost[] }) {
 
   return (
     <div className='flex flex-col items-center gap-4'>
-      <Link href='/artikler' className='text-3xl'>
-        Nyeste artikler
-      </Link>
+      <h2 className='font-semibold text-xl md:text-2xl lg:text-4xl'>
+        <Link href='/artikler'>Nyeste artikler</Link>
+      </h2>
       <div className='w-full grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'>
         {articles.map((article) => (
           <ArticlePreviewCard key={article.slug} {...article} />
