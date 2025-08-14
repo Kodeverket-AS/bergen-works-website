@@ -2,13 +2,15 @@ import { type WpPost } from '@/types/apollo/articles.types';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Heading } from '../text/heading';
+import { ComponentProps } from 'react';
 
 interface ArticlePreviewCardProps {
   post: WpPost;
   heading?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+  headingStyle?: ComponentProps<'h1'>['className'];
 }
 
-export function ArticlePreviewCard({ post, heading = 'h2' }: ArticlePreviewCardProps) {
+export function ArticlePreviewCard({ post, heading = 'h2', headingStyle }: ArticlePreviewCardProps) {
   const { title, excerpt, featuredImage, date, uri } = post;
 
   // Format date for readability
@@ -44,7 +46,9 @@ export function ArticlePreviewCard({ post, heading = 'h2' }: ArticlePreviewCardP
         <div className='flex-1'>
           <p className='text-sm text-gray-500'>{postDateFormatted}</p>
           <Link href={uri}>
-            <Heading type={heading}>{title}</Heading>
+            <Heading type={heading} className={headingStyle}>
+              {title}
+            </Heading>
           </Link>
           {excerpt && (
             <div

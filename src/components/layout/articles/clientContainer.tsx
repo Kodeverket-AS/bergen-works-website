@@ -55,7 +55,7 @@ export default function ArticlesClientContainer({
 
   return (
     <main className='flex-1 flex flex-col gap-4 pb-4'>
-      <h1 className='text-center text-3xl'>Artikler fra Bergen Works</h1>
+      <h1 className='text-center'>Artikler fra Bergen Works</h1>
       <span className='flex flex-col'>
         {category && !isLoading && (
           <p>
@@ -72,7 +72,12 @@ export default function ArticlesClientContainer({
       </span>
       <div className='w-full grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'>
         {articles.map((article) => (
-          <ArticlePreviewCard key={article.slug} post={article} />
+          <ArticlePreviewCard
+            heading='h2'
+            headingStyle='text-lg md:text-xl lg:text-2xl'
+            key={article.slug}
+            post={article}
+          />
         ))}
       </div>
       {isLoading && (
