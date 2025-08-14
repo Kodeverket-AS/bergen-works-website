@@ -72,7 +72,7 @@ export default function ArticlesClientContainer({
       </span>
       <div className='w-full grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'>
         {articles.map((article) => (
-          <ArticlePreviewCard key={article.slug} {...article} />
+          <ArticlePreviewCard key={article.slug} post={article} />
         ))}
       </div>
       {isLoading && (

@@ -1,8 +1,16 @@
 import { type WpPost } from '@/types/apollo/articles.types';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Heading } from '../text/heading';
 
-export function ArticlePreviewCard({ title, excerpt, featuredImage, date, uri }: WpPost) {
+interface ArticlePreviewCardProps {
+  post: WpPost;
+  heading?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+}
+
+export function ArticlePreviewCard({ post, heading = 'h2' }: ArticlePreviewCardProps) {
+  const { title, excerpt, featuredImage, date, uri } = post;
+
   // Format date for readability
   const postDate = new Date(date);
   const postDateFormatted = new Intl.DateTimeFormat('no-NO', {
@@ -32,11 +40,11 @@ export function ArticlePreviewCard({ title, excerpt, featuredImage, date, uri }:
           className='transition-transform duration-300 group-hover:scale-105'
         />
       </Link>
-      <div className='flex flex-1 flex-col mt-6 p-6'>
+      <div className='flex flex-1 flex-col p-4'>
         <div className='flex-1'>
           <p className='text-sm text-gray-500'>{postDateFormatted}</p>
           <Link href={uri}>
-            <h2 className='mt-2 text-xl font-bold text-gray-800 hover:text-moss-600'>{title}</h2>
+            <Heading type={heading}>{title}</Heading>
           </Link>
           {excerpt && (
             <div
