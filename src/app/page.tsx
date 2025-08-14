@@ -4,7 +4,7 @@ import { wpFetchPostsPaginatedServer } from '@/lib/apollo/server/articles/postsP
 
 // Components
 import Hero from '../components/layout/navigation/hero/Hero';
-import Partnere from '../components/Partnere';
+import { Partnere } from '../components/Partnere';
 import { Fasiliteter } from '../components/Fasiliteter';
 import { InformationSection } from '@/components/Informasjon';
 import { ContactForm } from '@/components/forms/ContactForm';
