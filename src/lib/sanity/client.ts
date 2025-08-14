@@ -8,6 +8,7 @@ const clientConfig: ClientConfig = {
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
   apiVersion: process.env.NEXT_PUBLIC_SANITY_API_VERSION ?? '2024-11-04',
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? 'development',
+  useCdn: true,
 };
 
 // Initialize sanity client
