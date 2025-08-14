@@ -10,6 +10,7 @@ import { InformationSection } from '@/components/Informasjon';
 import { ContactForm } from '@/components/forms/ContactForm';
 import { ArticlesContainer } from '@/components/layout/articles/container';
 import { UpcomingEvents } from '@/components/layout/events/upcomingEvents';
+import { VippsCardsContainer } from '@/components/layout/services/vippsContainer';
 
 export default async function Home() {
   const articles = await wpFetchPostsPaginatedServer({ first: 3 });
@@ -19,6 +20,7 @@ export default async function Home() {
     <main className='flex flex-col gap-3 md:gap-6'>
       <Hero />
       <InformationSection />
+      <VippsCardsContainer />
       <Fasiliteter />
       <ArticlesContainer articles={articles.posts} />
       <Partnere />
