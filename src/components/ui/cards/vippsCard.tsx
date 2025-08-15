@@ -9,17 +9,41 @@ interface VippsCardProps {
 }
 
 export function VippsCard({ data, index }: VippsCardProps) {
-  const { title, url, description, details } = data;
+  const { title, description, details, url } = data;
   const isEven = index % 2;
+
+  // Map each unit to its singular/plural labels
+  const UNIT_LABELS = {
+    hourly: { single: 'time', plural: 'timer' },
+    daily: { single: 'dag', plural: 'dager' },
+    weekly: { single: 'uke', plural: 'uker' },
+    monthly: { single: 'måned', plural: 'måneder' },
+    yearly: { single: 'år', plural: 'år' },
+    na: { single: 'asdasd', plural: 'asdasd' },
+  };
+
+  // Bind required values
+  const unitType = details?.unitType || 'na';
+  const unitAmount = details?.unitAmount || 1;
+  const unitPrice = details?.price;
+
+  // Grap the correct label
+  const unitCategory = unitAmount > 1 ? 'plural' : 'single';
+  const unitLabel = (UNIT_LABELS[unitType] && UNIT_LABELS[unitType][unitCategory]) || '';
+
+  // Construct units strings
+  const unitAmountAdjusted = unitLabel.length ? (unitAmount > 1 ? unitAmount + ' ' : '') : '';
+  const unitCombined = `${unitPrice},-${unitLabel.length ? ' / ' : ' '}${unitAmountAdjusted}${unitLabel}`;
+
   return (
     <InfoCard
       /* data */
       title={title!}
-      description={`${details?.price},- / ${details?.unitAmount} ${details?.unitType}`}
+      description={unitCombined}
       isVippsLink
       modalLink={url}
       modalHeader={title!}
-      modalParagraph1={`${details?.price},- / ${details?.unitAmount} ${details?.unitType}`}
+      modalParagraph1={unitCombined}
       modalParagraph2={description}
       /* Styles */
       imageSrc='/infoIcon2.png'
