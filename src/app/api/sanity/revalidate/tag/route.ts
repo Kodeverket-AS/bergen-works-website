@@ -1,0 +1,37 @@
+import { revalidateTag } from 'next/cache';
+import { type NextRequest, NextResponse } from 'next/server';
+import { parseBody } from 'next-sanity/webhook';
+
+type WebhookPayload = {
+  tags: string[];
+};
+
+export async function POST(req: NextRequest) {
+  try {
+    if (!process.env.SANITY_WEBHOOK_KEY) {
+      return new Response('Missing environment variable SANITY_REVALIDATE_SECRET', { status: 500 });
+    }
+
+    const { isValidSignature, body } = await parseBody<WebhookPayload>(req, process.env.SANITY_WEBHOOK_KEY, true);
+
+    if (!isValidSignature) {
+      const message = 'Invalid signature';
+      return new Response(JSON.stringify({ message, isValidSignature, body }), {
+        status: 401,
+      });
+    } else if (!Array.isArray(body?.tags) || !body.tags.length) {
+      const message = 'Bad Request';
+      return new Response(JSON.stringify({ message, body }), { status: 400 });
+    }
+
+    body.tags.forEach((tag) => {
+      revalidateTag(tag);
+    });
+
+    console.info('[Sanity revalidate tag api route]', { ok: true, tags: body.tags });
+    return NextResponse.json({ body });
+  } catch (error) {
+    console.error('[Sanity revalidate tag api route]', { error });
+    return new Response((error as Error).message, { status: 500 });
+  }
+}
