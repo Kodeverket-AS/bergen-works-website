@@ -32,7 +32,7 @@ export async function getArticle(slug: string) {
 export async function getVippsCards() {
   try {
     const result: VippsCard[] = await sanityFetch({
-      query: `*[_type == "vippsCard"]`,
+      query: `*[_type == "vippsCard"]|order(orderRank)`,
       tags: ['vipps', 'sanity'],
     });
     return result;
