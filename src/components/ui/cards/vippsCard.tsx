@@ -1,7 +1,7 @@
 'use client';
 
 import { type VippsCard } from '@/types/sanity/sanity.types';
-import { InfoCard } from '../InfoCard';
+import { InfoCard } from '@/components/ui/InfoCard';
 
 interface VippsCardProps {
   data: VippsCard;
@@ -19,7 +19,7 @@ export function VippsCard({ data, index }: VippsCardProps) {
     weekly: { single: 'uke', plural: 'uker' },
     monthly: { single: 'måned', plural: 'måneder' },
     yearly: { single: 'år', plural: 'år' },
-    na: { single: 'asdasd', plural: 'asdasd' },
+    na: { single: '', plural: '' },
   };
 
   // Bind required values
