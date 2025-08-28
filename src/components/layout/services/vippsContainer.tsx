@@ -14,7 +14,7 @@ export async function VippsCardsContainer() {
       ))}
       <InfoCard
         /* Card */
-        cardStyle='bg-moss-200 flex justify-center items-center w-full h-[140px] group cursor-pointer lg:h-[200px] rounded-2xl duration-300 md:hover:scale-105'
+        cardStyle='odd:bg-moss-400 even:bg-moss-600 even:text-white flex justify-center items-center w-full h-[140px] group cursor-pointer lg:h-[200px] rounded-2xl duration-300 md:hover:scale-105'
         imageSrc='/infoIcon3.png'
         alt='Icon'
         title='Inkubasjon'
