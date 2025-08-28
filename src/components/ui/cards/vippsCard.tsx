@@ -15,7 +15,7 @@ export function VippsCard({ data, index }: VippsCardProps) {
     <InfoCard
       /* data */
       title={title!}
-      description={`${details?.price},- / ${details?.unitAmount} ${details?.unitType}`}
+      description={`${details?.price},-  `}
       isVippsLink
       modalLink={url}
       modalHeader={title!}
