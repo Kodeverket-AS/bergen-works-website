@@ -12,7 +12,7 @@ export function Fasiliteter() {
 
   return (
     <div className='w-full flex flex-col lg:flex-row lg:items-center gap-3 md:gap-6 p-6 lg:p-10 rounded-xl shadow-xl border border-gray-100'>
-      <div className='flex-1 flex flex-col gap-3 md:gap-6'>
+      <div className='flex-1 flex flex-col justify-center gap-3 md:gap-6'>
         <h2 className='font-semibold text-2xl md:text-3xl lg:text-4xl'>Fasilitetene</h2>
         <p className='text-lg lg:text-xl lg:mb-4 2xl:text-2x'>
           Hos Bergen.Works finner du moderne og fleksible fasiliteter - kontorer, møterom og sosiale soner - utformet
