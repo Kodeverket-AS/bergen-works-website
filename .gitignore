@@ -12,6 +12,8 @@
 
 # testing
 /coverage
+/src/**/*.http
+/src/**/*.https
 
 # next.js
 /.next/
