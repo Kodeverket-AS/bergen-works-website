@@ -35,24 +35,38 @@ export function AddToCalendarButton({ title, content, address, start, end, allDa
   const startDate = new Date(start);
   const endDate = new Date(end);
 
+  /** Function is used to parse js dates into machine readable dates for use in Google & Yahoo calendars */
+  function formatCalendarDate(date: Date, allDay: boolean = false) {
+    if (allDay) return date.toISOString().replace(/[-:]/g, '').split('T')[0];
+    return date
+      .toISOString()
+      .replace(/[-:]/g, '')
+      .replace(/\.\d{3}Z$/, 'Z');
+  }
+
+  /** Function is used to parse js dates into machine readable dates for use in Outlook and Office 365 calendars */
+  function formatOutlookDate(date: Date) {
+    return date.toISOString().split('.')[0];
+  }
+
   // Available calendar links with formated href params
-  // todo: check date formats, use https://www.labnol.org/calendar as helper
+  // https://www.labnol.org/calendar as helper for finding correct formatting
   const calendarSites = [
     {
       title: 'Google Calendar',
-      href: `https://calendar.google.com/calendar/render?action=TEMPLATE&dates=${startDate.getDate()}%2F${endDate.getDate()}&details=${content}&location=${address}&text=${title}`,
+      href: `https://calendar.google.com/calendar/render?action=TEMPLATE&dates=${allDay ? formatCalendarDate(startDate, true) : formatCalendarDate(startDate) + '%2F' + formatCalendarDate(endDate)}&details=${content}&location=${address}&text=${title}`,
     },
     {
       title: 'Microsoft Outlook',
-      href: `https://outlook.live.com/calendar/0/action/compose?allday=${allDay}&body=${content}&enddt=${endDate.getDate()}&location=${address}&path=%2Fcalendar%2Faction%2Fcompose&rru=addevent&startdt=${startDate.getDate()}&subject=${title}`,
+      href: `https://outlook.live.com/calendar/0/action/compose?allday=${allDay}&body=${content}&enddt=${formatOutlookDate(endDate)}&location=${address}&path=%2Fcalendar%2Faction%2Fcompose&rru=addevent&startdt=${formatOutlookDate(startDate)}&subject=${title}`,
     },
     {
       title: 'Office 365',
-      href: `https://outlook.office.com/calendar/0/action/compose?allday=${allDay}&body=${content}&enddt=${endDate.getDate()}&location=${address}&path=%2Fcalendar%2Faction%2Fcompose&rru=addevent&startdt=${startDate.getDate()}&subject=${title}`,
+      href: `https://outlook.office.com/calendar/0/action/compose?allday=${allDay}&body=${content}&enddt=${formatOutlookDate(endDate)}&location=${address}&path=%2Fcalendar%2Faction%2Fcompose&rru=addevent&startdt=${formatOutlookDate(startDate)}&subject=${title}`,
     },
     {
       title: 'YahooCalendar',
-      href: `https://calendar.yahoo.com/?desc=${content}&dur=${allDay ? 'allday' : false}&et=${endDate.getDate()}&in_loc=${address}&st=${startDate.getDate()}&title=${title}&v=60`,
+      href: `https://calendar.yahoo.com/?desc=${content}&dur=${allDay ? 'allday' : 'false'}&et=${formatCalendarDate(endDate)}&in_loc=${address}&st=${formatCalendarDate(startDate)}&title=${title}&v=60`,
     },
   ];
 
