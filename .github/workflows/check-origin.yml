@@ -2,8 +2,8 @@ name: Restrict PRs to main from development
 
 on:
   pull_request:
-    branches:
-      - main
+    branches: ['main']
+    types: [opened, reopened, synchronize]
 
 jobs:
   enforce-branch-origin:
