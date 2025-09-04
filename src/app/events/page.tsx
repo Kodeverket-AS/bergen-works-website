@@ -1,9 +1,9 @@
 import { EventCalendar } from '@/components/ui/calendar/eventCalendar';
-import { wpFetchEvents } from '@/lib/apollo/client/fetch/events/events';
+import { wpFetchEventsServer } from '@/lib/apollo/server/events/events';
 
 export default async function EventsPage() {
   // Fetch all events from wordpress
-  const response = await wpFetchEvents();
+  const response = await wpFetchEventsServer();
 
   // Print error message if we encounter it
   if (response.error) return <main>{response.error}</main>;
