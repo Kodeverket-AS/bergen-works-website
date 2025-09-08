@@ -33,7 +33,7 @@ export function EventCalendarGridBox({
         relative
         aspect-square w-full border rounded-md cursor-pointer pb-1 pt-4 sm:pt-6
         ${dayItem.isInCurrentMonth ? 'border-gray-300' : 'border-gray-200'}
-        ${dayItem.date.toDateString() === activeDate.toDateString() ? '' : ''}
+        ${dayItem.isToday ? 'border-moss-400 border-2' : ''}
         hover:shadow-md duration-200
       `}
     >
@@ -53,8 +53,7 @@ export function EventCalendarGridBox({
       <p
         className={`
           absolute top-0 left-1
-          text-xs sm:text-sm md:text-lg
-          ${dayItem.isToday ? 'text-2xl' : ''}
+          ${dayItem.isToday ? 'text-sm sm:text-lg md:text-xl' : 'text-xs sm:text-sm md:text-lg'}
           ${dayItem.isInCurrentMonth ? '' : 'text-gray-300'}
         `}
       >
