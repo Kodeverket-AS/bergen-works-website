@@ -15,15 +15,7 @@ export interface DayItem {
   events: WpEvent[];
 }
 
-export function EventCalendarGridBox({
-  dayItem,
-  index,
-  activeDate,
-}: {
-  dayItem: DayItem;
-  index: number;
-  activeDate: Date;
-}) {
+export function EventCalendarGridBox({ dayItem, index }: { dayItem: DayItem; index: number; activeDate: Date }) {
   const [modalData, setModalData] = useState<WpEvent | null>(null);
   const [position, setPosition] = useClickPosition();
 
