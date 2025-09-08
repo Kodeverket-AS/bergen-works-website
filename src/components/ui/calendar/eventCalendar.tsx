@@ -11,10 +11,12 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 export function EventCalendar({ events }: { events: WpEvent[] }) {
-  // States
-  const [activeDate, setActiveDate] = useState<Date>(new Date());
-  const calendarDays: DayItem[] = [];
+  // Constants
   const today = new Date();
+
+  // States
+  const [activeDate, setActiveDate] = useState<Date>(today);
+  const calendarDays: DayItem[] = [];
 
   // Constants
   const DAY_NAME = ['mandag', 'tirsdag', 'onsdag', 'torsdag', 'fredag', 'lørdag', 'søndag'];
@@ -28,7 +30,7 @@ export function EventCalendar({ events }: { events: WpEvent[] }) {
   // Get month specific dates
   const firstDayInMonth = new Date(currentYear, currentMonth, 1);
   const lastDayInMonth = new Date(currentYear, currentMonth + 1, 0);
-  const firstDayWeekday = firstDayInMonth.getDay();
+  const firstDayWeekday = (firstDayInMonth.getDay() + 6) % 7;
   const daysInMonth = lastDayInMonth.getDate();
 
   // Get previous month's last days to fill the grid
