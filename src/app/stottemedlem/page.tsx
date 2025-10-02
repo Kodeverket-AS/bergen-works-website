@@ -8,15 +8,17 @@ export default function SupportMembershipPage() {
     <main className='flex flex-col gap-3 md:gap-6'>
       <ImageTextCard
         imageSrc='/infoImage.png'
-        alt='Fellesskap hos Bergen.Works'
+        alt='Faglig arrangement hos Bergen.Works'
         headerText='Hold kontakten med Bergen.Works – bli støttemedlem'
         headingTag='h1'
         paragraphText='Er din bedrift tidligere medlem hos Bergen.Works? Dere kan fortsatt være en del av fellesskapet gjennom vårt støttemedlemskap – en enkel måte å bevare tilknytningen, være oppdatert og bidra til utviklingen av Bergens næringsliv.'
         smallScreenReverse={false}
         largeScreenReverse={false}
-        cardStyle='gap-3 md:gap-6'
-        imageContainerStyle='flex items-center justify-center md:w-2/5 lg:w-1/3 h-auto bg-white p-6 rounded-2xl shadow-md'
-        textContainerStyle='text-white bg-black md:w-full lg:w-2/3 lg:h-auto'
+        cardStyle='gap-3 md:gap-6 items-stretch'
+        imageContainerStyle='bg-black rounded-2xl p-6 sm:p-8 w-full md:w-2/5 lg:w-1/3 flex items-center justify-center'
+        imageInnerDivStyle='relative w-full h-full flex items-center justify-center'
+        imageStyle='object-contain w-full h-auto max-h-64 sm:max-h-80 md:max-h-full'
+        textContainerStyle='text-white bg-black w-full md:flex-1 lg:h-auto !max-w-none'
         headerStyle='text-white text-3xl md:text-5xl xl:text-6xl'
         paragraphStyle='pt-4 lg:py-6'
       />
