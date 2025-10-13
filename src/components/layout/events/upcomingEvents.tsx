@@ -9,7 +9,7 @@ export function UpcomingEvents({ events }: { events: WpEvent[] }) {
   if (slizedArray.length === 0) return null;
 
   return (
-    <div className='flex flex-col items-center gap-4 my-8'>
+    <div className='flex flex-col items-center gap-4 my-8 '>
       <Link href='/events' className='text-3xl'>
         Neste hendelser
       </Link>
