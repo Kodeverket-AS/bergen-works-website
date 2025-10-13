@@ -4,23 +4,23 @@ import Link from 'next/link';
 
 // Mui icons
 import LocationPinIcon from '@mui/icons-material/LocationPin';
-// import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 export function EventCardPreview(event: WpEvent) {
-  const startDate = new Date(event.date);
+  const startDate = new Date(event.startDate);
 
-  // const day = new Intl.DateTimeFormat('no-NO', { day: '2-digit' }).format(startDate).replace('.', '');
+  const day = new Intl.DateTimeFormat('no-NO', { day: '2-digit' }).format(startDate).replace('.', '');
   const month = new Intl.DateTimeFormat('no-NO', { month: 'short' }).format(startDate).toLocaleUpperCase();
 
-  // const dateFormatter = new Intl.DateTimeFormat('no-NO', {
-  //   month: 'long',
-  //   day: 'numeric',
-  //   year: 'numeric',
-  //   hour: '2-digit',
-  //   minute: '2-digit',
-  // });
+  const dateFormatter = new Intl.DateTimeFormat('no-NO', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
 
   return (
     <div className='flex flex-col gap-4 pb-4 rounded-lg border border-gray-200 bg-white shadow-md hover:shadow-2xl duration-300'>
@@ -40,7 +40,7 @@ export function EventCardPreview(event: WpEvent) {
           className='transition-transform rounded-t-md duration-300 group-hover:scale-105'
         />
         <div className='absolute top-2 left-2 size-12 p-1 flex flex-col flex-nowrap items-center justify-center rounded-md border border-gray-300 bg-white'>
-          {/* <p className='font-bold text-2xl leading-4'>{day}</p> */}
+          <p className='font-bold text-2xl leading-4'>{day}</p>
           <p className='font-bold tracking-wider text-sm text-red-600 leading-4'>{month}</p>
         </div>
       </Link>
@@ -49,8 +49,8 @@ export function EventCardPreview(event: WpEvent) {
           <h3 className='text-xl font-bold text-gray-800 hover:text-moss-600'>{event.title}</h3>
         </Link>
         <span className='flex gap-2'>
-          {/* <CalendarMonthIcon /> */}
-          {/* <p>{dateFormatter.format(startDate)}</p> */}
+          <CalendarMonthIcon />
+          <p>{dateFormatter.format(startDate)}</p>
         </span>
         <span className='flex gap-2 items-center'>
           <LocationPinIcon />
