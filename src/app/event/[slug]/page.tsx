@@ -131,13 +131,17 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
         {event.venue ? (
           <>
             <div className='bg-gray-100 rounded-md overflow-hidden'>
-              {/* todo: Skaff ny api nøkkel for dette prosjektet @andreas */}
               <GoogleMapsEmbed
                 apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!}
                 height={300}
                 width='100%'
                 mode='place'
-                q={`${event.venue.address}%2C+${event.venue.city}%2C+${event.venue.country}`}
+                /* Overwrite default handler to get precise location for bw */
+                q={
+                  event.venue?.address?.trim().toLowerCase() == 'vestre skostredet 2'
+                    ? '98VH+C5%Bergen.Works'
+                    : `${event.venue.address}%2C+${event.venue.city}%2C+${event.venue.country}`
+                }
               />
             </div>
             <span className='flex flex-col p-2 border rounded-md'>
